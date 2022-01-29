@@ -84,7 +84,7 @@
                                 <tr>
                                     <td>{{ $hotelres->bookId  }}</td>
                                     <td>{{ $hotelres->guestFirstName }} {{ $hotelres->guestName }}</td>
-                                    <td>{{ $hotelres->roomId  }}</td>
+                                    <td>{{ $hotelres->unitId  }}</td>
                                     <td>{{ $hotelres->firstNight  }}</span></td>
                                     <td>{{ $hotelres->lastNight  }}</td>
                                     <td>{{ $hotelres->numAdult  }}</td>

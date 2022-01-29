@@ -19,7 +19,6 @@ class CreateReservationsTable extends Migration
             $table->string('guestFirstName')->nullable();
             $table->string('guestName')->nullable();
             $table->string('bookId')->unique();
-            $table->string('roomId')->nullable();
             $table->string('unitId')->nullable();
             $table->date('firstNight')->nullable();
             $table->date('lastNight')->nullable();
