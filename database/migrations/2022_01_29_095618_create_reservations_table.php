@@ -18,7 +18,7 @@ class CreateReservationsTable extends Migration
             $table->timestamps();
             $table->string('guestFirstName')->nullable();
             $table->string('guestName')->nullable();
-            $table->string('bookId')->nullable();
+            $table->string('bookId')->unique();
             $table->string('roomId')->nullable();
             $table->date('firstNight')->nullable();
             $table->date('lastNight')->nullable();
@@ -26,7 +26,7 @@ class CreateReservationsTable extends Migration
             $table->decimal('price',10,2)->nullable();
             $table->decimal('commission',10,2)->nullable();
             $table->string('referer')->nullable();
-            $table->string('payment_method');
+            $table->string('payment_method')->nullable();
             $table->string('company_name')->nullable();
 
         });

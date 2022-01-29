@@ -376,7 +376,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     </div>
     <script type="text/javascript">
         $(".date").datepicker({
-            format: "mm/dd/yyyy",
+            format: "yyyy-mm-dd",
             todayBtn: "linked",
             language: "ru",
             todayHighlight: true,
