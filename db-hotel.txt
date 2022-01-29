@@ -12,4 +12,4 @@ commission - decimal 10,2
 referer - string
 -----------------------
 payment_method - string
-firm_name - string
+company_name - string

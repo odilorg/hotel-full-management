@@ -80,7 +80,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($attributes as $hotelres )
+                                @foreach ($reservations as $hotelres )
                                 <tr>
                                     <td>{{ $hotelres->bookId  }}</td>
                                     <td>{{ $hotelres->guestFirstName }} {{ $hotelres->guestName }}</td>

@@ -15,17 +15,18 @@ class ReservationController extends Controller
      */
     public function index()
     {
-//         
-    $attributes = Reservation::get();
-        // / dd($attributes);
-        // session()->flash('success', 'Cargo kiritildi');
-        // session()->flash('type', 'Yangi Cargo');
+        $rooms = Room::join('cargos', 'inventories.cargo_id', '=', 'cargos.id')
+            ->join('products', 'inventories.product_id', '=', 'products.id')
+            ->select([
+                'inventories.id','inventories.product_price_total','inventories.product_quantity','inventories.product_total_weight',
+                'products.product_name','products.product_price','products.product_weight',
+                'cargos.cargo_arrival_date',
+                             ])
+            ->paginate(13); 
+    $reservations = Reservation::get();
+      
 
-        return view('reservations.index', compact('attributes'));
-
-
-
-       
+     return view('reservations.index', compact('reservations'));
     }
     public function beds24()
     {
@@ -67,7 +68,7 @@ class ReservationController extends Controller
         foreach ($response as $key => $value) {
            $attributes['guestFirstName'] = $value->guestFirstName;
            $attributes['guestName'] = $value->guestName;
-          
+           $attributes['unitId'] = $value->unitId ;
            $attributes['roomId'] = $value->roomId ;
            $attributes['firstNight'] = $value->firstNight ;
            $attributes['lastNight'] = $value->lastNight ;
@@ -96,7 +97,7 @@ class ReservationController extends Controller
      */
     public function create()
     {
-        //
+        return view('reservations.create');
     }
 
     /**
@@ -107,7 +108,28 @@ class ReservationController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //dd($request->all());
+        $attributes =  request()->validate([
+
+            'guestFirstName' => ['required ', 'max:255'],
+            'guestName' => ['required','max:255'],
+            'bookId' => ['required'],
+            'roomId' => ['required'],
+            'firstNight' => ['required' ],
+            'lastNight' => ['required' ],
+            'numAdult' => ['required', 'numeric'],
+            'price' => ['required', 'numeric'],
+            'commission' => ['required', 'numeric'],
+            'referer' => ['required' ],
+            'payment_method' => ['max:255' ],
+            'firm_name' => ['max:255' ],
+        ]);
+        
+        Reservation::create($attributes);
+        session()->flash('success', 'Booking created');
+        session()->flash('type', 'New Booking');
+
+       return redirect('reservations'); 
     }
 
     /**
@@ -150,8 +172,12 @@ class ReservationController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Reservation $reservation)
     {
-        //
+        $reservation->delete();
+        session()->flash('error', 'Booking Deleted');
+        session()->flash('type', 'Booking Deleted');
+
+        return redirect('reservations');
     }
 }
