@@ -114,7 +114,7 @@ $a = date_format($a,"Y-m-d" );
 
 $url = 'https://api.exchangerate.host/convert?from=USD&to=UZS&date='.$a;
 $response_json = file_get_contents($url);
-$response = json_decode($response_json);
+
 
 if(false !== $response_json) {
     try {

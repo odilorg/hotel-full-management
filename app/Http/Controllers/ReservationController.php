@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Exception;
 use App\Models\Reservation;
 use Illuminate\Http\Request;
 
@@ -66,7 +67,7 @@ class ReservationController extends Controller
         foreach ($response as $key => $value) {
            $attributes['guestFirstName'] = $value->guestFirstName;
            $attributes['guestName'] = $value->guestName;
-           $attributes['bookId'] = $value->bookId;
+          
            $attributes['roomId'] = $value->roomId ;
            $attributes['firstNight'] = $value->firstNight ;
            $attributes['lastNight'] = $value->lastNight ;
@@ -74,6 +75,13 @@ class ReservationController extends Controller
            $attributes['price'] = $value->price ;
            $attributes['commission'] = $value->commission ;
            $attributes['referer'] = $value->referer ;
+         // dd(Reservation::where('bookId', $value->bookId )->count() == 0);
+        if (Reservation::where('bookId', $value->bookId )->count() > 0) {
+            session()->flash('error', 'This reservation exists');
+            return redirect('reservations');
+        } else {
+            $attributes['bookId'] = $value->bookId;
+        }
            Reservation::create($attributes);
         }
         session()->flash('success', 'Beds24 created');
