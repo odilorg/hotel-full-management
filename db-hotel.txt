@@ -1,0 +1,15 @@
+pull from beds24 manually or cron job
+--------------
+guestFirstName - string
+guestName - string
+bookId - string
+roomId - string
+firstNight - date
+lastNight - date
+numAdult - integer
+price - decimal 10,2
+commission - decimal 10,2
+referer - string
+-----------------------
+payment_method - string
+firm_name - string

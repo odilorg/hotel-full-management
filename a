@@ -1,0 +1,318 @@
+[33mcommit 2d9b312183871f096689a00ef72ca1fbcf645fbb[m[33m ([m[1;36mHEAD -> [m[1;32mhome-ssst[m[33m, [m[1;31morigin/home-ssst[m[33m)[m
+Author: Odiljon <odilorg@gmail.com>
+Date:   Thu Jan 20 14:17:33 2022 +0500
+
+    finished edit delete transport
+
+[33mcommit 14b5117a061ed47ce2dc91bc15bd6f1a73fdb09f[m
+Author: Odiljon <odilorg@gmail.com>
+Date:   Thu Jan 20 12:59:32 2022 +0500
+
+    transport edit
+
+[33mcommit 085f1bc8a78932e856cff50cf8a13d6d32f5e835[m
+Author: Odiljon <odilorg@gmail.com>
+Date:   Sat Jan 15 18:03:40 2022 +0500
+
+    transport middle
+
+[33mcommit 5be9333df74e64c742ca889cafb41d4d9e1ef732[m
+Author: Odiljon <odilorg@gmail.com>
+Date:   Sat Jan 15 17:33:23 2022 +0500
+
+    started merging itinararies to transport
+
+[33mcommit 011274fea5799492cad477b3ab04d0187ec4018a[m
+Author: Odiljon <odilorg@gmail.com>
+Date:   Sat Jan 15 13:45:12 2022 +0500
+
+    finished show hide tranport type
+
+[33mcommit 681ee8156b2310381ba42756570cb28bc6d0f5c4[m
+Author: Odiljon <odilorg@gmail.com>
+Date:   Sat Jan 15 12:10:32 2022 +0500
+
+    fixed the cascadelete on transport
+
+[33mcommit 8991944b8d197ff0f7676fcd4eff5ff0e11aef01[m
+Author: Jon <odilorg@gmail.com>
+Date:   Fri Jan 14 23:14:53 2022 +0500
+
+    start edit transport
+
+[33mcommit e877b42f2eb42d863ccea0051158eb7796f4158e[m
+Author: Jon <odilorg@gmail.com>
+Date:   Fri Jan 14 20:41:47 2022 +0500
+
+    started edit transport
+
+[33mcommit 0c9cf231810602b3be091247ea55d0de62e168c4[m
+Author: Jon <odilorg@gmail.com>
+Date:   Fri Jan 14 19:58:28 2022 +0500
+
+    started transport
+
+[33mcommit dfb3109957cab52c6ab33d833154495fb6e49c2e[m
+Author: Odiljon <odilorg@gmail.com>
+Date:   Fri Jan 14 18:39:45 2022 +0500
+
+    finished hotelres and tourgroups
+
+[33mcommit 66acdf6e2539d3e36463df74239691f8a6e34bcc[m
+Author: Odiljon <odilorg@gmail.com>
+Date:   Fri Jan 14 17:07:17 2022 +0500
+
+    Fixed tourgroups starting hotel res choose tourgroup
+
+[33mcommit de2da92941c622c04c23e2b34d264a956efc48a8[m
+Author: Odiljon <odilorg@gmail.com>
+Date:   Fri Jan 14 11:23:12 2022 +0500
+
+    prevented browser back button issue
+
+[33mcommit 174b3fdc4acb03f9fc32fb3f33612e4ff6c3f61d[m
+Author: Odiljon <odilorg@gmail.com>
+Date:   Fri Jan 14 10:27:25 2022 +0500
+
+    profile image avatar fixed
+
+[33mcommit d2b83b85aae6650fc9c89adcd3e7cfa4608792f2[m
+Author: Odiljon <odilorg@gmail.com>
+Date:   Thu Jan 13 17:47:09 2022 +0500
+
+    profile image fixed
+
+[33mcommit 114663cf241df12d1b831c50562d4f10f5b30188[m
+Author: Odiljon <odilorg@gmail.com>
+Date:   Thu Jan 13 16:22:16 2022 +0500
+
+    login logout finished
+
+[33mcommit 7a8d020ec566410aea092eec6869540928503e8c[m
+Author: Odiljon <odilorg@gmail.com>
+Date:   Thu Jan 13 14:58:37 2022 +0500
+
+    users CRUD finished
+
+[33mcommit f03358eb04f167cf3270a3774f1a3429b6116c2e[m
+Author: Odiljon <odilorg@gmail.com>
+Date:   Thu Jan 13 12:54:43 2022 +0500
+
+    start working on Users
+
+[33mcommit 75444dd2e93b2f0f53e58451d318b54e370b31dd[m
+Merge: e841399 e78c008
+Author: Odiljon <odilorg@gmail.com>
+Date:   Thu Jan 13 10:38:17 2022 +0500
+
+    Merge branch 'home-ssst' of https://github.com/odilorg/jahongir-dashboard-master into home-ssst
+
+[33mcommit e841399ba8932d3f36eaf8481b820b921d180044[m
+Author: Odiljon <odilorg@gmail.com>
+Date:   Thu Jan 13 10:26:58 2022 +0500
+
+    office-start working on user
+
+[33mcommit e78c0084c7e605f2ecbb512cfb79223d3c79e0f8[m
+Author: Jon <odilorg@gmail.com>
+Date:   Thu Jan 13 00:29:21 2022 +0500
+
+    FINISHED WITH CASTIN ARRAY
+
+[33mcommit 56179ffe0eadb9e38e09d1d48d34e9377a438817[m
+Author: Odiljon <odilorg@gmail.com>
+Date:   Wed Jan 12 18:19:28 2022 +0500
+
+    json trying to get data
+
+[33mcommit 4fed1501c232635b2e0f212a24a5fa65fdbe8383[m
+Author: Odiljon <odilorg@gmail.com>
+Date:   Wed Jan 12 16:26:02 2022 +0500
+
+    finished the form
+
+[33mcommit c6bb12ec138d980b5adf115db34f415bd2a61e51[m
+Author: Odiljon <odilorg@gmail.com>
+Date:   Wed Jan 12 12:47:50 2022 +0500
+
+    new form create transport
+
+[33mcommit cedd03d6d8bd519c3b2835e6d0b60c84f801200f[m
+Author: Odiljon <odilorg@gmail.com>
+Date:   Wed Jan 12 11:08:27 2022 +0500
+
+    train and air chnaged
+
+[33mcommit 8399ce8b67f630eca1e55a8b0f62b6ecb545edd3[m
+Author: Odiljon <odilorg@gmail.com>
+Date:   Wed Jan 12 11:02:41 2022 +0500
+
+    change from office
+
+[33mcommit a444065f4820ba6cc24b24c0de1424abb6378af8[m
+Author: Odiljon <odilorg@gmail.com>
+Date:   Wed Jan 12 11:01:48 2022 +0500
+
+    office
+
+[33mcommit d73e10d6324a87e8dfbc32cb682488da14a48e86[m
+Author: Jon <odilorg@gmail.com>
+Date:   Wed Jan 12 09:31:45 2022 +0500
+
+    auto form
+
+[33mcommit 3e91c065c124433ba0a1ab2e77b202403a0aa2be[m
+Author: Jon <odilorg@gmail.com>
+Date:   Wed Jan 12 09:31:11 2022 +0500
+
+    create transport auto
+
+[33mcommit a71ab8c11224ce066b2d15d9420d462caea76e0f[m
+Author: Jon <odilorg@gmail.com>
+Date:   Wed Jan 12 09:18:08 2022 +0500
+
+    started transport create form
+
+[33mcommit e0545cfbc19f87cca45ecefa8234645ad2ed4898[m
+Author: Jon <odilorg@gmail.com>
+Date:   Wed Jan 12 00:54:21 2022 +0500
+
+    Revert "Revert "tourgroup finished""
+    
+    This reverts commit a21d9b3f1b4f1dec8fd049eff031f99dee85f732.
+
+[33mcommit a21d9b3f1b4f1dec8fd049eff031f99dee85f732[m[33m ([m[1;31morigin/office_desktop[m[33m, [m[1;32moffice_desktop[m[33m)[m
+Author: Odiljon <odilorg@gmail.com>
+Date:   Fri Jan 7 19:13:03 2022 +0500
+
+    Revert "tourgroup finished"
+    
+    This reverts commit 44bd2c92a43205473466cc59e8c9d491af35aa3c.
+
+[33mcommit 962e04bf7be585714787816635b93ad70565e61e[m[33m ([m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmaster[m[33m)[m
+Author: Odiljon <odilorg@gmail.com>
+Date:   Fri Dec 31 08:52:15 2021 +0500
+
+    merge from home
+
+[33mcommit 055dfaae774bb1509a93e69026191a6ded891024[m
+Merge: b1a7098 44bd2c9
+Author: Odiljon <odilorg@gmail.com>
+Date:   Fri Dec 31 08:46:18 2021 +0500
+
+    Merge branch 'master' of https://github.com/odilorg/jahongir-dashboard-master
+
+[33mcommit b1a7098bb6b88d0e2adcd70f87bd89e0b66a8831[m
+Author: Odiljon <odilorg@gmail.com>
+Date:   Fri Dec 31 08:45:41 2021 +0500
+
+    started tourgroup model
+
+[33mcommit 44bd2c92a43205473466cc59e8c9d491af35aa3c[m
+Author: Jon <odilorg@gmail.com>
+Date:   Thu Dec 30 23:38:03 2021 +0500
+
+    tourgroup finished
+
+[33mcommit 404672c2169afcb27055acc4a17b6b01037f944d[m
+Author: Jon <odilorg@gmail.com>
+Date:   Thu Dec 30 21:46:56 2021 +0500
+
+    tourgroup model created
+
+[33mcommit 8a274cae1fbe4b65b1195899533a4f6fad0bf9df[m
+Merge: 0d4a033 6210d9e
+Author: Jon <odilorg@gmail.com>
+Date:   Thu Dec 30 19:49:23 2021 +0500
+
+    Merge branch 'master' of https://github.com/odilorg/jahongir-dashboard-master
+
+[33mcommit 0d4a0337b32e0b18688a469798d6cdb58bb93bb4[m
+Author: Jon <odilorg@gmail.com>
+Date:   Thu Dec 30 19:46:30 2021 +0500
+
+    tourgroip
+
+[33mcommit 6210d9e9d11777a871ea5f0380730da15483c36f[m
+Author: Odiljon <odilorg@gmail.com>
+Date:   Thu Dec 30 17:44:56 2021 +0500
+
+    tour group
+
+[33mcommit 2062098d51c4c7cb21fa01abb2415be2d3b3bef9[m
+Author: Odiljon <odilorg@gmail.com>
+Date:   Mon Dec 27 17:48:57 2021 +0500
+
+    register started
+
+[33mcommit 5913ff515edcecc5e1a3418607658fac2e8f7e39[m
+Author: Jon <odilorg@gmail.com>
+Date:   Sat Dec 25 09:48:56 2021 +0500
+
+    db not working
+
+[33mcommit 9a60b50b774ef619d1cc588bbf2ac9e4c6a927f2[m
+Author: Odiljon <odilorg@gmail.com>
+Date:   Fri Dec 24 20:21:36 2021 +0500
+
+    creating hotelreservations resource
+
+[33mcommit 98e3f1641b4b19d0b06a508a23b3f3df0721b0a3[m
+Author: Odiljon <odilorg@gmail.com>
+Date:   Fri Dec 24 19:54:11 2021 +0500
+
+    models are created Hotelreservation and tourgroup
+
+[33mcommit 28abe962f8942fdefc304dc86d35e12d14977449[m
+Author: Odiljon <odilorg@gmail.com>
+Date:   Fri Dec 24 19:44:23 2021 +0500
+
+    tourgroup model and migration
+
+[33mcommit c2eddaf049d4b20a6c85046cdc09285d0af035a1[m
+Author: Odiljon <odilorg@gmail.com>
+Date:   Fri Dec 24 14:52:16 2021 +0500
+
+    hotel res table form ready
+
+[33mcommit ba2b9da21c0c59e353ffbd1fabf9ba84c6f0d14c[m
+Author: Jon <odilorg@gmail.com>
+Date:   Fri Dec 24 08:54:37 2021 +0500
+
+    now
+
+[33mcommit a5e9e5c3df67d579a72e3c73a5c66c6f860cc866[m
+Author: Jon <odilorg@gmail.com>
+Date:   Fri Dec 24 07:36:52 2021 +0500
+
+    hotelres controller created
+
+[33mcommit 8586d34667ae361fbfe120c88d2481c724654128[m
+Author: Jon <odilorg@gmail.com>
+Date:   Thu Dec 23 20:37:26 2021 +0500
+
+    form finished
+
+[33mcommit ad6651cc5d43c30dc45db44a816f7df98f2c188b[m
+Author: Jon <odilorg@gmail.com>
+Date:   Thu Dec 23 20:27:33 2021 +0500
+
+    Update composer.lock
+
+[33mcommit 1bebfe49db15d66f93162a607d645ef553bc5863[m
+Author: Odiljon <odilorg@gmail.com>
+Date:   Thu Dec 23 15:25:34 2021 +0500
+
+    form hotel reservations
+
+[33mcommit 7600cb83e9b7c5857bd7b86fff97145464a6eb9d[m
+Author: Odiljon <odilorg@gmail.com>
+Date:   Thu Dec 23 13:20:22 2021 +0500
+
+    hotelreservations
+
+[33mcommit 0f2885f377a9c7c853b3fca3e997b14c58e64deb[m
+Author: Odiljon <odilorg@gmail.com>
+Date:   Thu Dec 23 13:08:17 2021 +0500
+
+    before UI

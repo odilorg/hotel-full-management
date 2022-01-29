@@ -1,0 +1,25 @@
+restaurant_name
+restaurant_city
+book_date_time
+restaurant_status
+extra_info_restaurant
+restaurant_tel
+
+
+(23) 423-4234
+/(^[(]([0-9]{2}+)[)]\s[0-9]{3}[-][0-9]{4})/u
+
+regex:/(^[(]([0-9]{2}+)[)]\s[0-9]{3}[-][0-9]{4})/u',
+
+ticket_location
+monument_name
+voucher_number
+ticket_date
+ticket_extra_info
+ticket_status
+ticket_file
+
+lb-prev
+lb-next
+
+
