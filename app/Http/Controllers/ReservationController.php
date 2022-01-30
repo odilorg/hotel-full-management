@@ -127,7 +127,7 @@ class ReservationController extends Controller
             'commission' => ['required', 'numeric'],
             'referer' => ['required' ],
             'payment_method' => ['max:255' ],
-            'firm_name' => ['max:255' ],
+            'company_name' => ['max:255' ],
         ]);
         
         Reservation::create($attributes);
@@ -154,9 +154,11 @@ class ReservationController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Reservation $reservation)
     {
-        //
+       
+       // dd($reservation);
+        return view('reservations.edit', compact('reservation'));
     }
 
     /**
@@ -166,9 +168,20 @@ class ReservationController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Reservation $reservation)
     {
-        //
+        $attributes =  request()->validate([
+
+          
+            'payment_method' => ['required', 'max:255' ],
+            'company_name' => ['max:255' ],
+        ]);
+        $reservation->update($attributes);
+        session()->flash('success', 'Booking updated');
+        session()->flash('type', 'Booking');
+ 
+        
+        return redirect('reservations');
     }
 
     /**
