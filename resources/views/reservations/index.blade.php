@@ -80,11 +80,11 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($reservations as $hotelres )
+                                @foreach ($rooms as $hotelres )
                                 <tr>
                                     <td>{{ $hotelres->bookId  }}</td>
                                     <td>{{ $hotelres->guestFirstName }} {{ $hotelres->guestName }}</td>
-                                    <td>{{ $hotelres->unitId  }}</td>
+                                    <td>{{ $hotelres->room_number  }}</td>
                                     <td>{{ $hotelres->firstNight  }}</span></td>
                                     <td>{{ $hotelres->lastNight  }}</td>
                                     <td>{{ $hotelres->numAdult  }}</td>
@@ -92,7 +92,7 @@
                                     <td>{{ $hotelres->commission }}</td>
                                     <td>{{ $hotelres->referer  }}</td>
                                     <td>{{ $hotelres->payment_method   }}</td>
-                                    <td>{{ $hotelres->firm_name   }}</td>
+                                    <td>{{ $hotelres->company_name   }}</td>
 
 
                                     </td>

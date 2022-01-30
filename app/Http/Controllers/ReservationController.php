@@ -6,6 +6,7 @@ use Exception;
 use App\Models\Room;
 use App\Models\Reservation;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ReservationController extends Controller
 {
@@ -16,18 +17,20 @@ class ReservationController extends Controller
      */
     public function index()
     {
-        // $rooms = Room::join('cargos', 'inventories.cargo_id', '=', 'cargos.id')
-        //     ->join('products', 'inventories.product_id', '=', 'products.id')
-        //     ->select([
-        //         'inventories.id','inventories.product_price_total','inventories.product_quantity','inventories.product_total_weight',
-        //         'products.product_name','products.product_price','products.product_weight',
-        //         'cargos.cargo_arrival_date',
-        //                      ])
-        //     ->paginate(13); 
-    $reservations = Reservation::get();
-      
+        $rooms = DB::table('rooms')
 
-     return view('reservations.index', compact('reservations'));
+        ->join("reservations",function($join){
+            $join->on("reservations.roomId","=","rooms.room_id")
+                ->on("reservations.unitId","=","rooms.unit_id");
+        })
+        ->get();
+           //merge arrays
+          
+    // $reservations = Reservation::get();
+    //  dd($rooms);
+    //  $w[] = array_merge($rooms, $reservations );
+    //  dd($w);
+     return view('reservations.index', compact('rooms'));
     }
     public function beds24()
     {
@@ -70,6 +73,7 @@ class ReservationController extends Controller
            $attributes['guestFirstName'] = $value->guestFirstName;
            $attributes['guestName'] = $value->guestName;
            $attributes['unitId'] = $value->unitId ;
+           $attributes['roomId'] = $value->roomId ;
            $attributes['firstNight'] = $value->firstNight ;
            $attributes['lastNight'] = $value->lastNight ;
            $attributes['numAdult'] = $value->numAdult ;
@@ -115,6 +119,7 @@ class ReservationController extends Controller
             'guestName' => ['required','max:255'],
             'bookId' => ['required'],
             'unitId' => ['required'],
+            'roomId' => ['required'],
             'firstNight' => ['required' ],
             'lastNight' => ['required' ],
             'numAdult' => ['required', 'numeric'],
