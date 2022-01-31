@@ -72,6 +72,7 @@
                                     <th>CO Date</th>
                                     <th>Adults</th>
                                     <th>Price</th>
+                                    <th>Price Uzs</th>
                                     <th>Comission</th>
                                     <th>Refferer</th>
                                     <th>Payment Method</th>
@@ -89,6 +90,7 @@
                                     <td>{{ $hotelres->lastNight  }}</td>
                                     <td>{{ $hotelres->numAdult  }}</td>
                                     <td>{{ $hotelres->price  }}</td>
+                                    <td>{{ $hotelres->price_uzs  }}</td>
                                     <td>{{ $hotelres->commission }}</td>
                                     <td>{{ $hotelres->referer  }}</td>
                                     <td>{{ $hotelres->payment_method   }}</td>

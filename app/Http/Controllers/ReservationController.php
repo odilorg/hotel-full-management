@@ -17,12 +17,15 @@ class ReservationController extends Controller
      */
     public function index()
     {
+        
         $rooms = DB::table('rooms')
 
         ->join("reservations",function($join){
             $join->on("reservations.roomId","=","rooms.room_id")
                 ->on("reservations.unitId","=","rooms.unit_id");
+               
         })
+        ->orderBy('reservations.firstNight', 'desc')
         ->get();
            //merge arrays
           
@@ -78,6 +81,7 @@ class ReservationController extends Controller
            $attributes['lastNight'] = $value->lastNight ;
            $attributes['numAdult'] = $value->numAdult ;
            $attributes['price'] = $value->price ;
+           $attributes['price_uzs'] = $value->price * Reservation::exchange($value->firstNight);
            $attributes['commission'] = $value->commission ;
            $attributes['referer'] = $value->referer ;
          // dd(Reservation::where('bookId', $value->bookId )->count() == 0);

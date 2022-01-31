@@ -7,6 +7,7 @@ use Carbon\Carbon;
 
 use App\Models\Cargo;
 use App\Models\Inventory;
+use App\Models\Reservation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -106,35 +107,35 @@ foreach($cargos as $object)
     $cargos_items[] = $object->toArray();
     
 }
-$a = date_create($cargo->cargo_arrival_date);
-$a = date_format($a,"Y-m-d" );
+// $a = date_create($cargo->cargo_arrival_date);
+// $a = date_format($a,"Y-m-d" );
 
-//dd($a);
-//kurs from cbu Uz + 100 som
+// //dd($a);
+// //kurs from cbu Uz + 100 som
 
-$url = 'https://api.exchangerate.host/convert?from=USD&to=UZS&date='.$a;
-$response_json = file_get_contents($url);
+// $url = 'https://api.exchangerate.host/convert?from=USD&to=UZS&date='.$a;
+// $response_json = file_get_contents($url);
 
 
-if(false !== $response_json) {
-    try {
-        $response = json_decode($response_json);
-        if($response->success === true) {
+// if(false !== $response_json) {
+//     try {
+//         $response = json_decode($response_json);
+//         if($response->success === true) {
             
-            $kurs_dol =  floatval($response->result) + 80;
+//             $kurs_dol =  floatval($response->result) + 80;
             
-        }
-    } catch(Exception $e) {
-        session()->flash('error', 'Exchange website is down');
-        //dd(session('error'));
-        return redirect('cargos');
-    }
-}  
+//         }
+//     } catch(Exception $e) {
+//         session()->flash('error', 'Exchange website is down');
+//         //dd(session('error'));
+//         return redirect('cargos');
+//     }
+// }  
    //dd($kurs_dol);
 // $json = file_get_contents($url);
 // $kurs_dol = json_decode($json);
 // $kurs_dol =  floatval($kurs_dol[0]->Rate) + 100;
-                             
+  $kurs_dol = Reservation::exchange($cargo->cargo_arrival_date) ;                          
 if (count($cargos)) {
     foreach ($product_cargo_add as $i=>$value) {
         $rr = array('sell_price' => $value);
