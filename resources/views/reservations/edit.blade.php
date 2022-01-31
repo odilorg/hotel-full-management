@@ -31,10 +31,18 @@
                                 @csrf
                                 @method('PUT')
                                 <div class="form-group">
+                                    <label for="exampleInputEmail1">Name</label>
+                                    <input type="text" value="{{ old('guestFirstName', $reservation->guestFirstName) }}" name="guestFirstName" class="form-control @error('guestFirstName')
+          {{ 'is-invalid' }} @enderror" id="exampleInputEmail1" placeholder="Firma name">
+                                    @error('guestFirstName')
+                                    <p class="text-danger">{{ $message }}</p>
+                                    @enderror
+                                </div>
+                                <div class="form-group">
                                     <label for="exampleSelectRounded0">Payment</label>
                                     <select class="custom-select rounded-0" name="payment_method"
                                         id="exampleSelectRounded0">
-                                        <option value="">Select Referer</option>
+                                        <option value="">Select Payment</option>
                                         <option
                                             {{ old('referer', $reservation->payment_method) == "Naqd" ? "selected" : "" }}
                                             value="Naqd">Naqd</option>

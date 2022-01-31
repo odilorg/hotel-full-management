@@ -55,9 +55,9 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Room</label>
-                                    <input type="text" value="{{ old('unitId') }}" name="unitId" class="form-control @error('unitId')
+                                    <input type="text" value="{{ old('roomId') }}" name="roomId" class="form-control @error('roomId')
               {{ 'is-invalid' }} @enderror" id="exampleInputEmail1" placeholder="Room">
-                                    @error('unitId')
+                                    @error('roomId')
                                     <p class="text-danger">{{ $message }}</p>
                                     @enderror
                                 </div>

@@ -26,7 +26,7 @@ class ReservationController extends Controller
                
         })
         ->orderBy('reservations.firstNight', 'desc')
-        ->get();
+        ->paginate(13);
            //merge arrays
           
     // $reservations = Reservation::get();
@@ -120,9 +120,9 @@ class ReservationController extends Controller
         $attributes =  request()->validate([
 
             'guestFirstName' => ['required ', 'max:255'],
-            'guestName' => ['required','max:255'],
+            'guestName' => ['max:255'],
             'bookId' => ['required'],
-            'unitId' => ['required'],
+            // 'unitId' => ['required'],
             'roomId' => ['required'],
             'firstNight' => ['required' ],
             'lastNight' => ['required' ],
@@ -133,7 +133,7 @@ class ReservationController extends Controller
             'payment_method' => ['max:255' ],
             'company_name' => ['max:255' ],
         ]);
-        
+        $attributes['price_uzs'] = $attributes['price'] * Reservation::exchange($attributes['firstNight'] );
         Reservation::create($attributes);
         session()->flash('success', 'Booking created');
         session()->flash('type', 'New Booking');
@@ -179,7 +179,9 @@ class ReservationController extends Controller
           
             'payment_method' => ['required', 'max:255' ],
             'company_name' => ['max:255' ],
+            'price' => ['required', 'numeric'],
         ]);
+        $attributes['price_uzs'] = $attributes['price'] * Reservation::exchange($reservation->firstNight);
         $reservation->update($attributes);
         session()->flash('success', 'Booking updated');
         session()->flash('type', 'Booking');
