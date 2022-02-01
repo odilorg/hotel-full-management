@@ -17,7 +17,7 @@ class ReservationController extends Controller
      */
     public function index()
     {
-        
+       
         $rooms = DB::table('rooms')
 
         ->join("reservations",function($join){
@@ -27,8 +27,14 @@ class ReservationController extends Controller
         })
         ->orderBy('reservations.firstNight', 'desc')
         ->paginate(13);
-           //merge arrays
-           $report_n = DB::table('reservations')->select('report_number')->distinct()->get();
+        //dd($rooms);
+        //merge arrays
+           $report_n = DB::table('reservations')
+           ->whereNotNull('report_number')
+           ->select('report_number')
+           ->distinct()
+           ->orderBy('report_number', 'asc')
+           ->get();
   
     // $reservations = Reservation::get();
     //  dd($rooms);
@@ -208,14 +214,59 @@ class ReservationController extends Controller
     }
 
     public function report(Request $request) {
+       
+        $report = array();
         $report_number = $request->input('report_number');
         
-        $total_naqd = DB::table('reservations')
+        $report['total_report_number'] = DB::table('reservations')
+                            ->where('report_number',$report_number)
+                            ->sum('price');
+        $report['total_naqd'] = DB::table('reservations')
                             ->where('report_number',$report_number)
                             ->where('payment_method','Naqd')
                             ->sum('price');
                             
-                            dd($total_naqd);
+        $report['total_karta'] = DB::table('reservations')
+                            ->where('report_number',$report_number)
+                            ->where('payment_method','Karta')
+                            ->sum('price');
+
+        $report['total_perech'] = DB::table('reservations')
+                            ->where('report_number',$report_number)
+                            ->where('payment_method','Karta')
+                            ->sum('price');
+        $report['total_booking_comission'] = DB::table('reservations')
+                            ->where('report_number',$report_number)
+                            ->where('referer','Booking.com')
+                            ->sum('commission');                    
       
+        $report['total']                     = DB::table('reservations')
+                                     ->sum('price');
+      
+       // dd($report);
+
+return view('reservations.report', compact('report'));
+    }
+
+    public function report_range(Request $request) {
+        $report = array();
+        $arrival_from = $request->input('from_date');
+        $arrival_to = $request->input('to_date');
+//Query
+$report['total_report'] = Reservation::whereBetween('firstNight', [$arrival_from, $arrival_to])
+    ->sum('price');  
+    
+$report['total_naqd'] = Reservation::whereBetween('firstNight', [$arrival_from, $arrival_to])
+    ->where('payment_method','Naqd')    
+    ->sum('price');  
+    
+$report['total_karta'] = Reservation::whereBetween('firstNight', [$arrival_from, $arrival_to])
+    ->where('payment_method','Karta')    
+    ->sum('price'); 
+    //dd($report['total_naqd']);
+
+     
+                            
+
     }
 }
