@@ -38,6 +38,7 @@ Route::post('/logout', [RegisterController::class, 'logout'])->name('logout');
 Route::get('autocomplete-search', [AutocompleteSearchController::class, 'index']);
 Route::get('boo', [AutocompleteSearchController::class, 'query'])->name('autocomplete');
 Route::post('/reservations/beds24', [ReservationController::class, 'beds24'])->name('reservations.beds24');
+Route::post('/reservations/report', [ReservationController::class, 'report'])->name('reservations.report');
 
 Route::middleware(['auth', 'revalidate'])->group(function () {
     Route::resources([

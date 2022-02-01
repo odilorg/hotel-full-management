@@ -58,9 +58,12 @@
                                 </i>
                                 Add Beds24Reservation
                             </button>
-
-
-
+                            <button type="button" class="btn btn-primary" data-toggle="modal"
+                                data-target="#exampleModal-report">
+                                <i class="fas fa-hotel">
+                                </i>
+                                Reports
+                            </button>
                         </div>
                         <table class="table table-hover text-nowrap">
                             <thead>
@@ -77,6 +80,7 @@
                                     <th>Refferer</th>
                                     <th>Payment Method</th>
                                     <th>Company if Any</th>
+                                    <th>Rreport N</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
@@ -95,6 +99,7 @@
                                     <td>{{ $hotelres->referer  }}</td>
                                     <td>{{ $hotelres->payment_method   }}</td>
                                     <td>{{ $hotelres->company_name   }}</td>
+                                    <td>{{ $hotelres->report_number   }}</td>
 
 
                                     </td>
@@ -127,8 +132,7 @@
                         </table>
                         <div class="pagination-block">
                             {{ $rooms->links('admin.layouts.paginationlinks') }}
-                          </div>
-
+                        </div>
                     </div>
                     <!-- /.card-body -->
                 </div>
@@ -142,23 +146,59 @@
 </section>
 <!-- /.content -->
 </div>
+<div class="modal fade" id="exampleModal-report" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Report</h5>
+                <button type="button" class="close" data-dismiss="modal-report" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="{{ route('reservations.report') }}" method="POST">
+                @csrf
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="exampleSelectRounded0">Report N</label>
+                        <select class="custom-select rounded-0" name="report_number" id="exampleSelectRounded0">
+                            <option value="">Select Report</option>
+                            @foreach ($report_n as $room )
+                            <option >{{ $room->report_number }}</option>
+                            @endforeach
+                          
+                           
+                        </select>
+                        @error('referer')
+                        <p class="text-danger">{{ $message }}</p>
+                        @enderror
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Add Beds24 Reservations</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Add Beds24</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <form action="{{ route('reservations.beds24') }}" method="POST">
-              @csrf
+                @csrf
                 <div class="modal-body">
                     <div class="form-group">
-                        <label>From Date:</label>
+                        <label>Select Dates</label>
                         <div class="input-group " id="reservationdate" data-target-input="nearest">
-                            <input type="text" value="{{ old('from_date') }}" name="from_date" class="form-control date @error('from_date')
+                            <input type="text" value="{{ old('from_date') }}" name="from_date" class="form-control  @error('from_date')
                 {{ 'is-invalid' }} @enderror datetimepicker-input" data-target="#reservationdate" />
                             <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
                                 <div class="input-group-text"><i class="fa fa-calendar"></i></div>

@@ -28,12 +28,13 @@ class ReservationController extends Controller
         ->orderBy('reservations.firstNight', 'desc')
         ->paginate(13);
            //merge arrays
-          
+           $report_n = DB::table('reservations')->select('report_number')->distinct()->get();
+  
     // $reservations = Reservation::get();
     //  dd($rooms);
     //  $w[] = array_merge($rooms, $reservations );
     //  dd($w);
-     return view('reservations.index', compact('rooms'));
+     return view('reservations.index', compact('rooms', 'report_n'));
     }
     public function beds24()
     {
@@ -180,6 +181,7 @@ class ReservationController extends Controller
             'payment_method' => ['required', 'max:255' ],
             'company_name' => ['max:255' ],
             'price' => ['required', 'numeric'],
+            'report_number' => ['max:255'],
         ]);
         $attributes['price_uzs'] = $attributes['price'] * Reservation::exchange($reservation->firstNight);
         $reservation->update($attributes);
@@ -203,5 +205,17 @@ class ReservationController extends Controller
         session()->flash('type', 'Booking Deleted');
 
         return redirect('reservations');
+    }
+
+    public function report(Request $request) {
+        $report_number = $request->input('report_number');
+        
+        $total_naqd = DB::table('reservations')
+                            ->where('report_number',$report_number)
+                            ->where('payment_method','Naqd')
+                            ->sum('price');
+                            
+                            dd($total_naqd);
+      
     }
 }
