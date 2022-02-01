@@ -64,6 +64,12 @@
                                 </i>
                                 Reports
                             </button>
+                            <button type="button" class="btn btn-primary" data-toggle="modal"
+                                data-target="#exampleModal-range">
+                                <i class="fas fa-hotel">
+                                </i>
+                                Reports Date Range
+                            </button>
                         </div>
                         <table class="table table-hover text-nowrap">
                             <thead>
@@ -162,12 +168,10 @@
                     <div class="form-group">
                         <label for="exampleSelectRounded0">Report N</label>
                         <select class="custom-select rounded-0" name="report_number" id="exampleSelectRounded0">
-                            <option value="">Select Report</option>
+                            <option class="font-weight-bold" value="">Select Report</option>
                             @foreach ($report_n as $room )
-                            <option >{{ $room->report_number }}</option>
+                            <option>{{ $room->report_number }}</option>
                             @endforeach
-                          
-                           
                         </select>
                         @error('referer')
                         <p class="text-danger">{{ $message }}</p>
@@ -196,9 +200,9 @@
                 @csrf
                 <div class="modal-body">
                     <div class="form-group">
-                        <label>Select Dates</label>
+                        <label>From</label>
                         <div class="input-group " id="reservationdate" data-target-input="nearest">
-                            <input type="text" value="{{ old('from_date') }}" name="from_date" class="form-control  @error('from_date')
+                            <input type="text" value="{{ old('from_date') }}" name="from_date" class="form-control date  @error('from_date')
                 {{ 'is-invalid' }} @enderror datetimepicker-input" data-target="#reservationdate" />
                             <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
                                 <div class="input-group-text"><i class="fa fa-calendar"></i></div>
@@ -222,7 +226,54 @@
                         @enderror
                     </div>
                 </div>
-
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="exampleModal-range" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Report</h5>
+                <button type="button" class="close" data-dismiss="modal-report" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="{{ route('reservations.report-range') }}" method="POST">
+                @csrf
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label>Arriva From</label>
+                        <div class="input-group " id="reservationdate" data-target-input="nearest">
+                            <input type="text" value="{{ old('from_date') }}" name="from_date" class="form-control date  @error('from_date')
+                {{ 'is-invalid' }} @enderror datetimepicker-input" data-target="#reservationdate" />
+                            <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
+                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                            </div>
+                        </div>
+                        @error('from_date')
+                        <p class="text-danger">{{ $message }}</p>
+                        @enderror
+                    </div>
+                    <div class="form-group">
+                        <label>Arrival To:</label>
+                        <div class="input-group " id="reservationdate" data-target-input="nearest">
+                            <input type="text" value="{{ old('to_date') }}" name="to_date" class="form-control date @error('to_date')
+                {{ 'is-invalid' }} @enderror datetimepicker-input" data-target="#reservationdate" />
+                            <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
+                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                            </div>
+                        </div>
+                        @error('to_date')
+                        <p class="text-danger">{{ $message }}</p>
+                        @enderror
+                    </div>
+                </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     <button type="submit" class="btn btn-primary">Submit</button>
