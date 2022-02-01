@@ -52,7 +52,7 @@
                             </a>
                         </div>
                         <div class="mt-1">
-                            <button type="button" class="btn btn-primary" data-toggle="modal"
+                            <button type="button" class="btn btn-info" data-toggle="modal"
                                 data-target="#exampleModal">
                                 <i class="fas fa-hotel">
                                 </i>
@@ -60,13 +60,13 @@
                             </button>
                             <button type="button" class="btn btn-primary" data-toggle="modal"
                                 data-target="#exampleModal-report">
-                                <i class="fas fa-hotel">
+                                <i class="fas fa-scroll">
                                 </i>
                                 Reports
                             </button>
                             <button type="button" class="btn btn-primary" data-toggle="modal"
                                 data-target="#exampleModal-range">
-                                <i class="fas fa-hotel">
+                                <i class="fas fa-scroll">
                                 </i>
                                 Reports Date Range
                             </button>
