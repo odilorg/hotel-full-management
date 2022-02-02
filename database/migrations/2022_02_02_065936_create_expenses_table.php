@@ -22,9 +22,7 @@ class CreateExpensesTable extends Migration
             $table->foreignId('expense_category_id');
             $table->foreignId('payment_type_id');
             $table->foreignId('report_id'); 
-            
-
-
+            $table->decimal('expense_amount_uzs', 10,2);
         });
     }
 

@@ -54,41 +54,36 @@
                         <table class="table table-hover text-nowrap">
                             <thead>
                                 <tr>
-                                    <th>{{ __('Tour Group') }}</th>
-                                    <th>{{ __('Location') }}</th>
-                                    <th>{{ __('Name') }}</th>
-                                    <th>{{ __('Voucher N') }}</th>
-                                    <th>{{ __('File') }}</th>
-                                    <th>{{ __('Date') }}</th>
-                                    <th>{{ __('Extra Info') }}</th>
-                                    <th>{{ __('Status') }}</th>
-                                    
-                                    
-                                    <th>Actions</th>
+                                    <th>{{ __('Expense Date') }}</th>
+                                    <th>{{ __('Expense Name') }}</th>
+                                    <th>{{ __('Amount') }}</th>
+                                    <th>{{ __('Expense Type') }}</th>
+                                    <th>{{ __('Payment Type') }}</th>
+                                    <th>{{ __('Report') }}</th>
+                                    <th>{{ __('Actions') }}</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($tickets as $item )
+                                @foreach ($expenses as $expense )
                                 <tr>
-                                    <td>{{ $item->tourgroup->tourgroup_name }} </span></td>
-                                    <td>{{ $item->ticket_location }}</td>
-                                    <td>{{ $item->monument_name }}</td>
-                                    <td>{{ $item->voucher_number }}</td>
-                                    <td><a href="{{ asset('storage/' . $item->ticket_file) }}" data-lightbox="image-1"><img src="{{ asset('storage/' . $item->ticket_file) }}"  width="50px" height="50px" alt=""></a>  </td>
-                                    <td>{{ $item->ticket_date }}</td>
-                                    <td>{{ $item->ticket_extra_info }}</td>
-                                    <td>{{ $item->ticket_status }}</td>
-                                    <td><a class="btn btn-primary btn-sm" href="tickets/{{ $item->id }}">
+                                    <td>{{ $expense->expense_date }} </span></td>
+                                    <td>{{ $expense->expense_name }} </span></td>
+                                    <td>{{ $expense->expense_amount_uzs }}</td>
+                                    <td>{{ $expense->category_name }}</td>
+                                    <td>{{ $expense->payment_type_name }}</td>
+                                    <td>{{ $expense->report_number }}</td>
+                                  
+                                    <td><a class="btn btn-primary btn-sm" href="tickets/{{ $expense->id }}">
                                             <i class="fas fa-folder">
                                             </i>
                                             View
                                         </a>
-                                        <a class="btn btn-info btn-sm" href="tickets/{{ $item->id }}/edit">
+                                        <a class="btn btn-info btn-sm" href="tickets/{{ $expense->id }}/edit">
                                             <i class="fas fa-pencil-alt">
                                             </i>
                                             Edit
                                         </a>
-                                        <form action="/tickets/{{ $item->id }}" method="post"
+                                        <form action="/tickets/{{ $expense->id }}" method="post"
                                             class="float-left">
                                             @csrf
                                             @method('delete')
@@ -105,7 +100,7 @@
                             </tbody>
                         </table>
                         <div class="pagination-block">
-                            {{ $tickets->links('admin.layouts.paginationlinks') }}
+                            {{ $expenses->links('admin.layouts.paginationlinks') }}
                           </div>
                     </div>
                     <!-- /.card-body -->
