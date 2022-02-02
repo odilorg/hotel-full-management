@@ -21,6 +21,8 @@ class CreateExpensesTable extends Migration
             $table->date('expense_date');
             $table->foreignId('expense_category_id');
             $table->foreignId('payment_type_id');
+            $table->foreignId('report_id'); 
+            
 
 
         });
