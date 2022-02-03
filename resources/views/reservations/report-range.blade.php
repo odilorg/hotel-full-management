@@ -115,7 +115,7 @@
                           <table class="table">
                             <tbody><tr>
                               <th style="width:50%">Subtotal:</th>
-                              <td>$250.30</td>
+                              <td>$2.30</td>
                             </tr>
                             <tr>
                               <th>Tax (9.3%)</th>
