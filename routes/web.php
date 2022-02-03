@@ -16,6 +16,7 @@ use App\Http\Controllers\TransportController;
 use App\Http\Controllers\RestaurantController;
 use App\Http\Controllers\HotelreservationController;
 use App\Http\Controllers\AutocompleteSearchController;
+use App\Http\Controllers\ExpenseController;
 use App\Http\Controllers\ReservationController;
 
 /*
@@ -53,6 +54,7 @@ Route::middleware(['auth', 'revalidate'])->group(function () {
         'inventories' => InventoryController::class,
         'cargos' => CargoController::class,
         'reservations' => ReservationController::class,
+        'expenses' => ExpenseController::class,
     
     ]);
     // Route::post('/transports/auto', [TransportController::class, 'auto'])->name('auto');
