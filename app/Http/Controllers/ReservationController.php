@@ -240,8 +240,8 @@ class ReservationController extends Controller
                             ->where('referer','Booking.com')
                             ->sum('commission');                    
       
-        $report['total']                     = DB::table('reservations')
-                                     ->sum('price');
+        // $report['total']        = DB::table('reservations')
+        //                              ->sum('price');
       
        // dd($report);
 
@@ -263,6 +263,15 @@ $report['total_naqd'] = Reservation::whereBetween('firstNight', [$arrival_from, 
 $report['total_karta'] = Reservation::whereBetween('firstNight', [$arrival_from, $arrival_to])
     ->where('payment_method','Karta')    
     ->sum('price'); 
+$report['total_perech'] = Reservation::whereBetween('firstNight', [$arrival_from, $arrival_to])
+    ->where('payment_method','Perech')    
+    ->sum('price'); 
+
+$report['total_booking_comission'] = Reservation::whereBetween('firstNight', [$arrival_from, $arrival_to])
+    ->where('referer','Booking.com')   
+    ->sum('commission');
+    
+    return view('reservations.report-range', compact('report'));
     //dd($report['total_naqd']);
 
      
