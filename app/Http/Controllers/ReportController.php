@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Expense;
+use App\Models\Report;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
-class ExpenseController extends Controller
+class ReportController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,12 +15,12 @@ class ExpenseController extends Controller
      */
     public function index()
     {
-        $expenses = Expense::paginate(13);
+        $reports = Report::paginate(13);
        
      
         // dd($products);
             
-           return view('expenses.index', compact('expenses'));
+           return view('reports.index', compact('reports'));
     }
 
     /**
@@ -29,9 +30,8 @@ class ExpenseController extends Controller
      */
     public function create()
     {
-     //  $tourgroups = Tourgroup::with('user')->whereUserId(Auth::user()->id)->get();
-        
-        return view('expenses.create');
+                
+        return view('reports.create');
     }
 
     /**
@@ -42,7 +42,18 @@ class ExpenseController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $attributes =  request()->validate([
+
+            'report_date_from' => ['required', 'date'],
+            'report_date_to' => ['required', 'date'],
+            'report_number' => ['required'],
+        ]);
+        $attributes['user_id'] = Auth::user()->id;
+        Report::create($attributes);
+        session()->flash('success', 'Report has been added');
+        session()->flash('type', 'New Report');
+
+       return redirect('reports'); 
     }
 
     /**
@@ -62,9 +73,9 @@ class ExpenseController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Report $report)
     {
-        //
+        return view('reports.edit', compact('report'));
     }
 
     /**
@@ -74,9 +85,17 @@ class ExpenseController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Report $report)
     {
-        //
+        $attributes =  request()->validate([
+
+            'report_date_from' => ['required', 'date'],
+            'report_date_to' => ['required', 'date'],
+            'report_number' => ['required'],
+        ]);
+        $report->update($attributes);
+        
+        return redirect('reports');
     }
 
     /**
@@ -85,8 +104,9 @@ class ExpenseController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Report $report)
     {
-        //
+        $report->delete();
+        return redirect('reports');
     }
 }

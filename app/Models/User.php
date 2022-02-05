@@ -42,6 +42,9 @@ class User extends Authenticatable
     public function tourgroups() {
         return $this->hasMany(Tourgroup::class);
     }
+    public function reports() {
+        return $this->hasMany(Report::class);
+    }
 
     
     public function products() {

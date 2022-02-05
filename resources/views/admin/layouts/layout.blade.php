@@ -248,38 +248,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         </li>
                         @endcan
                         <li class="nav-item">
-                            <a href="{{ route('cargos.index'); }}"
-                                class="nav-link {{ (request()->is('cargos*')) ? 'active' : '' }}">
-                                <i class="nav-icon fas fa-truck-moving"></i>
+                            <a href="{{ route('reports.index'); }}"
+                                class="nav-link {{ (request()->is('reports*')) ? 'active' : '' }}">
+                                <i class="nav-icon fas fa-scroll"></i>
                                 <p>
-                                    {{ __('Cargo') }}
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('products.index'); }}"
-                                class="nav-link {{ (request()->is('products*')) ? 'active' : '' }}">
-                                <i class="nav-icon fas fa-atom"></i>
-                                <p>
-                                    {{ __('Maxsulotlar') }}
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('inventories.index'); }}"
-                                class="nav-link {{ (request()->is('inventories*')) ? 'active' : '' }}">
-                                <i class="nav-icon fas fa-boxes"></i>
-                                <p>
-                                    {{ __('Sklad') }}
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('tourgroups.index'); }}"
-                                class="nav-link {{ (request()->is('tourgroups*')) ? 'active' : '' }}">
-                                <i class="nav-icon fas fa-users"></i>
-                                <p>
-                                    Tour Groups
+                                    Reports
+
                                 </p>
                             </a>
                         </li>
@@ -294,33 +268,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('transports.index'); }}"
-                                class="nav-link {{ (request()->is('transports*')) ? 'active' : '' }}">
-                                <i class="nav-icon fas fa-bus"></i>
-                                <p>Transports</p>
+                            <a href="{{ route('expenses.index'); }}"
+                                class="nav-link {{ (request()->is('expenses*')) ? 'active' : '' }}">
+                                <i class="nav-icon fas fa-receipt"></i>
+                                <p>Expenses</p>
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a href="{{ route('guides.index'); }}"
-                                class="nav-link {{ (request()->is('guides*')) ? 'active' : '' }}">
-                                <i class="nav-icon fas fa-people-arrows"></i>
-                                <p>Guides</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('restaurants.index'); }}"
-                                class="nav-link {{ (request()->is('restaurants*')) ? 'active' : '' }}">
-                                <i class="nav-icon fas fa-utensils"></i>
-                                <p>Restaurants</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('tickets.index'); }}"
-                                class="nav-link {{ (request()->is('tickets*')) ? 'active' : '' }}">
-                                <i class="nav-icon fas fa-ticket-alt"></i>
-                                <p>Entrance Tickets</p>
-                            </a>
-                        </li>
+                        
                     </ul>
                 </nav>
                 <!-- /.sidebar-menu -->

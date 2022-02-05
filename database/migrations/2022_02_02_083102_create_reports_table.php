@@ -17,6 +17,9 @@ class CreateReportsTable extends Migration
             $table->id();
             $table->timestamps();
             $table->string('report_number');
+            $table->date('report_date_from');
+            $table->date('report_date_to');
+            $table->foreignId('user_id');
         });
     }
 
