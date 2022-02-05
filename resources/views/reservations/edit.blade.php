@@ -34,7 +34,7 @@
                                     <label for="exampleInputEmail1">Name</label>
                                     <input type="text" value="{{ old('guestFirstName', $reservation->guestFirstName) }}"
                                         name="guestFirstName" class="form-control @error('guestFirstName')
-          {{ 'is-invalid' }} @enderror" id="exampleInputEmail1" placeholder="Firma name">
+                                     {{ 'is-invalid' }} @enderror" id="exampleInputEmail1" placeholder="Firma name">
                                     @error('guestFirstName')
                                     <p class="text-danger">{{ $message }}</p>
                                     @enderror
@@ -62,17 +62,21 @@
                                     <label for="exampleInputEmail1">Price</label>
                                     <input type="text" value="{{ old('price', $reservation->price) }}" name="price"
                                         class="form-control @error('price')
-          {{ 'is-invalid' }} @enderror" id="exampleInputEmail1" placeholder="Firma name">
+                                      {{ 'is-invalid' }} @enderror" id="exampleInputEmail1" placeholder="Firma name">
                                     @error('price')
                                     <p class="text-danger">{{ $message }}</p>
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label for="exampleInputEmail1">Report N</label>
-                                    <input type="text" value="{{ old('report_number', $reservation->report_number) }}" name="report_number"
-                                        class="form-control @error('report_number')
-          {{ 'is-invalid' }} @enderror" id="exampleInputEmail1" placeholder="Firma name">
-                                    @error('report_number')
+                                    <label for="exampleSelectRounded0">Report</label>
+                                    <select class="custom-select rounded-0" name="report_id"
+                                        id="exampleSelectRounded0">
+                                        <option value="">Select Report N...</option>
+                                        @foreach ($reports as $report )
+                                        <option value="{{ $report->id }}">{{ $report->report_number }}</option>
+                                        @endforeach
+                                    </select>
+                                    @error('report_id')
                                     <p class="text-danger">{{ $message }}</p>
                                     @enderror
                                 </div>
@@ -80,7 +84,7 @@
                                     <label for="exampleInputEmail1">Firma Name</label>
                                     <input type="text" value="{{ old('company_name', $reservation->company_name) }}"
                                         name="company_name" class="form-control @error('company_name')
-          {{ 'is-invalid' }} @enderror" id="exampleInputEmail1" placeholder="Firma name">
+                                    {{ 'is-invalid' }} @enderror" id="exampleInputEmail1" placeholder="Firma name">
                                     @error('company_name')
                                     <p class="text-danger">{{ $message }}</p>
                                     @enderror

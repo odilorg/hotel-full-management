@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Exception;
 use App\Models\Room;
+use App\Models\Report;
 use App\Models\Reservation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -24,23 +25,23 @@ class ReservationController extends Controller
             $join->on("reservations.roomId","=","rooms.room_id")
                 ->on("reservations.unitId","=","rooms.unit_id");
                
+
+               
         })
         ->orderBy('reservations.firstNight', 'desc')
-        ->paginate(13);
-        //dd($rooms);
-        //merge arrays
-           $report_n = DB::table('reservations')
-           ->whereNotNull('report_number')
-           ->select('report_number')
-           ->distinct()
-           ->orderBy('report_number', 'asc')
-           ->get();
-  
+        ->get();
+
+        dd($rooms);
+        $reports = DB::table('reports')
+            ->join('reservations', 'report_id', '=', 'reports.id')
+            ->select('reports.report_number')
+            ->get();
+            dd($reports);
     // $reservations = Reservation::get();
     //  dd($rooms);
     //  $w[] = array_merge($rooms, $reservations );
     //  dd($w);
-     return view('reservations.index', compact('rooms', 'report_n'));
+     return view('reservations.index', compact('rooms', 'reports'));
     }
     public function beds24()
     {
@@ -129,7 +130,6 @@ class ReservationController extends Controller
             'guestFirstName' => ['required ', 'max:255'],
             'guestName' => ['max:255'],
             'bookId' => ['required'],
-            // 'unitId' => ['required'],
             'roomId' => ['required'],
             'firstNight' => ['required' ],
             'lastNight' => ['required' ],
@@ -168,8 +168,8 @@ class ReservationController extends Controller
     public function edit(Reservation $reservation)
     {
        
-       // dd($reservation);
-        return view('reservations.edit', compact('reservation'));
+       $reports = Report::all();
+        return view('reservations.edit', compact('reservation', 'reports'));
     }
 
     /**

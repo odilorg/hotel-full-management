@@ -169,8 +169,8 @@
                         <label for="exampleSelectRounded0">Report N</label>
                         <select class="custom-select rounded-0" name="report_number" id="exampleSelectRounded0">
                             <option class="font-weight-bold" value="">Select Report</option>
-                            @foreach ($report_n as $room )
-                            <option>{{ $room->report_number }}</option>
+                            @foreach ($reports as $report )
+                            <option>{{ $report->report_number }}</option>
                             @endforeach
                         </select>
                         @error('referer')
