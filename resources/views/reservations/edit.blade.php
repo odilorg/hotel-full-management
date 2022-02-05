@@ -69,8 +69,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleSelectRounded0">Report</label>
-                                    <select class="custom-select rounded-0" name="report_id"
-                                        id="exampleSelectRounded0">
+                                    <select class="custom-select rounded-0" name="report_id" id="exampleSelectRounded0">
                                         <option value="">Select Report N...</option>
                                         @foreach ($reports as $report )
                                         <option value="{{ $report->id }}">{{ $report->report_number }}</option>

@@ -28,15 +28,21 @@ class ReservationController extends Controller
 
                
         })
+       // ->join('reports', 'users.id', '=', 'contacts.user_id'))
         ->orderBy('reservations.firstNight', 'desc')
-        ->get();
+        ->paginate(5);
 
-        dd($rooms);
-        $reports = DB::table('reports')
-            ->join('reservations', 'report_id', '=', 'reports.id')
-            ->select('reports.report_number')
+        // dd($rooms);
+        $reports = DB::table('reservations')
+           
+        ->join('reports', 'report_id', '=', 'reports.id')
             ->get();
-            dd($reports);
+           
+            // $merged = $rooms->merge($reports);
+
+            
+            // dd($rooms);
+            // dd($reports);
     // $reservations = Reservation::get();
     //  dd($rooms);
     //  $w[] = array_merge($rooms, $reservations );
@@ -187,7 +193,7 @@ class ReservationController extends Controller
             'payment_method' => ['required', 'max:255' ],
             'company_name' => ['max:255' ],
             'price' => ['required', 'numeric'],
-            'report_number' => ['max:255'],
+            'report_id' => ['max:255'],
         ]);
         $attributes['price_uzs'] = $attributes['price'] * Reservation::exchange($reservation->firstNight);
         $reservation->update($attributes);

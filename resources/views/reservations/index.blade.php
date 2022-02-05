@@ -71,11 +71,11 @@
                                 Reports Date Range
                             </button>
                         </div>
-                        <table class="table table-hover text-nowrap">
+                        <table class="table table-hover text-wrap">
                             <thead>
                                 <tr>
                                     <th>ID</th>
-                                    <th>Name</th>
+                                    <th width="150px">Name</th>
                                     <th>Room</th>
                                     <th>CI Date</th>
                                     <th>CO Date</th>
@@ -86,7 +86,7 @@
                                     <th>Refferer</th>
                                     <th>Payment Method</th>
                                     <th>Company if Any</th>
-                                    <th>Rreport N</th>
+                                   
                                     <th>Actions</th>
                                 </tr>
                             </thead>
@@ -94,7 +94,7 @@
                                 @foreach ($rooms as $hotelres )
                                 <tr>
                                     <td>{{ $hotelres->bookId  }}</td>
-                                    <td>{{ $hotelres->guestFirstName }} {{ $hotelres->guestName }}</td>
+                                    <td >{{ $hotelres->guestFirstName }} {{ $hotelres->guestName }}</td>
                                     <td>{{ $hotelres->room_number  }}</td>
                                     <td>{{ $hotelres->firstNight  }}</span></td>
                                     <td>{{ $hotelres->lastNight  }}</td>
@@ -105,7 +105,8 @@
                                     <td>{{ $hotelres->referer  }}</td>
                                     <td>{{ $hotelres->payment_method   }}</td>
                                     <td>{{ $hotelres->company_name   }}</td>
-                                    <td>{{ $hotelres->report_number   }}</td>
+                                   
+                                   
 
 
                                     </td>
