@@ -31,15 +31,15 @@
                                 @csrf
                                 <div class="form-group">
                                     <label for="exampleSelectRounded0">Report Number</label>
-                                    <select class="custom-select rounded-0" name="tourgroup_id"
+                                    <select class="custom-select rounded-0" name="report_number"
                                         id="exampleSelectRounded0">
                                         <option value="">Select Report..</option>
                                         @foreach ($reports as $report )
-                                        <option {{ old('report_id') == $report->id ? "selected" : "" }}
-                                            value="{{ $report->id }}">{{ $report->report_number }}</option>
+                                        <option value="{{ $report->report_number }}">{{ $report->report_number }}
+                                        </option>
                                         @endforeach
                                     </select>
-                                    @error('report_id')
+                                    @error('report_number')
                                     <p class="text-danger">{{ $message }}</p>
                                     @enderror
                                 </div>
@@ -67,70 +67,38 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
+                                    <label for="exampleInputEmail1">{{ __('Expense Amount') }}</label>
+                                    <input type="text" value="{{ old('expense_amount_uzs') }}" name="expense_amount_uzs" class="form-control  @error('expense_amount_uzs')
+                 {{ 'is-invalid' }} @enderror " id="inputError" placeholder="Expense Amount">
+                                    @error('expense_amount_uzs')
+                                    <p class="text-danger">{{ $message }}</p>
+                                    @enderror
+                                </div>
+                                <div class="form-group">
                                     <label for="exampleSelectRounded0">{{ __('Expense Category') }}</label>
-                                    <select class="custom-select rounded-0" name="expense_name"
+                                    <select class="custom-select rounded-0" name="expense_category_id"
                                         id="exampleSelectRounded0">
                                         <option value="">Select Category</option>
-                                        <option {{ old('expense_name') == "Booked" ? "selected" : "" }}
-                                            value="Booked">Booked</option>
-                                        <option {{ old('expense_name') == "Not Booked" ? "selected" : "" }}
-                                            value="Not Booked">Not Booked</option>
-                                        <option {{ old('expense_name') == "Pending" ? "selected" : "" }}
-                                            value="Pending">Pending</option>
-                                        <option {{ old('expense_name') == "Cancelled" ? "selected" : "" }}
-                                            value="Cancelled">Cancelled</option>
+                                        @foreach ($expenses as $expense )
+                                        <option value="{{ $expense->id }}">{{ $expense->category_name }}
+                                        </option>
+                                        @endforeach
                                     </select>
                                     @error('expense_name')
                                     <p class="text-danger">{{ $message }}</p>
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label>{{ __('Voucher Number') }}</label>
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text"><i class="fas fa-ticket-alt"></i></span>
-                                        </div>
-                                        <input type="text" value="{{ old('voucher_number') }}" name="voucher_number"
-                                            class="form-control  @error('voucher_number')
-                                      {{ 'is-invalid' }} @enderror">
-                                    </div>
-                                    @error('voucher_number')
-                                    <p class="text-danger">{{ $message }}</p>
-                                    @enderror
-                                </div>
-                                <div class="form-group">
-                                    <label for="exampleInputEmail1">{{ __('Voucher File') }}</label>
-                                    <input type="file" value="{{ old('ticket_file') }}" name="ticket_file" class="form-control @error('ticket_file')
-                  {{ 'is-invalid' }} @enderror" id="exampleInputEmail1">
-                                    @error('ticket_file')
-                                    <p class="text-danger">{{ $message }}</p>
-                                    @enderror
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="exampleInputEmail1">{{ __('Extra Info') }}</label>
-                                    <input type="text" value="{{ old('ticket_extra_info') }}" name="ticket_extra_info"
-                                        class="form-control @error('ticket_extra_info')
-                  {{ 'is-invalid' }} @enderror" id="exampleInputEmail1" placeholder="Restaurant Extra Info">
-                                    @error('ticket_extra_info')
-                                    <p class="text-danger">{{ $message }}</p>
-                                    @enderror
-                                </div>
-                                <div class="form-group">
-                                    <label for="exampleSelectRounded0">{{ __('Status') }}</label>
-                                    <select class="custom-select rounded-0" name="ticket_status"
+                                    <label for="exampleSelectRounded0">{{ __('Payment type') }}</label>
+                                    <select class="custom-select rounded-0" name="payment_type_id"
                                         id="exampleSelectRounded0">
-                                        <option value="">Select Status</option>
-                                        <option {{ old('ticket_status') == "Booked" ? "selected" : "" }} value="Booked">
-                                            Booked</option>
-                                        <option {{ old('ticket_status') == "Not Booked" ? "selected" : "" }}
-                                            value="Not Booked">Not Booked</option>
-                                        <option {{ old('ticket_status') == "Pending" ? "selected" : "" }}
-                                            value="Pending">Pending</option>
-                                        <option {{ old('ticket_status') == "Cancelled" ? "selected" : "" }}
-                                            value="Cancelled">Cancelled</option>
+                                        <option value="">Select Payment</option>
+                                        @foreach ($payments as $payment )
+                                        <option value="{{ $payment->id }}">{{ $payment->payment_type_name }}
+                                        </option>
+                                        @endforeach
                                     </select>
-                                    @error('ticket_status')
+                                    @error('payment_type_id')
                                     <p class="text-danger">{{ $message }}</p>
                                     @enderror
                                 </div>

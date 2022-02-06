@@ -28,7 +28,7 @@ class ReservationController extends Controller
 
                
         })
-       // ->join('reports', 'users.id', '=', 'contacts.user_id'))
+       
         ->orderBy('reservations.firstNight', 'desc')
         ->paginate(5);
 
@@ -173,7 +173,7 @@ class ReservationController extends Controller
      */
     public function edit(Reservation $reservation)
     {
-     //  $report_numbers = DB::table('reservations')->select('report_number')->whereNotNull('report_number')->distinct()->get(); 
+     //  
       
         return view('reservations.edit', compact('reservation'));
     }
