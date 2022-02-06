@@ -86,7 +86,7 @@
                                     <th>Refferer</th>
                                     <th>Payment Method</th>
                                     <th>Company if Any</th>
-                                   
+                                    <th>Report N</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
@@ -105,7 +105,7 @@
                                     <td>{{ $hotelres->referer  }}</td>
                                     <td>{{ $hotelres->payment_method   }}</td>
                                     <td>{{ $hotelres->company_name   }}</td>
-                                   
+                                    <td>{{ $hotelres->report_number   }}</td>
                                    
 
 
@@ -170,7 +170,7 @@
                         <label for="exampleSelectRounded0">Report N</label>
                         <select class="custom-select rounded-0" name="report_number" id="exampleSelectRounded0">
                             <option class="font-weight-bold" value="">Select Report</option>
-                            @foreach ($reports as $report )
+                            @foreach ($rooms as $report )
                             <option>{{ $report->report_number }}</option>
                             @endforeach
                         </select>

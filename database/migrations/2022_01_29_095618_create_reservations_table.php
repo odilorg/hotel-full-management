@@ -30,7 +30,7 @@ class CreateReservationsTable extends Migration
             $table->string('referer')->nullable();
             $table->string('payment_method')->nullable();
             $table->string('company_name')->nullable();
-            $table->foreignId('report_id')->nullable();
+            $table->string('report_number')->nullable();
 
         });
     }

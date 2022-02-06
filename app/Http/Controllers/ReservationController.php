@@ -33,10 +33,10 @@ class ReservationController extends Controller
         ->paginate(5);
 
         // dd($rooms);
-        $reports = DB::table('reservations')
+        // $reports = DB::table('reservations')
            
-        ->join('reports', 'report_id', '=', 'reports.id')
-            ->get();
+        // ->join('reports', 'report_id', '=', 'reports.id')
+        //     ->get();
            
             // $merged = $rooms->merge($reports);
 
@@ -47,7 +47,7 @@ class ReservationController extends Controller
     //  dd($rooms);
     //  $w[] = array_merge($rooms, $reservations );
     //  dd($w);
-     return view('reservations.index', compact('rooms', 'reports'));
+     return view('reservations.index', compact('rooms'));
     }
     public function beds24()
     {
@@ -173,9 +173,9 @@ class ReservationController extends Controller
      */
     public function edit(Reservation $reservation)
     {
-       
-       $reports = Report::all();
-        return view('reservations.edit', compact('reservation', 'reports'));
+     //  $report_numbers = DB::table('reservations')->select('report_number')->whereNotNull('report_number')->distinct()->get(); 
+      
+        return view('reservations.edit', compact('reservation'));
     }
 
     /**
@@ -193,7 +193,7 @@ class ReservationController extends Controller
             'payment_method' => ['required', 'max:255' ],
             'company_name' => ['max:255' ],
             'price' => ['required', 'numeric'],
-            'report_id' => ['max:255'],
+            'report_number' => ['max:255'],
         ]);
         $attributes['price_uzs'] = $attributes['price'] * Reservation::exchange($reservation->firstNight);
         $reservation->update($attributes);

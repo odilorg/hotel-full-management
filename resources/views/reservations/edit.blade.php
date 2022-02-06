@@ -62,20 +62,17 @@
                                     <label for="exampleInputEmail1">Price</label>
                                     <input type="text" value="{{ old('price', $reservation->price) }}" name="price"
                                         class="form-control @error('price')
-                                      {{ 'is-invalid' }} @enderror" id="exampleInputEmail1" placeholder="Firma name">
+                                      {{ 'is-invalid' }} @enderror" id="exampleInputEmail1" placeholder="Report N">
                                     @error('price')
                                     <p class="text-danger">{{ $message }}</p>
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label for="exampleSelectRounded0">Report</label>
-                                    <select class="custom-select rounded-0" name="report_id" id="exampleSelectRounded0">
-                                        <option value="">Select Report N...</option>
-                                        @foreach ($reports as $report )
-                                        <option value="{{ $report->id }}">{{ $report->report_number }}</option>
-                                        @endforeach
-                                    </select>
-                                    @error('report_id')
+                                    <label for="exampleInputEmail1">Report N</label>
+                                    <input type="text" value="{{ old('report_number', $reservation->report_number) }}" name="report_number"
+                                        class="form-control @error('report_number')
+                                      {{ 'is-invalid' }} @enderror" id="exampleInputEmail1" placeholder="Firma name">
+                                    @error('report_number')
                                     <p class="text-danger">{{ $message }}</p>
                                     @enderror
                                 </div>
