@@ -17,19 +17,11 @@ class ExpenseController extends Controller
      */
     public function index()
     {
-        //$expenses = Expense::paginate(13);
         $expenses = DB::table('expenses')
         ->join('expense_categories', 'expenses.expense_category_id', '=', 'expense_categories.id')
         ->join('payment_types', 'expenses.payment_type_id', '=', 'payment_types.id')
-        //->select('users.*', 'contacts.phone', 'orders.price')
-      
-       
-       // ->orderBy('reservations.firstNight', 'desc')
         ->paginate(5);
-     
-        // dd($expenses);
-            
-           return view('expenses.index', compact('expenses'));
+            return view('expenses.index', compact('expenses'));
     }
 
     /**
@@ -93,9 +85,12 @@ class ExpenseController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Expense $expense)
     {
-        //
+        
+       $expenses = Expense::get();
+       dd($expense);
+       return view('expenses.edit', compact('expenses'));
     }
 
     /**
