@@ -74,6 +74,7 @@ class ReservationController extends Controller
         $data['status'] = '1';
 
         $json = json_encode($data);
+       // dd($json);
         $url = "https://api.beds24.com/json/getBookings";
         $ch=curl_init();
         curl_setopt($ch, CURLOPT_POST, 1) ;
@@ -86,6 +87,7 @@ class ReservationController extends Controller
         $response = json_decode($result);
 //get data from Beds24 DB
         $beds = array();
+   //    dd($response);
         foreach ($response as $key => $value) {
            $attributes['guestFirstName'] = $value->guestFirstName;
            $attributes['guestName'] = $value->guestName;

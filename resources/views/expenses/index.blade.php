@@ -73,17 +73,17 @@
                                     <td>{{ $expense->payment_type_name }}</td>
                                     <td>{{ $expense->report_number }}</td>
                                   
-                                    <td><a class="btn btn-primary btn-sm" href="tickets/{{ $expense->id }}">
+                                    <td><a class="btn btn-primary btn-sm" href="expenses/{{ $expense->id }}">
                                             <i class="fas fa-folder">
                                             </i>
                                             View
                                         </a>
-                                        <a class="btn btn-info btn-sm" href="tickets/{{ $expense->id }}/edit">
+                                        <a class="btn btn-info btn-sm" href="expenses/{{ $expense->id }}/edit">
                                             <i class="fas fa-pencil-alt">
                                             </i>
                                             Edit
                                         </a>
-                                        <form action="/tickets/{{ $expense->id }}" method="post"
+                                        <form action="/expenses/{{ $expense->id }}" method="post"
                                             class="float-left">
                                             @csrf
                                             @method('delete')
