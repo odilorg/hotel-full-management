@@ -20,7 +20,9 @@ class ExpenseController extends Controller
         $expenses = DB::table('expenses')
         ->join('expense_categories', 'expenses.expense_category_id', '=', 'expense_categories.id')
         ->join('payment_types', 'expenses.payment_type_id', '=', 'payment_types.id')
-        ->paginate(5);
+        ->select('expenses.*', 'payment_types.payment_type_name', 'expense_categories.category_name')
+        ->paginate(15);
+      
             return view('expenses.index', compact('expenses'));
     }
 
@@ -87,10 +89,18 @@ class ExpenseController extends Controller
      */
     public function edit(Expense $expense)
     {
-        
-       $expenses = Expense::get();
-       dd($expense);
-       return view('expenses.edit', compact('expenses'));
+        $report_numbers = DB::table('reservations')->select('report_number')->whereNotNull('report_number')->distinct()->get(); 
+        $expense_categories = ExpenseCategory::get();
+        $payment_types = PaymentType::get();
+        //dd($report_numbers);
+        $expenses = DB::table('expenses')
+        ->join('expense_categories', 'expenses.expense_category_id', '=', 'expense_categories.id')
+        ->join('payment_types', 'expenses.payment_type_id', '=', 'payment_types.id')
+        ->where('expenses.id', $expense->id)
+        ->select('expenses.*', 'payment_types.payment_type_name', 'expense_categories.category_name')
+        ->first();
+       //dd($expenses);
+       return view('expenses.edit', compact('expenses', 'report_numbers', 'expense_categories', 'payment_types'));
     }
 
     /**
@@ -100,9 +110,24 @@ class ExpenseController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Expense $expense)
     {
-        //
+        $attributes =  request()->validate([
+
+            'report_number' => ['required '],
+            'expense_name' => ['required ', 'max:255'],
+            'expense_date' => ['required'],
+            'expense_category_id' => ['required'],
+            'payment_type_id' => ['required'],
+            'expense_amount_uzs' => ['required', 'numeric'],
+            
+         
+        ]);
+      //  dd($attributes);
+        $expense->update($attributes);
+        session()->flash('success', 'Expense has been updated');
+        session()->flash('type', 'Expense Update');
+        return redirect('expenses');
     }
 
     /**
@@ -111,8 +136,11 @@ class ExpenseController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Expense $expense)
     {
-        //
+        $expense->delete();
+        session()->flash('error', 'Expense has been deleted');
+        session()->flash('type', 'Expense Delete');
+        return redirect('expenses');
     }
 }

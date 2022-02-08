@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ExpenseCategory;
+use App\Models\PaymentType;
 use Exception;
 use App\Models\Room;
 use App\Models\Report;
@@ -30,7 +32,7 @@ class ReservationController extends Controller
         })
        
         ->orderBy('reservations.firstNight', 'desc')
-        ->paginate(5);
+        ->paginate(15);
 
         // dd($rooms);
         // $reports = DB::table('reservations')
@@ -224,36 +226,55 @@ class ReservationController extends Controller
     public function report(Request $request) {
        
         $report = array();
+        $expense_report = array();
         $report_number = $request->input('report_number');
-        
-        $report['total_report_number'] = DB::table('reservations')
-                            ->where('report_number',$report_number)
-                            ->sum('price');
-        $report['total_naqd'] = DB::table('reservations')
-                            ->where('report_number',$report_number)
-                            ->where('payment_method','Naqd')
-                            ->sum('price');
-                            
-        $report['total_karta'] = DB::table('reservations')
-                            ->where('report_number',$report_number)
-                            ->where('payment_method','Karta')
-                            ->sum('price');
+        $categories = ExpenseCategory::get();
+        $payments = PaymentType::get();
+       
+//Expense Reports
+// $report['total_naqd'] = DB::table('reservations')
+// //->where('report_number',$report_number)
+// ->where('payment_method', $payments[0]->payment_type_name)
+// ->sum('price');
 
-        $report['total_perech'] = DB::table('reservations')
+$total_expenses = DB::table('expenses')
+    ->where('report_number',$report_number)
+    ->sum('expense_amount_uzs');
+
+for ($i = 0; $i < count($payments); $i++){
+    for ($t = 0; $t < count($categories); $t++) {
+        $expense_report[ $payments[$i]->payment_type_name ][ $categories[$t]->category_name ] = DB::table('expenses')
+            ->where('report_number',$report_number)
+            ->where('payment_type_id', $payments[$i]->id)
+            ->where('expense_category_id', $categories[$t]->id)
+            ->sum('expense_amount_uzs');
+
+        $report[ $payments[$i]->payment_type_name ] = DB::table('reservations')
+            ->where('report_number',$report_number)
+            ->where('payment_method', $payments[$i]->payment_type_name )
+            ->sum('price');
+
+        $expense_total[ $payments[$i]->payment_type_name ] = DB::table('expenses')
+            ->where('report_number',$report_number)
+            ->where('payment_type_id', $payments[$i]->id)
+            ->sum('expense_amount_uzs');
+    }
+   
+}
+        $total_report = DB::table('reservations')
                             ->where('report_number',$report_number)
-                            ->where('payment_method','Karta')
                             ->sum('price');
+        
         $report['total_booking_comission'] = DB::table('reservations')
                             ->where('report_number',$report_number)
                             ->where('referer','Booking.com')
-                            ->sum('commission');                    
-      
-        // $report['total']        = DB::table('reservations')
-        //                              ->sum('price');
-      
-       // dd($report);
+                            ->sum('commission');  
+        $exchange = Reservation::exchange(now());
 
-return view('reservations.report', compact('report'));
+                            
+       //dd($exchange);
+
+return view('reservations.report', compact('report', 'expense_report', 'report_number', 'total_report', 'total_expenses', 'expense_total', 'exchange'));
     }
 
     public function report_range(Request $request) {

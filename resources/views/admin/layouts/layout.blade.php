@@ -248,16 +248,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         </li>
                         @endcan
                         <li class="nav-item">
-                            <a href="{{ route('reports.index'); }}"
-                                class="nav-link {{ (request()->is('reports*')) ? 'active' : '' }}">
-                                <i class="nav-icon fas fa-scroll"></i>
-                                <p>
-                                    Reports
-
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
                             <a href="{{ route('reservations.index'); }}"
                                 class="nav-link {{ (request()->is('reservations*')) ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-hotel"></i>

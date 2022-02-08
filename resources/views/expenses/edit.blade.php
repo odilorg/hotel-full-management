@@ -27,17 +27,17 @@
                 <div class="col-lg-6">
                     <div class="card">
                         <div class="card-body">
-                            <form action="/expenses/{{ $expense->id }}" method="POST" >
+                            <form action="/expenses/{{ $expenses->id }}" method="POST">
                                 @csrf
                                 @method('PUT')
                                 <div class="form-group">
                                     <label for="exampleSelectRounded0">Report Number</label>
                                     <select class="custom-select rounded-0" name="report_number"
                                         id="exampleSelectRounded0">
-                                        <option value="">Select Report..</option>
-                                        @foreach ($reports as $report )
-                                        <option {{ old('tourgroup_id', $tourgroup->tourgroup_name) == $tourgroup_name ? "selected" : "" }} value="{{ $tourgroup->id }}">{{ $tourgroup->tourgroup_name }}</option>
-                                        </option>
+                                        @foreach ($report_numbers as $number)
+                                        <option
+                                            {{ old('report_number', $expenses->report_number) == $number->report_number ? "selected" : "" }}
+                                            value="{{ $number->report_number }}">{{ $number->report_number }}</option>
                                         @endforeach
                                     </select>
                                     @error('report_number')
@@ -47,7 +47,8 @@
                                 <div class="form-group">
                                     <label>{{ __('Expense Date') }}</label>
                                     <div class="input-group " id="reservationdate" data-target-input="nearest">
-                                        <input type="text" value="{{ old('expense_date') }}" name="expense_date" class="form-control date @error('expense_date')
+                                        <input type="text" value="{{ old('expense_date', $expenses->expense_date) }}"
+                                            name="expense_date" class="form-control date @error('expense_date')
                                           {{ 'is-invalid' }} @enderror datetimepicker-input"
                                             data-target="#reservationdate" />
                                         <div class="input-group-append" data-target="#reservationdate"
@@ -61,7 +62,8 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">{{ __('Expense Name') }}</label>
-                                    <input type="text" value="{{ old('expense_name') }}" name="expense_name" class="form-control  @error('expense_name')
+                                    <input type="text" value="{{ old('expense_name', $expenses->expense_name) }}"
+                                        name="expense_name" class="form-control  @error('expense_name')
                  {{ 'is-invalid' }} @enderror " id="inputError" placeholder="Expense Name">
                                     @error('expense_name')
                                     <p class="text-danger">{{ $message }}</p>
@@ -69,7 +71,9 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">{{ __('Expense Amount') }}</label>
-                                    <input type="text" value="{{ old('expense_amount_uzs') }}" name="expense_amount_uzs" class="form-control  @error('expense_amount_uzs')
+                                    <input type="text"
+                                        value="{{ old('expense_amount_uzs', $expenses->expense_amount_uzs ) }}"
+                                        name="expense_amount_uzs" class="form-control  @error('expense_amount_uzs')
                  {{ 'is-invalid' }} @enderror " id="inputError" placeholder="Expense Amount">
                                     @error('expense_amount_uzs')
                                     <p class="text-danger">{{ $message }}</p>
@@ -79,10 +83,10 @@
                                     <label for="exampleSelectRounded0">{{ __('Expense Category') }}</label>
                                     <select class="custom-select rounded-0" name="expense_category_id"
                                         id="exampleSelectRounded0">
-                                        <option value="">Select Category</option>
-                                        @foreach ($expenses as $expense )
-                                        <option value="{{ $expense->id }}">{{ $expense->category_name }}
-                                        </option>
+                                        @foreach ($expense_categories as $category )
+                                        <option
+                                            {{ old('expense_category_id', $expenses->expense_category_id) == $category->id ? "selected" : "" }}
+                                            value="{{ $category->id }}">{{ $category->category_name }}</option>
                                         @endforeach
                                     </select>
                                     @error('expense_name')
@@ -93,10 +97,10 @@
                                     <label for="exampleSelectRounded0">{{ __('Payment type') }}</label>
                                     <select class="custom-select rounded-0" name="payment_type_id"
                                         id="exampleSelectRounded0">
-                                        <option value="">Select Payment</option>
-                                        @foreach ($payments as $payment )
-                                        <option value="{{ $payment->id }}">{{ $payment->payment_type_name }}
-                                        </option>
+                                        @foreach ($payment_types as $payment )
+                                        <option
+                                            {{ old('payment_type_id', $expenses->payment_type_id) == $payment->id ? "selected" : "" }}
+                                            value="{{ $payment->id }}">{{ $payment->payment_type_name }}</option>
                                         @endforeach
                                     </select>
                                     @error('payment_type_id')
