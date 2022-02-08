@@ -170,7 +170,7 @@
                         <label for="exampleSelectRounded0">Report N</label>
                         <select class="custom-select rounded-0" name="report_number" id="exampleSelectRounded0">
                             <option class="font-weight-bold" value="">Select Report</option>
-                            @foreach ($rooms as $report )
+                            @foreach ($unique_report_number as $report )
                             <option>{{ $report->report_number }}</option>
                             @endforeach
                         </select>

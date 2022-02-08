@@ -26,15 +26,22 @@ class ReservationController extends Controller
         ->join("reservations",function($join){
             $join->on("reservations.roomId","=","rooms.room_id")
                 ->on("reservations.unitId","=","rooms.unit_id");
-               
 
-               
         })
        
         ->orderBy('reservations.firstNight', 'desc')
         ->paginate(15);
 
-        // dd($rooms);
+        // $collection = $rooms->unique(function ($name) {
+        //     return $name;
+        // })->reject(function ($name) {
+        //     return empty($name);
+        // });
+
+
+        $unique_report_number = $rooms->unique('report_number')->whereNotNull('report_number');
+
+        // dd($unique);
         // $reports = DB::table('reservations')
            
         // ->join('reports', 'report_id', '=', 'reports.id')
@@ -49,7 +56,7 @@ class ReservationController extends Controller
     //  dd($rooms);
     //  $w[] = array_merge($rooms, $reservations );
     //  dd($w);
-     return view('reservations.index', compact('rooms'));
+     return view('reservations.index', compact('rooms', 'unique_report_number'));
     }
     public function beds24()
     {
