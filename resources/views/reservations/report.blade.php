@@ -81,7 +81,7 @@
                       
                       <!-- /.col -->
                       <div class="col-sm-4 invoice-col">
-                        <b>Report # {{ $report_number }} - {{ $key }} - Total: - {{ $expense_total[$key] }}Uzs {{ round($expense_total[$key] / $exchange, 2) }}$</b><br>
+                        <b>Report # {{ $report_number }} - {{ $key }} - Total: - {{ number_format($expense_total[$key],2,',',' ')  }}Uzs {{ round($expense_total[$key] / $exchange, 2) }}$</b><br>
                         
                       </div>
                       <!-- /.col -->
@@ -102,10 +102,10 @@
                           </thead>
                           <tbody>
                           <tr>
-                            <th>{{ $expense_report[$key]['Breakfast'] }}</th>
-                            <th>{{ $expense_report[$key]['Room'] }}</th>
-                            <th>{{ $expense_report[$key]['Oylik'] }}</th>
-                            <th>{{ $expense_report[$key]['General'] }}</th>
+                            <th>{{ number_format($expense_report[$key]['Breakfast'],2,',',' ')  }}</th>
+                            <th>{{ number_format($expense_report[$key]['Room'],2,',',' ')  }}</th>
+                            <th>{{ number_format($expense_report[$key]['Oylik'],2,',',' ')  }}</th>
+                            <th>{{ number_format($expense_report[$key]['General'],2,',',' ')  }}</th>
                           </tr>
                          
                           </tbody>
