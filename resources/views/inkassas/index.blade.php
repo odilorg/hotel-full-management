@@ -66,9 +66,9 @@
                                 @foreach ($inkassas as $inkassa )
                                 <tr>
                                     <td>{{ $inkassa->date_inkassa }} </span></td>
-                                    <td>{{ $inkassa->ytt_ok }} </span></td>
-                                    <td>{{ $inkassa->amount_inkassa }}</td>
-                                    <td>{{ $inkassa->total_amount }}</td>
+                                    <td>{{ $inkassa->firm_name }} </span></td>
+                                    <td>{{ number_format($inkassa->amount_inkassa,2,',',' ')  }}</td>
+                                    <td>{{ number_format($inkassa->total_amount,2,',',' ')   }}</td>
                                     <td>{{ $inkassa->report_id }}</td>
                                     <td><a class="btn btn-primary btn-sm" href="inkassas/{{ $inkassa->id }}">
                                             <i class="fas fa-folder">
