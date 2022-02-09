@@ -326,6 +326,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             todayBtn: "linked",
             language: "ru",
             todayHighlight: true,
+            orientation: "bottom auto"
         });
       </script>
 </body>
@@ -561,6 +562,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     $(document).ready( function () {
         $('#picker').dateTimePicker();
         $('#picker-no-time').dateTimePicker({ showTime: false, dateFormat: 'DD/MM/YYYY', title: 'Select Date'});
+        
     })
     </script>
     

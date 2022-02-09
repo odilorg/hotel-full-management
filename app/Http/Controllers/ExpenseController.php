@@ -55,6 +55,7 @@ class ExpenseController extends Controller
             'expense_category_id' => ['required'],
             'payment_type_id' => ['required'],
             'expense_amount_uzs' => ['required', 'numeric'],
+            'expense_number' => ['max:255'],
             
          
         ]);
@@ -120,6 +121,7 @@ class ExpenseController extends Controller
             'expense_category_id' => ['required'],
             'payment_type_id' => ['required'],
             'expense_amount_uzs' => ['required', 'numeric'],
+            'expense_number' => ['max:255'],
             
          
         ]);

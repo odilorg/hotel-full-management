@@ -60,6 +60,7 @@
                                     <th>{{ __('Expense Type') }}</th>
                                     <th>{{ __('Payment Type') }}</th>
                                     <th>{{ __('Report') }}</th>
+                                    <th>{{ __('Expense N') }}</th>
                                     <th>{{ __('Actions') }}</th>
                                 </tr>
                             </thead>
@@ -72,6 +73,7 @@
                                     <td>{{ $expense->category_name }}</td>
                                     <td>{{ $expense->payment_type_name }}</td>
                                     <td>{{ $expense->report_number }}</td>
+                                    <td>{{ $expense->expense_number }}</td>
                                   
                                     <td><a class="btn btn-primary btn-sm" href="expenses/{{ $expense->id }}">
                                             <i class="fas fa-folder">

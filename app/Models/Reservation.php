@@ -26,7 +26,7 @@ class Reservation extends Model
                 $response = json_decode($response_json);
                 if($response->success === true) {
                     
-                    return $kurs_dol =  floatval($response->result) + 80;
+                    return $kurs_dol =  floatval($response->result) +20;
                     
                 }
             } catch(Exception $e) {

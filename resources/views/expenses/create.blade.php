@@ -102,6 +102,14 @@
                                     <p class="text-danger">{{ $message }}</p>
                                     @enderror
                                 </div>
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">{{ __('Expense Number') }}</label>
+                                    <input type="text" value="{{ old('expense_number') }}" name="expense_number" class="form-control  @error('expense_number')
+                 {{ 'is-invalid' }} @enderror " id="inputError" placeholder="Expense Number">
+                                    @error('expense_number')
+                                    <p class="text-danger">{{ $message }}</p>
+                                    @enderror
+                                </div>
                                 <button type="submit">Submit</button>
                             </form>
                         </div>
