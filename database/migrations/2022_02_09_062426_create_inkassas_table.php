@@ -18,7 +18,6 @@ class CreateInkassasTable extends Migration
             $table->timestamps();
             $table->date('date_inkassa');
             $table->decimal('amount_inkassa',10,2);
-            $table->decimal('total_amount', 10,2);
             $table->foreignId('user_id');
             $table->foreignId('report_id');
             $table->foreignId('firm_id');

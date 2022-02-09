@@ -43,6 +43,24 @@
                         </div>
                     </div>
                     <!-- /.card-header -->
+                    <div class="col-6">
+                        <p class="lead">Totals</p>
+
+                        <div class="table-responsive">
+                            <table class="table">
+                                <tbody>
+                                    <tr>
+                                        @foreach ($total_ytt as $key => $value)
+                                        <th style="width:50%">Total : {{ $firmas[$key]->firm_name }}</th>
+                                        <td>{{ number_format($value,2,',',' ')  }}</td>
+
+
+                                    </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                     <div class="card-body table-responsive p-0">
                         <div>
                             <a class="btn btn-info btn-sm" href="{{ route('inkassas.create') }}">
@@ -57,7 +75,6 @@
                                     <th>{{ __('Inkassa Date') }}</th>
                                     <th>{{ __('Firma') }}</th>
                                     <th>{{ __('Amount') }}</th>
-                                    <th>{{ __('Total amount') }}</th>
                                     <th>{{ __('Report N') }}</th>
                                     <th>{{ __('Actions') }}</th>
                                 </tr>
@@ -68,7 +85,6 @@
                                     <td>{{ $inkassa->date_inkassa }} </span></td>
                                     <td>{{ $inkassa->firm_name }} </span></td>
                                     <td>{{ number_format($inkassa->amount_inkassa,2,',',' ')  }}</td>
-                                    <td>{{ number_format($inkassa->total_amount,2,',',' ')   }}</td>
                                     <td>{{ $inkassa->report_id }}</td>
                                     <td><a class="btn btn-primary btn-sm" href="inkassas/{{ $inkassa->id }}">
                                             <i class="fas fa-folder">
@@ -80,8 +96,7 @@
                                             </i>
                                             Edit
                                         </a>
-                                        <form action="/inkassas/{{ $inkassa->id }}" method="post"
-                                            class="float-left">
+                                        <form action="/inkassas/{{ $inkassa->id }}" method="post" class="float-left">
                                             @csrf
                                             @method('delete')
                                             <button type="submit" class="btn btn-danger btn-sm">
@@ -98,7 +113,7 @@
                         </table>
                         <div class="pagination-block">
                             {{ $inkassas->links('admin.layouts.paginationlinks') }}
-                          </div>
+                        </div>
                     </div>
                     <!-- /.card-body -->
                 </div>

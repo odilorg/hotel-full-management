@@ -22,7 +22,15 @@ class InkassaController extends Controller
         ->select('inkassas.*', 'firmas.firm_name')
         ->orderBy('created_at', 'desc')
         ->paginate(15);
-        return view('inkassas.index', compact('inkassas'));
+    $firmas = Firma::get();    
+        for ($i=0; $i < count($firmas); $i++) {
+            $total_ytt[$i] = DB::table('inkassas')
+                ->where('firm_id', $firmas[$i]->id)
+                ->sum('amount_inkassa');
+        }
+    //dd($total_ytt);
+
+        return view('inkassas.index', compact('inkassas', 'total_ytt', 'firmas'));
     }
 
     /**
@@ -57,8 +65,7 @@ class InkassaController extends Controller
             'firm_id' => ['required'],
         ]);
         $attributes['user_id'] = auth()->user()->id; 
-        $attributes['total_amount'] = Inkassa::where('firm_id',  $attributes['firm_id'])->sum('amount_inkassa') +  $attributes['amount_inkassa'];
-       // dd($attributes['total_amount']);
+         // dd($attributes['total_amount']);
         Inkassa::create($attributes);
         session()->flash('success', 'Inkassa created');
         session()->flash('type', 'New Inkassa');
@@ -85,9 +92,11 @@ class InkassaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Inkassa $inkassa)
     {
-        //
+        $report_numbers = DB::table('reservations')->select('report_number')->whereNotNull('report_number')->distinct()->get(); 
+        $firm_names = Firma::get();
+        return view('inkassas.edit', compact('report_numbers', 'inkassa', 'firm_names'));
     }
 
     /**
@@ -97,9 +106,21 @@ class InkassaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Inkassa $inkassa)
     {
-        //
+        $attributes =  request()->validate([
+
+            'date_inkassa' => ['required '],
+            'amount_inkassa' => ['required ', 'numeric'],
+            'report_id' => ['required'],
+            'firm_id' => ['required'],
+        ]);
+        session()->flash('success', 'Inkassa updated');
+        session()->flash('type', 'Inkassa Update');
+
+        $inkassa->update($attributes);
+        
+        return redirect('inkassas');
     }
 
     /**
@@ -108,8 +129,9 @@ class InkassaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Inkassa $inkassa)
     {
-        //
+        $inkassa->delete();
+        return redirect('inkassas');
     }
 }

@@ -79,10 +79,10 @@
                                     <th>Room</th>
                                     <th>CI Date</th>
                                     <th>CO Date</th>
-                                    <th>Adults</th>
+                                    <th style="width:25px">Adults</th>
                                     <th>Price</th>
-                                    <th>Price Uzs</th>
-                                    <th>Comission</th>
+                                    <th style="width:125px">Price Uzs</th>
+                                    <th style="width:35px">Comission</th>
                                     <th>Refferer</th>
                                     <th>Payment Method</th>
                                     <th>Company if Any</th>
@@ -100,7 +100,7 @@
                                     <td>{{ $hotelres->lastNight  }}</td>
                                     <td>{{ $hotelres->numAdult  }}</td>
                                     <td>{{ $hotelres->price  }}</td>
-                                    <td>{{ $hotelres->price_uzs  }}</td>
+                                    <td>{{ number_format($hotelres->price_uzs,2,',',' ')   }}</td>
                                     <td>{{ $hotelres->commission }}</td>
                                     <td>{{ $hotelres->referer  }}</td>
                                     <td>{{ $hotelres->payment_method   }}</td>

@@ -69,7 +69,7 @@
                                 <tr>
                                     <td>{{ $expense->expense_date }} </span></td>
                                     <td>{{ $expense->expense_name }} </span></td>
-                                    <td>{{ $expense->expense_amount_uzs }}</td>
+                                    <td>{{ number_format($expense->expense_amount_uzs,2,',',' ')  }}</td>
                                     <td>{{ $expense->category_name }}</td>
                                     <td>{{ $expense->payment_type_name }}</td>
                                     <td>{{ $expense->report_number }}</td>
