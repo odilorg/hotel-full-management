@@ -264,6 +264,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 <p>Expenses</p>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a href="{{ route('inkassas.index'); }}"
+                                class="nav-link {{ (request()->is('inkassas*')) ? 'active' : '' }}">
+                                <i class="nav-icon fas fa-dollar-sign"></i>
+                                <p>Inkassas</p>
+                            </a>
+                        </li>
                         
                     </ul>
                 </nav>

@@ -17,6 +17,7 @@ use App\Http\Controllers\RestaurantController;
 use App\Http\Controllers\HotelreservationController;
 use App\Http\Controllers\AutocompleteSearchController;
 use App\Http\Controllers\ExpenseController;
+use App\Http\Controllers\InkassaController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\ReservationController;
 
@@ -57,6 +58,7 @@ Route::middleware(['auth', 'revalidate'])->group(function () {
         'reservations' => ReservationController::class,
         'expenses' => ExpenseController::class,
         'reports' => ReportController::class,
+        'inkassas' => InkassaController::class,
     
     ]);
     // Route::post('/transports/auto', [TransportController::class, 'auto'])->name('auto');
