@@ -80,7 +80,7 @@ class ReservationController extends Controller
        
         $data['arrivalFrom'] =  $attributes2['from_date'];
         $data['arrivalTo'] = $attributes2['to_date'];
-        $data['status'] = '1';
+       // $data['status'] = '1';
 
         $json = json_encode($data);
        // dd($json);
@@ -98,6 +98,7 @@ class ReservationController extends Controller
         $beds = array();
    //    dd($response);
         foreach ($response as $key => $value) {
+            if ($value->status == 1 || $value->status == 2 ) {
            $attributes['guestFirstName'] = $value->guestFirstName;
            $attributes['guestName'] = $value->guestName;
            $attributes['unitId'] = $value->unitId ;
@@ -109,6 +110,8 @@ class ReservationController extends Controller
            $attributes['price_uzs'] = $value->price * Reservation::exchange($value->firstNight);
            $attributes['commission'] = $value->commission ;
            $attributes['referer'] = $value->referer ;
+            }
+           
          // dd(Reservation::where('bookId', $value->bookId )->count() == 0);
         if (Reservation::where('bookId', $value->bookId )->count() > 0) {
             session()->flash('error', 'This reservation exists');
@@ -279,7 +282,7 @@ for ($i = 0; $i < count($payments); $i++){
         $exchange = Reservation::exchange(now());
 
                             
-       //dd($exchange);
+      //dd($exchange);
 
 return view('reservations.report', compact('report', 'expense_report', 'report_number', 'total_report', 'total_expenses', 'expense_total', 'exchange'));
     }
