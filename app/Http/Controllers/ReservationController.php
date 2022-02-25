@@ -39,9 +39,9 @@ class ReservationController extends Controller
         // });
 
 
-        $unique_report_number = $rooms->unique('report_number')->whereNotNull('report_number');
+        $unique_report_number = $rooms->unique('report_number')->whereNotNull('report_number')->sortBy('report_number', 'asc');
 
-        // dd($unique);
+         dd($unique_report_number);
         // $reports = DB::table('reservations')
            
         // ->join('reports', 'report_id', '=', 'reports.id')
@@ -96,32 +96,62 @@ class ReservationController extends Controller
         $response = json_decode($result);
 //get data from Beds24 DB
         $beds = array();
-   //    dd($response);
-        foreach ($response as $key => $value) {
-            if ($value->status == 1 || $value->status == 2 ) {
-           $attributes['guestFirstName'] = $value->guestFirstName;
-           $attributes['guestName'] = $value->guestName;
-           $attributes['unitId'] = $value->unitId ;
-           $attributes['roomId'] = $value->roomId ;
-           $attributes['firstNight'] = $value->firstNight ;
-           $attributes['lastNight'] = $value->lastNight ;
-           $attributes['numAdult'] = $value->numAdult ;
-           $attributes['price'] = $value->price ;
-           $attributes['price_uzs'] = $value->price * Reservation::exchange($value->firstNight);
-           $attributes['commission'] = $value->commission ;
-           $attributes['referer'] = $value->referer ;
-            }
-           
-         // dd(Reservation::where('bookId', $value->bookId )->count() == 0);
-        if (Reservation::where('bookId', $value->bookId )->count() > 0) {
-            session()->flash('error', 'This reservation exists');
-            return redirect('reservations');
-        } else {
+     // dd($response);
+    $i=0;
+
+   foreach ($response as $key => $value) {
+    if ($value->status == 1 || $value->status == 2 ) {
+       // dd($value->guestFirstName);
+        if (Reservation::where('bookId', $value->bookId )->count() == 0) {
+            $attributes['guestFirstName'] = $value->guestFirstName;
+            $attributes['guestName'] = $value->guestName;
+            $attributes['unitId'] = $value->unitId ;
+            $attributes['roomId'] = $value->roomId ;
+            $attributes['firstNight'] = $value->firstNight ;
+            $attributes['lastNight'] = $value->lastNight ;
+            $attributes['numAdult'] = $value->numAdult ;
+            $attributes['price'] = $value->price ;
+            $attributes['price_uzs'] = $value->price * Reservation::exchange($value->firstNight);
+            $attributes['commission'] = $value->commission ;
+            $attributes['referer'] = $value->referer ;
             $attributes['bookId'] = $value->bookId;
-        }
-           Reservation::create($attributes);
-        }
-        session()->flash('success', 'Beds24 created');
+            Reservation::create($attributes);
+            $i=$i+1;
+        }         
+        
+    }
+   }
+        
+   
+//    foreach ($response as $key => $value) {
+//             if (Reservation::where('bookId', $value->bookId )->count() > 0) {
+//                 dd('exists');
+//                 session()->flash('error', 'This reservation exists');
+//                 return redirect('reservations');
+//             } else {
+//                 if ($value->status == 1 || $value->status == 2 ) {
+//                     $attributes['guestFirstName'] = $value->guestFirstName;
+//                     $attributes['guestName'] = $value->guestName;
+//                     $attributes['unitId'] = $value->unitId ;
+//                     $attributes['roomId'] = $value->roomId ;
+//                     $attributes['firstNight'] = $value->firstNight ;
+//                     $attributes['lastNight'] = $value->lastNight ;
+//                     $attributes['numAdult'] = $value->numAdult ;
+//                     $attributes['price'] = $value->price ;
+//                     $attributes['price_uzs'] = $value->price * Reservation::exchange($value->firstNight);
+//                     $attributes['commission'] = $value->commission ;
+//                     $attributes['referer'] = $value->referer ;
+//                     $attributes['bookId'] = $value->bookId;
+//                      }
+               
+//             }
+            
+           
+//          // dd(Reservation::where('bookId', $value->bookId )->count() == 0);
+        
+//            Reservation::create($attributes);
+//         }
+        session()->flash('success', $i. ' records were created');
         session()->flash('type', 'Beds24');
 
        return redirect('reservations'); 
