@@ -39,9 +39,9 @@ class ReservationController extends Controller
         // });
 
 
-        $unique_report_number = $rooms->unique('report_number')->whereNotNull('report_number')->sortBy('report_number', 'asc');
+        $unique_report_number = $rooms->unique('report_number')->whereNotNull('report_number');
 
-         dd($unique_report_number);
+        // dd($unique_report_number);
         // $reports = DB::table('reservations')
            
         // ->join('reports', 'report_id', '=', 'reports.id')
