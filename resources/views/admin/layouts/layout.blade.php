@@ -12,7 +12,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
     <meta http-equiv="Pragma" content="no-cache" />
     <meta http-equiv="Expires" content="0" />
-    <title>SSST</title>
+    <title>Jahongir hotel</title>
 
     <!-- Google Font: Source Sans Pro -->
      <link rel="stylesheet"
@@ -201,7 +201,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <a href="{{ url('/') }}" class="brand-link">
                 <img src="{{ asset('assets/admin/img/AdminLTELogo.png') }}" alt="AdminLTE Logo"
                     class="brand-image img-circle elevation-3" style="opacity: .8">
-                <span class="brand-text font-weight-light">SSST</span>
+                <span class="brand-text font-weight-light">Jahongir hotel</span>
             </a>
 
             <!-- Sidebar -->
