@@ -24,8 +24,8 @@
         <div class="container-fluid">
         </div>
         <!-- /.row -->
-        <div class="row" id="invoice">
-            <div class="col-12">
+        <div class="row" >
+            <div class="col-12" id="invoice">
                 <div class="invoice p-3 mb-3">
                     <!-- title row -->
                     <div class="row">
