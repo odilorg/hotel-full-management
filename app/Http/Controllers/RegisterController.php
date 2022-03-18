@@ -16,11 +16,14 @@ class RegisterController extends Controller
   $request->validate([
       'email' => 'required|email',
       'password' => 'required'
+      
   ]);
+  $remember = $request->has('remember') ? true : false;
   if (Auth::attempt([
       'email' => $request->email,
       'password' => $request->password,
-  ])) {
+      
+  ], $remember)) {
     session()->flash('success', 'You logged in ');
          session()->flash('type', 'User Login');
          

@@ -10,7 +10,8 @@ use App\Models\Report;
 use App\Models\Reservation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-
+use Dompdf\Dompdf;
+use Barryvdh\DomPDF\Facade\Pdf;
 class ReservationController extends Controller
 {
     /**
@@ -343,8 +344,9 @@ $report['total_booking_comission'] = Reservation::whereBetween('firstNight', [$a
     return view('reservations.report-range', compact('report'));
     //dd($report['total_naqd']);
 
-     
-                            
-
     }
+   
+
+
+    
 }

@@ -150,6 +150,7 @@
                         <button type="button" class="btn btn-success float-right"><i class="far fa-credit-card"></i> Submit
                           Payment
                         </button>
+                        <a href="{{ URL::to('/reservations/pdf') }}" rel="noopener" target="_blank" class="btn btn-default"><i class="fas fa-print"></i> Print</a>
                         <button type="button" class="btn btn-primary float-right" style="margin-right: 5px;">
                           <i class="fas fa-download"></i> Generate PDF
                         </button>
