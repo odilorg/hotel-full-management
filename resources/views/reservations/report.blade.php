@@ -24,7 +24,7 @@
         <div class="container-fluid">
         </div>
         <!-- /.row -->
-        <div class="row">
+        <div class="row" id="invoice">
             <div class="col-12">
                 <div class="invoice p-3 mb-3">
                     <!-- title row -->
@@ -150,8 +150,7 @@
                         <button type="button" class="btn btn-success float-right"><i class="far fa-credit-card"></i> Submit
                           Payment
                         </button>
-                        <a href="{{ URL::to('/reservations/pdf') }}" rel="noopener" target="_blank" class="btn btn-default"><i class="fas fa-print"></i> Print</a>
-                        <button type="button" class="btn btn-primary float-right" style="margin-right: 5px;">
+                        <button onclick="generatePDF()" type="button" class="btn btn-primary float-right" style="margin-right: 5px;">
                           <i class="fas fa-download"></i> Generate PDF
                         </button>
                       </div>

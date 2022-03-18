@@ -31,6 +31,13 @@ use App\Http\Controllers\ReservationController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+// Route::get('/pdf', function() {
+//    // return view('reports.pdf');
+//    $pdf = PDF::loadView('reports.pdf');
+//    return $pdf->download('invoice.pdf');
+// });
+
+
 
 Route::get('/', [RegisterController::class, 'loginForm'])->name('loginForm');
 Route::post('/', [RegisterController::class, 'login'])->name('login');
@@ -43,6 +50,7 @@ Route::get('autocomplete-search', [AutocompleteSearchController::class, 'index']
 Route::get('boo', [AutocompleteSearchController::class, 'query'])->name('autocomplete');
 Route::post('/reservations/beds24', [ReservationController::class, 'beds24'])->name('reservations.beds24');
 Route::post('/reservations/report', [ReservationController::class, 'report'])->name('reservations.report');
+Route::post('/reservations/pdf', [ReservationController::class, 'createPDF'])->name('reservations.pdf');
 Route::post('/reservations/report-range', [ReservationController::class, 'report_range'])->name('reservations.report-range');
 
 

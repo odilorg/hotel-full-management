@@ -316,7 +316,8 @@ for ($i = 0; $i < count($payments); $i++){
       //dd($exchange);
 
 return view('reservations.report', compact('report', 'expense_report', 'report_number', 'total_report', 'total_expenses', 'expense_total', 'exchange'));
-    }
+    
+}
 
     public function report_range(Request $request) {
         $report = array();
