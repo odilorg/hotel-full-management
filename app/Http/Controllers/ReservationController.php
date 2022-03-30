@@ -31,7 +31,7 @@ class ReservationController extends Controller
         })
        
         ->orderBy('reservations.firstNight', 'desc')
-        ->paginate(15);
+        ->paginate(25);
 
         // $collection = $rooms->unique(function ($name) {
         //     return $name;

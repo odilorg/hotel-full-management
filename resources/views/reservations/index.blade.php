@@ -31,7 +31,7 @@
                         <h3 class="card-title">{{ __('Reservations Hotel Jahongir') }}</h3>
                         <div class="card-tools">
                             <div class="input-group input-group-sm" style="width: 150px;">
-                                <input type="text" name="table_search" class="form-control float-right"
+                                <input type="text" name="table_search" id="search" class="form-control float-right"
                                     placeholder="Search">
 
                                 <div class="input-group-append">
@@ -71,7 +71,7 @@
                                 Reports Date Range
                             </button>
                         </div>
-                        <table class="table table-hover text-wrap">
+                        <table class="table table-hover text-wrap" id="employee_table">
                             <thead>
                                 <tr>
                                     <th>ID</th>
