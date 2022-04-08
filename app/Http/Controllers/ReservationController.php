@@ -264,7 +264,7 @@ class ReservationController extends Controller
         return redirect('reservations');
     }
 
-    public function report(Request $request) {
+public function report(Request $request) {
        
         $report = array();
         $expense_report = array();

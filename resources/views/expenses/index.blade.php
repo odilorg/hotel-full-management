@@ -1,6 +1,32 @@
 @extends('admin.layouts.layout')
 
 @section('content')
+<script>  
+    $(document).ready(function(){  
+         $('#search').keyup(function(){  
+              search_table($(this).val());  
+         });  
+         function search_table(value){  
+              $('#employee_table tr').each(function(){  
+                   var found = 'false';  
+                   $(this).each(function(){  
+                        if($(this).text().toLowerCase().indexOf(value.toLowerCase()) >= 0)  
+                        {  
+                             found = 'true';  
+                        }  
+                   });  
+                   if(found == 'true')  
+                   {  
+                        $(this).show();  
+                   }  
+                   else  
+                   {  
+                        $(this).hide();  
+                   }  
+              });  
+         }  
+    });  
+</script> 
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
@@ -31,7 +57,7 @@
                         <h3 class="card-title"></h3>
                         <div class="card-tools">
                             <div class="input-group input-group-sm" style="width: 150px;">
-                                <input type="text" name="table_search" class="form-control float-right"
+                                <input type="text" name="table_search" id="search" class="form-control float-right"
                                     placeholder="Search">
 
                                 <div class="input-group-append">
@@ -51,7 +77,21 @@
                                 {{ __('Add Your Expense') }}
                             </a>
                         </div>
-                        <table class="table table-hover text-nowrap">
+                        <div class="mt-1">
+                            <button type="button" class="btn btn-primary" data-toggle="modal"
+                                data-target="#exampleModal-report">
+                                <i class="fas fa-scroll">
+                                </i>
+                                Reports
+                            </button>
+                            <button type="button" class="btn btn-primary" data-toggle="modal"
+                                data-target="#exampleModal-range">
+                                <i class="fas fa-scroll">
+                                </i>
+                                Reports Date Range
+                            </button>
+                        </div>
+                        <table class="table table-hover text-nowrap" id="employee_table">
                             <thead>
                                 <tr>
                                     <th>{{ __('Expense Date') }}</th>
@@ -116,6 +156,88 @@
 </div><!-- /.container-fluid -->
 </section>
 <!-- /.content -->
+</div>
+<div class="modal fade" id="exampleModal-report" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Report</h5>
+                <button type="button" class="close" data-dismiss="modal-report" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="{{ route('expenses.report') }}" method="POST">
+                @csrf
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="exampleSelectRounded0">Report N</label>
+                        <select class="custom-select rounded-0" name="report_number" id="exampleSelectRounded0">
+                            <option class="font-weight-bold" value="">Select Report</option>
+                            @foreach ($unique_report_number as $report )
+                            <option>{{ $report->report_number }}</option>
+                            @endforeach
+                        </select>
+                        @error('referer')
+                        <p class="text-danger">{{ $message }}</p>
+                        @enderror
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="exampleModal-range" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Report</h5>
+                <button type="button" class="close" data-dismiss="modal-report" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="{{ route('expenses.report-range') }}" method="POST">
+                @csrf
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label>Arriva From</label>
+                        <div class="input-group " id="reservationdate" data-target-input="nearest">
+                            <input type="text" value="{{ old('from_date') }}" name="from_date" class="form-control date  @error('from_date')
+                {{ 'is-invalid' }} @enderror datetimepicker-input" data-target="#reservationdate" />
+                            <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
+                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                            </div>
+                        </div>
+                        @error('from_date')
+                        <p class="text-danger">{{ $message }}</p>
+                        @enderror
+                    </div>
+                    <div class="form-group">
+                        <label>Arrival To:</label>
+                        <div class="input-group " id="reservationdate" data-target-input="nearest">
+                            <input type="text" value="{{ old('to_date') }}" name="to_date" class="form-control date @error('to_date')
+                {{ 'is-invalid' }} @enderror datetimepicker-input" data-target="#reservationdate" />
+                            <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
+                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                            </div>
+                        </div>
+                        @error('to_date')
+                        <p class="text-danger">{{ $message }}</p>
+                        @enderror
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
 </div>
 
 

@@ -50,6 +50,7 @@ Route::get('autocomplete-search', [AutocompleteSearchController::class, 'index']
 Route::get('boo', [AutocompleteSearchController::class, 'query'])->name('autocomplete');
 Route::post('/reservations/beds24', [ReservationController::class, 'beds24'])->name('reservations.beds24');
 Route::post('/reservations/report', [ReservationController::class, 'report'])->name('reservations.report');
+Route::post('/expenses/report', [ExpenseController::class, 'report'])->name('expenses.report');
 Route::post('/reservations/pdf', [ReservationController::class, 'createPDF'])->name('reservations.pdf');
 Route::post('/reservations/report-range', [ReservationController::class, 'report_range'])->name('reservations.report-range');
 
