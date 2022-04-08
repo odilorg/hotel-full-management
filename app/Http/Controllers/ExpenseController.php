@@ -150,39 +150,34 @@ class ExpenseController extends Controller
     }
 
 
-    public function report(Request $request) {
+    public function report_range(Request $request) {
        
         $report = array();
-        $expense_report = array();
-        $report_number = $request->input('report_number');
+        $arrival_from = $request->input('from_date');
+        $arrival_to = $request->input('to_date');
         $categories = ExpenseCategory::get();
         $payments = PaymentType::get();
        
-//Expense Reports
-// $report['total_naqd'] = DB::table('reservations')
-// //->where('report_number',$report_number)
-// ->where('payment_method', $payments[0]->payment_type_name)
-// ->sum('price');
 
 $total_expenses = DB::table('expenses')
-    ->where('report_number',$report_number)
+    ->whereBetween('expense_date', [$arrival_from, $arrival_to])
     ->sum('expense_amount_uzs');
 
 for ($i = 0; $i < count($payments); $i++){
     for ($t = 0; $t < count($categories); $t++) {
         $expense_report[ $payments[$i]->payment_type_name ][ $categories[$t]->category_name ] = DB::table('expenses')
-            ->where('report_number',$report_number)
+            ->whereBetween('expense_date', [$arrival_from, $arrival_to])
             ->where('payment_type_id', $payments[$i]->id)
             ->where('expense_category_id', $categories[$t]->id)
             ->sum('expense_amount_uzs');
 
         $report[ $payments[$i]->payment_type_name ] = DB::table('reservations')
-            ->where('report_number',$report_number)
+            ->whereBetween('expense_date', [$arrival_from, $arrival_to])
             ->where('payment_method', $payments[$i]->payment_type_name )
             ->sum('price');
 
         $expense_total[ $payments[$i]->payment_type_name ] = DB::table('expenses')
-            ->where('report_number',$report_number)
+            ->whereBetween('expense_date', [$arrival_from, $arrival_to])
             ->where('payment_type_id', $payments[$i]->id)
             ->sum('expense_amount_uzs');
     }
