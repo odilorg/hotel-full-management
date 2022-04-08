@@ -53,6 +53,7 @@ Route::post('/reservations/report', [ReservationController::class, 'report'])->n
 Route::post('/expenses/report', [ExpenseController::class, 'report'])->name('expenses.report');
 Route::post('/reservations/pdf', [ReservationController::class, 'createPDF'])->name('reservations.pdf');
 Route::post('/reservations/report-range', [ReservationController::class, 'report_range'])->name('reservations.report-range');
+Route::post('/expenses/report-range', [ExpenseController::class, 'report_range'])->name('expenses.report-range');
 
 
 
