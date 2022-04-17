@@ -272,11 +272,6 @@ public function report(Request $request) {
         $categories = ExpenseCategory::get();
         $payments = PaymentType::get();
        
-//Expense Reports
-// $report['total_naqd'] = DB::table('reservations')
-// //->where('report_number',$report_number)
-// ->where('payment_method', $payments[0]->payment_type_name)
-// ->sum('price');
 
 $total_expenses = DB::table('expenses')
     ->where('report_number',$report_number)

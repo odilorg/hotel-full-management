@@ -98,6 +98,7 @@
                             <th>Room</th>
                             <th>Oylik</th>
                             <th>General</th>
+                            <th>Usto</th>
                           </tr>
                           </thead>
                           <tbody>
@@ -106,6 +107,7 @@
                             <th>{{ number_format($expense_report[$key]['Room'],2,',',' ')  }}</th>
                             <th>{{ number_format($expense_report[$key]['Oylik'],2,',',' ')  }}</th>
                             <th>{{ number_format($expense_report[$key]['General'],2,',',' ')  }}</th>
+                            <th>{{ number_format($expense_report[$key]['Usto'],2,',',' ')  }}</th>
                           </tr>
                          
                           </tbody>
