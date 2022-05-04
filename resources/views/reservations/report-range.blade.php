@@ -24,49 +24,26 @@
         <div class="container-fluid">
         </div>
         <!-- /.row -->
-        <div class="row">
-            <div class="col-12">
+        <div class="row" >
+            <div class="col-12" id="invoice">
                 <div class="invoice p-3 mb-3">
                     <!-- title row -->
                     <div class="row">
                       <div class="col-12">
                         <h4>
-                          <i class="fas fa-globe"></i> AdminLTE, Inc.
-                          <small class="float-right">Date: 2/10/2014</small>
+                          <i class="fas fa-globe"></i> Jahongir Travel
+                          <small class="float-right">Date: {{ now() }}</small>
                         </h4>
                       </div>
                       <!-- /.col -->
                     </div>
                     <!-- info row -->
                     <div class="row invoice-info">
-                      <div class="col-sm-4 invoice-col">
-                        From
-                        <address>
-                          <strong>Admin, Inc.</strong><br>
-                          795 Folsom Ave, Suite 600<br>
-                          San Francisco, CA 94107<br>
-                          Phone: (804) 123-5432<br>
-                          Email: info@almasaeedstudio.com
-                        </address>
-                      </div>
+                      
                       <!-- /.col -->
                       <div class="col-sm-4 invoice-col">
-                        To
-                        <address>
-                          <strong>John Doe</strong><br>
-                          795 Folsom Ave, Suite 600<br>
-                          San Francisco, CA 94107<br>
-                          Phone: (555) 539-1037<br>
-                          Email: john.doe@example.com
-                        </address>
-                      </div>
-                      <!-- /.col -->
-                      <div class="col-sm-4 invoice-col">
-                        <b>Invoice #007612</b><br>
-                        <br>
-                        <b>Order ID:</b> 4F3S8J<br>
-                        <b>Payment Due:</b> 2/22/2014<br>
-                        <b>Account:</b> 968-34567
+                        <b>Date Range {{ $arrival_from }} - {{  $arrival_to }} Reservations</b><br>
+                        
                       </div>
                       <!-- /.col -->
                     </div>
@@ -81,17 +58,17 @@
                             <th>Naqd</th>
                             <th>Karta</th>
                             <th>Perech</th>
-                            <th>Booking Comission</th>
                             <th>Total</th>
+                            <th>Booking Comission</th>
                           </tr>
                           </thead>
                           <tbody>
                           <tr>
-                            <td>{{ $report['total_naqd'] }}</td>
-                            <td>{{ $report['total_karta'] }}</td>
-                            <td>{{ $report['total_perech'] }}</td>
+                            <td>{{ $report['Naqd'] }}</td>
+                            <td>{{ $report['Karta'] }}</td>
+                            <td>{{ $report['Perech'] }}</td>
+                            <td>{{ $total_report }}</td>
                             <td>{{ $report['total_booking_comission'] }}</td>
-                            <td>{{ $report['total_report'] }}</td>
                           </tr>
                          
                           </tbody>
@@ -99,41 +76,81 @@
                       </div>
                       <!-- /.col -->
                     </div>
-                    <!-- /.row -->
-      
-                    <div class="row">
-                      <!-- accepted payments column -->
-                      <div class="col-6">
-                       
-                         
-                      </div>
+                    @foreach ($expense_report as $key => $value )
+                    <div class="row invoice-info">
+                      
                       <!-- /.col -->
-                      <div class="col-6">
-                        <p class="lead">Amount Due 2/22/2014</p>
-      
-                        <div class="table-responsive">
-                          <table class="table">
-                            <tbody><tr>
-                              <th style="width:50%">Subtotal:</th>
-                              <td>$2.30</td>
-                            </tr>
-                            <tr>
-                              <th>Tax (9.3%)</th>
-                              <td>$10.34</td>
-                            </tr>
-                            <tr>
-                              <th>Shipping:</th>
-                              <td>$5.80</td>
-                            </tr>
-                            <tr>
-                              <th>Total:</th>
-                              <td>$265.24</td>
-                            </tr>
-                          </tbody></table>
-                        </div>
+                      <div class="col-sm-4 invoice-col">
+                        <b>Date Range {{ $arrival_from }} - {{  $arrival_to }} - {{ $key }} - Total: - {{ number_format($expense_total[$key],2,',',' ')  }}Uzs {{ round($expense_total[$key] / $exchange, 2) }}$</b><br>
+                        
                       </div>
                       <!-- /.col -->
                     </div>
+                    <!-- /.row -->
+      
+                    <!-- Table row -->
+                    <div class="row">
+                      <div class="col-12 table-responsive">
+                        <table class="table table-striped">
+                          <thead>
+                          <tr>
+                            <th>Breakfast</th>
+                            <th>Room</th>
+                            <th>Oylik</th>
+                            <th>General</th>
+                            <th>Usto</th>
+                          </tr>
+                          </thead>
+                          <tbody>
+                          <tr>
+                            <th>{{ number_format($expense_report[$key]['Breakfast'],2,',',' ')  }}</th>
+                            <th>{{ number_format($expense_report[$key]['Room'],2,',',' ')  }}</th>
+                            <th>{{ number_format($expense_report[$key]['Oylik'],2,',',' ')  }}</th>
+                            <th>{{ number_format($expense_report[$key]['General'],2,',',' ')  }}</th>
+                            <th>{{ number_format($expense_report[$key]['Usto'],2,',',' ')  }}</th>
+                          </tr>
+                         
+                          </tbody>
+                        </table>
+                      </div>
+                      <!-- /.col -->
+                    </div>
+                    @endforeach
+                    <div class="col-6">
+                      <p class="lead">Amount Due for report N {{ $report_number }} - {{ now() }}</p>
+    
+                      <div class="table-responsive">
+                        <table class="table">
+                          <tbody><tr>
+                            <th style="width:50%">Naqd:</th>
+                            <td>{{ $report['Naqd'] }}</td>
+                          </tr>
+                          <tr>
+                            <th>Booking Comission</th>
+                            <td>{{ $report['total_booking_comission'] }}</td>
+                          </tr>
+                          <tr>
+                            <th>Naqd Expense:</th>
+                            <td>{{ round($expense_total['Naqd'] / $exchange, 1)  }}</td>
+                          </tr>
+                          <tr>
+                            <th>Karta Expense:</th>
+                            <td>{{ round($expense_total['Karta'] / $exchange, 1)  }}</td>
+                          </tr>
+                          <tr>
+                            <th>Perech Expense:</th>
+                            <td>{{ round($expense_total['Perech'] / $exchange, 1)  }}</td>
+                          </tr>
+                          <tr>
+                            <th>Due:</th>
+                            <td>{{ $report['Naqd'] - $report['total_booking_comission'] - round($expense_total['Naqd'] / $exchange, 1)  }}  </td>
+                          </tr>
+                        </tbody></table>
+                      </div>
+                    </div>
+                    <!-- /.row -->
+      
+                    
                     <!-- /.row -->
       
                     <!-- this row will not appear when printing -->
@@ -143,7 +160,7 @@
                         <button type="button" class="btn btn-success float-right"><i class="far fa-credit-card"></i> Submit
                           Payment
                         </button>
-                        <button type="button" class="btn btn-primary float-right" style="margin-right: 5px;">
+                        <button onclick="generatePDF()" type="button" class="btn btn-primary float-right" style="margin-right: 5px;">
                           <i class="fas fa-download"></i> Generate PDF
                         </button>
                       </div>

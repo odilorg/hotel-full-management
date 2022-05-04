@@ -316,28 +316,80 @@ return view('reservations.report', compact('report', 'expense_report', 'report_n
 
     public function report_range(Request $request) {
         $report = array();
+        $report_number = $request->input('report_number');
         $arrival_from = $request->input('from_date');
         $arrival_to = $request->input('to_date');
-//Query
-$report['total_report'] = Reservation::whereBetween('firstNight', [$arrival_from, $arrival_to])
-    ->sum('price');  
-    
-$report['total_naqd'] = Reservation::whereBetween('firstNight', [$arrival_from, $arrival_to])
-    ->where('payment_method','Naqd')    
-    ->sum('price');  
-    
-$report['total_karta'] = Reservation::whereBetween('firstNight', [$arrival_from, $arrival_to])
-    ->where('payment_method','Karta')    
-    ->sum('price'); 
-$report['total_perech'] = Reservation::whereBetween('firstNight', [$arrival_from, $arrival_to])
-    ->where('payment_method','Perech')    
-    ->sum('price'); 
+        $expense_report = array();
+        $categories = ExpenseCategory::get();
+        $payments = PaymentType::get();
 
-$report['total_booking_comission'] = Reservation::whereBetween('firstNight', [$arrival_from, $arrival_to])
-    ->where('referer','Booking.com')   
-    ->sum('commission');
+
+//Query
+$total_expenses = DB::table('expenses')
+    ->whereBetween('expense_date', [$arrival_from, $arrival_to])
+    ->sum('expense_amount_uzs');
+
+
+   // dd($total_expenses);
+    //Reservation::whereBetween('firstNight', [$arrival_from, $arrival_to])
+//     ->sum('price');  
+
+for ($i = 0; $i < count($payments); $i++){
+    for ($t = 0; $t < count($categories); $t++) {
+        $expense_report[ $payments[$i]->payment_type_name ][ $categories[$t]->category_name ] = DB::table('expenses')
+           ->whereBetween('expense_date', [$arrival_from, $arrival_to])
+            ->where('payment_type_id', $payments[$i]->id)
+            ->where('expense_category_id', $categories[$t]->id)
+            ->sum('expense_amount_uzs');
+
+        $report[ $payments[$i]->payment_type_name ] = DB::table('reservations')
+           ->whereBetween('firstNight', [$arrival_from, $arrival_to])
+            ->where('payment_method', $payments[$i]->payment_type_name )
+            ->sum('price');
+
+        $expense_total[ $payments[$i]->payment_type_name ] = DB::table('expenses')
+           ->whereBetween('expense_date', [$arrival_from, $arrival_to])
+            ->where('payment_type_id', $payments[$i]->id)
+            ->sum('expense_amount_uzs');
+    }
+   
+}
+        $total_report = DB::table('reservations')
+                           ->whereBetween('firstNight', [$arrival_from, $arrival_to])
+                            ->sum('price');
+        
+        $report['total_booking_comission'] = DB::table('reservations')
+                           ->whereBetween('firstNight', [$arrival_from, $arrival_to])
+                            ->where('referer','Booking.com')
+                            ->sum('commission');  
+        $exchange = Reservation::exchange(now());
+
+
+
+
+
+
+// $report['total_report'] = Reservation::whereBetween('firstNight', [$arrival_from, $arrival_to])
+//     ->sum('price');  
     
-    return view('reservations.report-range', compact('report'));
+// $report['total_naqd'] = Reservation::whereBetween('firstNight', [$arrival_from, $arrival_to])
+//     ->where('payment_method','Naqd')    
+//     ->sum('price');  
+    
+// $report['total_karta'] = Reservation::whereBetween('firstNight', [$arrival_from, $arrival_to])
+//     ->where('payment_method','Karta')    
+//     ->sum('price'); 
+// $report['total_perech'] = Reservation::whereBetween('firstNight', [$arrival_from, $arrival_to])
+//     ->where('payment_method','Perech')    
+//     ->sum('price'); 
+
+// $report['total_booking_comission'] = Reservation::whereBetween('firstNight', [$arrival_from, $arrival_to])
+//     ->where('referer','Booking.com')   
+//     ->sum('commission');
+    
+    return view('reservations.report-range', compact('report', 'report_number', 'expense_report', 'arrival_from', 'arrival_to', 'total_report', 'total_expenses', 'expense_total', 'exchange'));
+    
+
     //dd($report['total_naqd']);
 
     }
