@@ -272,7 +272,7 @@ public function report(Request $request) {
         $categories = ExpenseCategory::get();
         $payments = PaymentType::get();
        
-
+//dd($categories);
 $total_expenses = DB::table('expenses')
     ->where('report_number',$report_number)
     ->sum('expense_amount_uzs');
@@ -310,7 +310,7 @@ for ($i = 0; $i < count($payments); $i++){
                             
       //dd($exchange);
 
-return view('reservations.report', compact('report', 'expense_report', 'report_number', 'total_report', 'total_expenses', 'expense_total', 'exchange'));
+return view('reservations.report', compact('categories', 'report', 'expense_report', 'report_number', 'total_report', 'total_expenses', 'expense_total', 'exchange'));
     
 }
 
@@ -387,7 +387,7 @@ for ($i = 0; $i < count($payments); $i++){
 //     ->where('referer','Booking.com')   
 //     ->sum('commission');
     
-    return view('reservations.report-range', compact('report', 'report_number', 'expense_report', 'arrival_from', 'arrival_to', 'total_report', 'total_expenses', 'expense_total', 'exchange'));
+    return view('reservations.report-range', compact('categories', 'report', 'report_number', 'expense_report', 'arrival_from', 'arrival_to', 'total_report', 'total_expenses', 'expense_total', 'exchange'));
     
 
     //dd($report['total_naqd']);

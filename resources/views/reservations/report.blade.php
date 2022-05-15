@@ -94,20 +94,18 @@
                         <table class="table table-striped">
                           <thead>
                           <tr>
-                            <th>Breakfast</th>
-                            <th>Room</th>
-                            <th>Oylik</th>
-                            <th>General</th>
-                            <th>Usto</th>
+                            @foreach ($categories as $category)
+                            <th>{{ $category->category_name }}</th>
+                            @endforeach
+                           
                           </tr>
                           </thead>
                           <tbody>
                           <tr>
-                            <th>{{ number_format($expense_report[$key]['Breakfast'],2,',',' ')  }}</th>
-                            <th>{{ number_format($expense_report[$key]['Room'],2,',',' ')  }}</th>
-                            <th>{{ number_format($expense_report[$key]['Oylik'],2,',',' ')  }}</th>
-                            <th>{{ number_format($expense_report[$key]['General'],2,',',' ')  }}</th>
-                            <th>{{ number_format($expense_report[$key]['Usto'],2,',',' ')  }}</th>
+                            @foreach ($categories as $category)
+                            <th>{{ number_format($expense_report[$key][ $category->category_name],2,',',' ')  }}</th>
+                            @endforeach
+                            
                           </tr>
                          
                           </tbody>
