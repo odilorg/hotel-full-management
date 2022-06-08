@@ -307,7 +307,7 @@ $new_array = array();
 
 $reports_all_distinct = DB::table('reservations')->distinct()->whereNotNull('report_number')->pluck('report_number');
 $reports_all = DB::table('reservations')->pluck('report_number');
-dd($reports_all);
+//dd($reports_all);
 
 for ($i = 0; $i < 244; $i++){
     for ($t = 0; $t < 12; $t++){
