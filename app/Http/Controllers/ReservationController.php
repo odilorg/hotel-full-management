@@ -271,6 +271,7 @@ public function report(Request $request) {
         $expense_report = array();
         $expense_report_narast = array();
         $report_number = $request->input('report_number');
+
         $categories = ExpenseCategory::get();
         $payments = PaymentType::get();
         $res_quan = Reservation::get();
@@ -301,52 +302,53 @@ for ($i = 0; $i < count($payments); $i++){
     }
    
 }
+//dd($expense_report);
 
-// //create array with all reports
-// $reports_array = array();
-// $reports_all_distinct = array();
-// $new_array = array();
+//create array with all reports
+$reports_array = array();
+$reports_all_distinct = array();
+$new_array = array();
 
-// $reports_all_distinct = DB::table('reservations')->distinct()->whereNotNull('report_number')->pluck('report_number');
-// $reports_all = DB::table('reservations')->pluck('report_number');
-// dd($reports_all);
+$reports_all_distinct = DB::table('reservations')->distinct()->whereNotNull('report_number')->pluck('report_number');
+$reports_all = DB::table('reservations')->pluck('report_number');
+dd($reports_all_distinct);
 
-// for ($i = 0; $i < count($reports_all); $i++){
-//     for ($t = 0; $t < count($reports_all_distinct); $t++){
-//         if ($reports_all[$i] === $reports_all_distinct[$t]  ) {
-//             Reservation::where('report_number', $reports_all[$i])
-//             ->update(['report_number' => $i]);
-//             // DB::table('reservations')->insert(['report_number' => $reports_all[$i] ]);
-//            // $new_array[$i] = $reports_all[$i];
-//             break;
-//         }
-//     }    
-// }
+for ($i = 0; $i < count($reports_all); $i++){
+    for ($t = 0; $t < count($reports_all_distinct); $t++){
+        if ($reports_all[$i] === $reports_all_distinct[$t]  ) {
+            Reservation::where('report_number', $reports_all[$i])
+            ->update(['report_number' => $i]);
+            // DB::table('reservations')->insert(['report_number' => $reports_all[$i] ]);
+           // $new_array[$i] = $reports_all[$i];
+            break;
+        }
+    }    
+}
 
 
 // dd($new_array);
 
 //narastayushiy itog
-// for ($i = 0; $i < count($payments); $i++){
-//     for ($t = 0; $t < count($categories); $t++) {
-//         $expense_report[ $payments[$i]->payment_type_name ][ $categories[$t]->category_name ] = DB::table('expenses')
-//             ->where('report_number',$report_number)
-//             ->where('payment_type_id', $payments[$i]->id)
-//             ->where('expense_category_id', $categories[$t]->id)
-//             ->sum('expense_amount_uzs');
+for ($i = 0; $i < count($payments); $i++){
+    for ($t = 0; $t < count($categories); $t++) {
+        $expense_report[ $payments[$i]->payment_type_name ][ $categories[$t]->category_name ] = DB::table('expenses')
+            ->whereBetween('report_number',[1,$report_number])
+            ->where('payment_type_id', $payments[$i]->id)
+            ->where('expense_category_id', $categories[$t]->id)
+            ->sum('expense_amount_uzs');
 
-//         $report[ $payments[$i]->payment_type_name ] = DB::table('reservations')
-//             ->where('report_number',$report_number)
-//             ->where('payment_method', $payments[$i]->payment_type_name )
-//             ->sum('price');
+        $report[ $payments[$i]->payment_type_name ] = DB::table('reservations')
+        ->whereBetween('report_number',[1,$report_number])
+            ->where('payment_method', $payments[$i]->payment_type_name )
+            ->sum('price');
 
-//         $expense_total[ $payments[$i]->payment_type_name ] = DB::table('expenses')
-//             ->where('report_number',$report_number)
-//             ->where('payment_type_id', $payments[$i]->id)
-//             ->sum('expense_amount_uzs');
-//     }
-   
-// }
+        $expense_total[ $payments[$i]->payment_type_name ] = DB::table('expenses')
+        ->whereBetween('report_number',[1,$report_number])
+            ->where('payment_type_id', $payments[$i]->id)
+            ->sum('expense_amount_uzs');
+    }
+ }
+ dd($expense_report);
         $total_report = DB::table('reservations')
                             ->where('report_number',$report_number)
                             ->sum('price');
