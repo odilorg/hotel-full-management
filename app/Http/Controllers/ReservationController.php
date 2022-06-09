@@ -327,75 +327,6 @@ for ($i = 0; $i < count($payments); $i++){
    
 }
 
-//dd($expense_report_narast);
-
-//dd($report);
-//dd($expense_report);
-
-//create array with all reports
-// $reports_array = array();
-// $reports_all_distinct = array();
-// $new_array = array();
-
-// $reports_all_distinct = DB::table('reservations')->distinct()->whereNotNull('report_number')->pluck('report_number');
-// $reports_all = DB::table('reservations')->pluck('report_number');
-// $expenses_all = DB::table('expenses')->pluck('report_number');
-// //dd($reports_all_distinct);
-
-// //Update Expenses DB
-// for ($i = 0; $i < count($expenses_all); $i++){
-    
-//         if ($expenses_all[$i] === $old_data  ) {
-//             Expense::where('report_number', $old_data)
-//             ->update(['report_number' => "7"]);
-//             // DB::table('reservations')->insert(['report_number' => $reports_all[$i] ]);
-//            // $new_array[$i] = $reports_all[$i];
-//             break;
-//         }
-        
-// }
-
-
-
-
-// //Update main reservations DB
-// for ($i = 0; $i < count($reports_all); $i++){
-   
-//         if ($reports_all[$i] === $old_data  ) {
-//             Reservation::where('report_number', $old_data)
-//             ->update(['report_number' => "7"]);
-//             // DB::table('reservations')->insert(['report_number' => $reports_all[$i] ]);
-//            // $new_array[$i] = $reports_all[$i];
-//             break;
-//         }
-        
-// }
-
-
-// dd($reports_all);
-
-//narastayushiy itog
-// for ($i = 0; $i < count($payments); $i++){
-//     for ($t = 0; $t < count($categories); $t++) {
-//         $expense_report[ $payments[$i]->payment_type_name ][ $categories[$t]->category_name ] = DB::table('expenses')
-//             ->whereBetween('firstNight',[1,$report_number])
-//             ->where('payment_type_id', $payments[$i]->id)
-//             ->where('expense_category_id', $categories[$t]->id)
-//             ->sum('expense_amount_uzs');
-
-//         $report[ $payments[$i]->payment_type_name ] = DB::table('reservations')
-//         ->whereBetween('report_number',[1,$report_number])
-//             ->where('payment_method', $payments[$i]->payment_type_name )
-//             ->sum('price');
-
-//         $expense_total[ $payments[$i]->payment_type_name ] = DB::table('expenses')
-//         ->whereBetween('report_number',[1,$report_number])
-//             ->where('payment_type_id', $payments[$i]->id)
-//             ->sum('expense_amount_uzs');
-//     }
-//  }
- //dd($expense_report);
- //for the single date       
  $total_report = DB::table('reservations')
                             ->where('firstNight',$first_night)
                             ->sum('price');
@@ -423,85 +354,61 @@ return view('reservations.report', compact('report_booking_narast', 'total_repor
     
 }
 
-    public function report_range(Request $request) {
-        $report = array();
-        $report_number = $request->input('report_number');
-        $arrival_from = $request->input('from_date');
-        $arrival_to = $request->input('to_date');
-        $expense_report = array();
-        $categories = ExpenseCategory::get();
-        $payments = PaymentType::get();
+public function report_range(Request $request) {
+       
+    $report = array();
+    $report_narast = array();
+    $expense_report = array();
+    $expense_report_narast = array();
+    $from_date = $request->input('from_date');
+    $to_date = $request->input('to_date');
+    //dd($from_date, $to_date);
 
-
-//Query
+    $categories = ExpenseCategory::get();
+    $payments = PaymentType::get();
+    $res_quan = Reservation::get();
+   
+   
+//dd($categories);
 $total_expenses = DB::table('expenses')
-    ->whereBetween('expense_date', [$arrival_from, $arrival_to])
-    ->sum('expense_amount_uzs');
-
-
-   // dd($total_expenses);
-    //Reservation::whereBetween('firstNight', [$arrival_from, $arrival_to])
-//     ->sum('price');  
+->whereBetween('expense_date',[$from_date,$to_date])
+->sum('expense_amount_uzs');
+//narastayushiy report 
 
 for ($i = 0; $i < count($payments); $i++){
     for ($t = 0; $t < count($categories); $t++) {
         $expense_report[ $payments[$i]->payment_type_name ][ $categories[$t]->category_name ] = DB::table('expenses')
-           ->whereBetween('expense_date', [$arrival_from, $arrival_to])
+            ->whereBetween('expense_date',[$from_date,$to_date])
             ->where('payment_type_id', $payments[$i]->id)
             ->where('expense_category_id', $categories[$t]->id)
             ->sum('expense_amount_uzs');
 
         $report[ $payments[$i]->payment_type_name ] = DB::table('reservations')
-           ->whereBetween('firstNight', [$arrival_from, $arrival_to])
+            ->whereBetween('firstNight',[$from_date,$to_date])
             ->where('payment_method', $payments[$i]->payment_type_name )
             ->sum('price');
 
         $expense_total[ $payments[$i]->payment_type_name ] = DB::table('expenses')
-           ->whereBetween('expense_date', [$arrival_from, $arrival_to])
+            ->whereBetween('expense_date',[$from_date,$to_date])
             ->where('payment_type_id', $payments[$i]->id)
             ->sum('expense_amount_uzs');
     }
    
 }
-        $total_report = DB::table('reservations')
-                           ->whereBetween('firstNight', [$arrival_from, $arrival_to])
+
+ $total_report = DB::table('reservations')
+                            ->whereBetween('firstNight',[$from_date,$to_date])
                             ->sum('price');
         
         $report['total_booking_comission'] = DB::table('reservations')
-                           ->whereBetween('firstNight', [$arrival_from, $arrival_to])
+                            ->whereBetween('firstNight',[$from_date,$to_date])
                             ->where('referer','Booking.com')
                             ->sum('commission');  
         $exchange = Reservation::exchange(now());
 
-
-
-
-
-
-// $report['total_report'] = Reservation::whereBetween('firstNight', [$arrival_from, $arrival_to])
-//     ->sum('price');  
+return view('reservations.report-range', compact('categories', 'report', 'expense_report', 'to_date', 'from_date', 'total_report', 'total_expenses', 'expense_total', 'exchange'));
     
-// $report['total_naqd'] = Reservation::whereBetween('firstNight', [$arrival_from, $arrival_to])
-//     ->where('payment_method','Naqd')    
-//     ->sum('price');  
-    
-// $report['total_karta'] = Reservation::whereBetween('firstNight', [$arrival_from, $arrival_to])
-//     ->where('payment_method','Karta')    
-//     ->sum('price'); 
-// $report['total_perech'] = Reservation::whereBetween('firstNight', [$arrival_from, $arrival_to])
-//     ->where('payment_method','Perech')    
-//     ->sum('price'); 
-
-// $report['total_booking_comission'] = Reservation::whereBetween('firstNight', [$arrival_from, $arrival_to])
-//     ->where('referer','Booking.com')   
-//     ->sum('commission');
-    
-    return view('reservations.report-range', compact('categories', 'report', 'report_number', 'expense_report', 'arrival_from', 'arrival_to', 'total_report', 'total_expenses', 'expense_total', 'exchange'));
-    
-
-    //dd($report['total_naqd']);
-
-    }
+}
    
 
 
