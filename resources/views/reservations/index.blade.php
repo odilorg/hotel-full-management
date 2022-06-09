@@ -166,17 +166,13 @@
             <form action="{{ route('reservations.report') }}" method="POST">
                 @csrf
                 <div class="modal-body">
-                    <div class="form-group">
-                        <label for="exampleSelectRounded0">Report N</label>
-                        <select class="custom-select rounded-0" name="report_number" id="exampleSelectRounded0">
-                            <option class="font-weight-bold" value="">Select Report</option>
-                            @foreach ($unique_report_number as $report )
-                            <option>{{ $report->report_number }}</option>
-                            @endforeach
-                        </select>
-                        @error('referer')
-                        <p class="text-danger">{{ $message }}</p>
-                        @enderror
+                    <div class="input-group " id="reservationdate" data-target-input="nearest">
+                        <input type="text" name="firstNight" class="form-control date @error('firstNight')
+        {{ 'is-invalid' }} @enderror datetimepicker-input" data-target="#reservationdate" />
+                        <div class="input-group-append" data-target="#reservationdate"
+                            data-toggle="datetimepicker">
+                            <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                        </div>
                     </div>
                 </div>
                 <div class="modal-footer">

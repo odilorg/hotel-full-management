@@ -37,12 +37,17 @@
                       </div>
                       <!-- /.col -->
                     </div>
+                    <div style="margin: 20px auto; width: 100%; height: 20px; border-bottom: 1px solid black; text-align: center">
+                      <span style="font-size: 20px; background-color: #F3F5F6; padding: 10px 10px;">
+                        Profits <!--Padding is optional-->
+                      </span>
+                    </div>
                     <!-- info row -->
                     <div class="row invoice-info">
                       
                       <!-- /.col -->
                       <div class="col-sm-4 invoice-col">
-                        <b>Report # {{ $report_number }} Reservations</b><br>
+                        <b>Report Date {{ $first_night }} Reservations</b><br>
                         
                       </div>
                       <!-- /.col -->
@@ -76,13 +81,54 @@
                       </div>
                       <!-- /.col -->
                     </div>
-                    @foreach ($expense_report as $key => $value )
+                    <!-- info row -->
                     <div class="row invoice-info">
                       
                       <!-- /.col -->
                       <div class="col-sm-4 invoice-col">
-                        <b>Report # {{ $report_number }} - {{ $key }} - Total: - {{ number_format($expense_total[$key],2,',',' ')  }}Uzs {{ round($expense_total[$key] / $exchange, 2) }}$</b><br>
+                        <b>Report Dates {{ "2022-01-01" }} -  {{ $first_night }} Narastayushiy</b><br>
                         
+                      </div>
+                      <!-- /.col -->
+                    </div>
+                    <!-- /.row -->
+      
+                    <!-- Table row -->
+                    <div class="row">
+                      <div class="col-12 table-responsive">
+                        <table class="table table-striped">
+                          <thead>
+                          <tr>
+                            <th>Naqd</th>
+                            <th>Karta</th>
+                            <th>Perech</th>
+                            <th>Total</th>
+                            <th>Booking Comission</th>
+                          </tr>
+                          </thead>
+                          <tbody>
+                          <tr>
+                            <td>{{ number_format($report_narast['Naqd'],2,',',' ') }} Usd</td>
+                            <td>{{  number_format($report_narast['Karta'],2,',',' ') }} Usd</td>
+                            <td>{{  number_format($report_narast['Perech'],2,',',' ') }} Usd</td>
+                            <td>{{  number_format($total_report_narast,2,',',' ') }} Usd</td>
+                            <td>{{  number_format($report_booking_narast['total_booking_comission'],2,',',' ') }} Usd</td>
+                          </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <!-- /.col -->
+                    </div>
+                    <div style="margin: 20px auto; width: 100%; height: 20px; border-bottom: 1px solid black; text-align: center">
+                      <span style="font-size: 20px; background-color: #F3F5F6; padding: 10px 10px;">
+                        Expenses <!--Padding is optional-->
+                      </span>
+                    </div>
+                    @foreach ($expense_report as $key => $value )
+                    <div class="row invoice-info">
+                      <!-- /.col -->
+                      <div class="col-sm-4 invoice-col">
+                        <b>Report # {{ $first_night }} - {{ $key }} - Total: - {{ number_format($expense_total[$key],2,',',' ')  }}Uzs {{ round($expense_total[$key] / $exchange, 2) }}$</b><br>
                       </div>
                       <!-- /.col -->
                     </div>
@@ -107,6 +153,12 @@
                             @endforeach
                             
                           </tr>
+                          <tr>
+                            @foreach ($categories as $category)
+                            <th>{{ number_format($expense_report_narast[$key][ $category->category_name],2,',',' ')  }}</th>
+                            @endforeach
+                            
+                          </tr>
                          
                           </tbody>
                         </table>
@@ -114,30 +166,70 @@
                       <!-- /.col -->
                     </div>
                     @endforeach
-                    <div class="col-6">
-                      <p class="lead">Amount Due for report N {{ $report_number }} - {{ now() }}</p>
-    
-                      <div class="table-responsive">
-                        <table class="table">
-                          <tbody><tr>
-                            <th style="width:50%">Naqd:</th>
-                            <td>{{ $report['Naqd'] }}</td>
-                          </tr>
-                          <tr>
-                            <th>Booking Comission</th>
-                            <td>{{ $report['total_booking_comission'] }}</td>
-                          </tr>
-                          <tr>
-                            <th>Naqd Expense:</th>
-                            <td>{{ round($expense_total['Naqd'] / $exchange, 1)  }}</td>
-                          </tr>
-                          <tr>
-                            <th>Due:</th>
-                            <td>{{ $report['Naqd'] - $report['total_booking_comission'] - round($expense_total['Naqd'] / $exchange, 1)  }}  </td>
-                          </tr>
-                        </tbody></table>
+                    <div class="container">
+                     
+                      <div class="row">
+                        <div class="col">
+                          <div class="table-responsive">
+                            <p class="lead">Amount Due for Date {{ $first_night }} </p>
+                            <table class="table">
+                              <tbody>
+                              <tr>
+                                <th style="width:50%">Naqd:</th>
+                                <td>{{ $report['Naqd'] }}</td>
+                              </tr>
+                              
+                              <tr>
+                                <th>Booking Comission</th>
+                                <td>{{ $report['total_booking_comission'] }}</td>
+                              </tr>
+                              
+                              <tr>
+                                <th>Naqd Expense:</th>
+                                <td>{{ round($expense_total['Naqd'] / $exchange, 1)  }}</td>
+                              </tr>
+                              
+                              <tr>
+                                <th>Due:</th>
+                                <td>{{ $report['Naqd'] - $report['total_booking_comission'] - round($expense_total['Naqd'] / $exchange, 1)  }}  </td>
+                              </tr>
+                              
+                            </tbody></table>
+                          </div>
+                        </div>
+                        <div class="col">
+                          <div class="table-responsive">
+                            <p class="lead">Amount Due {{ "01-01-2022" }} - {{ $first_night }} </p>
+                            <table class="table">
+                              <tbody>
+                              
+                              <tr>
+                                <th style="width:50%">Naqd Narast:</th>
+                                <td>{{ $report_narast['Naqd'] }}</td>
+                              </tr>
+                              
+                              <tr>
+                                <th>Booking Com Narast</th>
+                                <td>{{ $report_booking_narast['total_booking_comission'] }}</td>
+                              </tr>
+                              
+                              <tr>
+                                <th>Naqd Expense Narast:</th>
+                                <td>{{ round($expense_total_narast['Naqd'] / $exchange, 1)  }}</td>
+                              </tr>
+                              
+                              <tr>
+                                <th>Due Narast:</th>
+                                <td>{{ $report_narast['Naqd'] - $report_booking_narast['total_booking_comission'] - round($expense_total_narast['Naqd'] / $exchange, 1)  }}  </td>
+                              </tr>
+                            </tbody></table>
+                          </div>
+                        </div>
+                        
                       </div>
                     </div>
+                    
+                    
                     <!-- /.row -->
       
                     

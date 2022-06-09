@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Expense;
 use App\Models\ExpenseCategory;
 use App\Models\PaymentType;
 use Exception;
@@ -270,7 +271,7 @@ public function report(Request $request) {
         $report_narast = array();
         $expense_report = array();
         $expense_report_narast = array();
-        $report_number = $request->input('report_number');
+        $first_night = $request->input('firstNight');
 
         $categories = ExpenseCategory::get();
         $payments = PaymentType::get();
@@ -279,90 +280,146 @@ public function report(Request $request) {
        
 //dd($categories);
 $total_expenses = DB::table('expenses')
-    ->where('report_number',$report_number)
+    ->where('expense_date',$first_night)
     ->sum('expense_amount_uzs');
-
+//daily first night report
 for ($i = 0; $i < count($payments); $i++){
     for ($t = 0; $t < count($categories); $t++) {
         $expense_report[ $payments[$i]->payment_type_name ][ $categories[$t]->category_name ] = DB::table('expenses')
-            ->where('report_number',$report_number)
+            ->where('expense_date',$first_night)
             ->where('payment_type_id', $payments[$i]->id)
             ->where('expense_category_id', $categories[$t]->id)
             ->sum('expense_amount_uzs');
 
         $report[ $payments[$i]->payment_type_name ] = DB::table('reservations')
-            ->where('report_number',$report_number)
+            ->where('firstNight',$first_night)
             ->where('payment_method', $payments[$i]->payment_type_name )
             ->sum('price');
 
         $expense_total[ $payments[$i]->payment_type_name ] = DB::table('expenses')
-            ->where('report_number',$report_number)
+        ->where('expense_date',$first_night)
             ->where('payment_type_id', $payments[$i]->id)
             ->sum('expense_amount_uzs');
     }
    
 }
 //dd($expense_report);
+//narastayushiy report 
 
-//create array with all reports
-$reports_array = array();
-$reports_all_distinct = array();
-$new_array = array();
-
-$reports_all_distinct = DB::table('reservations')->distinct()->whereNotNull('report_number')->pluck('report_number');
-$reports_all = DB::table('reservations')->pluck('report_number');
-dd($reports_all_distinct);
-
-for ($i = 0; $i < count($reports_all); $i++){
-    for ($t = 0; $t < count($reports_all_distinct); $t++){
-        if ($reports_all[$i] === $reports_all_distinct[$t]  ) {
-            Reservation::where('report_number', $reports_all[$i])
-            ->update(['report_number' => $i]);
-            // DB::table('reservations')->insert(['report_number' => $reports_all[$i] ]);
-           // $new_array[$i] = $reports_all[$i];
-            break;
-        }
-    }    
-}
-
-
-// dd($new_array);
-
-//narastayushiy itog
 for ($i = 0; $i < count($payments); $i++){
     for ($t = 0; $t < count($categories); $t++) {
-        $expense_report[ $payments[$i]->payment_type_name ][ $categories[$t]->category_name ] = DB::table('expenses')
-            ->whereBetween('report_number',[1,$report_number])
+        $expense_report_narast[ $payments[$i]->payment_type_name ][ $categories[$t]->category_name ] = DB::table('expenses')
+            ->whereBetween('expense_date',["2022-01-01",$first_night])
             ->where('payment_type_id', $payments[$i]->id)
             ->where('expense_category_id', $categories[$t]->id)
             ->sum('expense_amount_uzs');
 
-        $report[ $payments[$i]->payment_type_name ] = DB::table('reservations')
-        ->whereBetween('report_number',[1,$report_number])
+        $report_narast[ $payments[$i]->payment_type_name ] = DB::table('reservations')
+            ->whereBetween('firstNight',["2022-01-01",$first_night])
             ->where('payment_method', $payments[$i]->payment_type_name )
             ->sum('price');
 
-        $expense_total[ $payments[$i]->payment_type_name ] = DB::table('expenses')
-        ->whereBetween('report_number',[1,$report_number])
+        $expense_total_narast[ $payments[$i]->payment_type_name ] = DB::table('expenses')
+        ->whereBetween('expense_date',["2022-01-01",$first_night])
             ->where('payment_type_id', $payments[$i]->id)
             ->sum('expense_amount_uzs');
     }
- }
- dd($expense_report);
-        $total_report = DB::table('reservations')
-                            ->where('report_number',$report_number)
+   
+}
+
+//dd($expense_report_narast);
+
+//dd($report);
+//dd($expense_report);
+
+//create array with all reports
+// $reports_array = array();
+// $reports_all_distinct = array();
+// $new_array = array();
+
+// $reports_all_distinct = DB::table('reservations')->distinct()->whereNotNull('report_number')->pluck('report_number');
+// $reports_all = DB::table('reservations')->pluck('report_number');
+// $expenses_all = DB::table('expenses')->pluck('report_number');
+// //dd($reports_all_distinct);
+
+// //Update Expenses DB
+// for ($i = 0; $i < count($expenses_all); $i++){
+    
+//         if ($expenses_all[$i] === $old_data  ) {
+//             Expense::where('report_number', $old_data)
+//             ->update(['report_number' => "7"]);
+//             // DB::table('reservations')->insert(['report_number' => $reports_all[$i] ]);
+//            // $new_array[$i] = $reports_all[$i];
+//             break;
+//         }
+        
+// }
+
+
+
+
+// //Update main reservations DB
+// for ($i = 0; $i < count($reports_all); $i++){
+   
+//         if ($reports_all[$i] === $old_data  ) {
+//             Reservation::where('report_number', $old_data)
+//             ->update(['report_number' => "7"]);
+//             // DB::table('reservations')->insert(['report_number' => $reports_all[$i] ]);
+//            // $new_array[$i] = $reports_all[$i];
+//             break;
+//         }
+        
+// }
+
+
+// dd($reports_all);
+
+//narastayushiy itog
+// for ($i = 0; $i < count($payments); $i++){
+//     for ($t = 0; $t < count($categories); $t++) {
+//         $expense_report[ $payments[$i]->payment_type_name ][ $categories[$t]->category_name ] = DB::table('expenses')
+//             ->whereBetween('firstNight',[1,$report_number])
+//             ->where('payment_type_id', $payments[$i]->id)
+//             ->where('expense_category_id', $categories[$t]->id)
+//             ->sum('expense_amount_uzs');
+
+//         $report[ $payments[$i]->payment_type_name ] = DB::table('reservations')
+//         ->whereBetween('report_number',[1,$report_number])
+//             ->where('payment_method', $payments[$i]->payment_type_name )
+//             ->sum('price');
+
+//         $expense_total[ $payments[$i]->payment_type_name ] = DB::table('expenses')
+//         ->whereBetween('report_number',[1,$report_number])
+//             ->where('payment_type_id', $payments[$i]->id)
+//             ->sum('expense_amount_uzs');
+//     }
+//  }
+ //dd($expense_report);
+ //for the single date       
+ $total_report = DB::table('reservations')
+                            ->where('firstNight',$first_night)
                             ->sum('price');
         
         $report['total_booking_comission'] = DB::table('reservations')
-                            ->where('report_number',$report_number)
+                            ->where('firstNight',$first_night)  
                             ->where('referer','Booking.com')
                             ->sum('commission');  
         $exchange = Reservation::exchange(now());
+//for the narastayushiy date       
+$total_report_narast = DB::table('reservations')
+    ->whereBetween('firstNight',["2022-01-01",$first_night])
+    ->sum('price');
+
+$report_booking_narast['total_booking_comission'] = DB::table('reservations')
+    ->whereBetween('firstNight',["2022-01-01",$first_night])
+    ->where('referer','Booking.com')
+    ->sum('commission');  
+$exchange = Reservation::exchange(now());
 
                             
-      //dd($exchange);
+    //  dd($total_report);
 
-return view('reservations.report', compact('categories', 'report', 'expense_report', 'report_number', 'total_report', 'total_expenses', 'expense_total', 'exchange'));
+return view('reservations.report', compact('report_booking_narast', 'total_report_narast', 'expense_total_narast', 'report_narast', 'expense_report_narast', 'categories', 'report', 'expense_report', 'first_night', 'total_report', 'total_expenses', 'expense_total', 'exchange'));
     
 }
 
