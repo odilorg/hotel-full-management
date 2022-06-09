@@ -205,22 +205,22 @@
                               
                               <tr>
                                 <th style="width:50%">Naqd Narast:</th>
-                                <td>{{ $report_narast['Naqd'] }}</td>
+                                <td>{{ number_format($report_narast['Naqd'],2,',',' ') }}</td>
                               </tr>
-                              
                               <tr>
                                 <th>Booking Com Narast</th>
-                                <td>{{ $report_booking_narast['total_booking_comission'] }}</td>
+                                <td>{{ number_format($report_booking_narast['total_booking_comission'],2,',',' ') }}</td> 
                               </tr>
                               
                               <tr>
                                 <th>Naqd Expense Narast:</th>
-                                <td>{{ round($expense_total_narast['Naqd'] / $exchange, 1)  }}</td>
+                                <td>{{ number_format(round($expense_total_narast['Naqd'] / $exchange, 1),2,',',' ') }}</td>
                               </tr>
                               
                               <tr>
                                 <th>Due Narast:</th>
-                                <td>{{ $report_narast['Naqd'] - $report_booking_narast['total_booking_comission'] - round($expense_total_narast['Naqd'] / $exchange, 1)  }}  </td>
+                                <td>{{  number_format(($report_narast['Naqd'] - $report_booking_narast['total_booking_comission'] - round($expense_total_narast['Naqd'] / $exchange, 1)),2,',',' ') }}</td>
+                                
                               </tr>
                             </tbody></table>
                           </div>
