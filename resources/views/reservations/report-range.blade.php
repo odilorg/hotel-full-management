@@ -42,7 +42,7 @@
                       
                       <!-- /.col -->
                       <div class="col-sm-4 invoice-col">
-                        <b>Date Range {{ $arrival_from }} - {{  $arrival_to }} Reservations</b><br>
+                        <b>Date Range {{ $from_date }} - {{  $to_date }} Reservations</b><br>
                         
                       </div>
                       <!-- /.col -->
@@ -64,11 +64,11 @@
                           </thead>
                           <tbody>
                           <tr>
-                            <td>{{ $report['Naqd'] }}</td>
-                            <td>{{ $report['Karta'] }}</td>
-                            <td>{{ $report['Perech'] }}</td>
-                            <td>{{ $total_report }}</td>
-                            <td>{{ $report['total_booking_comission'] }}</td>
+                            <td>{{ number_format($report['Naqd'],2,',',' ') }}</td>
+                            <td>{{ number_format($report['Karta'],2,',',' ') }}</td>
+                            <td>{{ number_format($report['Perech'],2,',',' ') }}</td>
+                            <td>{{ number_format($total_report,2,',',' ') }}</td>
+                            <td>{{ number_format($report['total_booking_comission'],2,',',' ') }}</td>
                           </tr>
                          
                           </tbody>
@@ -81,7 +81,7 @@
                       
                       <!-- /.col -->
                       <div class="col-sm-4 invoice-col">
-                        <b>Date Range {{ $arrival_from }} - {{  $arrival_to }} - {{ $key }} - Total: - {{ number_format($expense_total[$key],2,',',' ')  }}Uzs {{ round($expense_total[$key] / $exchange, 2) }}$</b><br>
+                        <b>Date Range {{ $from_date }} - {{  $to_date }} - {{ $key }} - Total: - {{ number_format($expense_total[$key],2,',',' ')  }}Uzs {{ round($expense_total[$key] / $exchange, 2) }}$</b><br>
                         
                       </div>
                       <!-- /.col -->
@@ -113,33 +113,34 @@
                     </div>
                     @endforeach
                     <div class="col-6">
-                      <p class="lead">Amount Due for report N {{ $report_number }} - {{ now() }}</p>
+                      <p class="lead">Amount Due for report N {{ $from_date }} - {{ $to_date }}</p>
     
                       <div class="table-responsive">
                         <table class="table">
                           <tbody><tr>
                             <th style="width:50%">Naqd:</th>
-                            <td>{{ $report['Naqd'] }}</td>
+                            <td>{{ number_format($report['Naqd'],2,',',' ') }}</td>
+                            
                           </tr>
                           <tr>
                             <th>Booking Comission</th>
-                            <td>{{ $report['total_booking_comission'] }}</td>
+                            <td>{{ number_format($report['total_booking_comission'],2,',',' ') }}</td>
                           </tr>
                           <tr>
                             <th>Naqd Expense:</th>
-                            <td>{{ round($expense_total['Naqd'] / $exchange, 1)  }}</td>
+                            <td>{{ number_format(round($expense_total['Naqd'] / $exchange, 1),2,',',' ') }}</td>
                           </tr>
                           <tr>
                             <th>Karta Expense:</th>
-                            <td>{{ round($expense_total['Karta'] / $exchange, 1)  }}</td>
+                            <td>{{ number_format(round($expense_total['Karta'] / $exchange, 1),2,',',' ') }}</td>
                           </tr>
                           <tr>
                             <th>Perech Expense:</th>
-                            <td>{{ round($expense_total['Perech'] / $exchange, 1)  }}</td>
+                            <td>{{ number_format(round($expense_total['Perech'] / $exchange, 1),2,',',' ') }}</td>
                           </tr>
                           <tr>
                             <th>Due:</th>
-                            <td>{{ $report['Naqd'] - $report['total_booking_comission'] - round($expense_total['Naqd'] / $exchange, 1)  }}  </td>
+                            <td>{{ number_format(($report['Naqd'] - $report['total_booking_comission'] - round($expense_total['Naqd'] / $exchange, 1)),2,',',' ') }}</td>
                           </tr>
                         </tbody></table>
                       </div>
