@@ -399,6 +399,11 @@ for ($i = 0; $i < count($payments); $i++){
  $total_report = DB::table('reservations')
                             ->whereBetween('firstNight',[$from_date,$to_date])
                             ->sum('price');
+$total_unpaid = DB::table('reservations')
+                            ->whereBetween('firstNight',[$from_date,$to_date])
+                            ->where('payment_method', null)
+                            ->sum('price');       
+ 
         
         $report['total_booking_comission'] = DB::table('reservations')
                             ->whereBetween('firstNight',[$from_date,$to_date])
@@ -406,7 +411,7 @@ for ($i = 0; $i < count($payments); $i++){
                             ->sum('commission');  
         $exchange = Reservation::exchange(now());
 
-return view('reservations.report-range', compact('categories', 'report', 'expense_report', 'to_date', 'from_date', 'total_report', 'total_expenses', 'expense_total', 'exchange'));
+return view('reservations.report-range', compact('total_unpaid', 'categories', 'report', 'expense_report', 'to_date', 'from_date', 'total_report', 'total_expenses', 'expense_total', 'exchange'));
     
 }
    

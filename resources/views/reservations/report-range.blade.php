@@ -58,8 +58,11 @@
                             <th>Naqd</th>
                             <th>Karta</th>
                             <th>Perech</th>
-                            <th>Total</th>
+                            <th>Unpaid</th>
+                            <th>Total w/out unpaid</th>
+                            <th>Total w/unpaid</th>
                             <th>Booking Comission</th>
+                           
                           </tr>
                           </thead>
                           <tbody>
@@ -67,8 +70,11 @@
                             <td>{{ number_format($report['Naqd'],2,',',' ') }}</td>
                             <td>{{ number_format($report['Karta'],2,',',' ') }}</td>
                             <td>{{ number_format($report['Perech'],2,',',' ') }}</td>
+                            <td>{{ number_format($total_unpaid,2,',',' ') }}</td>
+                            <td>{{ number_format($total_report - $total_unpaid,2,',',' ') }}</td>
                             <td>{{ number_format($total_report,2,',',' ') }}</td>
                             <td>{{ number_format($report['total_booking_comission'],2,',',' ') }}</td>
+                            
                           </tr>
                          
                           </tbody>
