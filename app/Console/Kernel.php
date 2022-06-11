@@ -2,6 +2,7 @@
 
 namespace App\Console;
 
+use App\Models\Reservation;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -16,8 +17,69 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         $schedule->call(function () {
-            DB::table('recent_users')->delete();
-        })->daily();
+            // $attributes2 =  request()->validate([
+
+            //     'from_date' => ['required '],
+            //     'to_date' => ['required'],
+            //   ]);
+            //   $attributes2['from_date'] =  str_replace('-', '', $attributes2['from_date']);
+            //   $attributes2['to_date'] =  str_replace('-', '', $attributes2['to_date']);
+              
+            
+            $auth = array();
+            $auth['apiKey'] = 'klfsdjkfkksdj234234';
+            $auth['propKey'] = 'hfgtryrt43534sadfsdf';
+            
+            $data = array();    
+            $data['authentication'] = $auth;
+            
+            /* Restrict the bookings using any combination of the following */
+           
+            $data['arrivalFrom'] =  date("Y-m-d");
+            $data['arrivalTo'] = date("Y-m-d");
+           // $data['status'] = '1';
+    
+            $json = json_encode($data);
+           // dd($json);
+            $url = "https://api.beds24.com/json/getBookings";
+            $ch=curl_init();
+            curl_setopt($ch, CURLOPT_POST, 1) ;
+            curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+            curl_setopt($ch, CURLOPT_URL, $url);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, $json);
+            $result = curl_exec($ch);
+            curl_close ($ch);
+            $response = json_decode($result);
+    //get data from Beds24 DB
+            $beds = array();
+         // dd($response);
+        $i=0;
+    
+       foreach ($response as $key => $value) {
+        if ($value->status == 1 || $value->status == 2 ) {
+           // dd($value->guestFirstName);
+            if (Reservation::where('bookId', $value->bookId )->count() == 0) {
+                $attributes['guestFirstName'] = $value->guestFirstName;
+                $attributes['guestName'] = $value->guestName;
+                $attributes['unitId'] = $value->unitId ;
+                $attributes['roomId'] = $value->roomId ;
+                $attributes['firstNight'] = $value->firstNight ;
+                $attributes['lastNight'] = $value->lastNight ;
+                $attributes['numAdult'] = $value->numAdult ;
+                $attributes['price'] = $value->price ;
+                $attributes['price_uzs'] = $value->price * Reservation::exchange($value->firstNight);
+                $attributes['commission'] = $value->commission ;
+                $attributes['referer'] = $value->referer ;
+                $attributes['bookId'] = $value->bookId;
+                Reservation::create($attributes);
+                $i=$i+1;
+            }         
+            
+        }
+       }
+           
+        })->dailyAt('14:50');
     }
 
     /**
@@ -31,4 +93,7 @@ class Kernel extends ConsoleKernel
 
         require base_path('routes/console.php');
     }
+    
+
+
 }
