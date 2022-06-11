@@ -83,10 +83,10 @@
                                     <th>Price</th>
                                     <th style="width:125px">Price Uzs</th>
                                     <th style="width:35px">Comission</th>
-                                    <th>Refferer</th>
+                                    <th>Referer</th>
                                     <th>Payment Method</th>
                                     <th>Company if Any</th>
-                                    <th>Report N</th>
+                                    <th>Ok Ytt</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
@@ -105,7 +105,7 @@
                                     <td>{{ $hotelres->referer  }}</td>
                                     <td>{{ $hotelres->payment_method   }}</td>
                                     <td>{{ $hotelres->company_name   }}</td>
-                                    <td>{{ $hotelres->report_number   }}</td>
+                                    <td>{{ $hotelres->ok_ytt   }}</td>
                                    
 
 

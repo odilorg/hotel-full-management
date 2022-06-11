@@ -48,11 +48,17 @@
                                             {{ old('referer', $reservation->payment_method) == "Naqd" ? "selected" : "" }}
                                             value="Naqd">Naqd</option>
                                         <option
-                                            {{ old('referer', $reservation->payment_method) == "Karta" ? "selected" : "" }}
-                                            value="Karta">Karta</option>
+                                            {{ old('referer', $reservation->payment_method) == "Humo" ? "selected" : "" }}
+                                            value="Humo">Humo</option>
+                                        <option
+                                            {{ old('referer', $reservation->payment_method) == "UzCard" ? "selected" : "" }}
+                                            value="UzCard">UzCard</option>
                                         <option
                                             {{ old('referer', $reservation->payment_method) == "Perech" ? "selected" : "" }}
                                             value="Perech">Perech</option>
+                                            <option
+                                            {{ old('referer', $reservation->payment_method) == "Karta" ? "selected" : "" }}
+                                            value="Karta">Karta</option>    
                                     </select>
                                     @error('referer')
                                     <p class="text-danger">{{ $message }}</p>
@@ -82,6 +88,23 @@
                                         name="company_name" class="form-control @error('company_name')
                                     {{ 'is-invalid' }} @enderror" id="exampleInputEmail1" placeholder="Firma name">
                                     @error('company_name')
+                                    <p class="text-danger">{{ $message }}</p>
+                                    @enderror
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleSelectRounded0">OK or YTT</label>
+                                    <select class="custom-select rounded-0" name="ok_ytt"
+                                        id="exampleSelectRounded0">
+                                        <option value="">Select OK YTT</option>
+                                        <option
+                                            {{ old('referer', $reservation->ok_ytt) == "OK" ? "selected" : "" }}
+                                            value="OK">OK</option>
+                                        <option
+                                            {{ old('referer', $reservation->ok_ytt) == "YTT" ? "selected" : "" }}
+                                            value="YTT">YTT</option>
+                                       
+                                    </select>
+                                    @error('referer')
                                     <p class="text-danger">{{ $message }}</p>
                                     @enderror
                                 </div>

@@ -191,7 +191,9 @@ class ReservationController extends Controller
             'referer' => ['required' ],
             'payment_method' => ['max:255' ],
             'company_name' => ['max:255' ],
+            'ok_ytt' => ['required', 'max:255' ],
         ]);
+        
         $attributes['price_uzs'] = $attributes['price'] * Reservation::exchange($attributes['firstNight'] );
         Reservation::create($attributes);
         session()->flash('success', 'Booking created');
@@ -240,7 +242,9 @@ class ReservationController extends Controller
             'company_name' => ['max:255' ],
             'price' => ['required', 'numeric'],
             'report_number' => ['max:255'],
+            'ok_ytt' => ['max:255'],
         ]);
+        //dd($request->ok_ytt);
         $attributes['price_uzs'] = $attributes['price'] * Reservation::exchange($reservation->firstNight);
         $reservation->update($attributes);
         session()->flash('success', 'Booking updated');
