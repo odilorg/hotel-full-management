@@ -41,7 +41,9 @@ use App\Http\Controllers\ReservationController;
 
 Route::get('/', [RegisterController::class, 'loginForm'])->name('loginForm');
 Route::post('/', [RegisterController::class, 'login'])->name('login');
-
+// Route::get('/user/{id}/{name}', function ($id, $name) {
+//     //
+// })->whereNumber('id')->whereAlpha('name');
 
 
 Route::post('/logout', [RegisterController::class, 'logout'])->name('logout');
@@ -53,6 +55,7 @@ Route::post('/reservations/report', [ReservationController::class, 'report'])->n
 Route::post('/expenses/report', [ExpenseController::class, 'report'])->name('expenses.report');
 Route::post('/reservations/pdf', [ReservationController::class, 'createPDF'])->name('reservations.pdf');
 Route::post('/reservations/report-range', [ReservationController::class, 'report_range'])->name('reservations.report-range');
+Route::get('/reservations/report-range/unpaid/{sana1}/{sana2}', [ReservationController::class, 'report_range_unpaid'])->name('reservations.report-range-unpaid');
 Route::post('/expenses/report-range', [ExpenseController::class, 'report_range'])->name('expenses.report-range');
 
 

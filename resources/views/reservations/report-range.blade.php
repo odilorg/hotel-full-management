@@ -70,7 +70,7 @@
                             <td>{{ number_format($report['Naqd'],2,',',' ') }}</td>
                             <td>{{ number_format($report['Karta'],2,',',' ') }}</td>
                             <td>{{ number_format($report['Perech'],2,',',' ') }}</td>
-                            <td>{{ number_format($total_unpaid,2,',',' ') }}</td>
+                            <td><a href="report-range/unpaid/{{ $from_date }}/{{ $to_date }}">{{ number_format($total_unpaid,2,',',' ') }}</a></td>
                             <td>{{ number_format($total_report - $total_unpaid,2,',',' ') }}</td>
                             <td>{{ number_format($total_report,2,',',' ') }}</td>
                             <td>{{ number_format($report['total_booking_comission'],2,',',' ') }}</td>

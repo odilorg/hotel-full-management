@@ -415,7 +415,39 @@ return view('reservations.report-range', compact('total_unpaid', 'categories', '
     
 }
    
+public function report_range_unpaid( $sana1, $sana2) {
+    // $total_unpaid = DB::table('reservations')
+    //     ->whereBetween('firstNight',[$sana1, $sana2])
+    //     ->where('payment_method', null)
+    //     ->get();  
 
+    $total_unpaid = DB::table('rooms')
+
+    ->join("reservations",function($join) use ($sana1, $sana2){
+        $join->on("reservations.roomId","=","rooms.room_id")
+            ->on("reservations.unitId","=","rooms.unit_id")
+            ->whereBetween('reservations.firstNight',[$sana1, $sana2])
+            ->where('reservations.payment_method', null);
+
+    })
+   
+    
+    ->paginate(25);
+
+    $total_unpaid_sum = DB::table('reservations')
+    ->whereBetween('firstNight',[$sana1,$sana2])
+    ->where('payment_method', null)
+    ->sum('price');      
+
+
+
+
+        return view('reservations.report-range-unpaid', compact('total_unpaid_sum', 'total_unpaid', 'sana1', 'sana2'));
+    
+
+
+
+}
 
     
 }
