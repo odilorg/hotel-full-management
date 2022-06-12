@@ -16,6 +16,7 @@ use App\Http\Controllers\TransportController;
 use App\Http\Controllers\RestaurantController;
 use App\Http\Controllers\HotelreservationController;
 use App\Http\Controllers\AutocompleteSearchController;
+use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\ExpenseController;
 use App\Http\Controllers\InkassaController;
 use App\Http\Controllers\ReportController;
@@ -75,6 +76,7 @@ Route::middleware(['auth', 'revalidate'])->group(function () {
         'expenses' => ExpenseController::class,
         'reports' => ReportController::class,
         'inkassas' => InkassaController::class,
+        'companies' => CompanyController::class,
     
     ]);
     // Route::post('/transports/auto', [TransportController::class, 'auto'])->name('auto');
