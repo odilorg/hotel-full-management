@@ -306,6 +306,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 <p>Inkassas</p>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a href="{{ route('companies.index'); }}"
+                                class="nav-link {{ (request()->is('companies*')) ? 'active' : '' }}">
+                                <i class="nav-icon fas fa-building"></i>
+                                <p>Companies</p>
+                            </a>
+                        </li>
+                        
+
                         
                     </ul>
                 </nav>
@@ -623,6 +632,17 @@ scratch. This page gets rid of all links and provides the needed markup only.
               }
           });
       </script>
+      <script type="text/javascript">
+        var path = "{{ route('fill_company') }}";
+          $('input.fill_company').typeahead({
+              source:  function (query, process) {
+                return $.get(path, { query: query }, function (data) {
+                    return process(data);
+                });
+              }
+          });
+      </script>
+      
        
 
 </html>

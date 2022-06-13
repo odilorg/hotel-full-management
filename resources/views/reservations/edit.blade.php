@@ -85,7 +85,7 @@
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Firma Name</label>
                                     <input type="text" value="{{ old('company_name', $reservation->company_name) }}"
-                                        name="company_name" class="form-control @error('company_name')
+                                        name="company_name" class="form-control fill_company @error('company_name')
                                     {{ 'is-invalid' }} @enderror" id="exampleInputEmail1" placeholder="Firma name">
                                     @error('company_name')
                                     <p class="text-danger">{{ $message }}</p>

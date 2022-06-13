@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Company;
 use App\Models\Expense;
 use App\Models\ExpenseCategory;
 use App\Models\PaymentType;
@@ -192,6 +193,7 @@ class ReservationController extends Controller
             'payment_method' => ['max:255' ],
             'company_name' => ['max:255' ],
             'ok_ytt' => ['required', 'max:255' ],
+            'company_id' => ['max:255' ],
         ]);
         
         $attributes['price_uzs'] = $attributes['price'] * Reservation::exchange($attributes['firstNight'] );
@@ -244,6 +246,11 @@ class ReservationController extends Controller
             'report_number' => ['max:255'],
             'ok_ytt' => ['max:255'],
         ]);
+        $company_id = Company::first()
+            ->where('company_name', $attributes['company_name']);
+            
+            dd($company_id->company_id);
+          $attributes['company_id'] =   $company_id['1']['id'];
         //dd($request->ok_ytt);
         $attributes['price_uzs'] = $attributes['price'] * Reservation::exchange($reservation->firstNight);
         $reservation->update($attributes);
