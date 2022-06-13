@@ -27,11 +27,12 @@
                 <div class="col-lg-6">
                     <div class="card">
                         <div class="card-body">
-                            <form action="{{ route('companies.store') }}" method="POST">
+                            <form action="/companies/{{ $company->id }}" method="POST">
                                 @csrf
+                                @method('PUT')
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Company Name</label>
-                                    <input type="text" value="{{ old('company_name') }}" name="company_name" class="form-control  @error('company_name')
+                                    <input type="text" value="{{ old('company_name', $company->company_name) }}" name="company_name" class="form-control  @error('company_name')
                  {{ 'is-invalid' }} @enderror " id="inputError" placeholder="Company Name">
                                     @error('company_name')
                                     <p class="text-danger">{{ $message }}</p>
@@ -39,7 +40,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Official Company Name</label>
-                                    <input type="text" value="{{ old('offical_company_name') }}" name="offical_company_name" class="form-control  @error('offical_company_name')
+                                    <input type="text" value="{{ old('offical_company_name', $company->offical_company_name) }}" name="offical_company_name" class="form-control  @error('offical_company_name')
                  {{ 'is-invalid' }} @enderror " id="inputError" placeholder="Official Company Name">
                                     @error('offical_company_name')
                                     <p class="text-danger">{{ $message }}</p>
@@ -47,7 +48,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Company Address Street</label>
-                                    <input type="text" value="{{ old('company_address_street') }}" name="company_address_street" class="form-control  @error('company_address_street')
+                                    <input type="text" value="{{ old('company_address_street', $company->company_address_street) }}" name="company_address_street" class="form-control  @error('company_address_street')
                  {{ 'is-invalid' }} @enderror " id="inputError" placeholder="Company Address Street">
                                     @error('company_address_street')
                                     <p class="text-danger">{{ $message }}</p>
@@ -55,7 +56,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Company Address City</label>
-                                    <input type="text" value="{{ old('company_address_city') }}" name="company_address_city" class="form-control  @error('company_address_city')
+                                    <input type="text" value="{{ old('company_address_city',$company->company_address_city) }}" name="company_address_city" class="form-control  @error('company_address_city')
                  {{ 'is-invalid' }} @enderror " id="inputError" placeholder="Company Address City">
                                     @error('company_address_city')
                                     <p class="text-danger">{{ $message }}</p>
@@ -63,7 +64,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Company Address Zip</label>
-                                    <input type="text" value="{{ old('company_address_zip') }}" name="company_address_zip" class="form-control  @error('company_address_zip')
+                                    <input type="text" value="{{ old('company_address_zip',$company->company_address_zip) }}" name="company_address_zip" class="form-control  @error('company_address_zip')
                  {{ 'is-invalid' }} @enderror " id="inputError" placeholder="Company Address Zip">
                                     @error('company_address_zip')
                                     <p class="text-danger">{{ $message }}</p>
@@ -71,7 +72,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Company Phone</label>
-                                    <input type="text" value="{{ old('company_phone') }}" name="company_phone" class="form-control  @error('company_phone')
+                                    <input type="text" value="{{ old('company_phone',$company->company_phone) }}" name="company_phone" class="form-control  @error('company_phone')
                  {{ 'is-invalid' }} @enderror " id="inputError" placeholder="Company Phone">
                                     @error('company_phone')
                                     <p class="text-danger">{{ $message }}</p>
@@ -79,7 +80,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Company Email</label>
-                                    <input type="text" value="{{ old('company_email') }}" name="company_email" class="form-control  @error('company_email')
+                                    <input type="text" value="{{ old('company_email',$company->company_email) }}" name="company_email" class="form-control  @error('company_email')
                  {{ 'is-invalid' }} @enderror " id="inputError" placeholder="Company Email">
                                     @error('company_email')
                                     <p class="text-danger">{{ $message }}</p>
@@ -87,7 +88,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Company INN</label>
-                                    <input type="text" value="{{ old('company_inn') }}" name="company_inn" class="form-control  @error('company_inn')
+                                    <input type="text" value="{{ old('company_inn', $company->company_inn) }}" name="company_inn" class="form-control  @error('company_inn')
                  {{ 'is-invalid' }} @enderror " id="inputError" placeholder="Company INN">
                                     @error('company_inn')
                                     <p class="text-danger">{{ $message }}</p>
@@ -95,7 +96,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Company Acc Number</label>
-                                    <input type="text" value="{{ old('company_acc_number') }}" name="company_acc_number" class="form-control  @error('company_acc_number')
+                                    <input type="text" value="{{ old('company_acc_number', $company->company_acc_number) }}" name="company_acc_number" class="form-control  @error('company_acc_number')
                  {{ 'is-invalid' }} @enderror " id="inputError" placeholder="Company Acc Number">
                                     @error('company_acc_number')
                                     <p class="text-danger">{{ $message }}</p>
@@ -103,7 +104,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Company Bank Name</label>
-                                    <input type="text" value="{{ old('company_bank_name') }}" name="company_bank_name" class="form-control  @error('company_bank_name')
+                                    <input type="text" value="{{ old('company_bank_name', $company->company_bank_name) }}" name="company_bank_name" class="form-control  @error('company_bank_name')
                  {{ 'is-invalid' }} @enderror " id="inputError" placeholder="Company Bank Name">
                                     @error('company_bank_name')
                                     <p class="text-danger">{{ $message }}</p>
@@ -111,7 +112,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Company Bank MFO</label>
-                                    <input type="text" value="{{ old('company_bank_mfo') }}" name="company_bank_mfo" class="form-control  @error('company_bank_mfo')
+                                    <input type="text" value="{{ old('company_bank_mfo', $company->company_bank_mfo) }}" name="company_bank_mfo" class="form-control  @error('company_bank_mfo')
                  {{ 'is-invalid' }} @enderror " id="inputError" placeholder="Company Bank MFO">
                                     @error('company_bank_mfo')
                                     <p class="text-danger">{{ $message }}</p>

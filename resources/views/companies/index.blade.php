@@ -81,17 +81,17 @@
                                     <td>{{ $company->company_acc_number }}</td>
                                     <td>{{ $company->company_bank_name }}</td>
                                     <td>{{ $company->company_bank_mfo }}</td>
-                                    <td><a class="btn btn-primary btn-sm" href="guides/{{ $company->id }}">
+                                    <td><a class="btn btn-primary btn-sm" href="companies/{{ $company->id }}">
                                             <i class="fas fa-folder">
                                             </i>
                                             View
                                         </a>
-                                        <a class="btn btn-info btn-sm" href="guides/{{ $company->id }}/edit">
+                                        <a class="btn btn-info btn-sm" href="companies/{{ $company->id }}/edit">
                                             <i class="fas fa-pencil-alt">
                                             </i>
                                             Edit
                                         </a>
-                                        <form action="/guides/{{ $company->id }}" method="post"
+                                        <form action="/companies/{{ $company->id }}" method="post"
                                             class="float-left">
                                             @csrf
                                             @method('delete')

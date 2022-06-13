@@ -51,7 +51,7 @@ class CompanyController extends Controller
             'company_email' => ['email'],
             'company_inn' => ['required', 'digits:9'],
             'company_acc_number' => ['required', 'digits:20'],
-            'company_bank_name' => ['max:25','required'],
+            'company_bank_name' => ['max:125','required'],
             'company_bank_mfo' => ['digits:5','required'],
 
         ]);
@@ -83,7 +83,7 @@ class CompanyController extends Controller
      */
     public function edit(Company $company)
     {
-        //
+        return view('companies.edit', compact('company'));
     }
 
     /**
@@ -95,7 +95,24 @@ class CompanyController extends Controller
      */
     public function update(Request $request, Company $company)
     {
-        //
+        
+        $attributes =  request()->validate([
+            'company_name' => ['required', 'max:255'],
+            'offical_company_name' => ['required','max:25'],
+            'company_address_street' => ['required', 'max:255'],
+            'company_address_city' => ['required', 'max:255'],
+            'company_address_zip' => ['max:255'],
+            'company_phone' => ['digits_between:9,12'],
+            'company_email' => ['email'],
+            'company_inn' => ['required', 'digits:9'],
+            'company_acc_number' => ['required', 'digits:20'],
+            'company_bank_name' => ['max:125','required'],
+            'company_bank_mfo' => ['digits:5','required'],
+
+        ]);
+        $company->update($attributes);
+        
+        return redirect('companies');
     }
 
     /**
@@ -106,6 +123,7 @@ class CompanyController extends Controller
      */
     public function destroy(Company $company)
     {
-        //
+        $company->delete();
+        return redirect('companies');
     }
 }
