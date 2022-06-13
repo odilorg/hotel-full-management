@@ -246,11 +246,11 @@ class ReservationController extends Controller
             'report_number' => ['max:255'],
             'ok_ytt' => ['max:255'],
         ]);
-        $company_id = Company::first()
-            ->where('company_name', $attributes['company_name']);
+        $company_id = Company::where('company_name', $attributes['company_name'])
+        ->first();
             
-            dd($company_id->company_id);
-          $attributes['company_id'] =   $company_id['1']['id'];
+            //dd($company_id->id);
+          $attributes['company_id'] =   $company_id->id;
         //dd($request->ok_ytt);
         $attributes['price_uzs'] = $attributes['price'] * Reservation::exchange($reservation->firstNight);
         $reservation->update($attributes);
