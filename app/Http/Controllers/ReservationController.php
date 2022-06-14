@@ -249,8 +249,8 @@ class ReservationController extends Controller
         $company_id = Company::where('company_name', $attributes['company_name'])
         ->first();
             
-            //dd($company_id->id);
-            if ($company_id->id) {
+           //dd($company_id);
+            if ($company_id) {
                 $attributes['company_id'] =   $company_id->id;
             }
           
