@@ -250,7 +250,7 @@ class ReservationController extends Controller
         ->first();
             
             //dd($company_id->id);
-            if ($company_id->id !== null) {
+            if ($company_id->id) {
                 $attributes['company_id'] =   $company_id->id;
             }
           
