@@ -250,7 +250,10 @@ class ReservationController extends Controller
         ->first();
             
             //dd($company_id->id);
-          $attributes['company_id'] =   $company_id->id;
+            if ($company_id->id !== null) {
+                $attributes['company_id'] =   $company_id->id;
+            }
+          
         //dd($request->ok_ytt);
         $attributes['price_uzs'] = $attributes['price'] * Reservation::exchange($reservation->firstNight);
         $reservation->update($attributes);
