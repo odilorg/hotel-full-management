@@ -43,7 +43,7 @@ class CompanyController extends Controller
     {
         $attributes =  request()->validate([
             'company_name' => ['required', 'max:255'],
-            'offical_company_name' => ['required','max:25'],
+            'offical_company_name' => ['required','max:255'],
             'company_address_street' => ['required', 'max:255'],
             'company_address_city' => ['required', 'max:255'],
             'company_address_zip' => ['max:255'],
@@ -98,7 +98,7 @@ class CompanyController extends Controller
         
         $attributes =  request()->validate([
             'company_name' => ['required', 'max:255'],
-            'offical_company_name' => ['required','max:25'],
+            'offical_company_name' => ['required','max:255'],
             'company_address_street' => ['required', 'max:255'],
             'company_address_city' => ['required', 'max:255'],
             'company_address_zip' => ['max:255'],
