@@ -23,6 +23,8 @@ class CleaningController extends Controller
         ];
         $response = file_get_contents("https://api.telegram.org/bot$apiToken/sendMessage?" . http_build_query($data) );  
         // return view('cleaning.cleaning');
+        session()->flash('success', 'Raxmat');
+        session()->flash('type', 'Yangi Cargo');
         return back();
     }
     public function cleaning_ready ( Request $request)
@@ -38,6 +40,8 @@ class CleaningController extends Controller
             'text' =>  $xona ." Xona Tayor ",
         ];
         $response = file_get_contents("https://api.telegram.org/bot$apiToken/sendMessage?" . http_build_query($data) );  
+        session()->flash('success', 'Raxmat');
+        session()->flash('type', 'Yangi Cargo');
         return back();
     }
 }
