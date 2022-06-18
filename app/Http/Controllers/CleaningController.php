@@ -30,11 +30,12 @@ class CleaningController extends Controller
     public function cleaning_ready ( Request $request)
     {
         
+        $telegram_api = $_ENV['TELEGRAMAPI'];
         $xona = $request->input('xona');
        // dd($xona);
         //php code to send the message to Telegram Channel
 
-        $apiToken = "5323496366:AAEi_xDnyz2uwL7YNS1p7ayDxz854LH-HTg";
+        $apiToken = $telegram_api;
         $data = [
             'chat_id' => '-653810568', 
             'text' =>  $xona ." Xona Tayor ". now(),
