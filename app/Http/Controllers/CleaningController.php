@@ -16,7 +16,7 @@ class CleaningController extends Controller
     // {
     //     //php code to send the message to Telegram Channel
     //     $xona = $request->input('xona');
-    //     $apiToken = "1750871148:AAE82UE_OMk_FskoJh61wfT6Oowf6i4RwHk";
+    //     $apiToken = "";
     //     $data = [
     //         'chat_id' => '-1001570852064', 
     //         'text' => $xona." Xona Tayor Emas",
