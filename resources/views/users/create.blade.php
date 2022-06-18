@@ -58,9 +58,9 @@
                                     <select class="custom-select rounded-0" name="role" id="exampleSelectRounded0">
                                         
                                         <option value="1">Admin</option>
-                                        <option value="2">Tour operator</option>
-                                        <option value="3">Booking agent</option>
-                                        <option value="4">Transport</option>
+                                        <option value="2">Reception</option>
+                                        <option value="3">Cleaning</option>
+                                        
                                     </select>
                                 </div>
                                 <div class="form-group">

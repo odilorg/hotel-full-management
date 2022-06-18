@@ -242,6 +242,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <!-- Sidebar -->
             <div class="sidebar">
                 <!-- Sidebar user panel (optional) -->
+                @can('admin', 'reception')
                 <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                     <div class="image">
                         <img src="{{ asset('storage/' . auth()->user()->profile_image) }}" width="50px" height="50px"
@@ -251,6 +252,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         <a href="#" class="d-block">{{ auth()->user()->name }}</a>
                     </div>
                 </div>
+                @endcan
 
                 <!-- SidebarSearch Form -->
                 <div class="form-inline">
@@ -282,6 +284,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             </a>
                         </li>
                         @endcan
+                        @can('admin', 'reception')
                         <li class="nav-item">
                             <a href="{{ route('reservations.index'); }}"
                                 class="nav-link {{ (request()->is('reservations*')) ? 'active' : '' }}">
@@ -313,6 +316,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 <p>Companies</p>
                             </a>
                         </li>
+                        @endcan
+                        @can('cleaning')
                         <li class="nav-item">
                             <a href="{{ route('cleaning.cleaning'); }}"
                                 class="nav-link {{ (request()->is('cleaning*')) ? 'active' : '' }}">
@@ -320,6 +325,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 <p>Cleaning</p>
                             </a>
                         </li>
+                        @endcan
                         
 
                         

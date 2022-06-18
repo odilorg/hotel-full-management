@@ -58,9 +58,9 @@
                                     <label for="exampleSelectRounded0">Role</label>
                                     <select class="custom-select rounded-0" name="role" id="exampleSelectRounded0">
                                       <option value="1" {{ $user->role == 1 ? 'selected' : '' }}>Admin</option>
-                                      <option value="2" {{ $user->role == 2 ? 'selected' : '' }}>Tour operator</option>
-                                      <option value="3" {{ $user->role == 3 ? 'selected' : '' }}>Booking agent</option>
-                                      <option value="4" {{ $user->role == 4 ? 'selected' : '' }}>Transport</option>
+                                      <option value="2" {{ $user->role == 2 ? 'selected' : '' }}>Reception</option>
+                                      <option value="3" {{ $user->role == 3 ? 'selected' : '' }}>Cleaning</option>
+                                      
                                     </select>
                                 </div>
                                 <div class="form-group">
