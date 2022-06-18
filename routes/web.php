@@ -6,21 +6,22 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CargoController;
 use App\Http\Controllers\GuideController;
+use App\Http\Controllers\ReportController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\TicketController;
+use App\Http\Controllers\CompanyController;
+use App\Http\Controllers\ExpenseController;
+use App\Http\Controllers\InkassaController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\CleaningController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\InventoryController;
 use App\Http\Controllers\TourgroupController;
 use App\Http\Controllers\TransportController;
 use App\Http\Controllers\RestaurantController;
+use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\HotelreservationController;
 use App\Http\Controllers\AutocompleteSearchController;
-use App\Http\Controllers\CompanyController;
-use App\Http\Controllers\ExpenseController;
-use App\Http\Controllers\InkassaController;
-use App\Http\Controllers\ReportController;
-use App\Http\Controllers\ReservationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -59,7 +60,9 @@ Route::post('/reservations/pdf', [ReservationController::class, 'createPDF'])->n
 Route::post('/reservations/report-range', [ReservationController::class, 'report_range'])->name('reservations.report-range');
 Route::get('/reservations/report-range/unpaid/{sana1}/{sana2}', [ReservationController::class, 'report_range_unpaid'])->name('reservations.report-range-unpaid');
 Route::post('/expenses/report-range', [ExpenseController::class, 'report_range'])->name('expenses.report-range');
-
+Route::get('/cleaning', [CleaningController::class, 'cleaning'])->name('cleaning.cleaning');
+Route::post('/cleaning/ready', [CleaningController::class, 'cleaning_ready']);
+Route::post('/cleaning/notready', [CleaningController::class, 'cleaning_notready']);
 
 
 Route::middleware(['auth', 'revalidate'])->group(function () {
@@ -78,6 +81,7 @@ Route::middleware(['auth', 'revalidate'])->group(function () {
         'reports' => ReportController::class,
         'inkassas' => InkassaController::class,
         'companies' => CompanyController::class,
+       
     
     ]);
     // Route::post('/transports/auto', [TransportController::class, 'auto'])->name('auto');
@@ -86,7 +90,7 @@ Route::middleware(['auth', 'revalidate'])->group(function () {
     
 });
 
-Route::resource('users', UserController::class)->middleware(['can:admin','revalidate']);
+Route::resource('users', UserController::class,)->middleware(['can:admin','revalidate']);
 Route::get('/status', [TourgroupController::class, 'status'])->name('tourgroups_status');
 
 

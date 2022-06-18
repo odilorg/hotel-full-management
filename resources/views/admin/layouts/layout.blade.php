@@ -313,6 +313,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 <p>Companies</p>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a href="{{ route('cleaning.cleaning'); }}"
+                                class="nav-link {{ (request()->is('cleaning*')) ? 'active' : '' }}">
+                                <i class="nav-icon fas fa-building"></i>
+                                <p>Cleaning</p>
+                            </a>
+                        </li>
                         
 
                         
