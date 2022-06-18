@@ -60,9 +60,9 @@ Route::post('/reservations/pdf', [ReservationController::class, 'createPDF'])->n
 Route::post('/reservations/report-range', [ReservationController::class, 'report_range'])->name('reservations.report-range');
 Route::get('/reservations/report-range/unpaid/{sana1}/{sana2}', [ReservationController::class, 'report_range_unpaid'])->name('reservations.report-range-unpaid');
 Route::post('/expenses/report-range', [ExpenseController::class, 'report_range'])->name('expenses.report-range');
-Route::get('/cleaning', [CleaningController::class, 'cleaning'])->name('cleaning.cleaning');
-Route::post('/cleaning/ready', [CleaningController::class, 'cleaning_ready']);
-Route::post('/cleaning/notready', [CleaningController::class, 'cleaning_notready']);
+Route::get('/cleaning', [CleaningController::class, 'cleaning'])->name('cleaning.cleaning')->middleware(['auth', 'revalidate']);
+Route::post('/cleaning/ready', [CleaningController::class, 'cleaning_ready'])->middleware(['auth', 'revalidate']);
+Route::post('/cleaning/notready', [CleaningController::class, 'cleaning_notready'])->middleware(['auth', 'revalidate']);
 
 
 Route::middleware(['auth', 'revalidate'])->group(function () {

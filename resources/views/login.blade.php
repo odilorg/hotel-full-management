@@ -39,7 +39,7 @@
           <div class="row">
             <div class="col-8">
               <div class="icheck-primary">
-                <input type="checkbox" name="remember" id="remember">
+                <input type="checkbox" name="remember" vlaue="1" id="remember">
                 <label for="remember">
                   Remember Me
                 </label>
