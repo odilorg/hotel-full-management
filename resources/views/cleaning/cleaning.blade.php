@@ -59,7 +59,7 @@
                                   <td>1</td>
                                   <td>
                                     <div>
-                                        <form action="/cleaning/ready/" method="post"
+                                        <form action="/cleaning/ready" method="post"
                                             class="float-left">
                                             @csrf
                                             <button type="submit" class="btn btn-primary btn-sm">
@@ -68,7 +68,7 @@
                                             </button>
                                             <input type="hidden" name="xona" value="1" >
                                         </form>
-                                        <form action="/cleaning/notready/" method="post"
+                                        <form action="/cleaning/notready" method="post"
                                             class="float-left">
                                             @csrf
                                             <button type="submit" class="btn btn-danger btn-sm">
