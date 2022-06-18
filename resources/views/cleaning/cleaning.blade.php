@@ -73,7 +73,7 @@
                                             @csrf
                                             <button type="submit" class="btn btn-danger btn-sm">
                                                
-                                                Xona Tayor Emas
+                                                Tayor Emas
                                             </button>
                                             <input type="hidden" name="xona" value="1" >
                                         </form>
@@ -83,7 +83,7 @@
                                 <tr>
                                     <td>2</td>
                                     <td> <div>
-                                        <form action="/cleaning/ready/" method="post"
+                                        <form action="/cleaning/ready" method="post"
                                         class="float-left">
                                         @csrf
                                         <button type="submit" class="btn btn-primary btn-sm">
@@ -92,12 +92,12 @@
                                         </button>
                                         <input type="hidden" name="xona" value="2" >
                                     </form>
-                                    <form action="/cleaning/notready/" method="post"
+                                    <form action="/cleaning/notready" method="post"
                                         class="float-left">
                                         @csrf
                                         <button type="submit" class="btn btn-danger btn-sm">
                                            
-                                            Xona Tayor Emas
+                                            Tayor Emas
                                         </button>
                                         <input type="hidden" name="xona" value="2" >
                                     </form>
@@ -105,7 +105,7 @@
                                  </tr>
                                  <tr>
                                     <td>3</td>
-                                    <td> <form action="/cleaning/ready/" method="post"
+                                    <td> <form action="/cleaning/ready" method="post"
                                         class="float-left">
                                         @csrf
                                         <button type="submit" class="btn btn-primary btn-sm">
@@ -114,19 +114,19 @@
                                         </button>
                                         <input type="hidden" name="xona" value="3" >
                                     </form>
-                                    <form action="/cleaning/notready/" method="post"
+                                    <form action="/cleaning/notready" method="post"
                                         class="float-left">
                                         @csrf
                                         <button type="submit" class="btn btn-danger btn-sm">
                                            
-                                            Xona Tayor Emas
+                                            Tayor Emas
                                         </button>
                                         <input type="hidden" name="xona" value="3" >
                                     </form></td>
                                  </tr>
                                  <tr>
                                     <td>4</td>
-                                    <td> <form action="/cleaning/ready/" method="post"
+                                    <td> <form action="/cleaning/ready" method="post"
                                         class="float-left">
                                         @csrf
                                         <button type="submit" class="btn btn-primary btn-sm">
@@ -135,19 +135,19 @@
                                         </button>
                                         <input type="hidden" name="xona" value="4" >
                                     </form>
-                                    <form action="/cleaning/notready/" method="post"
+                                    <form action="/cleaning/notready" method="post"
                                         class="float-left">
                                         @csrf
                                         <button type="submit" class="btn btn-danger btn-sm">
                                            
-                                            Xona Tayor Emas
+                                            Tayor Emas
                                         </button>
                                         <input type="hidden" name="xona" value="4" >
                                     </form></td>
                                  </tr>
                                  <tr>
                                     <td>5</td>
-                                    <td> <form action="/cleaning/ready/" method="post"
+                                    <td> <form action="/cleaning/ready" method="post"
                                         class="float-left">
                                         @csrf
                                         <button type="submit" class="btn btn-primary btn-sm">
@@ -156,19 +156,19 @@
                                         </button>
                                         <input type="hidden" name="xona" value="5" >
                                     </form>
-                                    <form action="/cleaning/notready/" method="post"
+                                    <form action="/cleaning/notready" method="post"
                                         class="float-left">
                                         @csrf
                                         <button type="submit" class="btn btn-danger btn-sm">
                                            
-                                            Xona Tayor Emas
+                                            Tayor Emas
                                         </button>
                                         <input type="hidden" name="xona" value="5" >
                                     </form></td>
                                  </tr>
                                  <tr>
                                     <td>6</td>
-                                    <td> <form action="/cleaning/ready/" method="post"
+                                    <td> <form action="/cleaning/ready" method="post"
                                         class="float-left">
                                         @csrf
                                         <button type="submit" class="btn btn-primary btn-sm">
@@ -177,19 +177,19 @@
                                         </button>
                                         <input type="hidden" name="xona" value="6" >
                                     </form>
-                                    <form action="/cleaning/notready/" method="post"
+                                    <form action="/cleaning/notready" method="post"
                                         class="float-left">
                                         @csrf
                                         <button type="submit" class="btn btn-danger btn-sm">
                                            
-                                            Xona Tayor Emas
+                                            Tayor Emas
                                         </button>
                                         <input type="hidden" name="xona" value="6" >
                                     </form></td>
                                  </tr>
                                  <tr>
                                     <td>7</td>
-                                    <td> <form action="/cleaning/ready/" method="post"
+                                    <td> <form action="/cleaning/ready" method="post"
                                         class="float-left">
                                         @csrf
                                         <button type="submit" class="btn btn-primary btn-sm">
@@ -198,19 +198,19 @@
                                         </button>
                                         <input type="hidden" name="xona" value="7" >
                                     </form>
-                                    <form action="/cleaning/notready/" method="post"
+                                    <form action="/cleaning/notready" method="post"
                                         class="float-left">
                                         @csrf
                                         <button type="submit" class="btn btn-danger btn-sm">
                                            
-                                            Xona Tayor Emas
+                                            Tayor Emas
                                         </button>
                                         <input type="hidden" name="xona" value="7" >
                                     </form></td>
                                  </tr>
                                  <tr>
                                     <td>8</td>
-                                    <td> <form action="/cleaning/ready/" method="post"
+                                    <td> <form action="/cleaning/ready" method="post"
                                         class="float-left">
                                         @csrf
                                         <button type="submit" class="btn btn-primary btn-sm">
@@ -219,19 +219,19 @@
                                         </button>
                                         <input type="hidden" name="xona" value="8" >
                                     </form>
-                                    <form action="/cleaning/notready/" method="post"
+                                    <form action="/cleaning/notready" method="post"
                                         class="float-left">
                                         @csrf
                                         <button type="submit" class="btn btn-danger btn-sm">
                                            
-                                            Xona Tayor Emas
+                                            Tayor Emas
                                         </button>
                                         <input type="hidden" name="xona" value="8" >
                                     </form></td>
                                  </tr>
                                  <tr>
                                     <td>9</td>
-                                    <td> <form action="/cleaning/ready/" method="post"
+                                    <td> <form action="/cleaning/ready" method="post"
                                         class="float-left">
                                         @csrf
                                         <button type="submit" class="btn btn-primary btn-sm">
@@ -240,19 +240,19 @@
                                         </button>
                                         <input type="hidden" name="xona" value="9" >
                                     </form>
-                                    <form action="/cleaning/notready/" method="post"
+                                    <form action="/cleaning/notready" method="post"
                                         class="float-left">
                                         @csrf
                                         <button type="submit" class="btn btn-danger btn-sm">
                                            
-                                            Xona Tayor Emas
+                                            Tayor Emas
                                         </button>
                                         <input type="hidden" name="xona" value="9" >
                                     </form></td>
                                  </tr>
                                  <tr>
                                     <td>10</td>
-                                    <td> <form action="/cleaning/ready/" method="post"
+                                    <td> <form action="/cleaning/ready" method="post"
                                         class="float-left">
                                         @csrf
                                         <button type="submit" class="btn btn-primary btn-sm">
@@ -261,19 +261,19 @@
                                         </button>
                                         <input type="hidden" name="xona" value="10" >
                                     </form>
-                                    <form action="/cleaning/notready/" method="post"
+                                    <form action="/cleaning/notready" method="post"
                                         class="float-left">
                                         @csrf
                                         <button type="submit" class="btn btn-danger btn-sm">
                                            
-                                            Xona Tayor Emas
+                                            Tayor Emas
                                         </button>
                                         <input type="hidden" name="xona" value="10" >
                                     </form></td>
                                  </tr>
                                  <tr>
                                     <td>11</td>
-                                    <td> <form action="/cleaning/ready/" method="post"
+                                    <td> <form action="/cleaning/ready" method="post"
                                         class="float-left">
                                         @csrf
                                         <button type="submit" class="btn btn-primary btn-sm">
@@ -282,19 +282,19 @@
                                         </button>
                                         <input type="hidden" name="xona" value="11" >
                                     </form>
-                                    <form action="/cleaning/notready/" method="post"
+                                    <form action="/cleaning/notready" method="post"
                                         class="float-left">
                                         @csrf
                                         <button type="submit" class="btn btn-danger btn-sm">
                                            
-                                            Xona Tayor Emas
+                                            Tayor Emas
                                         </button>
                                         <input type="hidden" name="xona" value="11" >
                                     </form></td>
                                  </tr>
                                  <tr>
                                     <td>12</td>
-                                    <td> <form action="/cleaning/ready/" method="post"
+                                    <td> <form action="/cleaning/ready" method="post"
                                         class="float-left">
                                         @csrf
                                         <button type="submit" class="btn btn-primary btn-sm">
@@ -303,19 +303,19 @@
                                         </button>
                                         <input type="hidden" name="xona" value="12" >
                                     </form>
-                                    <form action="/cleaning/notready/" method="post"
+                                    <form action="/cleaning/notready" method="post"
                                         class="float-left">
                                         @csrf
                                         <button type="submit" class="btn btn-danger btn-sm">
                                            
-                                            Xona Tayor Emas
+                                            Tayor Emas
                                         </button>
                                         <input type="hidden" name="xona" value="12" >
                                     </form></td>
                                  </tr>
                                  <tr>
                                     <td>13</td>
-                                    <td> <form action="/cleaning/ready/" method="post"
+                                    <td> <form action="/cleaning/ready" method="post"
                                         class="float-left">
                                         @csrf
                                         <button type="submit" class="btn btn-primary btn-sm">
@@ -324,19 +324,19 @@
                                         </button>
                                         <input type="hidden" name="xona" value="13" >
                                     </form>
-                                    <form action="/cleaning/notready/" method="post"
+                                    <form action="/cleaning/notready" method="post"
                                         class="float-left">
                                         @csrf
                                         <button type="submit" class="btn btn-danger btn-sm">
                                            
-                                            Xona Tayor Emas
+                                            Tayor Emas
                                         </button>
                                         <input type="hidden" name="xona" value="13" >
                                     </form></td>
                                  </tr>
                                  <tr>
                                     <td>14</td>
-                                    <td> <form action="/cleaning/ready/" method="post"
+                                    <td> <form action="/cleaning/ready" method="post"
                                         class="float-left">
                                         @csrf
                                         <button type="submit" class="btn btn-primary btn-sm">
@@ -345,19 +345,19 @@
                                         </button>
                                         <input type="hidden" name="xona" value="14" >
                                     </form>
-                                    <form action="/cleaning/notready/" method="post"
+                                    <form action="/cleaning/notready" method="post"
                                         class="float-left">
                                         @csrf
                                         <button type="submit" class="btn btn-danger btn-sm">
                                            
-                                            Xona Tayor Emas
+                                            Tayor Emas
                                         </button>
                                         <input type="hidden" name="xona" value="14" >
                                     </form></td>
                                  </tr>
                                  <tr>
                                     <td>15</td>
-                                    <td> <form action="/cleaning/ready/" method="post"
+                                    <td> <form action="/cleaning/ready" method="post"
                                         class="float-left">
                                         @csrf
                                         <button type="submit" class="btn btn-primary btn-sm">
