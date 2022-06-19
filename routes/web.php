@@ -81,6 +81,7 @@ Route::middleware(['auth', 'revalidate'])->group(function () {
         'reports' => ReportController::class,
         'inkassas' => InkassaController::class,
         'companies' => CompanyController::class,
+        'roomrepairs' => CompanyController::class,
        
     
     ]);

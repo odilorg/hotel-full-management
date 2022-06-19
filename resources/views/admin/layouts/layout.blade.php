@@ -326,6 +326,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             </a>
                         </li>
                         @endcan
+                        <li class="nav-item">
+                            <a href="{{ route('roomrepairs.index'); }}"
+                                class="nav-link {{ (request()->is('roomrepairs*')) ? 'active' : '' }}">
+                                <i class="nav-icon fas fa-hammer"></i>
+                                <p>Room Repairs</p>
+                            </a>
+                        </li>
+
                         
 
                         
