@@ -56,8 +56,9 @@
                                 <tr>
                                     <th>{{ __('Date') }}</th>
                                     <th>{{ __('Room Number') }}</th>
-                                    <th>{{ __('Maxsulot Narxi') }}</th>
-                                    
+                                    <th>{{ __('Room Repair Name') }}</th>
+                                    <th>{{ __('Repair Amount') }}</th>
+                                    <th>{{ __('Comments') }}</th>
                                     <th>{{ __('Actions') }}</th>
                                 </tr>
                             </thead>
