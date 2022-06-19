@@ -47,12 +47,8 @@
                                         <option
                                             {{ old('referer', $reservation->payment_method) == "Naqd" ? "selected" : "" }}
                                             value="Naqd">Naqd</option>
-                                        <option
-                                            {{ old('referer', $reservation->payment_method) == "Humo" ? "selected" : "" }}
-                                            value="Humo">Humo</option>
-                                        <option
-                                            {{ old('referer', $reservation->payment_method) == "UzCard" ? "selected" : "" }}
-                                            value="UzCard">UzCard</option>
+                                      
+                                       
                                         <option
                                             {{ old('referer', $reservation->payment_method) == "Perech" ? "selected" : "" }}
                                             value="Perech">Perech</option>
