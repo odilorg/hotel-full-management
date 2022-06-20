@@ -27,12 +27,13 @@
                 <div class="col-lg-6">
                     <div class="card">
                         <div class="card-body">
-                            <form action="{{ route('roomrepairs.store') }}" method="POST">
+                            <form action="/roomrepairs/{{ $roomRepair->id }}" method="POST">
                                 @csrf
+                                @method('PUT')
                                 <div class="form-group">
                                     <label>{{ __('Repair Date') }}</label>
                                     <div class="input-group " id="reservationdate" data-target-input="nearest">
-                                        <input type="text" value="{{ old('repair_date') }}" name="repair_date" class="form-control date @error('repair_date')
+                                        <input type="text" value="{{ old('repair_date', $roomRepair->repair_date) }}" name="repair_date" class="form-control date @error('repair_date')
                                           {{ 'is-invalid' }} @enderror datetimepicker-input"
                                             data-target="#reservationdate" />
                                         <div class="input-group-append" data-target="#reservationdate"
@@ -49,7 +50,7 @@
                                     <select class="custom-select rounded-0" name="room_number" id="exampleSelectRounded0">
                                         <option value="" >Select Room</option>
                                        @foreach ($room_numbers as $key => $number )
-                                       <option {{ old('room_number') == $number ? "selected" : "" }} value={{ $number }}>{{ $number }}</option>    
+                                       <option {{ old('room_number',  $roomRepair->room_number) == $number ? "selected" : "" }} value={{ $number }}>{{ $number }}</option>    
                                        @endforeach
                                     </select>
                                     @error('room_number')
@@ -62,7 +63,7 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text"><i class="fas fa-balance-scale"></i></span>
                                         </div>
-                                        <input type="text" value="{{ old('repair_name') }}" name="repair_name"
+                                        <input type="text" value="{{ old('repair_name',  $roomRepair->repair_name) }}" name="repair_name"
                                             class="form-control  @error('repair_name')
                                       {{ 'is-invalid' }} @enderror">
                                     </div>
@@ -76,7 +77,7 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text"><i class="fas fa-info-circle"></i></span>
                                         </div>
-                                        <input type="text" value="{{ old('repair_amount') }}" name="repair_amount"
+                                        <input type="text" value="{{ old('repair_amount',  $roomRepair->repair_amount) }}" name="repair_amount"
                                             class="form-control  @error('repair_amount')
                                       {{ 'is-invalid' }} @enderror">
                                     </div>
@@ -90,7 +91,7 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text"><i class="fas fa-info-circle"></i></span>
                                         </div>
-                                        <input type="text" value="{{ old('repair_comments') }}" name="repair_comments"
+                                        <input type="text" value="{{ old('repair_comments',  $roomRepair->repair_comments) }}" name="repair_comments"
                                             class="form-control  @error('repair_comments')
                                       {{ 'is-invalid' }} @enderror">
                                     </div>

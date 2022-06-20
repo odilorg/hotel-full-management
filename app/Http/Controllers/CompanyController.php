@@ -83,6 +83,7 @@ class CompanyController extends Controller
      */
     public function edit(Company $company)
     {
+       
         return view('companies.edit', compact('company'));
     }
 
@@ -110,6 +111,7 @@ class CompanyController extends Controller
             'company_bank_mfo' => ['digits:5','required'],
 
         ]);
+       // dd($company);
         $company->update($attributes);
         
         return redirect('companies');

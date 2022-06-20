@@ -7,7 +7,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>{{ __('Tickets') }}</h1>
+                    <h1>{{ __('Room Repairs') }}</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -63,23 +63,25 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($products as $item )
+                                @foreach ($repairs as $item )
                                 <tr>
-                                    <td>{{ $item->product_name }} </span></td>
-                                    <td>{{ $item->product_weight }} </span></td>
-                                    <td>{{ $item->product_price }} </span></td>
+                                    <td>{{ $item->repair_date }} </span></td>
+                                    <td>{{ $item->room_number }} </span></td>
+                                    <td>{{ $item->repair_name }} </span></td>
+                                    <td>{{ $item->repair_amount }} </span></td>
+                                    <td>{{ $item->repair_comments }} </span></td>
                                     
-                                    <td><a class="btn btn-primary btn-sm" href="products/{{ $item->id }}">
+                                    <td><a class="btn btn-primary btn-sm" href="roomrepairs/{{ $item->id }}">
                                             <i class="fas fa-folder">
                                             </i>
                                             View
                                         </a>
-                                        <a class="btn btn-info btn-sm" href="products/{{ $item->id }}/edit">
+                                        <a class="btn btn-info btn-sm" href="roomrepairs/{{ $item->id }}/edit">
                                             <i class="fas fa-pencil-alt">
                                             </i>
                                             Edit
                                         </a>
-                                        <form action="/products/{{ $item->id }}" method="post"
+                                        <form action="/roomrepairs/{{ $item->id }}" method="post"
                                             class="float-left">
                                             @csrf
                                             @method('delete')
@@ -96,7 +98,7 @@
                             </tbody>
                         </table>
                         <div class="pagination-block">
-                            {{ $products->links('admin.layouts.paginationlinks') }}
+                            {{ $repairs->links('admin.layouts.paginationlinks') }}
                           </div>
                     </div>
                     <!-- /.card-body -->

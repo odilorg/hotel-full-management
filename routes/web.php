@@ -22,6 +22,7 @@ use App\Http\Controllers\RestaurantController;
 use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\HotelreservationController;
 use App\Http\Controllers\AutocompleteSearchController;
+use App\Http\Controllers\RoomRepairController;
 
 /*
 |--------------------------------------------------------------------------
@@ -81,7 +82,7 @@ Route::middleware(['auth', 'revalidate'])->group(function () {
         'reports' => ReportController::class,
         'inkassas' => InkassaController::class,
         'companies' => CompanyController::class,
-        'roomrepairs' => CompanyController::class,
+        'roomrepairs' => RoomRepairController::class,
        
     
     ]);
