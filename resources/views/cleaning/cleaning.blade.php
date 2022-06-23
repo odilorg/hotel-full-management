@@ -64,7 +64,7 @@
                                             @csrf
                                             <button type="submit" class="button">
                                                
-                                                Xona Tayor
+                                                1 Xona Tayor
                                             </button>
                                             <input type="hidden" name="xona" value="1" >
                                         </form>
@@ -80,7 +80,7 @@
                                         @csrf
                                         <button type="submit" class="button">
                                            
-                                            Xona Tayor
+                                            2 Xona Tayor
                                         </button>
                                         <input type="hidden" name="xona" value="2" >
                                     </form>
@@ -94,7 +94,7 @@
                                         @csrf
                                         <button type="submit" class="button">
                                            
-                                            Xona Tayor
+                                            3 Xona Tayor
                                         </button>
                                         <input type="hidden" name="xona" value="3" >
                                     </form>
@@ -107,7 +107,7 @@
                                         @csrf
                                         <button type="submit" class="button">
                                            
-                                            Xona Tayor
+                                            4 Xona Tayor
                                         </button>
                                         <input type="hidden" name="xona" value="4" >
                                     </form>
@@ -120,7 +120,7 @@
                                         @csrf
                                         <button type="submit" class="button">
                                            
-                                            Xona Tayor
+                                            5 Xona Tayor
                                         </button>
                                         <input type="hidden" name="xona" value="5" >
                                     </form>
@@ -133,7 +133,7 @@
                                         @csrf
                                         <button type="submit" class="button">
                                            
-                                            Xona Tayor
+                                            6 Xona Tayor
                                         </button>
                                         <input type="hidden" name="xona" value="6" >
                                     </form>
@@ -146,7 +146,7 @@
                                         @csrf
                                         <button type="submit" class="button">
                                            
-                                            Xona Tayor
+                                            7 Xona Tayor
                                         </button>
                                         <input type="hidden" name="xona" value="7" >
                                     </form>
@@ -159,7 +159,7 @@
                                         @csrf
                                         <button type="submit" class="button">
                                            
-                                            Xona Tayor
+                                            8 Xona Tayor
                                         </button>
                                         <input type="hidden" name="xona" value="8" >
                                     </form>
@@ -172,7 +172,7 @@
                                         @csrf
                                         <button type="submit" class="button">
                                            
-                                            Xona Tayor
+                                            9 Xona Tayor
                                         </button>
                                         <input type="hidden" name="xona" value="9" >
                                     </form>
@@ -185,7 +185,7 @@
                                         @csrf
                                         <button type="submit" class="button">
                                            
-                                            Xona Tayor
+                                            10 Xona Tayor
                                         </button>
                                         <input type="hidden" name="xona" value="10" >
                                     </form>
@@ -198,7 +198,7 @@
                                         @csrf
                                         <button type="submit" class="button">
                                            
-                                            Xona Tayor
+                                            11 Xona Tayor
                                         </button>
                                         <input type="hidden" name="xona" value="11" >
                                     </form>
@@ -211,7 +211,7 @@
                                         @csrf
                                         <button type="submit" class="button">
                                            
-                                            Xona Tayor
+                                            12 Xona Tayor
                                         </button>
                                         <input type="hidden" name="xona" value="12" >
                                     </form>
@@ -224,7 +224,7 @@
                                         @csrf
                                         <button type="submit" class="button">
                                            
-                                            Xona Tayor
+                                            13 Xona Tayor
                                         </button>
                                         <input type="hidden" name="xona" value="13" >
                                     </form>
@@ -237,7 +237,7 @@
                                         @csrf
                                         <button type="submit" class="button">
                                            
-                                            Xona Tayor
+                                           14 Xona Tayor
                                         </button>
                                         <input type="hidden" name="xona" value="14" >
                                     </form>
@@ -250,7 +250,7 @@
                                         @csrf
                                         <button type="submit" class="button">
                                            
-                                            Xona Tayor
+                                            15 Xona Tayor
                                         </button>
                                         <input type="hidden" name="xona" value="15" >
                                     </form>
