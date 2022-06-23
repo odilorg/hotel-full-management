@@ -42,15 +42,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         }
     </script>
     <style>
-        html, body {
-  height: 100%;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: linear-gradient(to left, #606c88 , #3f4c6b);
-  font-family: 'Oswald', sans-serif;
-}
+        
 
 .button {
   text-align: center;
