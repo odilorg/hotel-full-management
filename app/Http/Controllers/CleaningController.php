@@ -34,11 +34,12 @@ class CleaningController extends Controller
         $xona = $request->input('xona');
        // dd($xona);
         //php code to send the message to Telegram Channel
-
+        $now = date("d-m-Y H:m:s");
+        $new_time = date("d-m-Y H:i:s", strtotime('+5 hours', strtotime($now)));
         $apiToken = $telegram_api;
         $data = [
             'chat_id' => '-653810568', 
-            'text' =>  $xona ." Xona Tayor ". now(),
+            'text' =>  $xona ." Xona Tayor ". $new_time,
         ];
         $response = file_get_contents("https://api.telegram.org/bot$apiToken/sendMessage?" . http_build_query($data) );  
         session()->flash('success', 'Raxmat');
