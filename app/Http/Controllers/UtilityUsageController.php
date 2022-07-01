@@ -30,24 +30,24 @@ class UtilityUsageController extends Controller
         $utilities = Utility::all();
         $meters = Meter::all();
 //joins
-$meter_name = Utility::join('meters', 'meters.utility_id', '=', 'utilities.id')
+// $meter_name = Utility::join('meters', 'meters.utility_id', '=', 'utilities.id')
             
 
-->select([
+// ->select([
     
-    'meters.*',
-    'utilities.*',
+//     'meters.*',
+//     'utilities.*',
     
      
-       ])
-->get();
+//        ])
+// ->get();
 //$utility = Utility::where('id', 2)->first();
 //dd($utility);
 
       
 
         //dd($utility->meters()->get());
-         return view('utility_usages.create', compact('utilities', 'meters', 'meter_name'));
+         return view('utility_usages.create', compact('utilities', 'meters'));
     }
 
     /**

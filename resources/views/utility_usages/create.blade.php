@@ -60,25 +60,13 @@
                                     <p class="text-danger">{{ $message }}</p>
                                     @enderror
                                 </div>
-                                <div class="form-group">
-                                    <label for="exampleSelectRounded0">Utility Type</label>
-                                    <select class="custom-select rounded-0" name="utility_id" id="exampleSelectRounded0">
-                                        <option value="">Choose status</option>
-                                        @foreach ($utilities as $utility )
-                                      <option value="{{ $utility->id }}">{{ $utility->utility_name }}</option>
-                                      @endforeach
-                                        
-                                    </select>
-                                    @error('utility_id')
-                                    <p class="text-danger">{{ $message }}</p>
-                                    @enderror
-                                </div>
+                                
                                 <div class="form-group">
                                     <label for="exampleSelectRounded0">Choose a meter</label>
                                     <select class="custom-select rounded-0" name="utility_id" id="exampleSelectRounded0">
                                         <option value="">Choose meter</option>
-                                        @foreach ($meters as $key => $value )
-                                        <option value="{{ $meters[$key]->id }}">{{ $meters[$key]->meter_number ." ". $meter_name[$key]->utility_name }} </option>
+                                        @foreach ($meters as $meter )
+                                        <option value="{{ $meter->utility->id }}">{{ $meter->meter_number." ". $meter->utility->utility_name }}</option>
                                         @endforeach
                                       
                                      
