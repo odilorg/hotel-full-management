@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Meter;
+use App\Models\Utility;
 use App\Models\UtilityUsage;
 use Illuminate\Http\Request;
 
@@ -25,7 +27,27 @@ class UtilityUsageController extends Controller
      */
     public function create()
     {
-        //
+        $utilities = Utility::all();
+        $meters = Meter::all();
+//joins
+$meter_name = Utility::join('meters', 'meters.utility_id', '=', 'utilities.id')
+            
+
+->select([
+    
+    'meters.*',
+    'utilities.*',
+    
+     
+       ])
+->get();
+//$utility = Utility::where('id', 2)->first();
+//dd($utility);
+
+      
+
+        //dd($utility->meters()->get());
+         return view('utility_usages.create', compact('utilities', 'meters', 'meter_name'));
     }
 
     /**
