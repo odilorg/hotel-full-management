@@ -66,7 +66,7 @@ Route::post('/cleaning/ready', [CleaningController::class, 'cleaning_ready'])->m
 Route::post('/cleaning/notready', [CleaningController::class, 'cleaning_notready'])->middleware(['auth', 'revalidate']);
 
 
-Route::middleware(['auth', 'revalidate'])->group(function () {
+Route::middleware(['auth', 'revalidate' ])->group(function () {
     Route::resources([
         'hotelreservations' => HotelreservationController::class,
         'transports' => TransportController::class,
@@ -83,6 +83,7 @@ Route::middleware(['auth', 'revalidate'])->group(function () {
         'inkassas' => InkassaController::class,
         'companies' => CompanyController::class,
         'roomrepairs' => RoomRepairController::class,
+        'users' => UserController::class,
        
     
     ]);
@@ -92,7 +93,7 @@ Route::middleware(['auth', 'revalidate'])->group(function () {
     
 });
 
-Route::resource('users', UserController::class,)->middleware(['can:admin','revalidate']);
+//Route::resource('users', UserController::class,)->middleware(['revalidate']);
 Route::get('/status', [TourgroupController::class, 'status'])->name('tourgroups_status');
 
 

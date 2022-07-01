@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Expense;
-use App\Models\ExpenseCategory;
 use App\Models\PaymentType;
 use Illuminate\Http\Request;
+use App\Models\ExpenseCategory;
+
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Gate;
 
 class ExpenseController extends Controller
 {
@@ -15,6 +17,10 @@ class ExpenseController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+   
+
+
     public function index()
     {
         $expenses = DB::table('expenses')
@@ -36,6 +42,7 @@ class ExpenseController extends Controller
      */
     public function create()
     {
+       
         $reports = DB::table('reservations')->select('report_number')->whereNotNull('report_number')->distinct()->get(); 
         $expenses = ExpenseCategory::get();
         $payments = PaymentType::get();
@@ -50,6 +57,7 @@ class ExpenseController extends Controller
      */
     public function store(Request $request)
     {
+       
         $attributes =  request()->validate([
 
             'report_number' => ['required '],
@@ -93,6 +101,9 @@ class ExpenseController extends Controller
      */
     public function edit(Expense $expense)
     {
+      
+        Gate::authorize('update-expense', $expense);
+
         $report_numbers = DB::table('reservations')->select('report_number')->whereNotNull('report_number')->distinct()->get(); 
         $expense_categories = ExpenseCategory::get();
         $payment_types = PaymentType::get();
@@ -116,6 +127,8 @@ class ExpenseController extends Controller
      */
     public function update(Request $request, Expense $expense)
     {
+        Gate::authorize('update-expense', $expense);
+
         $attributes =  request()->validate([
 
             'report_number' => ['required '],
@@ -143,6 +156,7 @@ class ExpenseController extends Controller
      */
     public function destroy(Expense $expense)
     {
+       
         $expense->delete();
         session()->flash('error', 'Expense has been deleted');
         session()->flash('type', 'Expense Delete');

@@ -120,11 +120,15 @@
                                             </i>
                                             View
                                         </a>
-                                        <a class="btn btn-info btn-sm" href="expenses/{{ $expense->id }}/edit">
-                                            <i class="fas fa-pencil-alt">
-                                            </i>
-                                            Edit
-                                        </a>
+                                       @can('update-expense', $expense)
+                                       <a class="btn btn-info btn-sm" href="expenses/{{ $expense->id }}/edit">
+                                        <i class="fas fa-pencil-alt">
+                                        </i>
+                                        Edit
+                                    </a>  
+                                       @endcan
+                                       
+                                       
                                         <form action="/expenses/{{ $expense->id }}" method="post"
                                             class="float-left">
                                             @csrf
@@ -134,7 +138,9 @@
                                                 </i>
                                                 Delete
                                             </button>
-                                        </form>
+                                        </form> 
+                                       
+                                       
                                     </td>
                                 </tr>
                                 @endforeach

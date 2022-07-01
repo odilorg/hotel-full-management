@@ -293,7 +293,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <!-- Sidebar -->
             <div class="sidebar">
                 <!-- Sidebar user panel (optional) -->
-                @can('admin', 'reception')
+               
                 <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                     <div class="image">
                         <img src="{{ asset('storage/' . auth()->user()->profile_image) }}" width="50px" height="50px"
@@ -303,7 +303,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         <a href="#" class="d-block">{{ auth()->user()->name }}</a>
                     </div>
                 </div>
-                @endcan
+               
 
                 <!-- SidebarSearch Form -->
                 <div class="form-inline">
@@ -324,7 +324,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         data-accordion="false">
                         <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-                        @can('admin')
+                      
                         <li class="nav-item">
                             <a href="{{ route('users.index') }}"
                                 class="nav-link {{ (request()->is('users*')) ? 'active' : '' }}">
@@ -334,8 +334,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 </p>
                             </a>
                         </li>
-                        @endcan
-                        @can('admin', 'reception')
+                       
                         <li class="nav-item">
                             <a href="{{ route('reservations.index'); }}"
                                 class="nav-link {{ (request()->is('reservations*')) ? 'active' : '' }}">
@@ -366,17 +365,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 <i class="nav-icon fas fa-building"></i>
                                 <p>Companies</p>
                             </a>
-                        </li>
-                        @endcan
-                        @can('cleaning')
-                        <li class="nav-item">
-                            <a href="{{ route('cleaning.cleaning'); }}"
-                                class="nav-link {{ (request()->is('cleaning*')) ? 'active' : '' }}">
-                                <i class="nav-icon fas fa-building"></i>
-                                <p>Cleaning</p>
-                            </a>
-                        </li>
-                        @endcan
+                        </li> 
                         <li class="nav-item">
                             <a href="{{ route('roomrepairs.index'); }}"
                                 class="nav-link {{ (request()->is('roomrepairs*')) ? 'active' : '' }}">
@@ -384,6 +373,16 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 <p>Room Repairs</p>
                             </a>
                         </li>
+                       
+                        <li class="nav-item">
+                            <a href="{{ route('cleaning.cleaning'); }}"
+                                class="nav-link {{ (request()->is('cleaning*')) ? 'active' : '' }}">
+                                <i class="nav-icon fas fa-building"></i>
+                                <p>Cleaning</p>
+                            </a>
+                        </li>
+                       
+                       
 
                         
 
