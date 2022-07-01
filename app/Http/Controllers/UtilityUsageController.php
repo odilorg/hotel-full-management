@@ -14,7 +14,8 @@ class UtilityUsageController extends Controller
      */
     public function index()
     {
-        //
+        $utility_usages =  UtilityUsage::paginate(15);
+        return view('utility_usages.index', compact('utility_usages'));
     }
 
     /**

@@ -23,6 +23,7 @@ use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\HotelreservationController;
 use App\Http\Controllers\AutocompleteSearchController;
 use App\Http\Controllers\RoomRepairController;
+use App\Http\Controllers\UtilityUsageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -84,6 +85,7 @@ Route::middleware(['auth', 'revalidate', 'can:not-cleaning' ])->group(function (
         'companies' => CompanyController::class,
         'roomrepairs' => RoomRepairController::class,
         'users' => UserController::class,
+        'utility_usages' => UtilityUsageController::class,
        
     
     ]);
