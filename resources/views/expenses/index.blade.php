@@ -120,25 +120,25 @@
                                             </i>
                                             View
                                         </a>
-                                       @can('update-expense', $expense)
+                                      
                                        <a class="btn btn-info btn-sm" href="expenses/{{ $expense->id }}/edit">
                                         <i class="fas fa-pencil-alt">
                                         </i>
                                         Edit
                                     </a>  
-                                       @endcan
                                        
-                                       
-                                        <form action="/expenses/{{ $expense->id }}" method="post"
-                                            class="float-left">
-                                            @csrf
-                                            @method('delete')
-                                            <button type="submit" class="btn btn-danger btn-sm">
-                                                <i class="fas fa-trash">
-                                                </i>
-                                                Delete
-                                            </button>
-                                        </form> 
+                                       <form action="/expenses/{{ $expense->id }}" method="post"
+                                        class="float-left">
+                                        @csrf
+                                        @method('delete')
+                                        <button type="submit" class="btn btn-danger btn-sm">
+                                            <i class="fas fa-trash">
+                                            </i>
+                                            Delete
+                                        </button>
+                                    </form> 
+                                      
+                                        
                                        
                                        
                                     </td>

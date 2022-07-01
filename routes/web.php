@@ -66,7 +66,7 @@ Route::post('/cleaning/ready', [CleaningController::class, 'cleaning_ready'])->m
 Route::post('/cleaning/notready', [CleaningController::class, 'cleaning_notready'])->middleware(['auth', 'revalidate']);
 
 
-Route::middleware(['auth', 'revalidate' ])->group(function () {
+Route::middleware(['auth', 'revalidate', 'can:not-cleaning' ])->group(function () {
     Route::resources([
         'hotelreservations' => HotelreservationController::class,
         'transports' => TransportController::class,

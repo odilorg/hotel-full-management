@@ -102,7 +102,7 @@ class ExpenseController extends Controller
     public function edit(Expense $expense)
     {
       
-        Gate::authorize('update-expense', $expense);
+        
 
         $report_numbers = DB::table('reservations')->select('report_number')->whereNotNull('report_number')->distinct()->get(); 
         $expense_categories = ExpenseCategory::get();
@@ -127,7 +127,7 @@ class ExpenseController extends Controller
      */
     public function update(Request $request, Expense $expense)
     {
-        Gate::authorize('update-expense', $expense);
+      
 
         $attributes =  request()->validate([
 

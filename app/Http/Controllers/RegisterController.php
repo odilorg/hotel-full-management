@@ -24,11 +24,20 @@ class RegisterController extends Controller
       'password' => $request->password,
       
   ], $remember)) {
+//DD(Auth::user()->id);
+    if (Auth::user()->id == 3) {
+        session()->flash('success', 'You logged in ');
+         session()->flash('type', 'User Login');
+         
+
+        return redirect('cleaning')->with('success', 'Welcome back'); 
+    }
+
     session()->flash('success', 'You logged in ');
          session()->flash('type', 'User Login');
          
 
-        return redirect('tourgroups')->with('success', 'Welcome back');  
+        return redirect('reservations')->with('success', 'Welcome back');  
   }
   return redirect()->back()->withInput()->withErrors(['email' => 'Your privided cred could not be verified']);
 }

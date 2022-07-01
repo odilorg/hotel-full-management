@@ -324,63 +324,69 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         data-accordion="false">
                         <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-                      
-                        <li class="nav-item">
-                            <a href="{{ route('users.index') }}"
-                                class="nav-link {{ (request()->is('users*')) ? 'active' : '' }}">
-                                <i class="nav-icon fas fa-user-circle"></i>
-                                <p>
-                                    Users
-                                </p>
-                            </a>
-                        </li>
-                       
-                        <li class="nav-item">
-                            <a href="{{ route('reservations.index'); }}"
-                                class="nav-link {{ (request()->is('reservations*')) ? 'active' : '' }}">
-                                <i class="nav-icon fas fa-hotel"></i>
-                                <p>
-                                    Hotel Reservations
+                      @can('admin')
+                      <li class="nav-item">
+                        <a href="{{ route('users.index') }}"
+                            class="nav-link {{ (request()->is('users*')) ? 'active' : '' }}">
+                            <i class="nav-icon fas fa-user-circle"></i>
+                            <p>
+                                Users
+                            </p>
+                        </a>
+                    </li> 
+                      @endcan
+                        
+                       @can('not-cleaning')
+                       <li class="nav-item">
+                        <a href="{{ route('reservations.index'); }}"
+                            class="nav-link {{ (request()->is('reservations*')) ? 'active' : '' }}">
+                            <i class="nav-icon fas fa-hotel"></i>
+                            <p>
+                                Hotel Reservations
 
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('expenses.index'); }}"
-                                class="nav-link {{ (request()->is('expenses*')) ? 'active' : '' }}">
-                                <i class="nav-icon fas fa-receipt"></i>
-                                <p>Expenses</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('inkassas.index'); }}"
-                                class="nav-link {{ (request()->is('inkassas*')) ? 'active' : '' }}">
-                                <i class="nav-icon fas fa-dollar-sign"></i>
-                                <p>Inkassas</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('companies.index'); }}"
-                                class="nav-link {{ (request()->is('companies*')) ? 'active' : '' }}">
-                                <i class="nav-icon fas fa-building"></i>
-                                <p>Companies</p>
-                            </a>
-                        </li> 
-                        <li class="nav-item">
-                            <a href="{{ route('roomrepairs.index'); }}"
-                                class="nav-link {{ (request()->is('roomrepairs*')) ? 'active' : '' }}">
-                                <i class="nav-icon fas fa-hammer"></i>
-                                <p>Room Repairs</p>
-                            </a>
-                        </li>
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('expenses.index'); }}"
+                            class="nav-link {{ (request()->is('expenses*')) ? 'active' : '' }}">
+                            <i class="nav-icon fas fa-receipt"></i>
+                            <p>Expenses</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('inkassas.index'); }}"
+                            class="nav-link {{ (request()->is('inkassas*')) ? 'active' : '' }}">
+                            <i class="nav-icon fas fa-dollar-sign"></i>
+                            <p>Inkassas</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('companies.index'); }}"
+                            class="nav-link {{ (request()->is('companies*')) ? 'active' : '' }}">
+                            <i class="nav-icon fas fa-building"></i>
+                            <p>Companies</p>
+                        </a>
+                    </li> 
+                    <li class="nav-item">
+                        <a href="{{ route('roomrepairs.index'); }}"
+                            class="nav-link {{ (request()->is('roomrepairs*')) ? 'active' : '' }}">
+                            <i class="nav-icon fas fa-hammer"></i>
+                            <p>Room Repairs</p>
+                        </a>
+                    </li>
+                       @endcan
                        
-                        <li class="nav-item">
-                            <a href="{{ route('cleaning.cleaning'); }}"
-                                class="nav-link {{ (request()->is('cleaning*')) ? 'active' : '' }}">
-                                <i class="nav-icon fas fa-building"></i>
-                                <p>Cleaning</p>
-                            </a>
-                        </li>
+                       @can('cleaning')
+                       <li class="nav-item">
+                        <a href="{{ route('cleaning.cleaning'); }}"
+                            class="nav-link {{ (request()->is('cleaning*')) ? 'active' : '' }}">
+                            <i class="nav-icon fas fa-building"></i>
+                            <p>Cleaning</p>
+                        </a>
+                    </li>
+                       @endcan
+                       
                        
                        
 
