@@ -29,7 +29,7 @@ class CleaningController extends Controller
     // }
     public function cleaning_ready ( Request $request)
     {
-        
+        $name = auth()->user()->name;
         $telegram_api = $_ENV['TELEGRAMAPI'];
         $xona = $request->input('xona');
        // dd($xona);
@@ -39,7 +39,7 @@ class CleaningController extends Controller
         $apiToken = $telegram_api;
         $data = [
             'chat_id' => '-653810568', 
-            'text' =>  $xona ." Xona Tayor ". $new_time,
+            'text' =>  $xona ." Xona Tayor ". $new_time . "by " .$name,
         ];
         $response = file_get_contents("https://api.telegram.org/bot$apiToken/sendMessage?" . http_build_query($data) );  
         session()->flash('success', 'Raxmat');
