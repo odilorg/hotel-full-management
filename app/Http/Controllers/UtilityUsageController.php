@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Company;
 use App\Models\Meter;
 use App\Models\Utility;
 use App\Models\UtilityUsage;
@@ -104,8 +105,9 @@ class UtilityUsageController extends Controller
      */
     public function show(UtilityUsage $utilityUsage)
     {
-       // dd($utilityUsage);
-        return view('utility_usages.show', compact('utilityUsage'));
+       $company = Company::where('company_inn', 300965341)->first();
+       //dd($company);
+        return view('utility_usages.show', compact('company'));
     }
 
     /**

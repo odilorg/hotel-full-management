@@ -42,7 +42,7 @@
                       
                       <!-- /.col -->
                       <div class="col-sm-4 invoice-col">
-                        <b>Date Range {{ $from_date }} - {{  $to_date }} Reservations</b><br>
+                        <b>Date Range  Reservations</b><br>
                         
                       </div>
                       <!-- /.col -->
@@ -52,105 +52,56 @@
                     <!-- Table row -->
                     <div class="row">
                       <div class="col-12 table-responsive">
-                        <table class="table table-striped">
-                          <thead>
-                          <tr>
-                            <th>Naqd</th>
-                            <th>Karta</th>
-                            <th>Perech</th>
-                            <th>Unpaid</th>
-                            <th>Total w/out unpaid</th>
-                            <th>Total w/unpaid</th>
-                            <th>Booking Comission</th>
-                           
-                          </tr>
-                          </thead>
-                          <tbody>
-                          <tr>
-                            <td>{{ number_format($report['Naqd'],2,',',' ') }}</td>
-                            <td>{{ number_format($report['Karta'],2,',',' ') }}</td>
-                            <td>{{ number_format($report['Perech'],2,',',' ') }}</td>
-                            <td><a href="report-range/unpaid/{{ $from_date }}/{{ $to_date }}">{{ number_format($total_unpaid,2,',',' ') }}</a></td>
-                            <td>{{ number_format($total_report - $total_unpaid,2,',',' ') }}</td>
-                            <td>{{ number_format($total_report,2,',',' ') }}</td>
-                            <td>{{ number_format($report['total_booking_comission'],2,',',' ') }}</td>
-                            
-                          </tr>
-                         
-                          </tbody>
-                        </table>
-                      </div>
+                        <div class="card-body p-0">
+                            <table class="table table-sm">
+                              
+                              <tbody>
+                                <tr>
+                                  <td>Мижоз:</td>
+                                  <td>{{ $company->offical_company_name }}</td>
+                                  
+                                </tr>
+                                <tr>
+                                  <td>Шартнома:</td>
+                                  <td>{{ $company->company_acc_number }}</td>
+                                  
+                                </tr>
+                                <tr>
+                                  <td>Х/р:</td>
+                                  <td>{{ $company->company_acc_number }}</td>
+                                 
+                                </tr>
+                                <tr>
+                                  <td>Банк номи:</td>
+                                  <td>{{ $company->company_acc_number }}</td>
+                                 
+                                </tr>
+                                <tr>
+                                    <td>Банк коди:</td>
+                                    <td>Fix and squish bugs</td>
+                                   
+                                  </tr>
+                                  <tr>
+                                    <td>ИНН:</td>
+                                    <td>Fix and squish bugs</td>
+                                   
+                                  </tr>
+                                  <tr>
+                                    <td>Манзил:</td>
+                                    <td>Fix and squish bugs</td>
+                                   
+                                  </tr>
+                                  <tr>
+                                    <td>Тел:</td>
+                                    <td>Fix and squish bugs</td>
+                                   
+                                  </tr>
+                              </tbody>
+                            </table>
+                          </div>
                       <!-- /.col -->
                     </div>
-                    @foreach ($expense_report as $key => $value )
-                    <div class="row invoice-info">
-                      
-                      <!-- /.col -->
-                      <div class="col-sm-4 invoice-col">
-                        <b>Date Range {{ $from_date }} - {{  $to_date }} - {{ $key }} - Total: - {{ number_format($expense_total[$key],2,',',' ')  }}Uzs {{ round($expense_total[$key] / $exchange, 2) }}$</b><br>
-                        
-                      </div>
-                      <!-- /.col -->
-                    </div>
-                    <!-- /.row -->
-      
-                    <!-- Table row -->
-                    <div class="row">
-                      <div class="col-12 table-responsive">
-                        <table class="table table-striped">
-                          <thead>
-                          <tr>
-                            @foreach ($categories as $category)
-                            <th>{{ $category->category_name }}</th>
-                            @endforeach
-                          </tr>
-                          </thead>
-                          <tbody>
-                          <tr>
-                            @foreach ($categories as $category)
-                            <th>{{ number_format($expense_report[$key][ $category->category_name],2,',',' ')  }}</th>
-                            @endforeach
-                          </tr>
-                         
-                          </tbody>
-                        </table>
-                      </div>
-                      <!-- /.col -->
-                    </div>
-                    @endforeach
-                    <div class="col-6">
-                      <p class="lead">Amount Due for report N {{ $from_date }} - {{ $to_date }}</p>
-    
-                      <div class="table-responsive">
-                        <table class="table">
-                          <tbody><tr>
-                            <th style="width:50%">Naqd:</th>
-                            <td>{{ number_format($report['Naqd'],2,',',' ') }}</td>
-                            
-                          </tr>
-                          <tr>
-                            <th>Booking Comission</th>
-                            <td>{{ number_format($report['total_booking_comission'],2,',',' ') }}</td>
-                          </tr>
-                          <tr>
-                            <th>Naqd Expense:</th>
-                            <td>{{ number_format(round($expense_total['Naqd'] / $exchange, 1),2,',',' ') }}</td>
-                          </tr>
-                          <tr>
-                            <th>Karta Expense:</th>
-                            <td>{{ number_format(round($expense_total['Karta'] / $exchange, 1),2,',',' ') }}</td>
-                          </tr>
-                          <tr>
-                            <th>Perech Expense:</th>
-                            <td>{{ number_format(round($expense_total['Perech'] / $exchange, 1),2,',',' ') }}</td>
-                          </tr>
-                          <tr>
-                            <th>Due:</th>
-                            <td>{{ number_format(($report['Naqd'] - $report['total_booking_comission'] - round($expense_total['Naqd'] / $exchange, 1)),2,',',' ') }}</td>
-                          </tr>
-                        </tbody></table>
-                      </div>
-                    </div>
+                   
                     <!-- /.row -->
       
                     
