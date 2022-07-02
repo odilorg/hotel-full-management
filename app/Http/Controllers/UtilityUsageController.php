@@ -6,6 +6,7 @@ use App\Models\Meter;
 use App\Models\Utility;
 use App\Models\UtilityUsage;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class UtilityUsageController extends Controller
 {
@@ -16,8 +17,25 @@ class UtilityUsageController extends Controller
      */
     public function index()
     {
-        $utility_usages =  UtilityUsage::paginate(15);
-       // $meters = Meter::all();
+        //$utility_usages =  UtilityUsage::paginate(15);
+
+        // $utility_usages = DB::table('utility_usages')
+        //     ->join('meters', 'utility_usages.meter_id', '=', 'meters.id')
+        //     ->join('utilities', 'utility_usages.utility_id', '=', 'utilities.id')
+        //     ->select('utility_usages.*',  'utilities.utility_name', 'meters.meter_number')
+        //     ->get();
+         $utility_usages = DB::table('meters')
+            ->join('utility_usages', 'meters.id', '=', 'utility_usages.meter_id')
+            ->join('utilities', 'meters.utility_id', '=', 'utilities.id')
+            ->select('utility_usages.*',  'utilities.utility_name', 'meters.*')
+            ->orderBy('utility_usages.usage_date', 'desc')
+            ->paginate(15);
+
+
+        //$meters = Meter::all();
+      //dd($utility_usages);
+
+
         return view('utility_usages.index', compact('utility_usages'));
     }
 
@@ -64,11 +82,12 @@ class UtilityUsageController extends Controller
             'meter_latest' => ['required','numeric'],
             'meter_previous' => ['numeric', 'required'],
            
-            'utility_id' => ['required', 'numeric'],
+            'meter_id' => ['required', 'numeric'],
             
         ]);
         $attributes['meter_difference'] = $attributes['meter_latest'] - $attributes['meter_previous'];
-        //dd($attributes);
+        $attributes['meter_image'] = request()->file('meter_image')->store('meter_image');
+      //  dd($attributes);
              
         UtilityUsage::create($attributes);
          session()->flash('success', 'New Usage Created');

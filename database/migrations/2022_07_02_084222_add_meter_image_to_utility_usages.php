@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateMetersTable extends Migration
+class AddMeterImageToUtilityUsages extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,8 @@ class CreateMetersTable extends Migration
      */
     public function up()
     {
-        Schema::create('meters', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
-            $table->string('meter_number');
-            $table->foreignId('meter_id')->nullable();
+        Schema::table('utility_usages', function (Blueprint $table) {
+            $table->string('meter_image');
         });
     }
 
@@ -28,6 +25,8 @@ class CreateMetersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('meters');
+        Schema::table('utility_usages', function (Blueprint $table) {
+            Schema::dropIfExists('utility_usages');
+        });
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Utility;
+use App\Models\UtilityUsage;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -12,6 +13,7 @@ class Meter extends Model
     public function utility() {
         return $this->belongsTo(Utility::class);
     }
+   
 
    
 }

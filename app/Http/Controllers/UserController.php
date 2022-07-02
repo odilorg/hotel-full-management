@@ -108,6 +108,7 @@ class UserController extends Controller
       if (isset($attributes['profile_image'])) {
         $attributes['profile_image'] = request()->file('profile_image')->store('profile_image');
       }
+      
         (User::find($id)->update($attributes));
         
          session()->flash('success', 'User has been updated');

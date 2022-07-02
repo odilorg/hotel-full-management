@@ -27,7 +27,7 @@
                 <div class="col-lg-6">
                     <div class="card">
                         <div class="card-body">
-                            <form action="{{ route('utility_usages.store') }}" method="POST">
+                            <form action="{{ route('utility_usages.store') }}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 <div class="form-group">
                                     <label>{{ __('Usage Date') }}</label>
@@ -60,16 +60,23 @@
                                     <p class="text-danger">{{ $message }}</p>
                                     @enderror
                                 </div>
-                                
                                 <div class="form-group">
                                     <label for="exampleSelectRounded0">Choose a meter</label>
-                                    <select class="custom-select rounded-0" name="utility_id" id="exampleSelectRounded0">
+                                    <select class="custom-select rounded-0" name="meter_id" id="exampleSelectRounded0">
                                         <option value="">Choose meter</option>
                                         @foreach ($meters as $meter )
-                                        <option value="{{ $meter->utility->id }}">{{ $meter->meter_number." ". $meter->utility->utility_name }}</option>
+                                        <option value="{{ $meter->id }}">{{ $meter->meter_number." ". $meter->utility->utility_name }}</option>
                                         @endforeach
                                     </select>
                                     @error('utility_id')
+                                    <p class="text-danger">{{ $message }}</p>
+                                    @enderror
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Meter image</label>
+                                    <input type="file" value="{{ old('meter_image') }}" name="meter_image" class="form-control @error('meter_image')
+                  {{ 'is-invalid' }} @enderror" id="exampleInputEmail1" >
+                                    @error('meter_image')
                                     <p class="text-danger">{{ $message }}</p>
                                     @enderror
                                 </div>
