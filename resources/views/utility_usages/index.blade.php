@@ -73,18 +73,20 @@
                                     <td>{{ $usage->meter_previous }}</td>
                                     <td>{{ $usage->meter_difference }}</td>
                                     <td><a href="{{ asset('storage/' . $usage->meter_image) }}" data-lightbox="image-1"><img src="{{ asset('storage/' . $usage->meter_image) }}"  width="50px" height="50px" alt=""></a>  </td>
-                                    
-                                    <td><a class="btn btn-primary btn-sm" href="utility_usages/{{ $usage->id }}">
+                                   
+                                        
+                                   
+                                    <td><a class="btn btn-primary btn-sm" href="utility_usages/{{ $usage->util_ids }}">
                                             <i class="fas fa-folder">
                                             </i>
                                             View
                                         </a>
-                                        <a class="btn btn-info btn-sm" href="utility_usages/{{ $usage->id }}/edit">
+                                        <a class="btn btn-info btn-sm" href="utility_usages/{{ $usage->util_ids }}/edit">
                                             <i class="fas fa-pencil-alt">
                                             </i>
                                             Edit
                                         </a>
-                                        <form action="/utility_usages/{{ $usage->id }}" method="post"
+                                        <form action="/utility_usages/{{ $usage->util_ids }}" method="post"
                                             class="float-left">
                                             @csrf
                                             @method('delete')

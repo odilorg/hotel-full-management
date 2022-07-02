@@ -17,7 +17,7 @@ class UtilityUsageController extends Controller
      */
     public function index()
     {
-        //$utility_usages =  UtilityUsage::paginate(15);
+        //$utility_ids =  UtilityUsage::get();
 
         // $utility_usages = DB::table('utility_usages')
         //     ->join('meters', 'utility_usages.meter_id', '=', 'meters.id')
@@ -27,7 +27,7 @@ class UtilityUsageController extends Controller
          $utility_usages = DB::table('meters')
             ->join('utility_usages', 'meters.id', '=', 'utility_usages.meter_id')
             ->join('utilities', 'meters.utility_id', '=', 'utilities.id')
-            ->select('utility_usages.*',  'utilities.utility_name', 'meters.*')
+            ->select('utility_usages.*',  'utilities.utility_name', 'meters.*', 'utility_usages.id as util_ids')
             ->orderBy('utility_usages.usage_date', 'desc')
             ->paginate(15);
 
@@ -104,7 +104,8 @@ class UtilityUsageController extends Controller
      */
     public function show(UtilityUsage $utilityUsage)
     {
-        //
+       // dd($utilityUsage);
+        return view('utility_usages.show', compact('utilityUsage'));
     }
 
     /**
@@ -115,7 +116,7 @@ class UtilityUsageController extends Controller
      */
     public function edit(UtilityUsage $utilityUsage)
     {
-        //
+        dd($utilityUsage);
     }
 
     /**
@@ -138,6 +139,6 @@ class UtilityUsageController extends Controller
      */
     public function destroy(UtilityUsage $utilityUsage)
     {
-        //
+        dd($utilityUsage);
     }
 }
