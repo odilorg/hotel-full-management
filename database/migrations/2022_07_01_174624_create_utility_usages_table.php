@@ -16,11 +16,12 @@ class CreateUtilityUsagesTable extends Migration
         Schema::create('utility_usages', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->foreignId('utility_id')->nullable();
+            $table->foreignId('meter_id')->nullable();
             $table->date('usage_date');
             $table->integer('meter_latest');
             $table->integer('meter_previous');
             $table->integer('meter_difference');
+            $table->string('meter_image');
         });
     }
 
