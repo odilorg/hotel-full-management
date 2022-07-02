@@ -55,13 +55,12 @@
                             <thead>
                                 <tr>
                                     <th>Sana</th>
-                                    <th>Utility Name</th>
-                                    <th>Meter Number</th>
-                                    <th>Ko'rsatgich oxiri</th>
-                                    <th>Ko'rsatgich oldingi</th>
-                                    <th>Ko'rsatgich farqi</th>
-
-                                    
+                                    <th>Nomi</th>
+                                    <th>Ko'r #</th>
+                                    <th>Ko'r oxiri</th>
+                                    <th>Ko'r oldingi</th>
+                                    <th>Ko'r farqi</th>
+                                    <th>Ko'r Rasmi</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -73,6 +72,7 @@
                                     <td>{{ $usage->meter_latest }}</td>
                                     <td>{{ $usage->meter_previous }}</td>
                                     <td>{{ $usage->meter_difference }}</td>
+                                    <td><a href="{{ asset('storage/' . $usage->meter_image) }}" data-lightbox="image-1"><img src="{{ asset('storage/' . $usage->meter_image) }}"  width="50px" height="50px" alt=""></a>  </td>
                                     
                                     <td><a class="btn btn-primary btn-sm" href="utility_usages/{{ $usage->id }}">
                                             <i class="fas fa-folder">
