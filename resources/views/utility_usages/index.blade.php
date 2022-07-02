@@ -55,17 +55,20 @@
                             <thead>
                                 <tr>
                                     <th>Sana</th>
+                                    <th>Utility Name</th>
                                     <th>Ko'rsatgich oxiri</th>
                                     <th>Ko'rsatgich oldingi</th>
                                     <th>Ko'rsatgich farqi</th>
+
                                     
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach ($utility_usages as $usage )
                                 <tr>
-                                    <td>{{ $usage->usage_date }} </span></td>
-                                    <td>{{ $usage->meter_lates }}</td>
+                                    <td>{{ $usage->usage_date }} </td>
+                                    <td>{{ $usage->utility->utility_name }} </td>
+                                    <td>{{ $usage->meter_latest }}</td>
                                     <td>{{ $usage->meter_previous }}</td>
                                     <td>{{ $usage->meter_difference }}</td>
                                     

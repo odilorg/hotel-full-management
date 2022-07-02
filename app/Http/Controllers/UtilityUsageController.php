@@ -17,6 +17,7 @@ class UtilityUsageController extends Controller
     public function index()
     {
         $utility_usages =  UtilityUsage::paginate(15);
+       // $meters = Meter::all();
         return view('utility_usages.index', compact('utility_usages'));
     }
 
@@ -58,7 +59,22 @@ class UtilityUsageController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $attributes =  request()->validate([
+            'usage_date' => ['required'],
+            'meter_latest' => ['required','numeric'],
+            'meter_previous' => ['numeric', 'required'],
+           
+            'utility_id' => ['required', 'numeric'],
+            
+        ]);
+        $attributes['meter_difference'] = $attributes['meter_latest'] - $attributes['meter_previous'];
+        //dd($attributes);
+             
+        UtilityUsage::create($attributes);
+         session()->flash('success', 'New Usage Created');
+         session()->flash('type', 'New Usage');
+
+        return redirect('utility_usages');
     }
 
     /**

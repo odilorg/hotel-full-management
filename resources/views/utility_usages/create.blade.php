@@ -68,9 +68,6 @@
                                         @foreach ($meters as $meter )
                                         <option value="{{ $meter->utility->id }}">{{ $meter->meter_number." ". $meter->utility->utility_name }}</option>
                                         @endforeach
-                                      
-                                     
-                                        
                                     </select>
                                     @error('utility_id')
                                     <p class="text-danger">{{ $message }}</p>

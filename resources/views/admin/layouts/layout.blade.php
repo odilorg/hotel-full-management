@@ -378,7 +378,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     <li class="nav-item">
                         <a href="{{ route('utility_usages.index'); }}"
                             class="nav-link {{ (request()->is('utility_usages*')) ? 'active' : '' }}">
-                            <i class="nav-icon fas fa-hammer"></i>
+                            <i class="nav-icon fas fa-lightbulb"></i>
                             <p>Utility Usages</p>
                         </a>
                     </li>
