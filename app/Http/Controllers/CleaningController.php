@@ -39,7 +39,7 @@ class CleaningController extends Controller
         $apiToken = $telegram_api;
         $data = [
             'chat_id' => '-653810568', 
-            'text' =>  $xona ." Xona Tayor ". $new_time . "by " .$name,
+            'text' =>  $xona ." Xona Tayor ". $new_time . " by " .$name,
         ];
         $response = file_get_contents("https://api.telegram.org/bot$apiToken/sendMessage?" . http_build_query($data) );  
         session()->flash('success', 'Raxmat');
