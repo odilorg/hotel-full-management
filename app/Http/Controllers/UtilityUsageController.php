@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Company;
+use Carbon\Carbon;
 use App\Models\Meter;
+use App\Models\Company;
 use App\Models\Utility;
 use App\Models\UtilityUsage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Jenssegers\Date\Date;
 
 class UtilityUsageController extends Controller
 {
@@ -109,7 +111,14 @@ class UtilityUsageController extends Controller
        $meters = Meter::where('id', $utilityUsage->meter_id)->first();
        $utility_name = Utility::where('id', $meters->utility_id)->first();
      //  dd($utility_name->utility_name);
-        return view('utility_usages.show', compact('company', 'utility_name', 'utilityUsage', 'meters'));
+     Date::setLocale('uz');
+     
+     //$date = Carbon::createFromFormat('Y-m-d', $utilityUsage->usage_date);
+     $sana = Date::createFromFormat('Y-m-d', $utilityUsage->usage_date)
+                    ->format('F Y');
+     //dd(substr($sana) );
+     
+        return view('utility_usages.show', compact('company', 'utility_name', 'utilityUsage', 'meters', 'sana'));
     }
 
     /**

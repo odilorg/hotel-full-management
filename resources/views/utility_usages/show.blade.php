@@ -96,7 +96,7 @@
                           <div class="card">
                             <div  class="card-header">
                               <h3 style="float:none; text-align:center; font-weight:600;" class="card-title" >{{ "Сарфланган " .$utility_name->utility_name. " буйича хисобот" }}</h3>
-              
+                              <h3 style="float:none; text-align:center; font-weight:600;" class="card-title" >{{ Str::ucfirst($sana)  . " учун" }}</h3>
                               <div class="card-tools">
                                 
                               </div>
@@ -190,7 +190,7 @@
                           <div class="card">
                             <div  class="card-header">
                               <h3 style="float:none; text-align:center; font-weight:600;" class="card-title" >{{ "Сарфланган " .$utility_name->utility_name. " буйича хисобот" }}</h3>
-              
+                              <h3 style="float:none; text-align:center; font-weight:600;" class="card-title" >{{ Str::ucfirst($sana)  . " учун" }}</h3>
                               <div class="card-tools">
                                 
                               </div>
