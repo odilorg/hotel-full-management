@@ -106,9 +106,10 @@ class UtilityUsageController extends Controller
     public function show(UtilityUsage $utilityUsage)
     {
        $company = Company::where('company_inn', 300965341)->first();
-       
-       //dd($company);
-        return view('utility_usages.show', compact('company'));
+       $meters = Meter::where('id', $utilityUsage->meter_id)->first();
+       $utility_name = Utility::where('id', $meters->utility_id)->first();
+     //  dd($utility_name->utility_name);
+        return view('utility_usages.show', compact('company', 'utility_name', 'utilityUsage', 'meters'));
     }
 
     /**
