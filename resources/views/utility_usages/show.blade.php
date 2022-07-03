@@ -7,12 +7,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Hotel Report for Jahongir</h1>
+                    <h1>{{ $utility_name->utility_name. " Jahongir hotel"}}</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active">Hotel Report Jahongir</li>
+                        <li class="breadcrumb-item active">{{ $utility_name->utility_name. " Jahongir hotel"}}</li>
                     </ol>
                 </div>
             </div>
@@ -45,9 +45,9 @@
                   
                     <div class="row">
                       <div class="col-12 table-responsive">
-                        <div class="card-body p-0" style="margin: 73px 0;">
-                          <div class="card " style="width: 25rem;" >
-                            <table class="table table-sm ">
+                        <div class="card-body p-0" style="margin: 13px 0;">
+                          <div class="card " style="width: 800px;" >
+                            <table class="table table-sm" style="font-size: 16px">
                               
                               <tbody>
                                 <tr>
@@ -66,7 +66,7 @@
                                  
                                 </tr>
                                 <tr>
-                                  <td>Банк номи:</td>
+                                  <td width="40%">Банк номи:</td>
                                   <td>{{ $company->company_bank_name }}</td>
                                  
                                 </tr>
@@ -103,15 +103,15 @@
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body table-responsive p-0">
-                              <table class="table table-hover text-nowrap">
+                              <table class="table-bordered table-hover text-nowrap" style="font-size: 16px">
                                 <thead>
                                   <tr>
-                                    <th style="padding: 0 0 40px 30px;" width="20%" colspan="2">Объектни номи ва манзили</th>
+                                    <th style=" text-align:center;" width="20%" colspan="2">Объектни номи ва манзили</th>
                                     
                                     <th style="text-align:center;">Сув улчагич<br> асбобнинг<br> раками</th>
-                                    <th style="padding: 25px 0;">Олдинги<br> курсатгич</th>
-                                    <th style="padding: 25px 0;">Охирги<br> курсатгич</th>
-                                    <th style="padding: 25px 0;">Фарки (Cувни<br> сарфи кум м.) </th>
+                                    <th style="padding: 25px 0; text-align:center;">Олдинги<br> курсатгич</th>
+                                    <th style="padding: 25px 0; text-align:center;">Охирги<br> курсатгич</th>
+                                    <th style="padding: 25px 0; text-align:center;">Фарки (Cувни<br> сарфи кум м.) </th>
                                   </tr>
                                 </thead>
                                 <tbody>
@@ -131,17 +131,52 @@
                             <!-- /.card-body -->
                           </div>
                         </div> 
+                        <table class="table-borderless" style="font-size: 18px" >
+                      
+                          <tbody>
+                            <tr>
+                              
+                              <td style="padding:10px 0 0 120px">{{  $company->offical_company_name }}</td>
+                              <td style="padding:10px 0 0 285px">{{ $utility_name->utility_name }}</td>
+                              
+                            </tr>
+                            <tr>
+                             
+                              <td>Жавобгар шахс (исми ва шарифи):</td>
+                              <td style="padding:10px 0 0 170px">Кабул килувчи (Исми ва шарифи):_____________________</td>
+                              
+                            </tr>
+                            <tr>
+                             
+                              <td>Имзо_________________________________</td>
+                              <td style="padding:10px 0 0 170px">Имзо_________________________________</td>
+                              
+                            </tr>
+                            <tr>
+                             
+                              <td>Сана:   {{ \Carbon\Carbon::parse($utilityUsage->usage_date)->format('d/m/Y') }}</td>
+                              <td style="padding:10px 0 0 170px">Сана:   {{ \Carbon\Carbon::parse($utilityUsage->usage_date)->format('d/m/Y') }}</td>
+                              
+                            </tr>
+                            <tr>
+                             
+                              <td>Мухр:</td>
+                              <td style="padding:10px 0 0 170px">Мухр:</td>
+                              
+                            </tr>
+                          </tbody>
+                        </table>
                       <!-- /.col -->
-                      <hr style="margin:70px 20px; height:2px;border-width:0;color:gray;background-color:gray">
+                      <hr style="height:5px;border-width:0;color:gray;background-color:gray">
                     </div>
-                    
+                   
 
 
                     <div class="row">
                       <div class="col-12 table-responsive">
-                        <div class="card-body p-0">
-                          <div class="card " style="width: 25rem;" >
-                            <table class="table table-sm ">
+                        <div class="card-body p-0" style="margin: 13px 0;">
+                          <div class="card " style="width: 800px;" >
+                            <table class="table table-sm" style="font-size: 16px">
                               
                               <tbody>
                                 <tr>
@@ -160,7 +195,7 @@
                                  
                                 </tr>
                                 <tr>
-                                  <td>Банк номи:</td>
+                                  <td width="40%">Банк номи:</td>
                                   <td>{{ $company->company_bank_name }}</td>
                                  
                                 </tr>
@@ -197,15 +232,15 @@
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body table-responsive p-0">
-                              <table class="table table-hover text-nowrap">
+                              <table class="table-bordered table-hover text-nowrap" style="font-size: 16px">
                                 <thead>
                                   <tr>
-                                    <th style="padding: 0 0 40px 30px;" width="20%" colspan="2">Объектни номи ва манзили</th>
+                                    <th style=" text-align:center;" width="20%" colspan="2">Объектни номи ва манзили</th>
                                     
                                     <th style="text-align:center;">Сув улчагич<br> асбобнинг<br> раками</th>
-                                    <th style="padding: 25px 0;">Олдинги<br> курсатгич</th>
-                                    <th style="padding: 25px 0;">Охирги<br> курсатгич</th>
-                                    <th style="padding: 25px 0;">Фарки (Cувни<br> сарфи кум м.) </th>
+                                    <th style="padding: 25px 0; text-align:center;">Олдинги<br> курсатгич</th>
+                                    <th style="padding: 25px 0; text-align:center;">Охирги<br> курсатгич</th>
+                                    <th style="padding: 25px 0; text-align:center;">Фарки (Cувни<br> сарфи кум м.) </th>
                                   </tr>
                                 </thead>
                                 <tbody>
@@ -225,6 +260,44 @@
                             <!-- /.card-body -->
                           </div>
                         </div> 
+                        <table class="table-borderless" style="font-size: 18px" >
+                      
+                          <tbody>
+                            <tr>
+                              
+                              <td style="padding:10px 0 0 120px">{{  $company->offical_company_name }}</td>
+                              <td style="padding:10px 0 0 285px">{{ $utility_name->utility_name }}</td>
+                              
+                            </tr>
+                            <tr>
+                             
+                              <td>Жавобгар шахс (исми ва шарифи):</td>
+                              <td style="padding:10px 0 0 170px">Кабул килувчи (Исми ва шарифи):_____________________</td>
+                              
+                            </tr>
+                            <tr>
+                             
+                              <td>Имзо_________________________________</td>
+                              <td style="padding:10px 0 0 170px">Имзо_________________________________</td>
+                              
+                            </tr>
+                            <tr>
+                             
+                              <td>Сана:   {{ \Carbon\Carbon::parse($utilityUsage->usage_date)->format('d/m/Y') }}</td>
+                              <td style="padding:10px 0 0 170px">Сана:   {{ \Carbon\Carbon::parse($utilityUsage->usage_date)->format('d/m/Y') }}</td>
+                              
+                            </tr>
+                            <tr>
+                             
+                              <td>Мухр:</td>
+                              <td style="padding:10px 0 0 170px">Мухр:</td>
+                              
+                            </tr>
+                          </tbody>
+                        </table>
+                      <!-- /.col -->
+                      <hr style="height:5px;border-width:0;color:gray;background-color:gray">
+                    </div>
                       <!-- /.col -->
                     </div>
                  
