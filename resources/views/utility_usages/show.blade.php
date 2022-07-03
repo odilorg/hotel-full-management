@@ -50,10 +50,12 @@
                     <!-- /.row -->
       
                     <!-- Table row -->
+                  
                     <div class="row">
                       <div class="col-12 table-responsive">
                         <div class="card-body p-0">
-                            <table class="table table-sm">
+                          <div class="card " style="width: 25rem;" >
+                            <table class="table table-sm ">
                               
                               <tbody>
                                 <tr>
@@ -99,9 +101,10 @@
                               </tbody>
                             </table>
                           </div>
+                        </div> 
                       <!-- /.col -->
                     </div>
-                   
+                 
                     <!-- /.row -->
       
                     
