@@ -129,7 +129,17 @@ class UtilityUsageController extends Controller
      */
     public function edit(UtilityUsage $utilityUsage)
     {
-        dd($utilityUsage);
+        //  $meters = Meter::where('id', $utilityUsage->meter_id)->first();
+        // dd($meters);
+         // $utility_name = Utility::where('id', $meters->utility_id)->first();
+        //dd($utilityUsage->meter_id);
+        $meter_id_utility_name = DB::table('meters')
+        ->where('meters.id', $utilityUsage->meter_id)
+        ->join('utilities', 'meters.utility_id', '=', 'utilities.id')
+        ->select('utilities.*', 'meters.id as meterid', 'meters.meter_number')
+        ->first();
+     // dd($meter_id_utility_name);
+        return view('utility_usages.edit', compact('meter_id_utility_name', 'utilityUsage'));
     }
 
     /**
