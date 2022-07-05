@@ -64,7 +64,7 @@
                                 <div class="form-group">
                                     <label for="exampleSelectRounded0">Choose a meter</label>
                                     <select class="custom-select rounded-0" name="meter_id" id="exampleSelectRounded0">
-                                        <option value="{{ $meter_id_utility_name->meterid }}">{{ $meter_id_utility_name->utility_name . " ". $meter_id_utility_name->meter_number }}</option>
+                                        <option value="{{ $utilityUsage->meter->id }}">{{ $utilityUsage->meter->utility->utility_name . " ". $utilityUsage->meter->meter_number }}</option>
                                     </select>
                                     @error('meter_id')
                                     <p class="text-danger">{{ $message }}</p>
