@@ -11,8 +11,9 @@ class UtilityUsage extends Model
 {
     use HasFactory;
     protected $guarded = [];
-    public function utility() {
-        return $this->belongsTo(Utility::class);
+
+    public function meter() {
+        return $this->belongsTo(Meter::class);
     }
    
 }

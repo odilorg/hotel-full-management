@@ -27,13 +27,8 @@ class UtilityUsageController extends Controller
         //     ->join('utilities', 'utility_usages.utility_id', '=', 'utilities.id')
         //     ->select('utility_usages.*',  'utilities.utility_name', 'meters.meter_number')
         //     ->get();
-         $utility_usages = DB::table('meters')
-            ->join('utility_usages', 'meters.id', '=', 'utility_usages.meter_id')
-            ->join('utilities', 'meters.utility_id', '=', 'utilities.id')
-            ->select('utility_usages.*',  'utilities.utility_name', 'meters.*', 'utility_usages.id as util_ids')
-            ->orderBy('utility_usages.usage_date', 'desc')
-            ->paginate(15);
-
+         $utility_usages = UtilityUsage::paginate(15);
+       // dd($utility_usages);
 
         //$meters = Meter::all();
       //dd($utility_usages);
@@ -108,8 +103,16 @@ class UtilityUsageController extends Controller
     public function show(UtilityUsage $utilityUsage)
     {
        $company = Company::where('company_inn', 300965341)->first();
-       $meters = Meter::where('id', $utilityUsage->meter_id)->first();
-       $utility_name = Utility::where('id', $meters->utility_id)->first();
+        
+       
+       $utility_name = $utilityUsage->meter->utility;
+       $meters = $utilityUsage->meter;
+       //$t = Utility::find($utilityUsage->meter_id)->utilityUsages->first();
+      // dd($utilityUsage->meter);
+
+    //    $meters = Meter::where('id', $utilityUsage->meter_id)->first();
+    //    $utility_name = Utility::where('id', $meters->utility_id)->first();
+
      //  dd($utility_name->utility_name);
      Date::setLocale('uz');
      

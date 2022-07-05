@@ -13,6 +13,11 @@ class Meter extends Model
     public function utility() {
         return $this->belongsTo(Utility::class);
     }
+
+    public function utilityUsages()
+    {
+        return $this->hasMany(UtilityUsage::class);
+    }
    
 
    

@@ -67,8 +67,8 @@
                                 @foreach ($utility_usages as $usage )
                                 <tr>
                                     <td>{{ $usage->usage_date }} </td>
-                                    <td>{{ $usage->utility_name }} </td>
-                                    <td>{{ $usage->meter_number }} </td>
+                                    <td>{{ $usage->meter->utility->utility_name }} </td>
+                                    <td>{{ $usage->meter->meter_number }} </td>
                                     <td>{{ $usage->meter_latest }}</td>
                                     <td>{{ $usage->meter_previous }}</td>
                                     <td>{{ $usage->meter_difference }}</td>
@@ -76,17 +76,17 @@
                                    
                                         
                                    
-                                    <td><a class="btn btn-primary btn-sm" href="utility_usages/{{ $usage->util_ids }}">
+                                    <td><a class="btn btn-primary btn-sm" href="utility_usages/{{ $usage->id }}">
                                             <i class="fas fa-folder">
                                             </i>
                                             View
                                         </a>
-                                        <a class="btn btn-info btn-sm" href="utility_usages/{{ $usage->util_ids }}/edit">
+                                        <a class="btn btn-info btn-sm" href="utility_usages/{{ $usage->id }}/edit">
                                             <i class="fas fa-pencil-alt">
                                             </i>
                                             Edit
                                         </a>
-                                        <form action="/utility_usages/{{ $usage->util_ids }}" method="post"
+                                        <form action="/utility_usages/{{ $usage->id }}" method="post"
                                             class="float-left">
                                             @csrf
                                             @method('delete')
