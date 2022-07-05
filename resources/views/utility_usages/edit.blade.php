@@ -27,7 +27,7 @@
                 <div class="col-lg-6">
                     <div class="card">
                         <div class="card-body">
-                            <form action="/utility_usages/{{ $utilityUsage->id }}" method="POST">
+                            <form action="/utility_usages/{{ $utilityUsage->id }}" method="POST" enctype="multipart/form-data">>
                                 @csrf
                                 @method('PUT')
                                 <div class="form-group">
@@ -71,13 +71,15 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label for="exampleInputEmail1">Meter image</label>
-                                    <input type="file" value="{{ old('meter_image', $utilityUsage->meter_image) }}" name="meter_image" class="form-control @error('meter_image')
+                                    <label for="exampleInputEmail1">Usage image</label>
+                                    <input type="file" value="{{ old('meter_image', $utilityUsage->meter_image)  }}" name="meter_image" class="form-control @error('meter_image')
                   {{ 'is-invalid' }} @enderror" id="exampleInputEmail1" >
+                  <img src="{{ asset('storage/' . $utilityUsage->meter_image) }}" width="50px" height="50px" alt="">
                                     @error('meter_image')
                                     <p class="text-danger">{{ $message }}</p>
                                     @enderror
                                 </div>
+                               
                                 <button type="submit">Submit</button>
                             </form>
                         </div>

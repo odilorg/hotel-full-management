@@ -157,7 +157,7 @@ class UtilityUsageController extends Controller
             'usage_date' => ['required'],
             'meter_latest' => ['required','numeric'],
             'meter_previous' => ['numeric', 'required'],
-           
+            'meter_image' => ['image'],
             'meter_id' => ['required', 'numeric'],
             
         ]);
@@ -165,9 +165,10 @@ class UtilityUsageController extends Controller
        
 
         if (isset($attributes['meter_image'])) {
+            
             $attributes['meter_image'] = request()->file('meter_image')->store('meter_image');
           }
-      //  dd($attributes);
+        //dd($attributes);
              
       $utilityUsage->update($attributes);
      
@@ -185,6 +186,9 @@ class UtilityUsageController extends Controller
      */
     public function destroy(UtilityUsage $utilityUsage)
     {
-        dd($utilityUsage);
+        $utilityUsage->delete();
+        session()->flash('success', 'Usage Deleted');
+        session()->flash('type', 'Delete Usage');
+        return redirect('utility_usages');
     }
 }

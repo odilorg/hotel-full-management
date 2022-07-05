@@ -395,15 +395,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     <div class="dropdown">
                         <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-expanded="false">
                             <i class="nav-icon fas fa-building"></i>
-                            Dropdown link
-                          
+                            Utility Usage
                         </a>
-                        
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                           <a class="dropdown-item" href="#">Action</a>
                           <a class="dropdown-item" href="#">Another action</a>
                           <a class="dropdown-item" href="#">Something else here</a>
-                          
                         </div>
                       </div>
                        @endcan
