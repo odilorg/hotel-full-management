@@ -98,7 +98,7 @@ class UtilityUsageController extends Controller
     //    $utility_name = Utility::where('id', $meters->utility_id)->first();
 
      //  dd($utility_name->utility_name);
-     Date::setLocale('uz');
+     //Date::setLocale('uz');
      
      //$date = Carbon::createFromFormat('Y-m-d', $utilityUsage->usage_date);
      $sana = Carbon::createFromFormat('Y-m-d', $utilityUsage->usage_date)
