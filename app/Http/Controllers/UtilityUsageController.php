@@ -101,7 +101,7 @@ class UtilityUsageController extends Controller
      Date::setLocale('uz');
      
      //$date = Carbon::createFromFormat('Y-m-d', $utilityUsage->usage_date);
-     $sana = Date::createFromFormat('Y-m-d', $utilityUsage->usage_date)
+     $sana = Carbon::createFromFormat('Y-m-d', $utilityUsage->usage_date)
                     ->format('F Y');
      //dd(substr($sana) );
      
