@@ -28,13 +28,14 @@ class UtilityUsageController extends Controller
         //     ->select('utility_usages.*',  'utilities.utility_name', 'meters.meter_number')
         //     ->get();
          $utility_usages = UtilityUsage::paginate(15);
-       // dd($utility_usages);
+         $utilities = Utility::all();
+        //dd($utility_usages->meter->utility->get);
 
         //$meters = Meter::all();
       //dd($utility_usages);
 
 
-        return view('utility_usages.index', compact('utility_usages'));
+        return view('utility_usages.index', compact('utility_usages', 'utilities'));
     }
 
     /**
@@ -46,24 +47,6 @@ class UtilityUsageController extends Controller
     {
         $utilities = Utility::all();
         $meters = Meter::all();
-//joins
-// $meter_name = Utility::join('meters', 'meters.utility_id', '=', 'utilities.id')
-            
-
-// ->select([
-    
-//     'meters.*',
-//     'utilities.*',
-    
-     
-//        ])
-// ->get();
-//$utility = Utility::where('id', 2)->first();
-//dd($utility);
-
-      
-
-        //dd($utility->meters()->get());
          return view('utility_usages.create', compact('utilities', 'meters'));
     }
 
@@ -190,5 +173,26 @@ class UtilityUsageController extends Controller
         session()->flash('success', 'Usage Deleted');
         session()->flash('type', 'Delete Usage');
         return redirect('utility_usages');
+    }
+
+    public function tabiiygaz()
+    {
+      $utility_usages = UtilityUsage::where('meter_id', 3)->paginate(15);
+      $utilities = Utility::all();
+      return view('utility_usages.tabiiygaz', compact('utility_usages', 'utilities'));
+    }
+
+    public function elektr()
+    {
+      $utility_usages = UtilityUsage::where('meter_id', 3)->paginate(15);
+      $utilities = Utility::all();
+      return view('utility_usages.elektr', compact('utility_usages', 'utilities'));
+         
+    }
+
+    public function suvoqova()
+    {
+       dd('suvoqova');
+         return view('utility_usages.suvoqova');
     }
 }

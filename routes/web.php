@@ -67,6 +67,8 @@ Route::post('/cleaning/ready', [CleaningController::class, 'cleaning_ready'])->m
 Route::post('/cleaning/notready', [CleaningController::class, 'cleaning_notready'])->middleware(['auth', 'revalidate']);
 
 
+
+
 Route::middleware(['auth', 'revalidate', 'can:not-cleaning' ])->group(function () {
     Route::resources([
         'hotelreservations' => HotelreservationController::class,
@@ -89,6 +91,10 @@ Route::middleware(['auth', 'revalidate', 'can:not-cleaning' ])->group(function (
        
     
     ]);
+
+    Route::get('/utility_usages/tabiiygaz/1', [UtilityUsageController::class, 'tabiiygaz'])->name('utility_usages.1')->middleware(['auth', 'revalidate']);    
+     Route::get('/utility_usages/elektr/2', [UtilityUsageController::class, 'elektr'])->name('utility_usages.2')->middleware(['auth', 'revalidate']);    
+     Route::get('/utility_usages/suvoqova/3', [UtilityUsageController::class, 'suvoqova'])->name('utility_usages.3')->middleware(['auth', 'revalidate']);    
     // Route::post('/transports/auto', [TransportController::class, 'auto'])->name('auto');
     // Route::post('/transports/air', [TransportController::class, 'air'])->name('air');
     // Route::post('/transports/train', [TransportController::class, 'train'])->name('train');    
@@ -96,7 +102,7 @@ Route::middleware(['auth', 'revalidate', 'can:not-cleaning' ])->group(function (
 });
 
 //Route::resource('users', UserController::class,)->middleware(['revalidate']);
-Route::get('/status', [TourgroupController::class, 'status'])->name('tourgroups_status');
+//Route::get('/status', [TourgroupController::class, 'status'])->name('tourgroups_status');
 
 
 
