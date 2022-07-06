@@ -108,7 +108,7 @@
                                   <tr>
                                     <th style=" text-align:center;" width="20%" colspan="2">Объектни номи ва манзили</th>
                                     
-                                    <th style="text-align:center;">Сув улчагич<br> асбобнинг<br> раками</th>
+                                    <th style="text-align:center;">Курсатгич<br>завод раками</th>
                                     <th style="padding: 25px 0; text-align:center;">Олдинги<br> курсатгич</th>
                                     <th style="padding: 25px 0; text-align:center;">Охирги<br> курсатгич</th>
                                     <th style="padding: 25px 0; text-align:center;">Фарки (Cувни<br> сарфи кум м.) </th>
@@ -119,9 +119,9 @@
                                     <td>{{ $company->company_address_city . " ".$company->company_address_street }}</td>
                                     <td></td>
                                     <td style="text-align:center;">{{ $meters->meter_number }}</td>
-                                    <td>{{ $utilityUsage->meter_previous }}</td>
-                                    <td>{{ $utilityUsage->meter_latest }}</td>
-                                    <td>{{ $utilityUsage->meter_difference }}</td>
+                                    <td style="text-align:center;">{{ $utilityUsage->meter_previous }}</td>
+                                    <td style="text-align:center;">{{ $utilityUsage->meter_latest }}</td>
+                                    <td style="text-align:center;">{{ $utilityUsage->meter_difference }}</td>
                                     
                                   </tr>
                                  
@@ -237,7 +237,7 @@
                                   <tr>
                                     <th style=" text-align:center;" width="20%" colspan="2">Объектни номи ва манзили</th>
                                     
-                                    <th style="text-align:center;">Сув улчагич<br> асбобнинг<br> раками</th>
+                                    <th style="text-align:center;">Курсатгич завод<br> раками</th>
                                     <th style="padding: 25px 0; text-align:center;">Олдинги<br> курсатгич</th>
                                     <th style="padding: 25px 0; text-align:center;">Охирги<br> курсатгич</th>
                                     <th style="padding: 25px 0; text-align:center;">Фарки (Cувни<br> сарфи кум м.) </th>
@@ -248,9 +248,9 @@
                                     <td>{{ $company->company_address_city . " ".$company->company_address_street }}</td>
                                     <td></td>
                                     <td style="text-align:center;">{{ $meters->meter_number }}</td>
-                                    <td>{{ $utilityUsage->meter_previous }}</td>
-                                    <td>{{ $utilityUsage->meter_latest }}</td>
-                                    <td>{{ $utilityUsage->meter_difference }}</td>
+                                    <td style="text-align:center;">{{ $utilityUsage->meter_previous }}</td>
+                                    <td style="text-align:center;">{{ $utilityUsage->meter_latest }}</td>
+                                    <td style="text-align:center;">{{ $utilityUsage->meter_difference }}</td>
                                     
                                   </tr>
                                  
