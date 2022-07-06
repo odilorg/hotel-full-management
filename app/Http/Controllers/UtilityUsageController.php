@@ -178,12 +178,12 @@ class UtilityUsageController extends Controller
 
     public function tabiiygaz()
     {
-      
+      //dd('gaz');
      
      $utility_usages = UtilityUsage::whereIn('meter_id', [1,4])->orderBy('usage_date', 'desc')->paginate(15);
      $utilities = Utility::all();
 
-               return view('utility_usages.index', compact('utility_usages', 'utilities'));
+    return view('utility_usages.index', compact('utility_usages', 'utilities'));
     }
 
     public function elektr()

@@ -24,6 +24,7 @@ use App\Http\Controllers\HotelreservationController;
 use App\Http\Controllers\AutocompleteSearchController;
 use App\Http\Controllers\RoomRepairController;
 use App\Http\Controllers\UtilityUsageController;
+use App\Models\Utility;
 
 /*
 |--------------------------------------------------------------------------
@@ -66,9 +67,12 @@ Route::get('/cleaning', [CleaningController::class, 'cleaning'])->name('cleaning
 Route::post('/cleaning/ready', [CleaningController::class, 'cleaning_ready'])->middleware(['auth', 'revalidate']);
 Route::post('/cleaning/notready', [CleaningController::class, 'cleaning_notready'])->middleware(['auth', 'revalidate']);
 
-Route::get('/tabiiygaz', [UtilityUsageController::class, 'tabiiygaz'])->name('Tabiiy Gaz')->middleware(['auth', 'revalidate']);    
-Route::get('/elektr', [UtilityUsageController::class, 'elektr'])->name('Elektr quvvat')->middleware(['auth', 'revalidate']);    
-Route::get('/suvoqova', [UtilityUsageController::class, 'suvoqova'])->name('Suv va Oqova')->middleware(['auth', 'revalidate']);  
+$utilities = Utility::all();
+
+foreach ($utilities as $utility) {
+ //echo $utility->utility_slug;
+      Route::get($utility->utility_slug , [UtilityUsageController::class, $utility->utility_slug])->name($utility->utility_slug)->middleware(['auth', 'revalidate']);    
+}
 
 
 Route::middleware(['auth', 'revalidate', 'can:not-cleaning' ])->group(function () {
