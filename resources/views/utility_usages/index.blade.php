@@ -51,7 +51,7 @@
                                 {{ __('Add Your Utility usage') }}
                             </a>
                             @foreach ( $utilities as $utility )
-                            <a class="btn btn-info btn-sm" href="{{ route('utility_usages.'.$utility->id ) }}">
+                            <a class="btn btn-info btn-sm" href="{{ route( $utility->utility_name ) }}">
                                 <i class="fas fa-pencil-alt">
                                 </i>
                                 {{ $utility->utility_name }}

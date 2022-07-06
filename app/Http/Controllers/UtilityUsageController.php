@@ -29,6 +29,7 @@ class UtilityUsageController extends Controller
         //     ->get();
          $utility_usages = UtilityUsage::paginate(15);
          $utilities = Utility::all();
+         
         //dd($utility_usages->meter->utility->get);
 
         //$meters = Meter::all();
@@ -177,22 +178,26 @@ class UtilityUsageController extends Controller
 
     public function tabiiygaz()
     {
-      $utility_usages = UtilityUsage::where('meter_id', 3)->paginate(15);
-      $utilities = Utility::all();
-      return view('utility_usages.tabiiygaz', compact('utility_usages', 'utilities'));
+      
+     
+     $utility_usages = UtilityUsage::whereIn('meter_id', [1,4])->orderBy('usage_date', 'desc')->paginate(15);
+     $utilities = Utility::all();
+
+               return view('utility_usages.index', compact('utility_usages', 'utilities'));
     }
 
     public function elektr()
     {
-      $utility_usages = UtilityUsage::where('meter_id', 3)->paginate(15);
+      
+      $utility_usages = UtilityUsage::whereIn('meter_id', [2,5])->orderBy('usage_date', 'desc')->paginate(15);
       $utilities = Utility::all();
-      return view('utility_usages.elektr', compact('utility_usages', 'utilities'));
-         
+       return view('utility_usages.index', compact('utility_usages', 'utilities'));
     }
 
     public function suvoqova()
     {
-       dd('suvoqova');
-         return view('utility_usages.suvoqova');
+      $utility_usages = UtilityUsage::where('meter_id', 3)->orderBy('usage_date', 'desc')->paginate(15);
+      $utilities = Utility::all();
+       return view('utility_usages.index', compact('utility_usages', 'utilities'));
     }
 }

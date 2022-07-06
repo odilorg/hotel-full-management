@@ -12,7 +12,7 @@
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active">Utilities</li>
+                        <li class="breadcrumb-item active">Utility usage for {{ $utilities->utility_name }}</li>
                     </ol>
                 </div>
             </div>
@@ -51,10 +51,10 @@
                                 {{ __('Add Your Utility usage') }}
                             </a>
                             @foreach ( $utilities as $utility )
-                            <a class="btn btn-info btn-sm" href="{{ route('utility_usages.'.$utility->id ) }}">
+                            <a class="btn btn-info btn-sm" href="{{ route('utility_usages.'.$utilities->id ) }}">
                                 <i class="fas fa-pencil-alt">
                                 </i>
-                                {{ $utility->utility_name }}
+                                {{ $utilities->utility_name }}
                             </a>    
                             @endforeach
                             
@@ -64,7 +64,7 @@
                                 <tr>
                                     <th>Sana</th>
                                     <th>Nomi</th>
-                                    <th>Ko'r #</th>
+                                   
                                     <th>Ko'r oxiri</th>
                                     <th>Ko'r oldingi</th>
                                     <th>Ko'r farqi</th>
@@ -113,6 +113,7 @@
                         <div class="pagination-block">
                             {{ $utility_usages->links('admin.layouts.paginationlinks') }}
                           </div>
+                       
                     </div>
                     <!-- /.card-body -->
                 </div>

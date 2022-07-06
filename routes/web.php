@@ -66,7 +66,9 @@ Route::get('/cleaning', [CleaningController::class, 'cleaning'])->name('cleaning
 Route::post('/cleaning/ready', [CleaningController::class, 'cleaning_ready'])->middleware(['auth', 'revalidate']);
 Route::post('/cleaning/notready', [CleaningController::class, 'cleaning_notready'])->middleware(['auth', 'revalidate']);
 
-
+Route::get('/tabiiygaz', [UtilityUsageController::class, 'tabiiygaz'])->name('Tabiiy Gaz')->middleware(['auth', 'revalidate']);    
+Route::get('/elektr', [UtilityUsageController::class, 'elektr'])->name('Elektr quvvat')->middleware(['auth', 'revalidate']);    
+Route::get('/suvoqova', [UtilityUsageController::class, 'suvoqova'])->name('Suv va Oqova')->middleware(['auth', 'revalidate']);  
 
 
 Route::middleware(['auth', 'revalidate', 'can:not-cleaning' ])->group(function () {
@@ -92,9 +94,7 @@ Route::middleware(['auth', 'revalidate', 'can:not-cleaning' ])->group(function (
     
     ]);
 
-    Route::get('/utility_usages/tabiiygaz/1', [UtilityUsageController::class, 'tabiiygaz'])->name('utility_usages.1')->middleware(['auth', 'revalidate']);    
-     Route::get('/utility_usages/elektr/2', [UtilityUsageController::class, 'elektr'])->name('utility_usages.2')->middleware(['auth', 'revalidate']);    
-     Route::get('/utility_usages/suvoqova/3', [UtilityUsageController::class, 'suvoqova'])->name('utility_usages.3')->middleware(['auth', 'revalidate']);    
+    
     // Route::post('/transports/auto', [TransportController::class, 'auto'])->name('auto');
     // Route::post('/transports/air', [TransportController::class, 'air'])->name('air');
     // Route::post('/transports/train', [TransportController::class, 'train'])->name('train');    
