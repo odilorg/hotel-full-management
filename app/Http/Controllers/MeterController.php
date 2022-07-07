@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Meter;
+use App\Models\Utility;
 use Illuminate\Http\Request;
 
 class MeterController extends Controller
@@ -75,8 +76,9 @@ class MeterController extends Controller
      */
     public function edit(Meter $meter)
     {
-        
-        return view('meters.edit', compact('meter'));
+        $utilities = Utility::all(); 
+      //  dd($utilities) ;   
+        return view('meters.edit', compact('meter', 'utilities'));
     }
 
     /**
@@ -86,9 +88,26 @@ class MeterController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Meter $meter)
     {
-        //
+        $attributes =  request()->validate([
+            'utility_id' => ['required', 'numeric'],
+            'meter_number' => ['required', 'max:255'],
+            'sertificate_expiration_date' => ['required'],
+            'sertificate_image' => ['image'],
+        ]);
+        if (isset($attributes['sertificate_image'])) {
+            
+            $attributes['sertificate_image'] = request()->file('sertificate_image')->store('sertificate_image');
+          }
+        //dd($attributes);
+             
+      $meter->update($attributes);
+     
+         session()->flash('success', 'Meter Updated');
+         session()->flash('type', 'Meter Update');
+
+        return redirect('meters');
     }
 
     /**

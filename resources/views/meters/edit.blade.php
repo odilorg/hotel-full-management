@@ -27,15 +27,16 @@
                 <div class="col-lg-6">
                     <div class="card">
                         <div class="card-body">
-                            <form action="{{ route('meters.store') }}" method="POST" enctype="multipart/form-data">
+                            <form action="/meters/{{ $meter->id }}" method="POST" enctype="multipart/form-data">
                                 @csrf
+                                @method('PUT')
                                 <div class="form-group">
                                     <label for="exampleSelectRounded0">Choose Utility</label>
                                     <select class="custom-select rounded-0" name="utility_id" id="exampleSelectRounded0">
-                                        <option value="">Choose Utility</option>
-                                        @foreach ($meters as $meter )
-                                        <option value="{{ $meter->utility->id }}">{{ $meter->utility->utility_name }}</option>
+                                        @foreach ($utilities as $utility )
+                                        <option {{ old('utility_id', $meter->utility_id) == $utility->id ? "selected" : "" }} value="{{ $utility->id }}">{{ $utility->utility_name }}</option>    
                                         @endforeach
+                                        
                                     </select>
                                     @error('utility_id')
                                     <p class="text-danger">{{ $message }}</p>
@@ -43,7 +44,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Kor'satgich zavod nomeri</label>
-                                    <input type="text" value="{{ old('meter_number') }}" name="meter_number" class="form-control  @error('meter_number')
+                                    <input type="text" value="{{ old('meter_number', $meter->meter_number) }}" name="meter_number" class="form-control  @error('meter_number')
                  {{ 'is-invalid' }} @enderror " id="inputError" placeholder="Kor'satgich zavod nomeri">
                                     @error('meter_number')
                                     <p class="text-danger">{{ $message }}</p>
@@ -52,7 +53,7 @@
                                 <div class="form-group">
                                     <label>{{ __('Sertifikat muddati') }}</label>
                                     <div class="input-group " id="reservationdate" data-target-input="nearest">
-                                        <input type="text" value="{{ old('sertificate_expiration_date') }}" name="sertificate_expiration_date" class="form-control date @error('sertificate_expiration_date')
+                                        <input type="text" value="{{ old('sertificate_expiration_date', $meter->sertificate_expiration_date) }}" name="sertificate_expiration_date" class="form-control date @error('sertificate_expiration_date')
                                           {{ 'is-invalid' }} @enderror datetimepicker-input"
                                             data-target="#reservationdate" />
                                         <div class="input-group-append" data-target="#reservationdate"
@@ -66,8 +67,9 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Sertificte image</label>
-                                    <input type="file" value="{{ old('sertificate_image') }}" name="sertificate_image" class="form-control @error('sertificate_image')
+                                    <input type="file" value="{{ old('sertificate_image', $meter->sertificate_image)  }}" name="sertificate_image" class="form-control @error('sertificate_image')
                   {{ 'is-invalid' }} @enderror" id="exampleInputEmail1" >
+                  <img src="{{ asset('storage/' . $meter->sertificate_image) }}" width="50px" height="50px" alt="">
                                     @error('sertificate_image')
                                     <p class="text-danger">{{ $message }}</p>
                                     @enderror
