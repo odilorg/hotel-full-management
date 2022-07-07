@@ -193,7 +193,7 @@ class UtilityUsageController extends Controller
     {
       //dd('gaz');
      
-     $utility_usages = UtilityUsage::whereIn('meter_id', [1,4])->orderBy('usage_date', 'desc')->paginate(15);
+     $utility_usages = UtilityUsage::whereIn('meter_id', 3)->orderBy('usage_date', 'desc')->paginate(15);
      $utilities = Utility::all();
 
     return view('utility_usages.index', compact('utility_usages', 'utilities'));
@@ -202,14 +202,14 @@ class UtilityUsageController extends Controller
     public function elektr()
     {
       
-      $utility_usages = UtilityUsage::whereIn('meter_id', [2,5])->orderBy('usage_date', 'desc')->paginate(15);
+      $utility_usages = UtilityUsage::whereIn('meter_id', [1,2])->orderBy('usage_date', 'desc')->paginate(15);
       $utilities = Utility::all();
        return view('utility_usages.index', compact('utility_usages', 'utilities'));
     }
 
     public function suvoqova()
     {
-      $utility_usages = UtilityUsage::where('meter_id', 3)->orderBy('usage_date', 'desc')->paginate(15);
+      $utility_usages = UtilityUsage::where('meter_id', 4)->orderBy('usage_date', 'desc')->paginate(15);
       $utilities = Utility::all();
        return view('utility_usages.index', compact('utility_usages', 'utilities'));
     }
