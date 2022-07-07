@@ -66,7 +66,7 @@ class MeterController extends Controller
      */
     public function show($id)
     {
-       dd(Date::setLocale('uz'));
+       
     }
 
     /**
