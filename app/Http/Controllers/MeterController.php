@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Meter;
 use App\Models\Utility;
+use Jenssegers\Date\Date;
 use Illuminate\Http\Request;
 
 class MeterController extends Controller
@@ -65,7 +66,7 @@ class MeterController extends Controller
      */
     public function show($id)
     {
-        //
+       dd(Date::setLocale('uz'));
     }
 
     /**
