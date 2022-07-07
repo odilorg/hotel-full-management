@@ -63,12 +63,16 @@ class UtilityUsageController extends Controller
             'usage_date' => ['required'],
             'meter_latest' => ['required','numeric'],
             'meter_previous' => ['numeric', 'required'],
-           
+            'meter_image' => ['image'],
             'meter_id' => ['required', 'numeric'],
             
         ]);
         $attributes['meter_difference'] = $attributes['meter_latest'] - $attributes['meter_previous'];
-        $attributes['meter_image'] = request()->file('meter_image')->store('meter_image');
+        if (isset($attributes['meter_image'])) {
+            
+          $attributes['meter_image'] = request()->file('meter_image')->store('meter_image');
+        }
+        // $attributes['meter_image'] = request()->file('meter_image')->store('meter_image');
       //  dd($attributes);
              
         UtilityUsage::create($attributes);
@@ -102,8 +106,17 @@ class UtilityUsageController extends Controller
      
      //$date = Carbon::createFromFormat('Y-m-d', $utilityUsage->usage_date);
      $sana = Carbon::createFromFormat('Y-m-d', $utilityUsage->usage_date)
-                    ->format('F Y');
+                    ->format('m');
      //dd(substr($sana) );
+     $_monthsList = array(
+      "01"=>"Январ","02"=>"Феврал","03"=>"Март",
+      "04"=>"Апрел","05"=>"Май", "06"=>"Июн",
+      "07"=>"Июл","08"=>"Август","09"=>"Сентябрь",
+      "10"=>"Октябр","11"=>"Ноябр","12"=>"Декабр");
+       
+      $sana = $_monthsList[$sana];
+       
+    // / dd($sana);
      
         return view('utility_usages.show', compact('company', 'utility_name', 'utilityUsage', 'meters', 'sana'));
     }
