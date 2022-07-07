@@ -1,11 +1,13 @@
 <?php
 
+use App\Models\Utility;
 use App\Models\Inventory;
 use App\Models\Restaurant;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CargoController;
 use App\Http\Controllers\GuideController;
+use App\Http\Controllers\MeterController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\TicketController;
@@ -19,12 +21,11 @@ use App\Http\Controllers\InventoryController;
 use App\Http\Controllers\TourgroupController;
 use App\Http\Controllers\TransportController;
 use App\Http\Controllers\RestaurantController;
+use App\Http\Controllers\RoomRepairController;
 use App\Http\Controllers\ReservationController;
+use App\Http\Controllers\UtilityUsageController;
 use App\Http\Controllers\HotelreservationController;
 use App\Http\Controllers\AutocompleteSearchController;
-use App\Http\Controllers\RoomRepairController;
-use App\Http\Controllers\UtilityUsageController;
-use App\Models\Utility;
 
 /*
 |--------------------------------------------------------------------------
@@ -94,6 +95,7 @@ Route::middleware(['auth', 'revalidate', 'can:not-cleaning' ])->group(function (
         'roomrepairs' => RoomRepairController::class,
         'users' => UserController::class,
         'utility_usages' => UtilityUsageController::class,
+        'meters' => MeterController::class,
        
     
     ]);

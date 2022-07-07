@@ -375,13 +375,24 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             <p>Room Repairs</p>
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a href="{{ route('utility_usages.index'); }}"
-                            class="nav-link {{ (request()->is('utility_usages*')) ? 'active' : '' }}">
+                    <div class="dropdown">
+                        
+                        <a href="#" class="btn dropdown-toggle {{(request()->is('meters*') || request()->is('utility_usages*') ) ? 'btn-primary' : 'btn-secondary'; }} role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-expanded="false"">
                             <i class="nav-icon fas fa-lightbulb"></i>
-                            <p>Utility Usages</p>
+                            Utilities
                         </a>
-                    </li>
+                      
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                          <a class="dropdown-item" href={{ route('utility_usages.index'); }}
+                          
+                          
+                          <p>Utility Usages</p></a>
+                          <a class="dropdown-item" href="{{ route('meters.index'); }}">Meters</a>
+                          
+                        </div>
+                      </div>
+
+                    
                        @endcan
                        
                        @can('cleaning')

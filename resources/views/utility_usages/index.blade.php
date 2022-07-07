@@ -57,6 +57,7 @@
                                 {{ $utility->utility_name }}
                             </a>    
                             @endforeach
+                           
                             
                         </div>
                         <table class="table table-hover text-nowrap">
