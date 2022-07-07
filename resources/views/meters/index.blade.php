@@ -93,23 +93,23 @@
                                 <tr>
                                     <td>{{ $meter->utility->utility_name }} </span></td>
                                     <td>{{ $meter->meter_number }} </span></td>
-                                    <td>{{ $meter->sertificate_expiration_date  }}</td>
-                                    <td>{{ $meter->sertificate_image }}</td>
+                                    <td>{{ \Carbon\Carbon::parse($meter->sertificate_expiration_date )->format('d/m/Y') }}</td>
+                                    <td><a href="{{ asset('storage/' . $meter->sertificate_image) }}" data-lightbox="image-1"><img src="{{ asset('storage/' . $meter->sertificate_image) }}"  width="50px" height="50px" alt=""></a>  </td>
                                     
                                   
-                                    <td><a class="btn btn-primary btn-sm" href="expenses/{{ $meter->id }}">
+                                    <td><a class="btn btn-primary btn-sm" href="meters/{{ $meter->id }}">
                                             <i class="fas fa-folder">
                                             </i>
                                             View
                                         </a>
                                       
-                                       <a class="btn btn-info btn-sm" href="expenses/{{ $meter->id }}/edit">
+                                       <a class="btn btn-info btn-sm" href="meters/{{ $meter->id }}/edit">
                                         <i class="fas fa-pencil-alt">
                                         </i>
                                         Edit
                                     </a>  
                                        
-                                       <form action="/expenses/{{ $meter->id }}" method="post"
+                                       <form action="/meters/{{ $meter->id }}" method="post"
                                         class="float-left">
                                         @csrf
                                         @method('delete')

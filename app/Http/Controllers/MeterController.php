@@ -25,7 +25,8 @@ class MeterController extends Controller
      */
     public function create()
     {
-        //
+        $meters = Meter::all();
+        return view('meters.create', compact('meters'));
     }
 
     /**
@@ -36,7 +37,23 @@ class MeterController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $attributes =  request()->validate([
+            'utility_id' => ['required', 'numeric'],
+            'meter_number' => ['required', 'max:255'],
+            'sertificate_expiration_date' => ['required'],
+            'sertificate_image' => ['image'],
+        ]);
+        if (isset($attributes['sertificate_image'])) {
+            
+          $attributes['sertificate_image'] = request()->file('sertificate_image')->store('sertificate_image');
+        }
+      //  dd($attributes);
+             
+        Meter::create($attributes);
+         session()->flash('success', 'New Meter Created');
+         session()->flash('type', 'New Meter');
+
+        return redirect('meters');
     }
 
     /**
@@ -56,9 +73,10 @@ class MeterController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Meter $meter)
     {
-        //
+        
+        return view('meters.edit', compact('meter'));
     }
 
     /**

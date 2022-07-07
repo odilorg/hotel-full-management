@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Meter extends Model
 {
     use HasFactory;
+    protected $guarded = [];
     public function utility() {
         return $this->belongsTo(Utility::class);
     }
