@@ -6,6 +6,7 @@ use App\Models\Meter;
 use App\Models\Utility;
 use Jenssegers\Date\Date;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 
 class MeterController extends Controller
 {
@@ -49,7 +50,39 @@ class MeterController extends Controller
             
           $attributes['sertificate_image'] = request()->file('sertificate_image')->store('sertificate_image');
         }
-      //  dd($attributes);
+      // create cron job for telegram notification 1 month in advance of meter sertication expires
+      $telegram_api = $_ENV['TELEGRAMAPI'];
+        $cronjob_api = $_ENV['CRONJOBAPI'];
+        $sertif_date = $attributes['sertificate_expiration_date'];
+
+        $create_cron_job = Http::withToken($cronjob_api)->accept('application/json')->put('https://api.cron-job.org/jobs', [
+            'job' => [
+                'url' => 'https://api.telegram.org/bot{$apiToken}/sendMessage?chat_id=-653810568&text=test',
+            'enabled' => true,
+            'title' => 'Test',
+            'type' => 0,
+            'schedule' => [
+                'timezone' => 'Asia/Tashkent',
+                'hours' => [
+                    '0' => 9,
+                ],
+                'mdays' => [
+                    '0' => 8,
+                ],
+                'minutes' => [
+                    '0' => 0,
+                ],
+                'months' => [
+                    '0' => 7,
+                ],
+                'wdays' => [
+                    '0' => 5,
+                ],
+                
+            ],
+            ],
+          
+        ]);
              
         Meter::create($attributes);
          session()->flash('success', 'New Meter Created');

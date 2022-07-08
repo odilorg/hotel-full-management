@@ -17,7 +17,9 @@ class ReminderController extends Controller
     {
         //$reminders = Http::get('https://api.cron-job.org/');
         $telegram_api = $_ENV['TELEGRAMAPI'];
-    $response = Http::withToken('FcJZpmUzDEI0RLmSIdRqUPd2+SKter3vKhlZ8NoSCoQ=')->accept('application/json')->put('https://api.cron-job.org/jobs', [
+        $cronjob_api = $_ENV['CRONJOBAPI'];
+
+    $response = Http::withToken($cronjob_api)->accept('application/json')->put('https://api.cron-job.org/jobs', [
         'job' => [
             'url' => 'https://api.telegram.org/bot{$apiToken}/sendMessage?chat_id=-653810568&text=test',
         'enabled' => true,
