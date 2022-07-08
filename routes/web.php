@@ -17,6 +17,7 @@ use App\Http\Controllers\InkassaController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CleaningController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\ReminderController;
 use App\Http\Controllers\InventoryController;
 use App\Http\Controllers\TourgroupController;
 use App\Http\Controllers\TransportController;
@@ -96,6 +97,7 @@ Route::middleware(['auth', 'revalidate', 'can:not-cleaning' ])->group(function (
         'users' => UserController::class,
         'utility_usages' => UtilityUsageController::class,
         'meters' => MeterController::class,
+        'reminders' => ReminderController::class,
        
     
     ]);

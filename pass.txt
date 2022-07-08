@@ -1,1 +1,6 @@
 $2a$12$lBDtDAWJ9B8nJkY0TuIVgOBLsScSNAcq89A4QcKvjJU4G4zPZKfQC
+
+
+https://api.telegram.org/bot5323496366:AAH8s_B88_q3ycgUh0jRRgRU9nRz6-Uf4tQ/getUpdates/sendMessage?chat_id=-630860367&text=hi - cleaning group
+
+https://api.telegram.org/bot5323496366:AAH8s_B88_q3ycgUh0jRRgRU9nRz6-Uf4tQ/sendMessage?chat_id=-653810568&text=test - Hotel group Admin

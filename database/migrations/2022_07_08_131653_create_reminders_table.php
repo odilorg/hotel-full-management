@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddSertificateImageToMetersTable extends Migration
+class CreateRemindersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,12 @@ class AddSertificateImageToMetersTable extends Migration
      */
     public function up()
     {
-        Schema::table('meters', function (Blueprint $table) {
-            $table->string('sertificate_image')->nullable();
+        Schema::create('reminders', function (Blueprint $table) {
+            $table->id();
+            $table->timestamps();
+            $table->string('reminder_name');
+            $table->date('reminder_due_date');
+            
         });
     }
 
@@ -25,8 +29,6 @@ class AddSertificateImageToMetersTable extends Migration
      */
     public function down()
     {
-        Schema::table('meters', function (Blueprint $table) {
-            Schema::dropIfExists('meters');
-        });
+        Schema::dropIfExists('reminders');
     }
 }
