@@ -19,38 +19,38 @@ class ReminderController extends Controller
         $telegram_api = $_ENV['TELEGRAMAPI'];
         $cronjob_api = $_ENV['CRONJOBAPI'];
 
-    $response = Http::withToken($cronjob_api)->accept('application/json')->put('https://api.cron-job.org/jobs', [
-        'job' => [
-            'url' => 'https://api.telegram.org/bot{$apiToken}/sendMessage?chat_id=-653810568&text=test',
-        'enabled' => true,
-        'title' => 'Test',
-        'type' => 0,
-        'schedule' => [
-            'timezone' => 'Asia/Tashkent',
-            'hours' => [
-                '0' => 19,
-            ],
-            'mdays' => [
-                '0' => 8,
-            ],
-            'minutes' => [
-                '0' => 30,
-            ],
-            'months' => [
-                '0' => 7,
-            ],
-            'wdays' => [
-                '0' => 5,
-            ],
+    // $response = Http::withToken($cronjob_api)->accept('application/json')->put('https://api.cron-job.org/jobs', [
+    //     'job' => [
+    //         'url' => 'https://api.telegram.org/bot{$apiToken}/sendMessage?chat_id=-653810568&text=test',
+    //     'enabled' => true,
+    //     'title' => 'Test',
+    //     'type' => 0,
+    //     'schedule' => [
+    //         'timezone' => 'Asia/Tashkent',
+    //         'hours' => [
+    //             '0' => 19,
+    //         ],
+    //         'mdays' => [
+    //             '0' => 8,
+    //         ],
+    //         'minutes' => [
+    //             '0' => 30,
+    //         ],
+    //         'months' => [
+    //             '0' => 7,
+    //         ],
+    //         'wdays' => [
+    //             '0' => 5,
+    //         ],
             
-        ],
-        ],
+    //     ],
+    //     ],
       
-    ]);
+    // ]);
 
-    //$response = Http::withToken('FcJZpmUzDEI0RLmSIdRqUPd2+SKter3vKhlZ8NoSCoQ=')->accept('application/json')->get('https://api.cron-job.org/jobs');
-    dd($response);
-    //dd($response->object());
+    $response = Http::withToken($cronjob_api)->accept('application/json')->get('https://api.cron-job.org/jobs');
+    //dd($response);
+    dd($response->object());
     }
 
     /**
