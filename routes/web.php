@@ -63,6 +63,7 @@ Route::post('/reservations/report', [ReservationController::class, 'report'])->n
 Route::post('/expenses/report', [ExpenseController::class, 'report'])->name('expenses.report');
 Route::post('/reservations/pdf', [ReservationController::class, 'createPDF'])->name('reservations.pdf');
 Route::post('/reservations/report-range', [ReservationController::class, 'report_range'])->name('reservations.report-range');
+Route::post('/reservations/closeday', [ReservationController::class, 'closeday'])->name('reservations.closeday');
 Route::get('/reservations/report-range/unpaid/{sana1}/{sana2}', [ReservationController::class, 'report_range_unpaid'])->name('reservations.report-range-unpaid');
 Route::post('/expenses/report-range', [ExpenseController::class, 'report_range'])->name('expenses.report-range');
 Route::get('/cleaning', [CleaningController::class, 'cleaning'])->name('cleaning.cleaning')->middleware(['auth', 'revalidate']);

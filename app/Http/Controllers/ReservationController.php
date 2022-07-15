@@ -14,6 +14,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Dompdf\Dompdf;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Carbon\Carbon;
+
 class ReservationController extends Controller
 {
     /**
@@ -243,12 +245,13 @@ class ReservationController extends Controller
             'payment_method' => ['required', 'max:255' ],
             'company_name' => ['max:255' ],
             'price' => ['required', 'numeric'],
-            'report_number' => ['max:255'],
+            'report_number' => ['required'],
             'ok_ytt' => ['max:255'],
         ]);
         $company_id = Company::where('company_name', $attributes['company_name'])
         ->first();
-            
+        //inserting todays date as report_number
+      //  $attributes['report_number']  = Carbon::createFromFormat('Y-m-d', now());  
            //dd($company_id);
             if ($company_id) {
                 $attributes['company_id'] =   $company_id->id;
@@ -376,12 +379,9 @@ public function report_range(Request $request) {
     $expense_report_narast = array();
     $from_date = $request->input('from_date');
     $to_date = $request->input('to_date');
-    //dd($from_date, $to_date);
-
     $categories = ExpenseCategory::get();
     $payments = PaymentType::get();
     $res_quan = Reservation::get();
-   
    
 //dd($categories);
 $total_expenses = DB::table('expenses')
@@ -461,6 +461,58 @@ public function report_range_unpaid( $sana1, $sana2) {
 
 
 
+}
+
+public function closeday(Request $request) {
+    
+    
+    $report_date = $request->input('report_number');
+    $expenses_by_categories = array();
+    $expenses_totals_by_categories = array();
+    $reservations_totals_by_payment_types = array();
+    $categories = ExpenseCategory::get();
+    $payments = PaymentType::get();
+    $res_quan = Reservation::get();
+   
+//dd($categories);
+$total_expenses = DB::table('expenses')
+->where('report_number', $report_date)
+->sum('expense_amount_uzs');
+//narastayushiy report 
+
+//dd($total_expenses);
+
+for ($i = 0; $i < count($payments); $i++){
+    for ($t = 0; $t < count($categories); $t++) {
+        $expenses_by_categories[ $payments[$i]->payment_type_name ][ $categories[$t]->category_name ] = DB::table('expenses')
+            ->where('report_number', $report_date)
+            ->where('payment_type_id', $payments[$i]->id)
+            ->where('expense_category_id', $categories[$t]->id)
+            ->sum('expense_amount_uzs');
+
+        $reservations_totals_by_payment_types[ $payments[$i]->payment_type_name ] = DB::table('reservations')
+            ->where('report_number', $report_date)
+            ->where('payment_method', $payments[$i]->payment_type_name )
+            ->sum('price');
+
+        $expenses_totals_by_categories[ $payments[$i]->payment_type_name ] = DB::table('expenses')
+            ->where('report_number', $report_date)
+            ->where('payment_type_id', $payments[$i]->id)
+            ->sum('expense_amount_uzs');
+    }
+   
+}
+
+    $total_sum_reservations = DB::table('reservations')
+                            ->where('report_number', $report_date)
+                            ->sum('price');
+        
+    $exchange = Reservation::exchange(now());
+
+return view('reservations.closeday', compact('report_date', 'expenses_by_categories', 'reservations_totals_by_payment_types', 'expenses_totals_by_categories', 'total_sum_reservations', 'exchange'));
+    
+    
+    
 }
 
     

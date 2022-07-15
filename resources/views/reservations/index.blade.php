@@ -158,16 +158,16 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Report</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Close the Day</h5>
                 <button type="button" class="close" data-dismiss="modal-report" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="{{ route('reservations.report') }}" method="POST">
+            <form action="{{ route('reservations.closeday') }}" method="POST">
                 @csrf
                 <div class="modal-body">
                     <div class="input-group " id="reservationdate" data-target-input="nearest">
-                        <input type="text" name="firstNight" class="form-control date @error('firstNight')
+                        <input type="text" name="report_number" class="form-control date @error('report_number')
         {{ 'is-invalid' }} @enderror datetimepicker-input" data-target="#reservationdate" />
                         <div class="input-group-append" data-target="#reservationdate"
                             data-toggle="datetimepicker">
