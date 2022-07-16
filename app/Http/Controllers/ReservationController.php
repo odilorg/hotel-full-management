@@ -75,8 +75,8 @@ class ReservationController extends Controller
           
         
         $auth = array();
-        $auth['apiKey'] = 'klfsdjkfkksdj234234';
-        $auth['propKey'] = 'hfgtryrt43534sadfsdf';
+        $auth['apiKey'] = $_ENV['BEDS24API'];
+        $auth['propKey'] = $_ENV['BEDS24PROPKEY'];
         
         $data = array();    
         $data['authentication'] = $auth;
@@ -513,6 +513,17 @@ return view('reservations.closeday', compact('report_date', 'expenses_by_categor
     
     
     
+}
+
+public function unpaid(Request $request) {
+    $unpaid_date = $request->input('unpaid');
+    
+    $unpaid_reservations = Reservation::where('lastNight', $unpaid_date)->where('payment_method', null)->get();
+
+    
+    
+    
+    dd($unpaid_reservations);
 }
 
     

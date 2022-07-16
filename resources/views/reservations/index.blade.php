@@ -70,6 +70,12 @@
                                 </i>
                                 Reports Date Range
                             </button>
+                            <button type="button" class="btn btn-primary" data-toggle="modal"
+                                data-target="#exampleModal-unpaid">
+                                <i class="fas fa-scroll">
+                                </i>
+                                Unpaid 
+                            </button>
                         </div>
                         <table class="table table-hover text-wrap" id="employee_table">
                             <thead>
@@ -168,6 +174,36 @@
                 <div class="modal-body">
                     <div class="input-group " id="reservationdate" data-target-input="nearest">
                         <input type="text" name="report_number" class="form-control date @error('report_number')
+        {{ 'is-invalid' }} @enderror datetimepicker-input" data-target="#reservationdate" />
+                        <div class="input-group-append" data-target="#reservationdate"
+                            data-toggle="datetimepicker">
+                            <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="exampleModal-unpaid" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Close the Day</h5>
+                <button type="button" class="close" data-dismiss="modal-report" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="{{ route('reservations.unpaid') }}" method="POST">
+                @csrf
+                <div class="modal-body">
+                    <div class="input-group " id="reservationdate" data-target-input="nearest">
+                        <input type="text" name="unpaid" class="form-control date @error('unpaid')
         {{ 'is-invalid' }} @enderror datetimepicker-input" data-target="#reservationdate" />
                         <div class="input-group-append" data-target="#reservationdate"
                             data-toggle="datetimepicker">
