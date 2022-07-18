@@ -2,6 +2,7 @@
 
 namespace App\Console;
 
+use Carbon\Carbon;
 use App\Models\Reservation;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
@@ -66,6 +67,11 @@ class Kernel extends ConsoleKernel
                 $attributes['roomId'] = $value->roomId ;
                 $attributes['firstNight'] = $value->firstNight ;
                 $attributes['lastNight'] = $value->lastNight ;
+                if($attributes['firstNight'] == $attributes['lastNight']) {
+                    $attributes['lastNight'] = Carbon::createFromFormat('Y-m-d', $attributes['lastNight'])->addDays(1); 
+                  //  dd($attributes['firstNight']); 
+                   // dd($attributes['lastNight']);
+                }
                 $attributes['numAdult'] = $value->numAdult ;
                 $attributes['price'] = $value->price ;
                 $attributes['price_uzs'] = $value->price * Reservation::exchange($value->firstNight);

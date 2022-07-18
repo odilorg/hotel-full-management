@@ -114,6 +114,11 @@ class ReservationController extends Controller
             $attributes['roomId'] = $value->roomId ;
             $attributes['firstNight'] = $value->firstNight ;
             $attributes['lastNight'] = $value->lastNight ;
+            if($attributes['firstNight'] == $attributes['lastNight']) {
+                $attributes['lastNight'] = Carbon::createFromFormat('Y-m-d', $attributes['lastNight'])->addDays(1); 
+              //  dd($attributes['firstNight']); 
+               // dd($attributes['lastNight']);
+            }
             $attributes['numAdult'] = $value->numAdult ;
             $attributes['price'] = $value->price ;
             $attributes['price_uzs'] = $value->price * Reservation::exchange($value->firstNight);
@@ -521,9 +526,9 @@ public function unpaid(Request $request) {
     $unpaid_reservations = Reservation::where('lastNight', $unpaid_date)->where('payment_method', null)->get();
 
     
+    return view('reservations.unpaid', compact('unpaid_date', 'unpaid_reservations'));    
     
-    
-    dd($unpaid_reservations);
+    //dd($unpaid_reservations);
 }
 
     
