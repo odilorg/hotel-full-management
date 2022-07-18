@@ -70,9 +70,9 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label for="exampleInputEmail1">Company Phone</label>
+                                    <label for="exampleInputEmail1">Company Buhgalter's Phone</label>
                                     <input type="text" value="{{ old('company_phone') }}" name="company_phone" class="form-control  @error('company_phone')
-                 {{ 'is-invalid' }} @enderror " id="inputError" placeholder="Company Phone">
+                 {{ 'is-invalid' }} @enderror " id="inputError" placeholder="Company Buhgalter's Phone">
                                     @error('company_phone')
                                     <p class="text-danger">{{ $message }}</p>
                                     @enderror

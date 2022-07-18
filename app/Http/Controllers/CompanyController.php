@@ -49,7 +49,7 @@ class CompanyController extends Controller
             'company_address_zip' => ['max:255'],
             'company_phone' => ['digits_between:9,12'],
             'company_email' => ['email'],
-            'company_inn' => ['required', 'digits:9'],
+            'company_inn' => ['required', 'digits:9', 'unique:companies,company_inn'],
             'company_acc_number' => ['required', 'digits:20'],
             'company_bank_name' => ['max:125','required'],
             'company_bank_mfo' => ['digits:5','required'],
