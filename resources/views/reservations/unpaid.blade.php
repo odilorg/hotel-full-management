@@ -119,7 +119,7 @@
                                             </i>
                                             View
                                         </a>
-                                        <a class="btn btn-info btn-sm" href="reservations/{{ $hotelres->id }}/edit">
+                                        <a class="btn btn-info btn-sm" href="{{ $hotelres->id }}/edit">
                                             <i class="fas fa-pencil-alt">
                                             </i>
                                             Edit
