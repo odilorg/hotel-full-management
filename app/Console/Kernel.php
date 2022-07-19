@@ -67,11 +67,7 @@ class Kernel extends ConsoleKernel
                 $attributes['roomId'] = $value->roomId ;
                 $attributes['firstNight'] = $value->firstNight ;
                 $attributes['lastNight'] = $value->lastNight ;
-                if($attributes['firstNight'] == $attributes['lastNight']) {
-                    $attributes['lastNight'] = Carbon::createFromFormat('Y-m-d', $attributes['lastNight'])->addDays(1); 
-                  //  dd($attributes['firstNight']); 
-                   // dd($attributes['lastNight']);
-                }
+                $attributes['lastNight'] = Carbon::createFromFormat('Y-m-d', $attributes['lastNight'])->addDays(1);
                 $attributes['numAdult'] = $value->numAdult ;
                 $attributes['price'] = $value->price ;
                 $attributes['price_uzs'] = $value->price * Reservation::exchange($value->firstNight);
