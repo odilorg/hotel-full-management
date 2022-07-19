@@ -128,7 +128,7 @@ class ReservationController extends Controller
     }
    }
       
-   dd($attributes);
+ //  dd($attributes);
    
 //    foreach ($response as $key => $value) {
 //             if (Reservation::where('bookId', $value->bookId )->count() > 0) {
