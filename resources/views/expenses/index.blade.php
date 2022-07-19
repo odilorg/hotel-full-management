@@ -91,11 +91,11 @@
                                 Reports Date Range
                             </button>
                         </div>
-                        <table class="table table-hover text-nowrap" id="employee_table">
+                        <table style="width: 100%;" class="table table-hover text-nowrap" id="employee_table">
                             <thead>
                                 <tr>
                                     <th>{{ __('Expense Date') }}</th>
-                                    <th>{{ __('Expense Name') }}</th>
+                                    <th>{{ __('Expense Names') }}</th>
                                     <th>{{ __('Amount') }}</th>
                                     <th>{{ __('Expense Type') }}</th>
                                     <th>{{ __('Payment Type') }}</th>
@@ -107,8 +107,8 @@
                             <tbody>
                                 @foreach ($expenses as $expense )
                                 <tr>
-                                    <td>{{ $expense->expense_date }} </span></td>
-                                    <td>{{ $expense->expense_name }} </span></td>
+                                    <td>{{ $expense->expense_date }} </td>
+                                    <td> {{ $expense->expense_name }} </td>
                                     <td>{{ number_format($expense->expense_amount_uzs,2,',',' ')  }}</td>
                                     <td>{{ $expense->category_name }}</td>
                                     <td>{{ $expense->payment_type_name }}</td>

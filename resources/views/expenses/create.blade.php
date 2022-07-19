@@ -30,15 +30,16 @@
                             <form action="{{ route('expenses.store') }}" method="POST">
                                 @csrf
                                 <div class="form-group">
-                                    <label for="exampleSelectRounded0">Report Number</label>
-                                    <select class="custom-select rounded-0" name="report_number"
-                                        id="exampleSelectRounded0">
-                                        <option value="">Select Report..</option>
-                                        @foreach ($reports as $report )
-                                        <option value="{{ $report->report_number }}">{{ $report->report_number }}
-                                        </option>
-                                        @endforeach
-                                    </select>
+                                    <label>{{ __('Expense Report') }}</label>
+                                    <div class="input-group " id="reservationdate" data-target-input="nearest">
+                                        <input type="text" value="{{ old('report_number') }}" name="report_number" class="form-control date @error('report_number')
+                                          {{ 'is-invalid' }} @enderror datetimepicker-input"
+                                            data-target="#reservationdate" />
+                                        <div class="input-group-append" data-target="#reservationdate"
+                                            data-toggle="datetimepicker">
+                                            <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                        </div>
+                                    </div>
                                     @error('report_number')
                                     <p class="text-danger">{{ $message }}</p>
                                     @enderror
