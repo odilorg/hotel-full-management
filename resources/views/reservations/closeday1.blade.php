@@ -42,7 +42,7 @@
                       
                       <!-- /.col -->
                       <div class="col-sm-4 invoice-col">
-                        <b>Reservations Report for {{ $report_date }}</b><br>
+                        <b>Report for {{ $report_date }}</b><br>
                         
                       </div>
                       <!-- /.col -->
@@ -58,36 +58,28 @@
                             <th>Naqd</th>
                             <th>Karta</th>
                             <th>Perech</th>
-                            <th>Unpaid</th>
                             <th>Total w/out unpaid</th>
                             <th>Total w/unpaid</th>
-                            <th>Booking Comission</th>
-                           
                           </tr>
                           </thead>
                           <tbody>
                           <tr>
-                            <td>{{ number_format($report['Naqd'],2,',',' ') }}</td>
-                            <td>{{ number_format($report['Karta'],2,',',' ') }}</td>
-                            <td>{{ number_format($report['Perech'],2,',',' ') }}</td>
-                            <td><a href="report-range/unpaid/{{ $from_date }}/{{ $to_date }}">{{ number_format($total_unpaid,2,',',' ') }}</a></td>
-                            <td>{{ number_format($total_report - $total_unpaid,2,',',' ') }}</td>
-                            <td>{{ number_format($total_report,2,',',' ') }}</td>
-                            <td>{{ number_format($report['total_booking_comission'],2,',',' ') }}</td>
-                            
+                            <td>{{ number_format($reservations_totals_by_payment_types['Naqd'],2,',',' ') }}</td>
+                            <td>{{ number_format($reservations_totals_by_payment_types['Karta'],2,',',' ') }}</td>
+                            <td>{{ number_format($reservations_totals_by_payment_types['Perech'],2,',',' ') }}</td>
+                            <td>{{ number_format($total_sum_reservations,2,',',' ') }}</td>
                           </tr>
-                         
                           </tbody>
                         </table>
                       </div>
                       <!-- /.col -->
                     </div>
-                    @foreach ($expense_report as $key => $value )
+                    @foreach ($expenses_by_categories as $key => $value )
                     <div class="row invoice-info">
                       
                       <!-- /.col -->
                       <div class="col-sm-4 invoice-col">
-                        <b>Date Range {{ $from_date }} - {{  $to_date }} - {{ $key }} - Total: - {{ number_format($expense_total[$key],2,',',' ')  }}Uzs {{ round($expense_total[$key] / $exchange, 2) }}$</b><br>
+                        <b>Report for {{ $report_date }} </b><br>
                         
                       </div>
                       <!-- /.col -->
@@ -108,7 +100,7 @@
                           <tbody>
                           <tr>
                             @foreach ($categories as $category)
-                            <th>{{ number_format($expense_report[$key][ $category->category_name],2,',',' ')  }}</th>
+                            <th>{{ number_format($expenses_by_categories[$key][ $category->category_name],2,',',' ')  }}</th>
                             @endforeach
                           </tr>
                          
@@ -119,18 +111,16 @@
                     </div>
                     @endforeach
                     <div class="col-6">
-                      <p class="lead">Amount Due for report N {{ $from_date }} - {{ $to_date }}</p>
-    
+                      <p class="lead">Amount Due for report N {{ $report_date }}</p>
                       <div class="table-responsive">
                         <table class="table">
                           <tbody><tr>
                             <th style="width:50%">Naqd:</th>
-                            <td>{{ number_format($report['Naqd'],2,',',' ') }}</td>
-                            
+                            <td>{{ number_format($total_sum_reservations['Naqd'],2,',',' ') }}</td>
                           </tr>
                           <tr>
                             <th>Booking Comission</th>
-                            <td>{{ number_format($report['total_booking_comission'],2,',',' ') }}</td>
+                            <td>{{ number_format($total_sum_reservations['total_booking_comission'],2,',',' ') }}</td>
                           </tr>
                           <tr>
                             <th>Naqd Expense:</th>

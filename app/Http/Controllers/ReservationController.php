@@ -465,7 +465,7 @@ public function report_range_unpaid( $sana1, $sana2) {
 
 }
 
-public function closeday(Request $request) {
+public function closeday1(Request $request) {
     
     
     $report_date = $request->input('report_number');
@@ -511,7 +511,7 @@ for ($i = 0; $i < count($payments); $i++){
         
     $exchange = Reservation::exchange(now());
 
-return view('reservations.closeday', compact('report_date', 'expenses_by_categories', 'reservations_totals_by_payment_types', 'expenses_totals_by_categories', 'total_sum_reservations', 'exchange'));
+return view('reservations.closeday', compact('categories', 'report_date', 'expenses_by_categories', 'reservations_totals_by_payment_types', 'expenses_totals_by_categories', 'total_sum_reservations', 'exchange'));
     
     
     
@@ -527,6 +527,68 @@ public function unpaid(Request $request) {
     
     //dd($unpaid_reservations);
 }
+
+
+public function closeday(Request $request) {
+       
+    $report_date = $request->input('report_number');
+    $report = array();
+    $report_narast = array();
+    $expense_report = array();
+    $expense_report_narast = array();
+    $from_date = $request->input('from_date');
+    $to_date = $request->input('to_date');
+    $categories = ExpenseCategory::get();
+    $payments = PaymentType::get();
+    $res_quan = Reservation::get();
+   
+//dd($categories);
+$total_expenses = DB::table('expenses')
+->where('report_number', $report_date)
+->sum('expense_amount_uzs');
+//narastayushiy report 
+
+for ($i = 0; $i < count($payments); $i++){
+    for ($t = 0; $t < count($categories); $t++) {
+        $expense_report[ $payments[$i]->payment_type_name ][ $categories[$t]->category_name ] = DB::table('expenses')
+            ->where('report_number', $report_date)
+            ->where('payment_type_id', $payments[$i]->id)
+            ->where('expense_category_id', $categories[$t]->id)
+            ->sum('expense_amount_uzs');
+
+        $report[ $payments[$i]->payment_type_name ] = DB::table('reservations')
+            ->where('report_number', $report_date)
+            ->where('payment_method', $payments[$i]->payment_type_name )
+            ->sum('price');
+
+        $expense_total[ $payments[$i]->payment_type_name ] = DB::table('expenses')
+            ->where('report_number', $report_date)
+            ->where('payment_type_id', $payments[$i]->id)
+            ->sum('expense_amount_uzs');
+    }
+   
+}
+
+ $total_report = DB::table('reservations')
+                            ->where('report_number', $report_date)
+                            ->sum('price');
+$total_unpaid = DB::table('reservations')
+                            ->where('report_number', $report_date)
+                            ->where('payment_method', null)
+                            ->sum('price');       
+ 
+        
+        $report['total_booking_comission'] = DB::table('reservations')
+                            ->where('report_number', $report_date)
+                            ->where('referer','Booking.com')
+                            ->sum('commission');  
+        $exchange = Reservation::exchange(now());
+
+return view('reservations.closeday', compact('report_date', 'total_unpaid', 'categories', 'report', 'expense_report', 'to_date', 'from_date', 'total_report', 'total_expenses', 'expense_total', 'exchange'));
+    
+}
+
+
 
     
 }
