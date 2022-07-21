@@ -355,6 +355,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         </a>
                     </li>
                     <li class="nav-item">
+                        <a href="{{ route('contracts.index'); }}"
+                            class="nav-link {{ (request()->is('contracts*')) ? 'active' : '' }}">
+                            <i class="nav-icon fas fa-receipt"></i>
+                            <p>Contracts</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
                         <a href="{{ route('inkassas.index'); }}"
                             class="nav-link {{ (request()->is('inkassas*')) ? 'active' : '' }}">
                             <i class="nav-icon fas fa-dollar-sign"></i>
