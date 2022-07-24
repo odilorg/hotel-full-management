@@ -75,7 +75,7 @@
                             <tbody>
                                 @foreach ($utility_usages as $usage )
                                 <tr>
-                                    <td>{{ $usage->usage_date }} </td>
+                                    <td>{{ \Carbon\Carbon::parse($usage->usage_date )->format('d/m/Y')    }} </td>
                                     <td>{{ $usage->meter->utility->utility_name }} </td>
                                     <td>{{ $usage->meter->meter_number }} </td>
                                     <td>{{ $usage->meter_latest }}</td>

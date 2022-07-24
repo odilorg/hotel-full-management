@@ -107,7 +107,7 @@
                             <tbody>
                                 @foreach ($expenses as $expense )
                                 <tr>
-                                    <td>{{ $expense->expense_date }} </td>
+                                    <td>{{ \Carbon\Carbon::parse($expense->expense_date )->format('d/m/Y')   }} </td>
                                     <td> {{ $expense->expense_name }} </td>
                                     <td>{{ number_format($expense->expense_amount_uzs,2,',',' ')  }}</td>
                                     <td>{{ $expense->category_name }}</td>

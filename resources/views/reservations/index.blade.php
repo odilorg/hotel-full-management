@@ -103,15 +103,15 @@
                                     <td>{{ $hotelres->bookId  }}</td>
                                     <td >{{ $hotelres->guestFirstName }} {{ $hotelres->guestName }}</td>
                                     <td>{{ $hotelres->room_number  }}</td>
-                                    <td>{{ $hotelres->firstNight  }}</span></td>
-                                    <td>{{ $hotelres->lastNight  }}</td>
+                                    <td>{{ \Carbon\Carbon::parse($hotelres->firstNight)->format('d/m/Y')  }}</span></td>
+                                    <td>{{ \Carbon\Carbon::parse($hotelres->lastNight)->format('d/m/Y')   }}</td>
                                     <td>{{ $hotelres->numAdult  }}</td>
                                     <td>{{ $hotelres->price  }}</td>
                                     <td>{{ number_format($hotelres->price_uzs,2,',',' ')   }}</td>
                                     <td>{{ $hotelres->commission }}</td>
                                     <td>{{ $hotelres->referer  }}</td>
                                     <td>{{ $hotelres->payment_method   }}</td>
-                                    <td>{{ Carbon\Carbon::parse($hotelres->report_number)->format('d-m-Y')    }}</td>
+                                    <td>{{ Carbon\Carbon::parse($hotelres->report_number)->format('d/m/Y')    }}</td>
                                     <td>{{ $hotelres->company_name   }}</td>
                                     <td>{{ $hotelres->ok_ytt   }}</td>
                                    
