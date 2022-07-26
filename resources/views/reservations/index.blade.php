@@ -86,6 +86,7 @@
                                     <th>CI Date</th>
                                     <th>CO Date</th>
                                     <th style="width:25px">Adults</th>
+                                    <th style="width:25px">N/P</th>
                                     <th>Price</th>
                                     <th style="width:125px">Price Uzs</th>
                                     <th style="width:35px">Comission</th>
@@ -106,12 +107,13 @@
                                     <td>{{ \Carbon\Carbon::parse($hotelres->firstNight)->format('d/m/Y')  }}</span></td>
                                     <td>{{ \Carbon\Carbon::parse($hotelres->lastNight)->format('d/m/Y')   }}</td>
                                     <td>{{ $hotelres->numAdult  }}</td>
+                                    <td>{{ $hotelres->nites  }}</td>
                                     <td>{{ $hotelres->price  }}</td>
                                     <td>{{ number_format($hotelres->price_uzs,2,',',' ')   }}</td>
                                     <td>{{ $hotelres->commission }}</td>
                                     <td>{{ $hotelres->referer  }}</td>
                                     <td>{{ $hotelres->payment_method   }}</td>
-                                    <td>{{ Carbon\Carbon::parse($hotelres->report_number)->format('d/m/Y')    }}</td>
+                                    <td>{{ Carbon\Carbon::parse($hotelres->report_number)->format('d/m/php Y')    }}</td>
                                     <td>{{ $hotelres->company_name   }}</td>
                                     <td>{{ $hotelres->ok_ytt   }}</td>
                                    

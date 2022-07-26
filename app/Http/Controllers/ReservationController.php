@@ -113,6 +113,7 @@ class ReservationController extends Controller
             $attributes['unitId'] = $value->unitId ;
             $attributes['roomId'] = $value->roomId ;
             $attributes['firstNight'] = $value->firstNight ;
+            $f_nite = new Carbon($value->firstNight);
             $attributes['lastNight'] = $value->lastNight ;
             $attributes['lastNight'] = Carbon::createFromFormat('Y-m-d', $attributes['lastNight'])->addDays(1);
             $attributes['numAdult'] = $value->numAdult ;
@@ -121,6 +122,10 @@ class ReservationController extends Controller
             $attributes['commission'] = $value->commission ;
             $attributes['referer'] = $value->referer ;
             $attributes['bookId'] = $value->bookId;
+          //  dd($attributes['lastNight']);
+            $diff_days = ($f_nite->diffInDays($attributes['lastNight']) );
+          //  dd($diff_days * $value->numAdult);
+            $attributes['nites'] = $diff_days * $value->numAdult;
             Reservation::create($attributes);
             $i=$i+1;
         }         
@@ -389,6 +394,19 @@ public function report_range(Request $request) {
 $total_expenses = DB::table('expenses')
 ->whereBetween('expense_date',[$from_date,$to_date])
 ->sum('expense_amount_uzs');
+//sum of pax
+$total_nites = DB::table('reservations')
+->whereBetween('firstNight',[$from_date,$to_date])
+->select(
+    DB::raw('sum((lastNight - firstNight)  ) as total_nights'))
+//->select(DB::raw('sum(numAdult)'))
+->get();
+//total adults
+$total_adults = DB::table('reservations')
+->whereBetween('firstNight',[$from_date,$to_date])
+->sum('numAdult');
+
+dd(($total_nites[0]->total_nights)*$total_adults);
 //narastayushiy report 
 
 for ($i = 0; $i < count($payments); $i++){
@@ -465,57 +483,7 @@ public function report_range_unpaid( $sana1, $sana2) {
 
 }
 
-// public function closeday1(Request $request) {
-    
-    
-//     $report_date = $request->input('report_number');
-//     $expenses_by_categories = array();
-//     $expenses_totals_by_categories = array();
-//     $reservations_totals_by_payment_types = array();
-//     $categories = ExpenseCategory::get();
-//     $payments = PaymentType::get();
-//     $res_quan = Reservation::get();
-   
-// //dd($categories);
-// $total_expenses = DB::table('expenses')
-// ->where('report_number', $report_date)
-// ->sum('expense_amount_uzs');
-// //narastayushiy report 
 
-// //dd($total_expenses);
-
-// for ($i = 0; $i < count($payments); $i++){
-//     for ($t = 0; $t < count($categories); $t++) {
-//         $expenses_by_categories[ $payments[$i]->payment_type_name ][ $categories[$t]->category_name ] = DB::table('expenses')
-//             ->where('report_number', $report_date)
-//             ->where('payment_type_id', $payments[$i]->id)
-//             ->where('expense_category_id', $categories[$t]->id)
-//             ->sum('expense_amount_uzs');
-
-//         $reservations_totals_by_payment_types[ $payments[$i]->payment_type_name ] = DB::table('reservations')
-//             ->where('report_number', $report_date)
-//             ->where('payment_method', $payments[$i]->payment_type_name )
-//             ->sum('price');
-
-//         $expenses_totals_by_categories[ $payments[$i]->payment_type_name ] = DB::table('expenses')
-//             ->where('report_number', $report_date)
-//             ->where('payment_type_id', $payments[$i]->id)
-//             ->sum('expense_amount_uzs');
-//     }
-   
-// }
-
-//     $total_sum_reservations = DB::table('reservations')
-//                             ->where('report_number', $report_date)
-//                             ->sum('price');
-        
-//     $exchange = Reservation::exchange(now());
-
-// return view('reservations.closeday', compact('categories', 'report_date', 'expenses_by_categories', 'reservations_totals_by_payment_types', 'expenses_totals_by_categories', 'total_sum_reservations', 'exchange'));
-    
-    
-    
-// }
 
 public function unpaid(Request $request) {
     $unpaid_date = $request->input('unpaid');
