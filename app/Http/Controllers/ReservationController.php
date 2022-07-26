@@ -493,10 +493,10 @@ public function unpaid(Request $request) {
     //dd($nites);
     foreach ($nites as $nite) {
        // dd( $nite->numAdult);
-       if($nite->firstNight < '2022-05-06') {
+       if($nite->firstNight > '2022-05-06') {
         $f_nite = new Carbon($nite->firstNight); 
         $l_nite = new Carbon($nite->lastNight);
-        $l_nite = $l_nite->addDays(1);
+       // $l_nite = $l_nite->addDays(1);
         $diff_days = ($f_nite->diffInDays($l_nite) );
        // $nite = new Reservation ;
         $nite->nites = $nite->numAdult *  $diff_days;
