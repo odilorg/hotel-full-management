@@ -66,6 +66,7 @@ class Kernel extends ConsoleKernel
                 $attributes['unitId'] = $value->unitId ;
                 $attributes['roomId'] = $value->roomId ;
                 $attributes['firstNight'] = $value->firstNight ;
+                $f_nite = new Carbon($value->firstNight);
                 $attributes['lastNight'] = $value->lastNight ;
                 $attributes['lastNight'] = Carbon::createFromFormat('Y-m-d', $attributes['lastNight'])->addDays(1);
                 $attributes['numAdult'] = $value->numAdult ;
@@ -74,6 +75,9 @@ class Kernel extends ConsoleKernel
                 $attributes['commission'] = $value->commission ;
                 $attributes['referer'] = $value->referer ;
                 $attributes['bookId'] = $value->bookId;
+                $diff_days = ($f_nite->diffInDays($attributes['lastNight']) );
+                //  dd($diff_days * $value->numAdult);
+                  $attributes['nites'] = $diff_days * $value->numAdult;
                 Reservation::create($attributes);
                 $i=$i+1;
             }         
