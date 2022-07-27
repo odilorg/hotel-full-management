@@ -394,19 +394,11 @@ public function report_range(Request $request) {
 $total_expenses = DB::table('expenses')
 ->whereBetween('expense_date',[$from_date,$to_date])
 ->sum('expense_amount_uzs');
-//sum of pax
+//sum of nites
 $total_nites = DB::table('reservations')
 ->whereBetween('firstNight',[$from_date,$to_date])
-->select(
-    DB::raw('sum((lastNight - firstNight)  ) as total_nights'))
-//->select(DB::raw('sum(numAdult)'))
-->get();
-//total adults
-$total_adults = DB::table('reservations')
-->whereBetween('firstNight',[$from_date,$to_date])
-->sum('numAdult');
+->sum('nites');
 
-dd(($total_nites[0]->total_nights)*$total_adults);
 //narastayushiy report 
 
 for ($i = 0; $i < count($payments); $i++){
@@ -445,7 +437,7 @@ $total_unpaid = DB::table('reservations')
                             ->sum('commission');  
         $exchange = Reservation::exchange(now());
 
-return view('reservations.report-range', compact('total_unpaid', 'categories', 'report', 'expense_report', 'to_date', 'from_date', 'total_report', 'total_expenses', 'expense_total', 'exchange'));
+return view('reservations.report-range', compact('total_nites', 'total_unpaid', 'categories', 'report', 'expense_report', 'to_date', 'from_date', 'total_report', 'total_expenses', 'expense_total', 'exchange'));
     
 }
    
