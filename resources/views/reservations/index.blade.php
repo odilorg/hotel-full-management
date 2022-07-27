@@ -113,7 +113,7 @@
                                     <td>{{ $hotelres->commission }}</td>
                                     <td>{{ $hotelres->referer  }}</td>
                                     <td>{{ $hotelres->payment_method   }}</td>
-                                    <td>{{ Carbon\Carbon::parse($hotelres->report_number)->format('d/m/php Y')    }}</td>
+                                    <td>{{ Carbon\Carbon::parse($hotelres->report_number)->format('d/m/Y')    }}</td>
                                     <td>{{ $hotelres->company_name   }}</td>
                                     <td>{{ $hotelres->ok_ytt   }}</td>
                                    
