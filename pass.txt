@@ -8,4 +8,3 @@ https://api.telegram.org/bot5323496366:AAECv7ayX2gdcUNEhkbUVT2MAr8tvVVdxuA/sendM
 https://api.telegram.org/bot5323496366:AAECv7ayX2gdcUNEhkbUVT2MAr8tvVVdxuA/sendMessage?chat_id=-723590802&text=test - Hotel group Admin
 
 
-e
