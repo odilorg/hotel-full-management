@@ -67,6 +67,10 @@ class UtilityUsageController extends Controller
             'meter_id' => ['required', 'numeric'],
             
         ]);
+
+        $utility_id = Meter::where('id',  $attributes['meter_id'])->first();
+        $attributes['utility_id'] =  $utility_id->utility_id;
+       // dd($attributes['utility_id']);
         $attributes['meter_difference'] = $attributes['meter_latest'] - $attributes['meter_previous'];
         if (isset($attributes['meter_image'])) {
             
@@ -95,6 +99,7 @@ class UtilityUsageController extends Controller
        
        $utility_name = $utilityUsage->meter->utility;
        $meters = $utilityUsage->meter;
+    //   dd($utility_name);
        //$t = Utility::find($utilityUsage->meter_id)->utilityUsages->first();
       // dd($utilityUsage->meter);
 
