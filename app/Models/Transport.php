@@ -10,19 +10,19 @@ class Transport extends Model
 {
     use HasFactory;
 
-    public function itinarary() {
+    public function itinarary()
+    {
         return $this->hasMany(Itinarary::class);
     }
 
-    public function tourgroup() {
+    public function tourgroup()
+    {
         return $this->belongsTo(Tourgroup::class);
     }
     protected $guarded = [];
 
-    public function setPickupOrDropoffDateTimeAttribute($value){
-       $this->attributes['pickup_or_dropoff_date_time'] = Carbon::parse($value)->format('Y-m-d\TH:i');
-   }
-   
-   
-
+    public function setPickupOrDropoffDateTimeAttribute($value)
+    {
+        $this->attributes['pickup_or_dropoff_date_time'] = Carbon::parse($value)->format('Y-m-d\TH:i');
+    }
 }

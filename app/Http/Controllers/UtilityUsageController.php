@@ -68,13 +68,12 @@ class UtilityUsageController extends Controller
             
         ]);
 
-        $utility_id = Meter::where('id',  $attributes['meter_id'])->first();
+        $utility_id = Meter::where('id', $attributes['meter_id'])->first();
         $attributes['utility_id'] =  $utility_id->utility_id;
        // dd($attributes['utility_id']);
         $attributes['meter_difference'] = $attributes['meter_latest'] - $attributes['meter_previous'];
         if (isset($attributes['meter_image'])) {
-            
-          $attributes['meter_image'] = request()->file('meter_image')->store('meter_image');
+            $attributes['meter_image'] = request()->file('meter_image')->store('meter_image');
         }
         // $attributes['meter_image'] = request()->file('meter_image')->store('meter_image');
       //  dd($attributes);
@@ -94,11 +93,11 @@ class UtilityUsageController extends Controller
      */
     public function show(UtilityUsage $utilityUsage)
     {
-       $company = Company::where('company_inn', 300965341)->first();
+        $company = Company::where('company_inn', 300965341)->first();
         
        
-       $utility_name = $utilityUsage->meter->utility;
-       $meters = $utilityUsage->meter;
+        $utility_name = $utilityUsage->meter->utility;
+        $meters = $utilityUsage->meter;
     //   dd($utility_name);
        //$t = Utility::find($utilityUsage->meter_id)->utilityUsages->first();
       // dd($utilityUsage->meter);
@@ -110,16 +109,16 @@ class UtilityUsageController extends Controller
      //Date::setLocale('uz');
      
      //$date = Carbon::createFromFormat('Y-m-d', $utilityUsage->usage_date);
-     $sana = Carbon::createFromFormat('Y-m-d', $utilityUsage->usage_date)
+        $sana = Carbon::createFromFormat('Y-m-d', $utilityUsage->usage_date)
                     ->format('m');
      //dd(substr($sana) );
-     $_monthsList = array(
-      "01"=>"Январ","02"=>"Феврал","03"=>"Март",
-      "04"=>"Апрел","05"=>"Май", "06"=>"Июн",
-      "07"=>"Июл","08"=>"Август","09"=>"Сентябрь",
-      "10"=>"Октябр","11"=>"Ноябр","12"=>"Декабр");
+        $_monthsList = array(
+        "01"=>"Январ","02"=>"Феврал","03"=>"Март",
+        "04"=>"Апрел","05"=>"Май", "06"=>"Июн",
+        "07"=>"Июл","08"=>"Август","09"=>"Сентябрь",
+        "10"=>"Октябр","11"=>"Ноябр","12"=>"Декабр");
        
-      $sana = $_monthsList[$sana];
+        $sana = $_monthsList[$sana];
        
     // / dd($sana);
      
@@ -167,12 +166,11 @@ class UtilityUsageController extends Controller
        
 
         if (isset($attributes['meter_image'])) {
-            
             $attributes['meter_image'] = request()->file('meter_image')->store('meter_image');
-          }
+        }
         //dd($attributes);
              
-      $utilityUsage->update($attributes);
+        $utilityUsage->update($attributes);
      
          session()->flash('success', 'New Usage Created');
          session()->flash('type', 'New Usage');
@@ -198,24 +196,24 @@ class UtilityUsageController extends Controller
     {
       //dd('gaz');
      
-     $utility_usages = UtilityUsage::where('meter_id', 3)->orderBy('usage_date', 'desc')->paginate(15);
-     $utilities = Utility::all();
+        $utility_usages = UtilityUsage::where('meter_id', 3)->orderBy('usage_date', 'desc')->paginate(15);
+        $utilities = Utility::all();
 
-    return view('utility_usages.index', compact('utility_usages', 'utilities'));
+        return view('utility_usages.index', compact('utility_usages', 'utilities'));
     }
 
     public function elektr()
     {
       
-      $utility_usages = UtilityUsage::whereIn('meter_id', [1,2])->orderBy('usage_date', 'desc')->paginate(15);
-      $utilities = Utility::all();
-       return view('utility_usages.index', compact('utility_usages', 'utilities'));
+        $utility_usages = UtilityUsage::whereIn('meter_id', [1,2])->orderBy('usage_date', 'desc')->paginate(15);
+        $utilities = Utility::all();
+        return view('utility_usages.index', compact('utility_usages', 'utilities'));
     }
 
     public function suvoqova()
     {
-      $utility_usages = UtilityUsage::where('meter_id', 4)->orderBy('usage_date', 'desc')->paginate(15);
-      $utilities = Utility::all();
-       return view('utility_usages.index', compact('utility_usages', 'utilities'));
+        $utility_usages = UtilityUsage::where('meter_id', 4)->orderBy('usage_date', 'desc')->paginate(15);
+        $utilities = Utility::all();
+        return view('utility_usages.index', compact('utility_usages', 'utilities'));
     }
 }

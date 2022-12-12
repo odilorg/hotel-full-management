@@ -48,30 +48,28 @@ class MeterController extends Controller
             'sertificate_image' => ['image'],
         ]);
         if (isset($attributes['sertificate_image'])) {
-            
-          $attributes['sertificate_image'] = request()->file('sertificate_image')->store('sertificate_image');
+            $attributes['sertificate_image'] = request()->file('sertificate_image')->store('sertificate_image');
         }
       // create cron job for telegram notification 1 month in advance of meter sertication expires
-      $telegram_api = $_ENV['TELEGRAMAPI'];
+        $telegram_api = $_ENV['TELEGRAMAPI'];
         $cronjob_api = $_ENV['CRONJOBAPI'];
         $sertif_date = $attributes['sertificate_expiration_date'];
         
         $days_to_expire = Carbon::createFromFormat('Y-m-d', $sertif_date)
                              ->format('d');
         $month_1_expire = Carbon::createFromFormat('Y-m-d', $sertif_date)->subDay(30)
-                             ->format('n');   
+                             ->format('n');
         $year_sert = $days_to_expire = Carbon::createFromFormat('Y-m-d', $sertif_date)
         ->format('Y');
         $year_now = $days_to_expire = Carbon::createFromFormat('Y-m-d', now())
         ->format('Y');
-        if(($year_sert - $year_now) > 1) {
+        if (($year_sert - $year_now) > 1) {
+        }
 
-        }                             
 
-
-       $utility_name = Utility::find($attributes['utility_id']);
+        $utility_name = Utility::find($attributes['utility_id']);
        //dd($utility_name->utility_name);
-       $utility_name = $utility_name->utility_name;    
+        $utility_name = $utility_name->utility_name;
 
         $message_text = $utility_name ." zavod raqami - " . $attributes['meter_number'] . " sertifikat muddati 1 oy qoldi";
         // /dd($message_text);
@@ -100,7 +98,7 @@ class MeterController extends Controller
                     '0' => -1,
                 ],
                 
-            ],
+                ],
             ],
           
         ]);
@@ -120,7 +118,6 @@ class MeterController extends Controller
      */
     public function show($id)
     {
-       
     }
 
     /**
@@ -131,8 +128,8 @@ class MeterController extends Controller
      */
     public function edit(Meter $meter)
     {
-        $utilities = Utility::all(); 
-      //  dd($utilities) ;   
+        $utilities = Utility::all();
+      //  dd($utilities) ;
         return view('meters.edit', compact('meter', 'utilities'));
     }
 
@@ -152,12 +149,11 @@ class MeterController extends Controller
             'sertificate_image' => ['image'],
         ]);
         if (isset($attributes['sertificate_image'])) {
-            
             $attributes['sertificate_image'] = request()->file('sertificate_image')->store('sertificate_image');
-          }
+        }
         //dd($attributes);
              
-      $meter->update($attributes);
+        $meter->update($attributes);
      
          session()->flash('success', 'Meter Updated');
          session()->flash('type', 'Meter Update');

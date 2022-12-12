@@ -40,14 +40,14 @@ class RoomRepairController extends Controller
          session()->flash('success', 'New Repair Created');
          session()->flash('type', 'New Repair');
 
-        return redirect('roomrepairs'); 
+        return redirect('roomrepairs');
     }
 
-    public function edit($id )
+    public function edit($id)
     {
        
-       $roomRepair = RoomRepair::where('id', $id)->first();
-       $room_numbers = Room::all()->pluck('room_number')->sort();
+        $roomRepair = RoomRepair::where('id', $id)->first();
+        $room_numbers = Room::all()->pluck('room_number')->sort();
      //  dd($roomRepair->room_number);
         return view('roomrepairs.edit', compact('roomRepair', 'room_numbers'));
     }
@@ -76,5 +76,4 @@ class RoomRepairController extends Controller
         session()->flash('type', 'Repair Delete');
         return redirect('roomrepairs');
     }
-    
 }

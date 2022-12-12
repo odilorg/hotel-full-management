@@ -19,8 +19,8 @@ class RestaurantController extends Controller
         $value = auth()->user()->id;
 
         $restaurants = Restaurant::with(['tourgroup'])
-       ->whereHas('tourgroup', function($q) use($value) {
-       $q->where('user_id', '=', $value); 
+        ->whereHas('tourgroup', function ($q) use ($value) {
+            $q->where('user_id', '=', $value);
         })
         ->paginate(13);
         
@@ -63,7 +63,7 @@ class RestaurantController extends Controller
         session()->flash('success', 'Restaurant has been added');
         session()->flash('type', 'New Restaurant');
 
-       return redirect('restaurants');    
+        return redirect('restaurants');
     }
 
     /**

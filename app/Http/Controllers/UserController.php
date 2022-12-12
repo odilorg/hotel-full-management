@@ -6,7 +6,6 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 
-
 class UserController extends Controller
 {
     /**
@@ -47,16 +46,15 @@ class UserController extends Controller
             
         ]);
       //  dd($attributes);
-      $attributes['password'] = bcrypt($request->password); 
-      $attributes['profile_image'] = request()->file('profile_image')->store('profile_image');
+        $attributes['password'] = bcrypt($request->password);
+        $attributes['profile_image'] = request()->file('profile_image')->store('profile_image');
         (User::create($attributes));
         
          session()->flash('success', 'User has been created');
          session()->flash('type', 'User Creation');
          
 
-        return redirect('users');  
-        
+        return redirect('users');
     }
 
     /**
@@ -104,10 +102,10 @@ class UserController extends Controller
             
         ]);
       // dd($attributes);
-      $attributes['password'] = bcrypt($request->password); 
-      if (isset($attributes['profile_image'])) {
-        $attributes['profile_image'] = request()->file('profile_image')->store('profile_image');
-      }
+        $attributes['password'] = bcrypt($request->password);
+        if (isset($attributes['profile_image'])) {
+            $attributes['profile_image'] = request()->file('profile_image')->store('profile_image');
+        }
      // dd($attributes);
         (User::find($id)->update($attributes));
         
@@ -115,7 +113,7 @@ class UserController extends Controller
          session()->flash('type', 'User Update');
          
 
-        return redirect('users');  
+        return redirect('users');
     }
 
     /**

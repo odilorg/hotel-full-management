@@ -12,30 +12,30 @@ class Hotelreservation extends Model
     
 
 
-    public function tourgroup() {
+    public function tourgroup()
+    {
         return $this->belongsTo(Tourgroup::class);
     }
     
    
 
-   protected $guarded = [];
+    protected $guarded = [];
    
-   public function setCheckinDateAttribute($value)
-   {
-       $this->attributes['checkin_date'] = Carbon::createFromFormat('d/m/Y', $value)->format('Y-m-d');
-   }
-   public function getCheckinDateAttribute($value)
-{
-    return Carbon::parse($value)->format('d/m/Y');
-}
+    public function setCheckinDateAttribute($value)
+    {
+        $this->attributes['checkin_date'] = Carbon::createFromFormat('d/m/Y', $value)->format('Y-m-d');
+    }
+    public function getCheckinDateAttribute($value)
+    {
+        return Carbon::parse($value)->format('d/m/Y');
+    }
 
-public function setCheckoutDateAttribute($value)
-   {
-       $this->attributes['checkout_date'] = Carbon::createFromFormat('d/m/Y', $value)->format('Y-m-d');
-   }
-   public function getCheckoutDateAttribute($value)
-{
-    return Carbon::parse($value)->format('d/m/Y');
-}
-
+    public function setCheckoutDateAttribute($value)
+    {
+           $this->attributes['checkout_date'] = Carbon::createFromFormat('d/m/Y', $value)->format('Y-m-d');
+    }
+    public function getCheckoutDateAttribute($value)
+    {
+        return Carbon::parse($value)->format('d/m/Y');
+    }
 }

@@ -9,7 +9,8 @@ class Guide extends Model
 {
     use HasFactory;
     
-    public function tourgroup() {
+    public function tourgroup()
+    {
         return $this->belongsTo(Tourgroup::class);
     }
     protected $guarded = [];

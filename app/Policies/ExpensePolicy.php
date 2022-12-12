@@ -18,7 +18,7 @@ class ExpensePolicy
      */
     public function viewAny(User $user)
     {
-       return true;
+        return true;
     }
 
     /**

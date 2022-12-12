@@ -28,10 +28,10 @@ class InventoryController extends Controller
                              ])
             ->paginate(13);
 
-            //$inventories = Product::with('inventory')->get();       
+            //$inventories = Product::with('inventory')->get();
 
 
-    //dd($inventories); 
+    //dd($inventories);
            // $inventories = Inventory::paginate(13);
         // $inventories = Inventory::with(['cargo'])->paginate(13);
 
@@ -75,20 +75,20 @@ class InventoryController extends Controller
         $product = DB::table('products')
             ->where('product_name', $product_name)
             ->first();
-        $attributes['product_id'] = $product->id;        
+        $attributes['product_id'] = $product->id;
 
 
        // $product = Product::with('cargo_id');
       // dd($attributes);
         $attributes['user_id'] = auth()->user()->id;
         $attributes['product_price_total'] =  $product->product_price * $attributes['product_quantity'];
-      $attributes['product_total_weight'] = $product->product_weight * $attributes['product_quantity'];
-       // dd($attributes['product_price_total'] ); 
+        $attributes['product_total_weight'] = $product->product_weight * $attributes['product_quantity'];
+       // dd($attributes['product_price_total'] );
         Inventory::create($attributes);
         session()->flash('success', 'Maxsulot yaratildi');
         session()->flash('type', 'Yangi Maxsulot');
 
-       return redirect('inventories'); 
+        return redirect('inventories');
     }
 
     /**
@@ -156,7 +156,4 @@ class InventoryController extends Controller
         $inventory->delete();
         return redirect('inventories');
     }
-
-   
-    
 }

@@ -9,11 +9,13 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Restaurant extends Model
 {
     use HasFactory;
-    public function tourgroup() {
+    public function tourgroup()
+    {
         return $this->belongsTo(Tourgroup::class);
     }
     protected $guarded = [];
-    public function setBookDateTimeAttribute($value){
+    public function setBookDateTimeAttribute($value)
+    {
         $this->attributes['book_date_time'] = Carbon::parse($value)->format('Y-m-d\TH:i');
     }
 }

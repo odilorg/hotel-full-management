@@ -9,10 +9,12 @@ class Inkassa extends Model
 {
     use HasFactory;
     protected $guarded = [];
-    public function inkassas() {
+    public function inkassas()
+    {
         return $this->hasMany(Inkassa::class);
     }
-    public function user() {
+    public function user()
+    {
         return $this->belongsTo(User::class);
     }
 }

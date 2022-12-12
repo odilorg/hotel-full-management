@@ -20,8 +20,8 @@ class GuideController extends Controller
         $value = auth()->user()->id;
 
         $guides = Guide::with(['tourgroup'])
-       ->whereHas('tourgroup', function($q) use($value) {
-       $q->where('user_id', '=', $value); 
+        ->whereHas('tourgroup', function ($q) use ($value) {
+            $q->where('user_id', '=', $value);
         })
         ->paginate(13);
     //    / dd($guides);
@@ -64,12 +64,7 @@ class GuideController extends Controller
          session()->flash('success', 'Guide has been assigned');
          session()->flash('type', 'New Guide');
 
-        return redirect('guides');    
-        
-
-
-
-
+        return redirect('guides');
     }
 
     /**

@@ -39,24 +39,30 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function tourgroups() {
+    public function tourgroups()
+    {
         return $this->hasMany(Tourgroup::class);
     }
-    public function reports() {
+    public function reports()
+    {
         return $this->hasMany(Report::class);
     }
 
     
-    public function products() {
+    public function products()
+    {
         return $this->hasMany(Product::class);
     }
-    public function inventories() {
+    public function inventories()
+    {
         return $this->hasMany(Inventory::class);
     }
-    public function cargos() {
+    public function cargos()
+    {
         return $this->hasMany(Cargo::class);
     }
-    public function hotelreservations() {
+    public function hotelreservations()
+    {
         //return $this->hasManyThrough(Hotelreservation::class, through: Tourgroup::class);
         return $this->hasManyThrough(Hotelreservation::class, Tourgroup::class);
     }

@@ -21,7 +21,7 @@ class ProductController extends Controller
      
    // dd($products);
        
-      return view('products.index', compact('products'));
+        return view('products.index', compact('products'));
     }
 
     /**
@@ -57,7 +57,7 @@ class ProductController extends Controller
         session()->flash('success', 'Maxsulot yaratildi');
         session()->flash('type', 'Yangi Maxsulot');
 
-       return redirect('products'); 
+        return redirect('products');
     }
 
     /**

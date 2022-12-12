@@ -76,7 +76,7 @@ $utilities = Utility::all();
 
 foreach ($utilities as $utility) {
  //echo $utility->utility_slug;
-      Route::get($utility->utility_slug , [UtilityUsageController::class, $utility->utility_slug])->name($utility->utility_slug)->middleware(['auth', 'revalidate']);    
+      Route::get($utility->utility_slug, [UtilityUsageController::class, $utility->utility_slug])->name($utility->utility_slug)->middleware(['auth', 'revalidate']);
 }
 
 
@@ -109,15 +109,8 @@ Route::middleware(['auth', 'revalidate', 'can:not-cleaning' ])->group(function (
     
     // Route::post('/transports/auto', [TransportController::class, 'auto'])->name('auto');
     // Route::post('/transports/air', [TransportController::class, 'air'])->name('air');
-    // Route::post('/transports/train', [TransportController::class, 'train'])->name('train');    
-    
+    // Route::post('/transports/train', [TransportController::class, 'train'])->name('train');
 });
 
 //Route::resource('users', UserController::class,)->middleware(['revalidate']);
 //Route::get('/status', [TourgroupController::class, 'status'])->name('tourgroups_status');
-
-
-
-
-
-

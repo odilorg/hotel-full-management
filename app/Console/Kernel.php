@@ -31,7 +31,7 @@ class Kernel extends ConsoleKernel
             $auth['apiKey'] = $_ENV['BEDS24API'];
             $auth['propKey'] = $_ENV['BEDS24PROPKEY'];
             
-            $data = array();    
+            $data = array();
             $data['authentication'] = $auth;
             
             /* Restrict the bookings using any combination of the following */
@@ -50,41 +50,39 @@ class Kernel extends ConsoleKernel
             curl_setopt($ch, CURLOPT_URL, $url);
             curl_setopt($ch, CURLOPT_POSTFIELDS, $json);
             $result = curl_exec($ch);
-            curl_close ($ch);
+            curl_close($ch);
             $response = json_decode($result);
     //get data from Beds24 DB
             $beds = array();
          // dd($response);
-        $i=0;
+            $i=0;
     
-       foreach ($response as $key => $value) {
-        if ($value->status == 1 || $value->status == 2 ) {
-           // dd($value->guestFirstName);
-            if (Reservation::where('bookId', $value->bookId )->count() == 0) {
-                $attributes['guestFirstName'] = $value->guestFirstName;
-                $attributes['guestName'] = $value->guestName;
-                $attributes['unitId'] = $value->unitId ;
-                $attributes['roomId'] = $value->roomId ;
-                $attributes['firstNight'] = $value->firstNight ;
-                $f_nite = new Carbon($value->firstNight);
-                $attributes['lastNight'] = $value->lastNight ;
-                $attributes['lastNight'] = Carbon::createFromFormat('Y-m-d', $attributes['lastNight'])->addDays(1);
-                $attributes['numAdult'] = $value->numAdult ;
-                $attributes['price'] = $value->price ;
-                $attributes['price_uzs'] = $value->price * Reservation::exchange($value->firstNight);
-                $attributes['commission'] = $value->commission ;
-                $attributes['referer'] = $value->referer ;
-                $attributes['bookId'] = $value->bookId;
-                $diff_days = ($f_nite->diffInDays($attributes['lastNight']) );
-                //  dd($diff_days * $value->numAdult);
-                  $attributes['nites'] = $diff_days * $value->numAdult;
-                Reservation::create($attributes);
-                $i=$i+1;
-            }         
-            
-        }
-       }
-           
+            foreach ($response as $key => $value) {
+                if ($value->status == 1 || $value->status == 2) {
+                 // dd($value->guestFirstName);
+                    if (Reservation::where('bookId', $value->bookId)->count() == 0) {
+                         $attributes['guestFirstName'] = $value->guestFirstName;
+                         $attributes['guestName'] = $value->guestName;
+                         $attributes['unitId'] = $value->unitId ;
+                         $attributes['roomId'] = $value->roomId ;
+                         $attributes['firstNight'] = $value->firstNight ;
+                         $f_nite = new Carbon($value->firstNight);
+                         $attributes['lastNight'] = $value->lastNight ;
+                         $attributes['lastNight'] = Carbon::createFromFormat('Y-m-d', $attributes['lastNight'])->addDays(1);
+                         $attributes['numAdult'] = $value->numAdult ;
+                         $attributes['price'] = $value->price ;
+                         $attributes['price_uzs'] = $value->price * Reservation::exchange($value->firstNight);
+                         $attributes['commission'] = $value->commission ;
+                         $attributes['referer'] = $value->referer ;
+                         $attributes['bookId'] = $value->bookId;
+                         $diff_days = ($f_nite->diffInDays($attributes['lastNight']) );
+                         //  dd($diff_days * $value->numAdult);
+                         $attributes['nites'] = $diff_days * $value->numAdult;
+                         Reservation::create($attributes);
+                         $i=$i+1;
+                    }
+                }
+            }
         })->dailyAt('14:50');
     }
 
@@ -99,7 +97,4 @@ class Kernel extends ConsoleKernel
 
         require base_path('routes/console.php');
     }
-    
-
-
 }

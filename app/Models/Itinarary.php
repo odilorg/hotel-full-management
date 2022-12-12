@@ -11,9 +11,9 @@ class Itinarary extends Model
 {
     use HasFactory;
     protected $guarded = [];
-    public function transport() {
+    public function transport()
+    {
         return $this->belongsTo(Transport::class);
-
     }
     protected $casts= [
         'pickup_or_dropoff_or_marshrut' => 'array',
@@ -23,6 +23,4 @@ class Itinarary extends Model
         'driver_name' => 'array',
         'driver_tel' => 'array',
     ];
-
-
 }

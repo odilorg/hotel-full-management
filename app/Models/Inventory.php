@@ -9,17 +9,16 @@ class Inventory extends Model
 {
     use HasFactory;
     protected $guarded = [];
-    public function user() {
+    public function user()
+    {
         return $this->belongsTo(User::class);
-
     }
-    public function cargo() {
+    public function cargo()
+    {
         return $this->belongsTo(Cargo::class);
-
     }
-    public function products() {
+    public function products()
+    {
         return $this->hasMany(Product::class);
-
     }
 }
-

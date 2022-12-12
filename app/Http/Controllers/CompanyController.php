@@ -20,7 +20,7 @@ class CompanyController extends Controller
               
 
    // dd($companies);
-    return view('companies.index', compact('companies'));
+        return view('companies.index', compact('companies'));
     }
 
     /**
@@ -61,7 +61,7 @@ class CompanyController extends Controller
          session()->flash('success', 'New Company Created');
          session()->flash('type', 'New Company');
 
-        return redirect('companies'); 
+        return redirect('companies');
     }
 
     /**

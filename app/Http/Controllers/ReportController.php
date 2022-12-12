@@ -53,7 +53,7 @@ class ReportController extends Controller
         session()->flash('success', 'Report has been added');
         session()->flash('type', 'New Report');
 
-       return redirect('reports'); 
+        return redirect('reports');
     }
 
     /**

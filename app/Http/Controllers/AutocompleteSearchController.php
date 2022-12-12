@@ -17,31 +17,26 @@ class AutocompleteSearchController extends Controller
     public function query(Request $request)
     {
         $datas = Product::select("product_name")
-        ->where("product_name","LIKE","%{$request->input('query')}%")
+        ->where("product_name", "LIKE", "%{$request->input('query')}%")
         ->get();
-    $dataModified = array();
-     foreach ($datas as $data)
-     {
-       $dataModified[] = $data->product_name;
-     }
+        $dataModified = array();
+        foreach ($datas as $data) {
+            $dataModified[] = $data->product_name;
+        }
 
-    return response()->json($dataModified);
+        return response()->json($dataModified);
     }
 //search live for compay
-public function fill_company(Request $request)
+    public function fill_company(Request $request)
     {
         $datas = Company::select("company_name")
-        ->where("company_name","LIKE","%{$request->input('query')}%")
+        ->where("company_name", "LIKE", "%{$request->input('query')}%")
         ->get();
-    $dataModified = array();
-     foreach ($datas as $data)
-     {
-       $dataModified[] = $data->company_name;
-     }
+        $dataModified = array();
+        foreach ($datas as $data) {
+            $dataModified[] = $data->company_name;
+        }
 
-    return response()->json($dataModified);
+        return response()->json($dataModified);
     }
-
-
-
 }

@@ -22,7 +22,7 @@ class InkassaController extends Controller
         ->select('inkassas.*', 'firmas.firm_name')
         ->orderBy('created_at', 'desc')
         ->paginate(15);
-    $firmas = Firma::get();    
+        $firmas = Firma::get();
         for ($i=0; $i < count($firmas); $i++) {
             $total_ytt[$i] = DB::table('inkassas')
                 ->where('firm_id', $firmas[$i]->id)
@@ -64,15 +64,13 @@ class InkassaController extends Controller
             'report_id' => ['required'],
             'firm_id' => ['required'],
         ]);
-        $attributes['user_id'] = auth()->user()->id; 
+        $attributes['user_id'] = auth()->user()->id;
          // dd($attributes['total_amount']);
         Inkassa::create($attributes);
         session()->flash('success', 'Inkassa created');
         session()->flash('type', 'New Inkassa');
 
-       return redirect('inkassas');
-
-
+        return redirect('inkassas');
     }
 
     /**
@@ -94,7 +92,7 @@ class InkassaController extends Controller
      */
     public function edit(Inkassa $inkassa)
     {
-        $report_numbers = DB::table('reservations')->select('report_number')->whereNotNull('report_number')->distinct()->get(); 
+        $report_numbers = DB::table('reservations')->select('report_number')->whereNotNull('report_number')->distinct()->get();
         $firm_names = Firma::get();
         return view('inkassas.edit', compact('report_numbers', 'inkassa', 'firm_names'));
     }

@@ -19,6 +19,4 @@ class Utility extends Model
     {
         return $this->hasMany(Meter::class);
     }
-
-    
 }

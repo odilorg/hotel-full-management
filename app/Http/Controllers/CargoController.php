@@ -61,7 +61,7 @@ class CargoController extends Controller
         session()->flash('success', 'Cargo kiritildi');
         session()->flash('type', 'Yangi Cargo');
 
-       return redirect('cargos'); 
+        return redirect('cargos');
     }
 
     /**
@@ -75,7 +75,7 @@ class CargoController extends Controller
         
         $cargos = Inventory::join('cargos', 'inventories.cargo_id', '=', 'cargos.id')
             ->join('products', 'inventories.product_id', '=', 'products.id')
-            ->where('cargos.id',$cargo->id)
+            ->where('cargos.id', $cargo->id)
             
             ->select([
                 'inventories.*',
@@ -87,26 +87,24 @@ class CargoController extends Controller
            //  dd($cargos);
         $sum_cargos = Inventory::join('cargos', 'inventories.cargo_id', '=', 'cargos.id')
         ->join('products', 'inventories.product_id', '=', 'products.id')
-        ->where('cargos.id',$cargo->id)
+        ->where('cargos.id', $cargo->id)
         
         ->sum('inventories.product_total_weight');
           
 //calculations
 
-$nacenka =floatval($cargos[0]->margin_cargo);
+        $nacenka =floatval($cargos[0]->margin_cargo);
 //dd($nacenka);
-$i=-1;
-foreach ($cargos as $cargo) {
-    $i=$i+1;
-$perc[$i] = $cargo->product_total_weight / $sum_cargos * 100;
-$cargo_add[$i] = $perc[$i] * $cargo->cargo_total_sum / 100;
-$product_cargo_add[$i] = ($cargo->product_price + $cargo_add[$i]);
-}
-foreach($cargos as $object)
-{
-    $cargos_items[] = $object->toArray();
-    
-}
+        $i=-1;
+        foreach ($cargos as $cargo) {
+            $i=$i+1;
+            $perc[$i] = $cargo->product_total_weight / $sum_cargos * 100;
+            $cargo_add[$i] = $perc[$i] * $cargo->cargo_total_sum / 100;
+            $product_cargo_add[$i] = ($cargo->product_price + $cargo_add[$i]);
+        }
+        foreach ($cargos as $object) {
+            $cargos_items[] = $object->toArray();
+        }
 // $a = date_create($cargo->cargo_arrival_date);
 // $a = date_format($a,"Y-m-d" );
 
@@ -130,27 +128,25 @@ foreach($cargos as $object)
 //         //dd(session('error'));
 //         return redirect('cargos');
 //     }
-// }  
+// }
    //dd($kurs_dol);
 // $json = file_get_contents($url);
 // $kurs_dol = json_decode($json);
 // $kurs_dol =  floatval($kurs_dol[0]->Rate) + 100;
-  $kurs_dol = Reservation::exchange($cargo->cargo_arrival_date) ;                          
-if (count($cargos)) {
-    foreach ($product_cargo_add as $i=>$value) {
-        $rr = array('sell_price' => $value);
-        $qq = array('sell_price_uzs' =>  $value * $kurs_dol); 
-        $p = array('sell_price_margin' => $value * $nacenka / 100 + $value);
-        $pp = array('sell_price_margin_uzs' => ($value * $nacenka / 100 + $value) * $kurs_dol);
-        $w[] = array_merge($cargos_items[$i], $rr, $qq, $p, $pp  );
-    }
-    
- } else {
-    session()->flash('error', 'Maxsulotni mavjud emas Skladga kiriting');
-    //dd(session('error'));
-    return redirect('cargos'); 
-  
- } 
+        $kurs_dol = Reservation::exchange($cargo->cargo_arrival_date) ;
+        if (count($cargos)) {
+            foreach ($product_cargo_add as $i => $value) {
+                $rr = array('sell_price' => $value);
+                $qq = array('sell_price_uzs' =>  $value * $kurs_dol);
+                $p = array('sell_price_margin' => $value * $nacenka / 100 + $value);
+                $pp = array('sell_price_margin_uzs' => ($value * $nacenka / 100 + $value) * $kurs_dol);
+                $w[] = array_merge($cargos_items[$i], $rr, $qq, $p, $pp);
+            }
+        } else {
+            session()->flash('error', 'Maxsulotni mavjud emas Skladga kiriting');
+           //dd(session('error'));
+            return redirect('cargos');
+        }
 
 
 //dd($w);
@@ -198,8 +194,6 @@ if (count($cargos)) {
         $cargo->update($attributes);
         
         return redirect('cargos');
-        
-    
     }
 
     /**

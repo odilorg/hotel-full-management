@@ -11,7 +11,8 @@ class Meter extends Model
 {
     use HasFactory;
     protected $guarded = [];
-    public function utility() {
+    public function utility()
+    {
         return $this->belongsTo(Utility::class);
     }
 
@@ -19,7 +20,4 @@ class Meter extends Model
     {
         return $this->hasMany(UtilityUsage::class);
     }
-   
-
-   
 }

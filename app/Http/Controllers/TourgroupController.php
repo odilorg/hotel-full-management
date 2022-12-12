@@ -26,7 +26,7 @@ class TourgroupController extends Controller
      
     // dd($tourgroups);
        
-      return view('tourgroups.index', compact('tourgroups'));
+        return view('tourgroups.index', compact('tourgroups'));
     }
 
     /**
@@ -61,14 +61,14 @@ class TourgroupController extends Controller
         // $attributes['tourgroup_ci'] = Carbon::createFromFormat('m/d/Y', $request->tourgroup_ci)->format('Y-m-d');
         // $attributes['tourgroup_co'] = Carbon::createFromFormat('m/d/Y', $request->tourgroup_co)->format('Y-m-d');
     //    // $attributes['tourgroup_id'] =$request->get('tour_id');
-    $attributes['user_id'] = auth()->user()->id; 
-       (Tourgroup::create($attributes));
+        $attributes['user_id'] = auth()->user()->id;
+        (Tourgroup::create($attributes));
         
          session()->flash('success', 'Tour reservation has been created');
          session()->flash('type', 'Tour Reservation');
          
 
-        return redirect('tourgroups');  
+        return redirect('tourgroups');
     }
 
     /**
@@ -182,12 +182,13 @@ class TourgroupController extends Controller
         return view('tourgroups.show', compact(
             'transports_train',
             'transports_auto',
-            'transports_air', 
-            'tourgroup', 
+            'transports_air',
+            'tourgroup',
             'hotels',
             'tickets',
-            'restaurants', 
-            'guides'));
+            'restaurants',
+            'guides'
+        ));
     }
 
     /**

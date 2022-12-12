@@ -48,9 +48,9 @@ class ReminderController extends Controller
       
     // ]);
 
-    $response = Http::withToken($cronjob_api)->accept('application/json')->get('https://api.cron-job.org/jobs');
+        $response = Http::withToken($cronjob_api)->accept('application/json')->get('https://api.cron-job.org/jobs');
     //dd($response);
-    dd($response->object());
+        dd($response->object());
     }
 
     /**

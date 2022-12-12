@@ -28,20 +28,15 @@ class AuthServiceProvider extends ServiceProvider
         $this->registerPolicies();
 
         Gate::define('not-cleaning', function ($user) {
-            return in_array($user->role, [1,2]); 
-           
+            return in_array($user->role, [1,2]);
         });
         Gate::define('admin', function ($user) {
-            return $user->role == 1; 
-           
+            return $user->role == 1;
         });
 
         
         Gate::define('cleaning', function ($user) {
-            return in_array($user->role, [1,3]); 
-           
+            return in_array($user->role, [1,3]);
         });
-
-
     }
 }

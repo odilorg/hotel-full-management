@@ -10,8 +10,8 @@ class Room extends Model
 {
     use HasFactory;
 
-    public function reservation() {
+    public function reservation()
+    {
         return $this->hasOne(Reservation::class);
-
     }
 }

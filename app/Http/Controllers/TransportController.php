@@ -22,12 +22,12 @@ class TransportController extends Controller
        //$transports = Transport::all();
         $transports = Tourgroup::join('transports', 'transports.tourgroup_id', '=', 'tourgroups.id')
                     ->where('user_id', '=', auth()->user()->id)
-              		->select(['transports.transport_type',
+                    ->select(['transports.transport_type',
                             'transports.pickup_or_dropoff_date_time',
                             'tourgroups.tourgroup_name',
-                            'transports.extra_info', 
-                            'transports.transport_status', 
-                            'transports.pickup_or_dropoff_from', 
+                            'transports.extra_info',
+                            'transports.transport_status',
+                            'transports.pickup_or_dropoff_from',
                             'transports.pickup_or_dropoff_to',
                             'transports.id',
                               ])
@@ -63,9 +63,9 @@ class TransportController extends Controller
             'train_name' => ['max:255'],
             'train_ticket_class' => ['max:255'],
             'air_ticket_class'=> ['max:255'],
-            'extra_info_transport' => ['max:255'],          
+            'extra_info_transport' => ['max:255'],
             'pickup_or_dropoff_or_marshrut' => ['required'],
-            'extra_info' => ['max:255'],          
+            'extra_info' => ['max:255'],
             'pickup_or_dropoff_from' => ['required', 'max:255'],
             'pickup_or_dropoff_to' => ['required', 'max:255'],
             'driver_name' => ['max:255'],
@@ -76,12 +76,12 @@ class TransportController extends Controller
        
 
     //    dd($itin);
-    $attributes['tourgroup_id'] =$request->get('tourgroup_id');
+        $attributes['tourgroup_id'] =$request->get('tourgroup_id');
    // dd($transport);
-    (Transport::create($attributes));
-    session()->flash('success', 'Transport reservation has been created');
-    session()->flash('type', 'Trasport Reservation');
-       return redirect('transports');   
+        (Transport::create($attributes));
+        session()->flash('success', 'Transport reservation has been created');
+        session()->flash('type', 'Trasport Reservation');
+        return redirect('transports');
     }
 
     /**
@@ -92,8 +92,6 @@ class TransportController extends Controller
      */
     public function show($id)
     {
-       
-
     }
 
     /**
@@ -137,11 +135,5 @@ class TransportController extends Controller
 
     public function auto()
     {
-       
     }
-
-
-
-
-
 }

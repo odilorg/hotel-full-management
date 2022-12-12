@@ -20,8 +20,8 @@ class TicketController extends Controller
         $value = auth()->user()->id;
 
         $tickets = Ticket::with(['tourgroup'])
-       ->whereHas('tourgroup', function($q) use($value) {
-       $q->where('user_id', '=', $value); 
+        ->whereHas('tourgroup', function ($q) use ($value) {
+            $q->where('user_id', '=', $value);
         })
         ->paginate(13);
         
@@ -61,7 +61,7 @@ class TicketController extends Controller
             'tourgroup_id' => ['required'],
         ]);
         //$catalog = rand(1, 878547);
-        if (isset($attributes['ticket_file'] )) {
+        if (isset($attributes['ticket_file'])) {
             $attributes['ticket_file'] = request()->file('ticket_file')->store('ticket_file');
         }
         
@@ -69,7 +69,7 @@ class TicketController extends Controller
         session()->flash('success', 'Ticket has been added');
         session()->flash('type', 'New Ticket');
 
-       return redirect('tickets'); 
+        return redirect('tickets');
     }
 
     /**
@@ -118,7 +118,7 @@ class TicketController extends Controller
         ]);
         if (isset($attributes['ticket_file'])) {
             $attributes['ticket_file'] = request()->file('ticket_file')->store('ticket_file');
-          }
+        }
         $ticket->update($attributes);
         
         return redirect('tickets');

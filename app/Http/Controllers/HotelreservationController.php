@@ -22,8 +22,8 @@ class HotelreservationController extends Controller
         $value = auth()->user()->id;
 
         $hotelreservations = Hotelreservation::with(['tourgroup'])
-       ->whereHas('tourgroup', function($q) use($value) {
-       $q->where('user_id', '=', $value); 
+        ->whereHas('tourgroup', function ($q) use ($value) {
+            $q->where('user_id', '=', $value);
         })
         ->paginate(13);
         return view('hotelreservations.index', compact('hotelreservations'));
@@ -66,9 +66,7 @@ class HotelreservationController extends Controller
          session()->flash('success', 'Hotel reservation has been created');
          session()->flash('type', 'Hotel Reservation');
 
-        return redirect('hotelreservations');    
-
-        
+        return redirect('hotelreservations');
     }
 
     /**
@@ -91,11 +89,10 @@ class HotelreservationController extends Controller
     public function edit(Hotelreservation $hotelreservation)
     {
        
-       $tourgroup_name = $hotelreservation->tourgroup->tourgroup_name;
-       $hotelres = $hotelreservation;
+        $tourgroup_name = $hotelreservation->tourgroup->tourgroup_name;
+        $hotelres = $hotelreservation;
         $tourgroups = Tourgroup::with('user')->whereUserId(Auth::user()->id)->get();
         return view('hotelreservations.edit', compact('hotelres', 'tourgroups', 'tourgroup_name'));
-        
     }
 
     /**
@@ -145,5 +142,5 @@ class HotelreservationController extends Controller
        
         $hotelreservation->delete();
         return redirect('hotelreservations');
-}
+    }
 }

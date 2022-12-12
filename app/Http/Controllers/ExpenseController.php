@@ -43,7 +43,7 @@ class ExpenseController extends Controller
     public function create()
     {
        
-        $reports = DB::table('reservations')->select('report_number')->whereNotNull('report_number')->distinct()->get(); 
+        $reports = DB::table('reservations')->select('report_number')->whereNotNull('report_number')->distinct()->get();
         $expenses = ExpenseCategory::get();
         $payments = PaymentType::get();
         return view('expenses.create', compact('reports', 'expenses', 'payments'));
@@ -76,10 +76,7 @@ class ExpenseController extends Controller
         session()->flash('success', 'Expense has been added');
         session()->flash('type', 'New Expense');
 
-       return redirect('expenses'); 
-
-        
-
+        return redirect('expenses');
     }
 
     /**
@@ -104,7 +101,7 @@ class ExpenseController extends Controller
       
         
 
-        $report_numbers = DB::table('reservations')->select('report_number')->whereNotNull('report_number')->distinct()->get(); 
+        $report_numbers = DB::table('reservations')->select('report_number')->whereNotNull('report_number')->distinct()->get();
         $expense_categories = ExpenseCategory::get();
         $payment_types = PaymentType::get();
         //dd($report_numbers);
@@ -115,7 +112,7 @@ class ExpenseController extends Controller
         ->select('expenses.*', 'payment_types.payment_type_name', 'expense_categories.category_name')
         ->first();
        //dd($expenses);
-       return view('expenses.edit', compact('expenses', 'report_numbers', 'expense_categories', 'payment_types'));
+        return view('expenses.edit', compact('expenses', 'report_numbers', 'expense_categories', 'payment_types'));
     }
 
     /**
@@ -164,7 +161,8 @@ class ExpenseController extends Controller
     }
 
 
-    public function report_range(Request $request) {
+    public function report_range(Request $request)
+    {
        
         $report = array();
         $arrival_from = $request->input('from_date');
@@ -173,46 +171,42 @@ class ExpenseController extends Controller
         $payments = PaymentType::get();
        
 
-$total_expenses = DB::table('expenses')
-    ->whereBetween('expense_date', [$arrival_from, $arrival_to])
-    ->sum('expense_amount_uzs');
+        $total_expenses = DB::table('expenses')
+        ->whereBetween('expense_date', [$arrival_from, $arrival_to])
+        ->sum('expense_amount_uzs');
 
-for ($i = 0; $i < count($payments); $i++){
-    for ($t = 0; $t < count($categories); $t++) {
-        $expense_report[ $payments[$i]->payment_type_name ][ $categories[$t]->category_name ] = DB::table('expenses')
-            ->whereBetween('expense_date', [$arrival_from, $arrival_to])
-            ->where('payment_type_id', $payments[$i]->id)
-            ->where('expense_category_id', $categories[$t]->id)
-            ->sum('expense_amount_uzs');
+        for ($i = 0; $i < count($payments); $i++) {
+            for ($t = 0; $t < count($categories); $t++) {
+                $expense_report[ $payments[$i]->payment_type_name ][ $categories[$t]->category_name ] = DB::table('expenses')
+                    ->whereBetween('expense_date', [$arrival_from, $arrival_to])
+                    ->where('payment_type_id', $payments[$i]->id)
+                    ->where('expense_category_id', $categories[$t]->id)
+                    ->sum('expense_amount_uzs');
 
-        $report[ $payments[$i]->payment_type_name ] = DB::table('reservations')
-            ->whereBetween('expense_date', [$arrival_from, $arrival_to])
-            ->where('payment_method', $payments[$i]->payment_type_name )
-            ->sum('price');
+                $report[ $payments[$i]->payment_type_name ] = DB::table('reservations')
+                    ->whereBetween('expense_date', [$arrival_from, $arrival_to])
+                    ->where('payment_method', $payments[$i]->payment_type_name)
+                    ->sum('price');
 
-        $expense_total[ $payments[$i]->payment_type_name ] = DB::table('expenses')
-            ->whereBetween('expense_date', [$arrival_from, $arrival_to])
-            ->where('payment_type_id', $payments[$i]->id)
-            ->sum('expense_amount_uzs');
-    }
-   
-}
+                $expense_total[ $payments[$i]->payment_type_name ] = DB::table('expenses')
+                    ->whereBetween('expense_date', [$arrival_from, $arrival_to])
+                    ->where('payment_type_id', $payments[$i]->id)
+                    ->sum('expense_amount_uzs');
+            }
+        }
         $total_report = DB::table('reservations')
-                            ->where('report_number',$report_number)
+                            ->where('report_number', $report_number)
                             ->sum('price');
         
         $report['total_booking_comission'] = DB::table('reservations')
-                            ->where('report_number',$report_number)
-                            ->where('referer','Booking.com')
-                            ->sum('commission');  
+                            ->where('report_number', $report_number)
+                            ->where('referer', 'Booking.com')
+                            ->sum('commission');
         $exchange = Reservation::exchange(now());
 
                             
       //dd($exchange);
 
-return view('reservations.report', compact('report', 'expense_report', 'report_number', 'total_report', 'total_expenses', 'expense_total', 'exchange'));
-    
-}
-
-
+        return view('reservations.report', compact('report', 'expense_report', 'report_number', 'total_report', 'total_expenses', 'expense_total', 'exchange'));
+    }
 }

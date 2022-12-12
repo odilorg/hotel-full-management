@@ -11,9 +11,10 @@ class Reservation extends Model
 {
 
 
-    public static function exchange($exchange_date) {
+    public static function exchange($exchange_date)
+    {
         $a = date_create($exchange_date);
-        $a = date_format($a,"Y-m-d" );
+        $a = date_format($a, "Y-m-d");
         
         //dd($a);
         //kurs from cbu Uz + 100 som
@@ -32,32 +33,27 @@ class Reservation extends Model
 
 
 
-        if($response_json != '') {
+        if ($response_json != '') {
             try {
                 $response = json_decode($response_json);
                
                     
                    // dd($response[0]);
                     return $kurs_dol =  floatval($response[0]->Rate) +20;
-                    
-                    
-               
-            } catch(Exception $e) {
+            } catch (Exception $e) {
                 return session()->flash('error', 'Exchange website is down');
                 //dd(session('error'));
                 return redirect('home');
             }
-        } 
-
+        }
     }
 
 
     use HasFactory;
     protected $guarded = [];
 
-    public function room() {
+    public function room()
+    {
         return $this->belongsTo(Room::class);
     }
-
-
 }
