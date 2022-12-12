@@ -94,11 +94,32 @@ class UtilityUsageController extends Controller
     public function show(UtilityUsage $utilityUsage)
     {
         $company = Company::where('company_inn', 300965341)->first();
+        $sana = $utilityUsage->usage_date;
+        $meter_id = $utilityUsage->meter_id;
+        $meters_svet =[];
+        $meters = [];
         
-       
-        $utility_name = $utilityUsage->meter->utility;
+        if ($meter_id == 1 || $meter_id == 2 ) {
+        
+            $usage = DB::table('utility_usages')
+            ->where('usage_date' ,$sana)
+            ->whereIn('meter_id', [1,2] )
+            
+            ->get();
+            //dd($usage);
+            
+            $utility_name = $utilityUsage->meter->utility; 
+             $meters_svet = Meter::where('utility_id', 2)->get();
+             
+        } else {
+            $utility_name = $utilityUsage->meter->utility;
         $meters = $utilityUsage->meter;
-    //   dd($utility_name);
+        $usage = $utilityUsage;    
+        }
+        
+      
+     //$meters = $meters->toArray();
+       // dd($meters);
        //$t = Utility::find($utilityUsage->meter_id)->utilityUsages->first();
       // dd($utilityUsage->meter);
 
@@ -122,7 +143,7 @@ class UtilityUsageController extends Controller
        
     // / dd($sana);
      
-        return view('utility_usages.show', compact('company', 'utility_name', 'utilityUsage', 'meters', 'sana'));
+        return view('utility_usages.show', compact('meters_svet', 'company', 'utility_name', 'usage', 'utilityUsage', 'meters', 'sana'));
     }
 
     /**

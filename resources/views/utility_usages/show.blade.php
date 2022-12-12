@@ -55,11 +55,21 @@
                                   <td>{{ $company->offical_company_name }}</td>
                                   
                                 </tr>
+                                @forelse ($meters_svet as $meter)
                                 <tr>
-                                  <td>Шартнома:</td>
-                                  <td>{{ $meters->contract_number }} sana {{ \Carbon\Carbon::parse($meters->contract_date )->format('d/m/Y')   }}</td>
                                   
+                                  <td>Шартнома:</td>
+                                  
+                                  <td>{{ $meter->contract_number }} sana {{ \Carbon\Carbon::parse($meter->contract_date )->format('d/m/Y')   }} - schetchik {{ $meter->meter_number }}</td>  
                                 </tr>
+                                  @empty
+                                  <tr>
+                                    <td>Шартнома:</td>
+                                  <td>{{ $meters->contract_number }} sana {{ \Carbon\Carbon::parse($meters->contract_date )->format('d/m/Y')   }}</td>
+                                  </tr>
+                                  
+                                
+                                @endforelse
                                 <tr>
                                   <td>Х/р:</td>
                                   <td>{{ $company->company_acc_number }}</td>
@@ -88,7 +98,6 @@
                                   <tr>
                                     <td>Тел:</td>
                                     <td>{{ $company->company_phone }}</td>
-                                   
                                   </tr>
                               </tbody>
                             </table>
@@ -111,10 +120,26 @@
                                     <th style="text-align:center;">Курсатгич<br>завод раками</th>
                                     <th style="padding: 25px 0; text-align:center;">Олдинги<br> курсатгич</th>
                                     <th style="padding: 25px 0; text-align:center;">Охирги<br> курсатгич</th>
-                                    <th style="padding: 25px 0; text-align:center;">Фарки (Cувни<br> сарфи кум м.) </th>
+                                    <th style="padding: 25px 0; text-align:center;">Фарки  </th>
                                   </tr>
                                 </thead>
                                 <tbody>
+                                  
+
+                                  @forelse ($meters_svet as $index => $meter)
+                                  <tr>
+                                    <td>{{ $company->company_address_city . " ".$company->company_address_street }}</td>
+                                    <td></td>
+                                  
+                                   <td style="text-align:center;">{{ $meter->meter_number }}</td>  
+                                 
+                                    
+                                    <td style="text-align:center;">{{ $usage[$index]->meter_previous }}</td>
+                                    <td style="text-align:center;">{{ $usage[$index]->meter_latest }}</td>
+                                    <td style="text-align:center;">{{ $usage[$index]->meter_difference }}</td>
+                                    
+                                  </tr>  
+                                  @empty
                                   <tr>
                                     <td>{{ $company->company_address_city . " ".$company->company_address_street }}</td>
                                     <td></td>
@@ -124,6 +149,8 @@
                                     <td style="text-align:center;">{{ $utilityUsage->meter_difference }}</td>
                                     
                                   </tr>
+                                  @endforelse
+                                  
                                  
                                 </tbody>
                               </table>
@@ -184,11 +211,20 @@
                                   <td>{{ $company->offical_company_name }}</td>
                                   
                                 </tr>
+                                @forelse ($meters_svet as $meter)
                                 <tr>
+                                
                                   <td>Шартнома:</td>
-                                  <td>{{ $meters->contract_number }} sana {{ \Carbon\Carbon::parse($meters->contract_date )->format('d/m/Y')   }}</td>
                                   
+                                  <td>{{ $meter->contract_number }} sana {{ \Carbon\Carbon::parse($meter->contract_date )->format('d/m/Y')   }} - schetchik {{ $meter->meter_number }}</td>  
                                 </tr>
+                                  @empty
+                                  <tr>
+                                  <td>{{ $meters->contract_number }} sana {{ \Carbon\Carbon::parse($meters->contract_date )->format('d/m/Y')   }}</td>
+                                  </tr>
+                                  
+                                
+                                @endforelse
                                 <tr>
                                   <td>Х/р:</td>
                                   <td>{{ $company->company_acc_number }}</td>
@@ -240,10 +276,25 @@
                                     <th style="text-align:center;">Курсатгич завод<br> раками</th>
                                     <th style="padding: 25px 0; text-align:center;">Олдинги<br> курсатгич</th>
                                     <th style="padding: 25px 0; text-align:center;">Охирги<br> курсатгич</th>
-                                    <th style="padding: 25px 0; text-align:center;">Фарки (Cувни<br> сарфи кум м.) </th>
+                                    <th style="padding: 25px 0; text-align:center;">Фарки  </th>
                                   </tr>
                                 </thead>
                                 <tbody>
+                                 
+                                  @forelse ($meters_svet as $index => $meter)
+                                  <tr>
+                                    <td>{{ $company->company_address_city . " ".$company->company_address_street }}</td>
+                                    <td></td>
+                                  
+                                   <td style="text-align:center;">{{ $meter->meter_number }}</td>  
+                                 
+                                    
+                                    <td style="text-align:center;">{{ $usage[$index]->meter_previous }}</td>
+                                    <td style="text-align:center;">{{ $usage[$index]->meter_latest }}</td>
+                                    <td style="text-align:center;">{{ $usage[$index]->meter_difference }}</td>
+                                    
+                                  </tr>  
+                                  @empty
                                   <tr>
                                     <td>{{ $company->company_address_city . " ".$company->company_address_street }}</td>
                                     <td></td>
@@ -253,6 +304,7 @@
                                     <td style="text-align:center;">{{ $utilityUsage->meter_difference }}</td>
                                     
                                   </tr>
+                                  @endforelse
                                  
                                 </tbody>
                               </table>
