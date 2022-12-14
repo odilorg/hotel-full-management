@@ -28,6 +28,8 @@ use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\UtilityUsageController;
 use App\Http\Controllers\HotelreservationController;
 use App\Http\Controllers\AutocompleteSearchController;
+use App\Http\Controllers\HotelController;
+
 
 /*
 |--------------------------------------------------------------------------

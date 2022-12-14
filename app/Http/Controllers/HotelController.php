@@ -14,7 +14,8 @@ class HotelController extends Controller
      */
     public function index()
     {
-        //
+        $hotels = Hotel::paginate(15);
+        return view('hotels.index', compact('hotels'));
     }
 
     /**
@@ -35,7 +36,21 @@ class HotelController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $attributes =  request()->validate([
+            'hotel_name' => ['required', 'max:255'],
+            'hotel_slug' => ['required','max:255'],
+            'hotel_address' => ['required', 'max:255'],
+            'hotel_room_quantity' => ['required', 'numeric', 'max:40'],
+            'hotel_phone' => ['required', 'digits_between:9,12'],
+            'hotel_email' => ['required', 'email'],
+            
+        ]);
+              
+        Hotel::create($attributes);
+         session()->flash('success', 'New Hotel Created');
+         session()->flash('type', 'New Hotel');
+
+        return redirect('hotels');
     }
 
     /**
@@ -57,7 +72,7 @@ class HotelController extends Controller
      */
     public function edit(Hotel $hotel)
     {
-        //
+        return view('hotels.edit', compact('hotel'));
     }
 
     /**
@@ -69,7 +84,20 @@ class HotelController extends Controller
      */
     public function update(Request $request, Hotel $hotel)
     {
-        //
+        $attributes =  request()->validate([
+            'hotel_name' => ['required', 'max:255'],
+            'hotel_slug' => ['required','max:255'],
+            'hotel_address' => ['required', 'max:255'],
+            'hotel_room_quantity' => ['required', 'numeric' ],
+            'hotel_phone' => ['required', 'digits_between:9,12'],
+            'hotel_email' => ['required', 'email'],
+            
+        ]);
+        $hotel->update($attributes);
+       
+        session()->flash('success', 'Hotel Updated');
+        session()->flash('type', 'Hotel Update');
+        return redirect('hotels');
     }
 
     /**
@@ -80,6 +108,7 @@ class HotelController extends Controller
      */
     public function destroy(Hotel $hotel)
     {
-        //
+        $hotel->delete();
+        return redirect('hotels');
     }
 }

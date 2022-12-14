@@ -20,7 +20,6 @@ class CreateHotelsTable extends Migration
             $table->string('hotel_slug');
             $table->string('hotel_address');
             $table->integer('hotel_room_quantity');
-            $table->string('hotel_room_types');
             $table->string('hotel_phone');
             $table->string('hotel_email');
 

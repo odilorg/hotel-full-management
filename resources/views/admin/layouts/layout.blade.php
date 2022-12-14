@@ -334,13 +334,21 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             </p>
                         </a>
                     </li> 
+                    <li class="nav-item">
+                        <a href="{{ route('hotels.index') }}"
+                            class="nav-link {{ (request()->is('hotels*')) ? 'active' : '' }}">
+                            <i class="nav-icon fas fa-hotel"></i>
+                            <p>
+                                Hotels
+                            </p>
+                        </a>
+                    </li> 
                       @endcan
-                        
                        @can('not-cleaning')
                        <li class="nav-item">
                         <a href="{{ route('reservations.index'); }}"
                             class="nav-link {{ (request()->is('reservations*')) ? 'active' : '' }}">
-                            <i class="nav-icon fas fa-hotel"></i>
+                            <i class="nav-icon fas fa-calendar-check"></i>
                             <p>
                                 Hotel Reservations
 
