@@ -102,6 +102,7 @@ Route::middleware(['auth', 'revalidate', 'can:not-cleaning' ])->group(function (
         'meters' => MeterController::class,
         'reminders' => ReminderController::class,
         'contracts' => ContractController::class,
+        'hotels' => HotelController::class,
        
     
     ]);
