@@ -29,16 +29,18 @@ class ExpenseController extends Controller
         ->orderBy('expenses.expense_date', 'desc')
         ->paginate(25);
         $hotels = Hotel::all();
+        //dd($hotels);
         
 
         $unique_report_number = $expenses->unique('report_number')->whereNotNull('report_number');
       
-            return view('expenses.index', compact('hotels', 'expenses', 'unique_report_number'));
+            return view('expenses.index', compact('hotels', 'expenses', 'unique_report_number', 'hotel_id'));
     }
 
 
     public function index()
     {
+       $hotel_id = "";
         $expenses = DB::table('expenses')
         ->join('expense_categories', 'expenses.expense_category_id', '=', 'expense_categories.id')
         ->join('payment_types', 'expenses.payment_type_id', '=', 'payment_types.id')
@@ -50,7 +52,7 @@ class ExpenseController extends Controller
 
         $unique_report_number = $expenses->unique('report_number')->whereNotNull('report_number');
       
-            return view('expenses.index', compact('hotels', 'expenses', 'unique_report_number'));
+            return view('expenses.index', compact('hotels', 'expenses', 'unique_report_number', 'hotel_id'));
     }
 
     /**

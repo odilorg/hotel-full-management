@@ -94,7 +94,20 @@
                             <select class="custom-select rounded-0" name="guide_status" id="hotel_select">
                                 <option value="">Choose Hotel</option>
                                 @foreach ($hotels as $hotel)
-                                <option value="{{ $hotel->id }}">{{ $hotel->hotel_name }}</option>
+                                <option value="{{ $hotel->id }}" 
+                                    <?php 
+                                 if (empty($hotel_id)) {
+                                    '';
+                                } elseif($hotel->id == $hotel_id) {
+                                    echo 'selected';
+                                }
+                                        
+                                        
+                                 ?> 
+                                
+                                
+                                
+                                 >{{ $hotel->hotel_name }}</option>
                                 @endforeach
                                 
                             </select>
