@@ -90,7 +90,16 @@
                                 </i>
                                 Reports Date Range
                             </button>
+                            <hr>
+                            <select class="custom-select rounded-0" name="guide_status" id="hotel_select">
+                                <option value="">Choose Hotel</option>
+                                @foreach ($hotels as $hotel)
+                                <option value="{{ $hotel->id }}">{{ $hotel->hotel_name }}</option>
+                                @endforeach
+                                
+                            </select>
                         </div>
+                        <hr>
                         <table style="width: 100%;" class="table table-hover text-nowrap" id="employee_table">
                             <thead>
                                 <tr>
@@ -137,10 +146,6 @@
                                             Delete
                                         </button>
                                     </form> 
-                                      
-                                        
-                                       
-                                       
                                     </td>
                                 </tr>
                                 @endforeach
@@ -245,7 +250,23 @@
         </div>
     </div>
 </div>
+<script>
+    $(document).ready(function(){
+        $("#hotel_select").change (function () { 
+            var id = $('#hotel_select option:selected').val()
+          
 
+            var url = window.location.origin;
+           
+            url = url + "/expenses/" +id+"/view";  // this number is dynamic actually
+           
+            window.location.href = url;
+ });
+        
+        
+        
+    });
+</script>
 
 
 

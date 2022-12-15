@@ -13,6 +13,10 @@ class Expense extends Model
     {
         return $this->belongsTo(User::class);
     }
+    public function hotel()
+    {
+        return $this->belongsTo(Hotel::class);
+    }
     public function expense_category()
     {
         return $this->hasOne(ExpenseCategory::class);

@@ -112,7 +112,7 @@ Route::middleware(['auth', 'revalidate', 'can:not-cleaning' ])->group(function (
     ]);
 
     
-    // Route::post('/transports/auto', [TransportController::class, 'auto'])->name('auto');
+    Route::get('/expenses/{hotel_id}/view', [ExpenseController::class, 'expense_hotels'])->name('expense_hotels');
     // Route::post('/transports/air', [TransportController::class, 'air'])->name('air');
     // Route::post('/transports/train', [TransportController::class, 'train'])->name('train');
 });
