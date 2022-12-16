@@ -111,6 +111,7 @@
                                     <p class="text-danger">{{ $message }}</p>
                                     @enderror
                                 </div>
+                                <input type="hidden" id="custId" name="hotel_id" value="{{ $id }}">
                                 <button type="submit">Submit</button>
                             </form>
                         </div>

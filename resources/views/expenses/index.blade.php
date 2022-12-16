@@ -71,11 +71,14 @@
                     <!-- /.card-header -->
                     <div class="card-body table-responsive p-0">
                         <div>
-                            <a class="btn btn-info btn-sm" href="{{ route('expenses.create') }}">
+                            @if ((!empty($hotel_id)))
+                            <a class="btn btn-info btn-sm" href="{{ route('expenses.create2', ['id' => $hotel_id]) }}">
                                 <i class="fas fa-pencil-alt">
                                 </i>
                                 {{ __('Add Your Expense') }}
                             </a>
+                            @endif
+                            
                         </div>
                         <div class="mt-1">
                             <button type="button" class="btn btn-primary" data-toggle="modal"

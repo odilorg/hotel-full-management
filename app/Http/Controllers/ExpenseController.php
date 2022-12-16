@@ -60,14 +60,15 @@ class ExpenseController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create2($id)
     {
        
         $reports = DB::table('reservations')->select('report_number')->whereNotNull('report_number')->distinct()->get();
         $expenses = ExpenseCategory::get();
         $payments = PaymentType::get();
-        return view('expenses.create', compact('reports', 'expenses', 'payments'));
+        return view('expenses.create', compact('reports', 'expenses', 'payments', 'id'));
     }
+
 
     /**
      * Store a newly created resource in storage.
@@ -80,6 +81,7 @@ class ExpenseController extends Controller
        
         $attributes =  request()->validate([
 
+            'hotel_id' => ['required'],
             'report_number' => ['required '],
             'expense_name' => ['required ', 'max:255'],
             'expense_date' => ['required'],
