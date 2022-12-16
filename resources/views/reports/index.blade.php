@@ -3,112 +3,137 @@
 @section('content')
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
-    <section class="content-header">
+    <div class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>{{ __('Reports') }}</h1>
-                </div>
+                    <h1 class="m-0">Reports</h1>
+                </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active">{{ __('Reports') }}</li>
+                        <li class="breadcrumb-item active">Reports</li>
                     </ol>
-                </div>
-            </div>
+                </div><!-- /.col -->
+            </div><!-- /.row -->
         </div><!-- /.container-fluid -->
-    </section>
+    </div>
+    <!-- /.content-header -->
 
     <!-- Main content -->
-    <section class="content">
+    <div class="content">
         <div class="container-fluid">
-        </div>
-        <!-- /.row -->
-        <div class="row">
-            <div class="col-12">
-                <div class="card">
-                    <div class="card-header">
-                        <h3 class="card-title"></h3>
-                        <div class="card-tools">
-                            <div class="input-group input-group-sm" style="width: 150px;">
-                                <input type="text" name="table_search" class="form-control float-right"
-                                    placeholder="Search">
-
-                                <div class="input-group-append">
-                                    <button type="submit" class="btn btn-default">
-                                        <i class="fas fa-search"></i>
-                                    </button>
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <form action="{{ route('reports.report') }}" method="POST">
+                                @csrf
+                                <div class="form-group">
+                                    <label for="exampleSelectRounded0">Choose Hotel</label>
+                                    <select class="custom-select rounded-0" name="hotel_id" id="hotel_select">
+                                        <option value="">Choose Hotel</option>
+                                    @foreach ($hotels as $hotel )
+                                        <option value="{{ $hotel->id }}">{{ $hotel->hotel_name }}</option>
+                                    @endforeach    
+                                        
+                                    </select>
+                                 
                                 </div>
-                            </div>
+                                <div class="form-group">
+                                    <label>{{ __('Start Report Date') }}</label>
+                                    <div class="input-group " id="reservationdate" data-target-input="nearest">
+                                        <input type="text" value="{{ old('start_report_date') }}" id="start_date" name="start_report_date" class="form-control date @error('start_report_date')
+                                          {{ 'is-invalid' }} @enderror datetimepicker-input"
+                                            data-target="#reservationdate" />
+                                        <div class="input-group-append" data-target="#reservationdate"
+                                            data-toggle="datetimepicker">
+                                            <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                        </div>
+                                    </div>
+                                    @error('start_report_date')
+                                    <p class="text-danger">{{ $message }}</p>
+                                    @enderror
+                                </div>
+                                <div class="form-group">
+                                    <label>{{ __('End Report Date') }}</label>
+                                    <div class="input-group " id="reservationdate" data-target-input="nearest">
+                                        <input type="text" value="{{ old('end_report_date') }}" id="end_date" name="end_report_date" class="form-control date @error('end_report_date')
+                                          {{ 'is-invalid' }} @enderror datetimepicker-input"
+                                            data-target="#reservationdate" />
+                                        <div class="input-group-append" data-target="#reservationdate"
+                                            data-toggle="datetimepicker">
+                                            <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                        </div>
+                                    </div>
+                                    @error('end_report_date')
+                                    <p class="text-danger">{{ $message }}</p>
+                                    @enderror
+                                </div>
+                               
                         </div>
                     </div>
-                    <!-- /.card-header -->
-                    <div class="card-body table-responsive p-0">
-                        <div>
-                            <a class="btn btn-info btn-sm" href="{{ route('reports.create') }}">
-                                <i class="fas fa-pencil-alt">
-                                </i>
-                                {{ __('Add Your Report') }}
-                            </a>
+                    <div class="card">
+                        <div class="card-body">
+                            <h2>Financial</h2>
+                            <table class="table table-hover text-nowrap">
+                                <thead>
+                                    <tr>
+                                        <th>Report Name</th>
+                                        <th>Action</th>
+                                        <th>Report Desc.</th>
+                                       
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    
+                                    <tr>
+                                        <td>Revenue</td>
+                                        <td>  <button type="submit" name="report_type" value ="1" class="btn btn-primary btn-sm">
+                                            <i class="fas fa-trash">
+                                            </i>
+                                            Report
+                                        </button></td>
+                                        <td>Revenue by Date</td>
+                                       
+                                    </tr>
+                                    <tr>
+                                        <td>Expenses</td>
+                                        <td> <button type="submit" name="report_type" value ="2" class="btn btn-primary btn-sm">
+                                            <i class="fas fa-trash">
+                                            </i>
+                                            Report
+                                        </button></td>
+                                        <td>Expense by Date</td>
+                                       
+                                    </tr>
+                                    <tr>
+                                        <td>Profits and Expenses</td>
+                                        <td> <button type="submit" name="report_type" value ="3" class="btn btn-primary btn-sm">
+                                            <i class="fas fa-trash">
+                                            </i>
+                                            Profir and Expense
+                                        </button></td>
+                                        <td>Profits and Expenses by Date</td>
+                                       
+                                    </tr>
+                                   
+    
+                                </tbody>
+                            </form>
+                            </table>
                         </div>
-                        <table class="table table-hover text-nowrap">
-                            <thead>
-                                <tr>
-                                    <th>{{ __('Report Date From') }}</th>
-                                    <th>{{ __('Report Date To') }}</th>
-                                    <th>{{ __('Report N') }}</th>
-                                    <th>{{ __('Actions') }}</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach ($reports as $report )
-                                <tr>
-                                    <td>{{ $report->report_date_from }} </td>
-                                    <td>{{ $report->report_date_to }} </td>
-                                    <td>{{ $report->report_number }} </td>
-                                    <td><a class="btn btn-primary btn-sm" href="reports/{{ $report->id }}">
-                                            <i class="fas fa-folder">
-                                            </i>
-                                            View
-                                        </a>
-                                        <a class="btn btn-info btn-sm" href="reports/{{ $report->id }}/edit">
-                                            <i class="fas fa-pencil-alt">
-                                            </i>
-                                            Edit
-                                        </a>
-                                        <form action="/reports/{{ $report->id }}" method="post"
-                                            class="float-left">
-                                            @csrf
-                                            @method('delete')
-                                            <button type="submit" class="btn btn-danger btn-sm">
-                                                <i class="fas fa-trash">
-                                                </i>
-                                                Delete
-                                            </button>
-                                        </form>
-                                    </td>
-                                </tr>
-                                @endforeach
-
-                            </tbody>
-                        </table>
-                        <div class="pagination-block">
-                            {{ $reports->links('admin.layouts.paginationlinks') }}
-                          </div>
                     </div>
-                    <!-- /.card-body -->
                 </div>
-                <!-- /.card -->
+                <!-- /.col-md-6 -->
             </div>
+            <!-- /.col-md-6 -->
         </div>
         <!-- /.row -->
-
-        <!-- /.row -->
-</div><!-- /.container-fluid -->
-</section>
+    </div><!-- /.container-fluid -->
+</div>
 <!-- /.content -->
 </div>
-
 
 
 

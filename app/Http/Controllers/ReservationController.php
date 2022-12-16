@@ -131,35 +131,7 @@ class ReservationController extends Controller
             }
         }
       
- //  dd($attributes);
-   
-//    foreach ($response as $key => $value) {
-//             if (Reservation::where('bookId', $value->bookId )->count() > 0) {
-//                 dd('exists');
-//                 session()->flash('error', 'This reservation exists');
-//                 return redirect('reservations');
-//             } else {
-//                 if ($value->status == 1 || $value->status == 2 ) {
-//                     $attributes['guestFirstName'] = $value->guestFirstName;
-//                     $attributes['guestName'] = $value->guestName;
-//                     $attributes['unitId'] = $value->unitId ;
-//                     $attributes['roomId'] = $value->roomId ;
-//                     $attributes['firstNight'] = $value->firstNight ;
-//                     $attributes['lastNight'] = $value->lastNight ;
-//                     $attributes['numAdult'] = $value->numAdult ;
-//                     $attributes['price'] = $value->price ;
-//                     $attributes['price_uzs'] = $value->price * Reservation::exchange($value->firstNight);
-//                     $attributes['commission'] = $value->commission ;
-//                     $attributes['referer'] = $value->referer ;
-//                     $attributes['bookId'] = $value->bookId;
-//                      }
-               
-//             }
-            
-           
-//          // dd(Reservation::where('bookId', $value->bookId )->count() == 0);
-        
-//            Reservation::create($attributes);
+ 
 //         }
         session()->flash('success', $i. ' records were created');
         session()->flash('type', 'Beds24');

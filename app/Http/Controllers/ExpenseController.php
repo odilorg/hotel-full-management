@@ -37,7 +37,7 @@ class ExpenseController extends Controller
             return view('expenses.index', compact('hotels', 'expenses', 'unique_report_number', 'hotel_id'));
     }
 
-
+    
     public function index()
     {
        $hotel_id = "";

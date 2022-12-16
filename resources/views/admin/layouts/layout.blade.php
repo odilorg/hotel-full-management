@@ -335,6 +335,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         </a>
                     </li> 
                     <li class="nav-item">
+                        <a href="{{ route('reports.index') }}"
+                            class="nav-link {{ (request()->is('reports*')) ? 'active' : '' }}">
+                            <i class="nav-icon fas fa-chart-pie"></i>
+                            <p>
+                                Reports
+                            </p>
+                        </a>
+                    </li> 
+                    <li class="nav-item">
                         <a href="{{ route('hotels.index') }}"
                             class="nav-link {{ (request()->is('hotels*')) ? 'active' : '' }}">
                             <i class="nav-icon fas fa-hotel"></i>
@@ -358,7 +367,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     <li class="nav-item">
                         <a href="{{ route('expenses.index'); }}"
                             class="nav-link {{ (request()->is('expenses*')) ? 'active' : '' }}">
-                            <i class="nav-icon fas fa-receipt"></i>
+                            <i class="nav-icon fas fa-comment-dollar"></i>
                             <p>Expenses</p>
                         </a>
                     </li>

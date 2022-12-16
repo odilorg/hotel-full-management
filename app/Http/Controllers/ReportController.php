@@ -2,8 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Hotel;
 use App\Models\Report;
+use App\Models\PaymentType;
+use App\Models\Reservation;
 use Illuminate\Http\Request;
+use App\Models\ExpenseCategory;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
 class ReportController extends Controller
@@ -15,12 +20,12 @@ class ReportController extends Controller
      */
     public function index()
     {
-        $reports = Report::paginate(13);
+       $hotels = Hotel::all();
        
      
         // dd($products);
             
-           return view('reports.index', compact('reports'));
+           return view('reports.index', compact('hotels'));
     }
 
     /**
@@ -28,10 +33,60 @@ class ReportController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function report_view(Request $request)
     {
-                
-        return view('reports.create');
+        $input = $request->all();
+        //get the default values from inputs
+        $hotel_id = $input['hotel_id'];
+        $start_date = $input['start_report_date'];
+        $end_date = $input['end_report_date'];
+        $report_type = $input['report_type'];
+        //dd($input);
+        // if report revenue id =2  - expenses report
+        $report = array();
+        $report_narast = array();
+        $expense_report = array();
+        $expense_total = array();
+        $expense_report_narast = array();
+        $from_date = $start_date;
+        $to_date = $end_date;
+        $categories = ExpenseCategory::get();
+        $payments = PaymentType::get();
+        
+   
+//dd($categories);
+        $total_expenses = DB::table('expenses')
+        ->whereBetween('expense_date', [$from_date,$to_date])
+        ->where('hotel_id', $hotel_id)
+        ->sum('expense_amount_uzs');
+        //dd($total_expenses);
+//sum of nites
+        // $total_nites = DB::table('reservations')
+        // ->whereBetween('firstNight', [$from_date,$to_date])
+        // ->sum('nites');
+
+//narastayushiy report
+
+        for ($i = 0; $i < count($payments); $i++) {
+            for ($t = 0; $t < count($categories); $t++) {
+                $expense_report[ $payments[$i]->payment_type_name ][ $categories[$t]->category_name ] = DB::table('expenses')
+                ->whereBetween('expense_date', [$from_date,$to_date])
+                ->where('payment_type_id', $payments[$i]->id)
+                ->where('expense_category_id', $categories[$t]->id)
+                ->where('hotel_id', $hotel_id)
+                ->sum('expense_amount_uzs');
+               
+                $expense_total[ $payments[$i]->payment_type_name ] = DB::table('expenses')
+                ->whereBetween('expense_date', [$from_date,$to_date])
+                ->where('payment_type_id', $payments[$i]->id)
+                ->where('hotel_id', $hotel_id)
+                ->sum('expense_amount_uzs');
+            }
+        }
+       
+       $exchange = Reservation::exchange(now());
+    // dd($to_date);
+        return view('reports.report_view' , compact('exchange', 'expense_total', 'expense_report', 'from_date', 'to_date', 'categories'));
     }
 
     /**
