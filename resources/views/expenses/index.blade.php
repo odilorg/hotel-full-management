@@ -126,6 +126,9 @@
                                     <th>{{ __('Payment Type') }}</th>
                                     <th>{{ __('Report') }}</th>
                                     <th>{{ __('Expense N') }}</th>
+                                    @if (empty($hotel_id))
+                                    <th>{{ __('Hotel') }}</th>
+                                    @endif
                                     <th>{{ __('Actions') }}</th>
                                 </tr>
                             </thead>
@@ -139,6 +142,9 @@
                                     <td>{{ $expense->payment_type_name }}</td>
                                     <td>{{ $expense->report_number }}</td>
                                     <td>{{ $expense->expense_number }}</td>
+                                    @if (empty($hotel_id))
+                                    <td>{{ $expense->hotel_name }}</td>
+                                    @endif
                                   
                                     <td><a class="btn btn-primary btn-sm" href="expenses/{{ $expense->id }}">
                                             <i class="fas fa-folder">

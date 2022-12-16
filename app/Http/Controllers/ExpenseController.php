@@ -41,13 +41,16 @@ class ExpenseController extends Controller
     public function index()
     {
        $hotel_id = "";
+       
         $expenses = DB::table('expenses')
         ->join('expense_categories', 'expenses.expense_category_id', '=', 'expense_categories.id')
         ->join('payment_types', 'expenses.payment_type_id', '=', 'payment_types.id')
-        ->select('expenses.*', 'payment_types.payment_type_name', 'expense_categories.category_name')
+        ->join('hotels', 'expenses.hotel_id', '=', 'hotels.id')
+        ->select('expenses.*', 'payment_types.payment_type_name', 'expense_categories.category_name', 'hotels.hotel_name')
         ->orderBy('expenses.expense_date', 'desc')
         ->paginate(25);
         $hotels = Hotel::all();
+      //  dd($expenses);
         
 
         $unique_report_number = $expenses->unique('report_number')->whereNotNull('report_number');
