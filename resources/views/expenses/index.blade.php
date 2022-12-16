@@ -280,7 +280,7 @@
 
             var url = window.location.origin;
            
-            url = url + "/expenses/" +id+"/view";  // this number is dynamic actually
+            url = url + "/expenses/" +"view/"+id;  // this number is dynamic actually
            
             window.location.href = url;
  });

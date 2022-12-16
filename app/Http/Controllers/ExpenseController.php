@@ -100,8 +100,10 @@ class ExpenseController extends Controller
         Expense::create($attributes);
         session()->flash('success', 'Expense has been added');
         session()->flash('type', 'New Expense');
+        
+        return redirect()->route('expense_hotels', ['hotel_id' => $attributes['hotel_id']]);
 
-        return redirect('expenses');
+        //return redirect('/expenses/dashboard');
     }
 
     /**
