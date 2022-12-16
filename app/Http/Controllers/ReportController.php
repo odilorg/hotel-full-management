@@ -43,7 +43,11 @@ class ReportController extends Controller
         $report_type = $input['report_type'];
         //dd($input);
         // if report revenue id =2  - expenses report
-        $hotel_name = Hotel::where('id', $hotel_id)->first();
+        if ($report_type == 1 || $report_type == 3) {
+            dd('under const');
+        }
+        if ($report_type == 2) {
+            $hotel_name = Hotel::where('id', $hotel_id)->first();
        // dd($hotel_name->hotel_name);
         $report = array();
         $report_narast = array();
@@ -87,6 +91,8 @@ class ReportController extends Controller
         }
        
        $exchange = Reservation::exchange(now());
+        }
+        
     // dd($to_date);
         return view('reports.report_view' , compact('hotel_name', 'exchange', 'expense_total', 'expense_report', 'from_date', 'to_date', 'categories'));
     }
