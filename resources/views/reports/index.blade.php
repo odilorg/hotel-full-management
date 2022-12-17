@@ -35,7 +35,8 @@
                                         <option value="">Choose Hotel</option>
                                     @foreach ($hotels as $hotel )
                                         <option value="{{ $hotel->id }}">{{ $hotel->hotel_name }}</option>
-                                    @endforeach    
+                                    @endforeach
+                                    <option value="all">All Hotels</option>    
                                         
                                     </select>
                                  

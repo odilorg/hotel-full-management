@@ -81,19 +81,8 @@
                             
                         </div>
                         <div class="mt-1">
-                            <button type="button" class="btn btn-primary" data-toggle="modal"
-                                data-target="#exampleModal-report">
-                                <i class="fas fa-scroll">
-                                </i>
-                                Reports
-                            </button>
-                            <button type="button" class="btn btn-primary" data-toggle="modal"
-                                data-target="#exampleModal-range">
-                                <i class="fas fa-scroll">
-                                </i>
-                                Reports Date Range
-                            </button>
-                            <hr>
+                            
+                           
                             <select class="custom-select rounded-0" name="guide_status" id="hotel_select">
                                 <option value="">Choose Hotel</option>
                                 @foreach ($hotels as $hotel)

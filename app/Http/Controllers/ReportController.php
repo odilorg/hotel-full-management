@@ -46,6 +46,51 @@ class ReportController extends Controller
         if ($report_type == 1 || $report_type == 3) {
             dd('under const');
         }
+    if ($hotel_id == "all") {
+        if ($report_type == 2) {
+            $hotel_name = "All Hotels";
+       // dd($hotel_name->hotel_name);
+        $report = array();
+        $report_narast = array();
+        $expense_report = array();
+        $expense_total = array();
+        $expense_report_narast = array();
+        $from_date = $start_date;
+        $to_date = $end_date;
+        $categories = ExpenseCategory::get();
+        $payments = PaymentType::get();
+        
+   
+//dd($categories);
+        $total_expenses = DB::table('expenses')
+        ->whereBetween('expense_date', [$from_date,$to_date])
+        ->sum('expense_amount_uzs');
+        //dd($total_expenses);
+//sum of nites
+        // $total_nites = DB::table('reservations')
+        // ->whereBetween('firstNight', [$from_date,$to_date])
+        // ->sum('nites');
+
+//narastayushiy report
+
+        for ($i = 0; $i < count($payments); $i++) {
+            for ($t = 0; $t < count($categories); $t++) {
+                $expense_report[ $payments[$i]->payment_type_name ][ $categories[$t]->category_name ] = DB::table('expenses')
+                ->whereBetween('expense_date', [$from_date,$to_date])
+                ->where('payment_type_id', $payments[$i]->id)
+                ->where('expense_category_id', $categories[$t]->id)
+                ->sum('expense_amount_uzs');
+               
+                $expense_total[ $payments[$i]->payment_type_name ] = DB::table('expenses')
+                ->whereBetween('expense_date', [$from_date,$to_date])
+                ->where('payment_type_id', $payments[$i]->id)
+                ->sum('expense_amount_uzs');
+            }
+        }
+       
+       $exchange = Reservation::exchange(now());
+    }
+    } else {
         if ($report_type == 2) {
             $hotel_name = Hotel::where('id', $hotel_id)->first();
        // dd($hotel_name->hotel_name);
@@ -91,7 +136,12 @@ class ReportController extends Controller
         }
        
        $exchange = Reservation::exchange(now());
-        }
+    }
+    }
+    
+    
+    
+   
         
     // dd($to_date);
         return view('reports.report_view' , compact('hotel_name', 'exchange', 'expense_total', 'expense_report', 'from_date', 'to_date', 'categories'));
