@@ -169,6 +169,7 @@ class ExpenseController extends Controller
         $expense->update($attributes);
         session()->flash('success', 'Expense has been updated');
         session()->flash('type', 'Expense Update');
+        
         return redirect('expenses');
     }
 
@@ -180,11 +181,13 @@ class ExpenseController extends Controller
      */
     public function destroy(Expense $expense)
     {
-       
+      // $hotel_id = $expense->hotels->id;
+      $hotel_id =$expense->hotel_id;
         $expense->delete();
         session()->flash('error', 'Expense has been deleted');
         session()->flash('type', 'Expense Delete');
-        return redirect('expenses');
+        return redirect()->route('expense_hotels', ['hotel_id' => $hotel_id]);
+     //   return redirect('expenses');
     }
 
 

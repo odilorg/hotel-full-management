@@ -152,7 +152,7 @@
                                             View
                                         </a>
                                       
-                                       <a class="btn btn-info btn-sm" href="expenses/{{ $expense->id }}/edit">
+                                       <a class="btn btn-info btn-sm" href="{{ route('expenses.edit', ['expense' => $expense->id]) }}">
                                         <i class="fas fa-pencil-alt">
                                         </i>
                                         Edit
