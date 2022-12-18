@@ -56,8 +56,8 @@
                     <div class="row invoice-info">
                       
                       <!-- /.col -->
-                      <div class="col-sm-4 invoice-col">
-                        <b>Date Range {{ $from_date }} - {{  $to_date }} - {{ $key }} - Total: - {{ number_format($expense_total[$key],2,',',' ')  }}Uzs {{ round($expense_total[$key] / $exchange, 2) }}$</b><br>
+                      <div class="row">
+                        <b>Date Range {{ \Carbon\Carbon::parse($from_date )->format('d/m/Y')  }} - {{  \Carbon\Carbon::parse($to_date )->format('d/m/Y')  }} - {{ $key }} - Total: - {{ number_format($expense_total[$key],2,',',' ')  }}Uzs ({{ round($expense_total[$key] / $exchange, 2) }}$)</b><br>
                         
                       </div>
                       <!-- /.col -->
