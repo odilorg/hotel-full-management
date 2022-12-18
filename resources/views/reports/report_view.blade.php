@@ -96,7 +96,7 @@
                       <!-- /.col -->
                     </div>
                     @endforeach
-                    
+                    <h3>{{ array_sum($expense_total) }}</h3>
                     <!-- /.row -->
       
                     
