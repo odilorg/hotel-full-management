@@ -73,7 +73,9 @@
                         <div class="mt-1">
                         </div>
                         <hr>
-                        <h3>Total () - {{ number_format($expenses_detailed_sum,2,',',' ')  }}</h1>
+                        <h3>Total {{ $category_name->category_name }} {{ $payment_type }} {{  \Carbon\Carbon::parse($from_date )->format('d/m/Y') }} 
+                            - {{  \Carbon\Carbon::parse($to_date )->format('d/m/Y') }} - {{ number_format($expenses_detailed_sum,2,',',' ')  }}Uzs 
+                            ({{ round($expenses_detailed_sum / $exchange, 2) }}$)</h1>
                         <table style="width: 100%;" class="table table-hover text-nowrap" id="employee_table">
                             <thead>
                                 <tr>

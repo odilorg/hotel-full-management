@@ -170,9 +170,13 @@ class ReportController extends Controller
         ->whereBetween('expense_date', [$from_date, $to_date])
         ->where('hotel_id', (int)$hotel_id)
         ->sum('expense_amount_uzs');
-        
+
+        $category_name = DB::table('expense_categories')
+        ->where('id', $category_name)
+        ->first();
+        $exchange = Reservation::exchange(now());
        //dd($expenses_detailed_sum);
-       return view('reports.report_detailed' , compact('expenses_detailed', 'expenses_detailed_sum', 'category_name', 'payment_type', 'from_date', 'to_date', 'hotel_id' ));
+       return view('reports.report_detailed' , compact('exchange', 'expenses_detailed', 'expenses_detailed_sum', 'category_name', 'payment_type', 'from_date', 'to_date', 'hotel_id' ));
     }
 
     /**
