@@ -174,9 +174,12 @@ class ReportController extends Controller
         $category_name = DB::table('expense_categories')
         ->where('id', $category_name)
         ->first();
+        $hotel_name = DB::table('hotels')
+        ->where('id', $hotel_id)
+        ->first();
         $exchange = Reservation::exchange(now());
-       //dd($expenses_detailed_sum);
-       return view('reports.report_detailed' , compact('exchange', 'expenses_detailed', 'expenses_detailed_sum', 'category_name', 'payment_type', 'from_date', 'to_date', 'hotel_id' ));
+      // dd($hotel_name->hotel_name);
+       return view('reports.report_detailed' , compact('hotel_name', 'exchange', 'expenses_detailed', 'expenses_detailed_sum', 'category_name', 'payment_type', 'from_date', 'to_date', 'hotel_id' ));
     }
 
     /**

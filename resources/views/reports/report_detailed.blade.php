@@ -33,12 +33,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>{{ __('Expenses') }}</h1>
+                    <h1>{{ __('Expenses') }} </h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active">{{ __('Expenses') }}</li>
+                        <li class="breadcrumb-item active">{{ __('Expenses') }} </li>
                     </ol>
                 </div>
             </div>
@@ -75,7 +75,7 @@
                         <hr>
                         <h3>Total {{ $category_name->category_name }} {{ $payment_type }} {{  \Carbon\Carbon::parse($from_date )->format('d/m/Y') }} 
                             - {{  \Carbon\Carbon::parse($to_date )->format('d/m/Y') }} - {{ number_format($expenses_detailed_sum,2,',',' ')  }}Uzs 
-                            ({{ round($expenses_detailed_sum / $exchange, 2) }}$)</h1>
+                            ({{ round($expenses_detailed_sum / $exchange, 2) }}$) For - {{ $hotel_name->hotel_name }}</h1>
                         <table style="width: 100%;" class="table table-hover text-nowrap" id="employee_table">
                             <thead>
                                 <tr>
