@@ -10,12 +10,8 @@
                   @if (!empty($hotel_name->hotel_name))
                   <h1>Hotel Report for {{ $hotel_name->hotel_name }}</h1>
                   @else
-                  <h1>Hotel Report for {{ $hotel_name }}</h1>
+                  <h1>Hotel Report for {{ __('All Hotels') }}</h1>
                   @endif
-
-                
-                 
-                
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -81,9 +77,17 @@
                           </thead>
                           <tbody>
                           <tr>
-                            @foreach ($categories as $category)
-                            <th>{{ number_format($expense_report[$key][ $category->category_name],2,',',' ')  }}</th>
-                            @endforeach
+                            @if (!empty($hotel_name->hotel_name))
+                              @foreach ($categories as $category)
+                               <th><a href="{{ url("/reports/{$category->id}/{$key}/{$from_date}/{$to_date}/{$hotel_name->id}"); }}">{{ number_format($expense_report[$key][ $category->category_name],2,',',' ')  }}</a>  </th>
+                              @endforeach
+                            @else
+                             @foreach ($categories as $category)
+                                <th><a href="{{ url("/reports/{$category->category_name}/{$key}/{$from_date}/{$to_date}"); }}">{{ number_format($expense_report[$key][ $category->category_name],2,',',' ')  }}</a>  </th>
+                             @endforeach
+                            @endif
+
+                          
                           </tr>
                          
                           </tbody>

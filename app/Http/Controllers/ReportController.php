@@ -48,7 +48,7 @@ class ReportController extends Controller
         }
     if ($hotel_id == "all") {
         if ($report_type == 2) {
-            $hotel_name = "All Hotels";
+            $hotel_name = "";
        // dd($hotel_name->hotel_name);
         $report = array();
         $report_narast = array();
@@ -138,13 +138,41 @@ class ReportController extends Controller
        $exchange = Reservation::exchange(now());
     }
     }
-    
-    
-    
-   
         
-    // dd($to_date);
+   //dd($categories);
         return view('reports.report_view' , compact('hotel_name', 'exchange', 'expense_total', 'expense_report', 'from_date', 'to_date', 'categories'));
+    }
+
+    public function report_detailed($category_name, $payment_type, $from_date, $to_date, $hotel_id)
+    {
+        $payment_id = DB::table('payment_types')
+        ->where('payment_type_name', $payment_type)
+        ->get();
+    //    dd(($payment_id[0]->id));
+    //    dd(gettype($payment_id));
+    $expenses_detailed = DB::table('expenses')
+        ->where('hotel_id', $hotel_id)
+        ->where('expense_category_id', $category_name)
+        ->where('payment_type_id', $payment_id[0]->id)
+        ->whereBetween('expense_date', [$from_date, $to_date])
+        ->join('expense_categories', 'expenses.expense_category_id', '=', 'expense_categories.id')
+        ->join('payment_types', 'expenses.payment_type_id', '=', 'payment_types.id')
+        ->join('hotels', 'expenses.hotel_id', '=', 'hotels.id')
+        ->select('expenses.*', 'payment_types.payment_type_name', 'expense_categories.category_name', 'hotels.hotel_name')
+        ->orderBy('expenses.expense_date', 'desc')
+        ->paginate(25);    
+
+        //dd($expenses_detailed);
+
+       $expenses_detailed_sum = DB::table('expenses')
+        ->where('expense_category_id', $category_name)
+        ->where('payment_type_id', $payment_id[0]->id)
+        ->whereBetween('expense_date', [$from_date, $to_date])
+        ->where('hotel_id', (int)$hotel_id)
+        ->sum('expense_amount_uzs');
+        
+       //dd($expenses_detailed_sum);
+       return view('reports.report_detailed' , compact('expenses_detailed', 'expenses_detailed_sum', 'category_name', 'payment_type', 'from_date', 'to_date', 'hotel_id' ));
     }
 
     /**

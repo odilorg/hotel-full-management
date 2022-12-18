@@ -114,8 +114,8 @@ Route::middleware(['auth', 'revalidate', 'can:not-cleaning' ])->group(function (
     
     Route::get('/expenses/view/{hotel_id}', [ExpenseController::class, 'expense_hotels'])->name('expense_hotels');
     Route::get('/expenses/{id}/create', [ExpenseController::class, 'create2']  )->name('expenses.create2');
-    
     Route::post('/reports/report', [ReportController::class, 'report_view'])->name('reports.report');
+    Route::get('/reports/{category_name}/{payment_type}/{from_date}/{to_date}/{hotel_id}', [ReportController::class, 'report_detailed'])->name('reports.detailed');
 });
 
 //Route::resource('users', UserController::class,)->middleware(['revalidate']);
