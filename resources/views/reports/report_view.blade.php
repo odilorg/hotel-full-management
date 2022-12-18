@@ -96,7 +96,9 @@
                       <!-- /.col -->
                     </div>
                     @endforeach
-                    <h3>{{ array_sum($expense_total) }}</h3>
+                    <h3>Total -{{  \Carbon\Carbon::parse($from_date )->format('d/m/Y') }} 
+                      - {{  \Carbon\Carbon::parse($to_date )->format('d/m/Y') }} - {{ number_format(array_sum($expense_total),2,',',' ')  }}Uzs 
+                      ({{ number_format((array_sum($expense_total)/ $exchange),2,',',' ')  }}$) For - {{ $hotel_name->hotel_name }} </h3>
                     <!-- /.row -->
       
                     
