@@ -139,7 +139,7 @@ class ReportController extends Controller
     }
     }
         
-   //dd($expense_total);
+//  / dd($hotel_name);
         return view('reports.report_view' , compact('hotel_name', 'exchange', 'expense_total', 'expense_report', 'from_date', 'to_date', 'categories'));
     }
 
