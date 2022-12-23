@@ -110,20 +110,10 @@
                           </thead>
                           <tbody>
                             <tr>
-                              @if (!empty($hotel_name->hotel_name))
                                 @foreach ($expense_total_by_type as $total)
                                  <th>{{ number_format($total,2,',',' ')  }}  </th>
                                 @endforeach
-                              @else
-                               @foreach ($categories as $category)
-                                  <th><a href="{{ url("/reports/{$category->category_name}/{$key}/{$from_date}/{$to_date}"); }}">{{ number_format($expense_report[$key][ $category->category_name],2,',',' ')  }}</a>  </th>
-                               @endforeach
-                              @endif
-        
-                            
                             </tr>
-                         
-                         
                           </tbody>
                         </table>
                       </div>
