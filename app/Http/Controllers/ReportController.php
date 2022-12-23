@@ -95,6 +95,7 @@ class ReportController extends Controller
             $hotel_name = Hotel::where('id', $hotel_id)->first();
        // dd($hotel_name->hotel_name);
         $report = array();
+        $expense_total_by_type = array();
         $report_narast = array();
         $expense_report = array();
         $expense_total = array();
@@ -132,6 +133,12 @@ class ReportController extends Controller
                 ->where('payment_type_id', $payments[$i]->id)
                 ->where('hotel_id', $hotel_id)
                 ->sum('expense_amount_uzs');
+
+                $expense_total_by_type[ $categories[$t]->category_name ] = DB::table('expenses')
+                ->whereBetween('expense_date', [$from_date,$to_date])
+                
+                ->where('expense_category_id', $categories[$t]->id)
+                ->sum('expense_amount_uzs');
             }
         }
        
@@ -139,8 +146,8 @@ class ReportController extends Controller
     }
     }
         
-//  / dd($hotel_name);
-        return view('reports.report_view' , compact('hotel_name', 'exchange', 'expense_total', 'expense_report', 'from_date', 'to_date', 'categories'));
+    // /dd($expense_total_by_type);
+        return view('reports.report_view' , compact('payments', 'expense_total_by_type', 'hotel_name', 'exchange', 'expense_total', 'expense_report', 'from_date', 'to_date', 'categories'));
     }
 
     public function report_detailed($category_name, $payment_type, $from_date, $to_date, $hotel_id)

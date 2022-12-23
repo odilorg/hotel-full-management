@@ -71,7 +71,7 @@
                           <thead>
                           <tr>
                             @foreach ($categories as $category)
-                            <th>{{ $category->category_name }}</th>
+                            <th style="width:17%">{{ $category->category_name }}</th>
                             @endforeach
                           </tr>
                           </thead>
@@ -90,12 +90,47 @@
                           
                           </tr>
                          
+                         
                           </tbody>
                         </table>
                       </div>
                       <!-- /.col -->
                     </div>
                     @endforeach
+                    <h3>Total by Categories</h3>
+                    <div class="row">
+                      <div class="col-12 table-responsive">
+                        <table class="table table-striped">
+                          <thead>
+                          <tr>
+                            @foreach ($categories as $category)
+                            <th style="width:17%">{{ $category->category_name }}</th>
+                            @endforeach
+                          </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              @if (!empty($hotel_name->hotel_name))
+                                @foreach ($expense_total_by_type as $total)
+                                 <th>{{ number_format($total,2,',',' ')  }}  </th>
+                                @endforeach
+                              @else
+                               @foreach ($categories as $category)
+                                  <th><a href="{{ url("/reports/{$category->category_name}/{$key}/{$from_date}/{$to_date}"); }}">{{ number_format($expense_report[$key][ $category->category_name],2,',',' ')  }}</a>  </th>
+                               @endforeach
+                              @endif
+        
+                            
+                            </tr>
+                         
+                         
+                          </tbody>
+                        </table>
+                      </div>
+                      <!-- /.col -->
+                    </div>
+                    
+                    
                     <h3>Total -{{  \Carbon\Carbon::parse($from_date )->format('d/m/Y') }} 
                       - {{  \Carbon\Carbon::parse($to_date )->format('d/m/Y') }} - {{ number_format(array_sum($expense_total),2,',',' ')  }}Uzs 
                       ({{ number_format((array_sum($expense_total)/ $exchange),2,',',' ')  }}$) For - 
