@@ -16,6 +16,22 @@ class CreateBeds24bookingsTable extends Migration
         Schema::create('beds24bookings', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->string('guestFirstName')->nullable();
+            $table->string('guestName')->nullable();
+            $table->string('bookId')->unique();
+            $table->string('unitId')->nullable();
+            $table->string('roomId')->nullable();
+            $table->date('firstNight')->nullable();
+            $table->date('lastNight')->nullable();
+            $table->integer('numAdult')->nullable();
+            $table->decimal('price',10,2)->nullable();
+            $table->decimal('price_uzs',10,2)->nullable();
+            $table->decimal('commission',10,2)->nullable();
+            $table->string('referer')->nullable();
+            $table->string('payment_method')->nullable();
+            $table->string('company_name')->nullable();
+            $table->date('report_number')->nullable();
+            $table->foreignId('hotel_id')->nullable();
         });
     }
 

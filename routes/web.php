@@ -28,6 +28,7 @@ use App\Http\Controllers\RestaurantController;
 use App\Http\Controllers\RoomRepairController;
 use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\UtilityUsageController;
+use App\Http\Controllers\Beds24bookingController;
 use App\Http\Controllers\HotelreservationController;
 use App\Http\Controllers\AutocompleteSearchController;
 
@@ -63,6 +64,7 @@ Route::get('autocomplete-search', [AutocompleteSearchController::class, 'index']
 Route::get('boo', [AutocompleteSearchController::class, 'query'])->name('autocomplete');
 Route::get('boo2', [AutocompleteSearchController::class, 'fill_company'])->name('fill_company');
 Route::post('/reservations/beds24', [ReservationController::class, 'beds24'])->name('reservations.beds24');
+Route::post('/beds24bookings/getbookings', [Beds24bookingController::class, 'getbookings'])->name('beds24bookings.getbookings');
 Route::post('/reservations/report', [ReservationController::class, 'report'])->name('reservations.report');
 Route::post('/expenses/report', [ExpenseController::class, 'report'])->name('expenses.report');
 Route::post('/reservations/pdf', [ReservationController::class, 'createPDF'])->name('reservations.pdf');
@@ -107,6 +109,7 @@ Route::middleware(['auth', 'revalidate', 'can:not-cleaning' ])->group(function (
         'contracts' => ContractController::class,
         'hotels' => HotelController::class,
         'rooms' => RoomController::class,
+        'beds24bookings' => Beds24bookingController::class,
        
     
     ]);

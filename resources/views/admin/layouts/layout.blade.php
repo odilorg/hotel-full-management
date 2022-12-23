@@ -366,6 +366,16 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         </a>
                     </li>
                     <li class="nav-item">
+                        <a href="{{ route('beds24bookings.index'); }}"
+                            class="nav-link {{ (request()->is('beds24bookings*')) ? 'active' : '' }}">
+                            <i class="nav-icon fas fa-calendar-check"></i>
+                            <p>
+                                Beds24 Reservations
+
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
                         <a href="{{ route('expenses.index'); }}"
                             class="nav-link {{ (request()->is('expenses*')) ? 'active' : '' }}">
                             <i class="nav-icon fas fa-comment-dollar"></i>
