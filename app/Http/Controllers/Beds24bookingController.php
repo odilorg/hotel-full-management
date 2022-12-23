@@ -52,7 +52,7 @@ $response = Http::post('https://api.beds24.com/json/getBookings', [
     $bookings = $response->object();
     // $payment_due = $bookings[0]->invoice[0]->price;
     // $payment = $bookings[0]->invoice[1]->price;
-    dd($bookings);
+    //dd($bookings);
     dd($response->status());
        
        
