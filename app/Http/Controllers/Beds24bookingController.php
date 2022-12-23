@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Beds24booking;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 
 class Beds24bookingController extends Controller
 {
@@ -19,11 +20,43 @@ class Beds24bookingController extends Controller
     }
     public function getbookings()
     {
+// make requests using laravel Http facade
+
+$attributes2 =  request()->validate([
+
+    'from_date' => ['required '],
+    'to_date' => ['required'],
+  ]);
+  $from_date =  str_replace('-', '', $attributes2['from_date']);
+  $to_date =  str_replace('-', '', $attributes2['to_date']);
+$bedsapi = $_ENV['BEDS24API'];
+$bedsProkey = $_ENV['BEDS24PROPKEY2'];
+//dd(gettype($bedsapi));
+$response = Http::post('https://api.beds24.com/json/getBookings', [
+    
+    "authentication" => [
+        "apiKey" => $bedsapi,
+        "propKey" => $bedsProkey
+    ],
+    "arrivalFrom" => $from_date,
+    "arrivalTo" => $to_date,
+    "includeInvoice" => true,
+    "status" => "1",
+    
+    
+  
+    
+    
+]);
+
+    $bookings = $response->object();
+    // $payment_due = $bookings[0]->invoice[0]->price;
+    // $payment = $bookings[0]->invoice[1]->price;
+    dd($bookings);
+    dd($response->status());
        
        
        
-       
-        dd("get24bookings");
         return view('beds24bookings.index');
     }
 
@@ -32,6 +65,10 @@ class Beds24bookingController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function beds24invoiceupdates(Request $request)
+    {
+        dd($request);
+    }
     public function create()
     {
         //
