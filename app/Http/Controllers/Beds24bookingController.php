@@ -67,6 +67,7 @@ $response = Http::post('https://api.beds24.com/json/getBookings', [
      */
     public function beds24invoiceupdates(Request $request)
     {
+        dd('webhook');
         dd($request);
     }
     public function create()
