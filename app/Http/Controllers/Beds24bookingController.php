@@ -22,17 +22,17 @@ class Beds24bookingController extends Controller
     {
 // make requests using laravel Http facade
 
-$attributes2 =  request()->validate([
+    $attributes2 =  request()->validate([
 
     'from_date' => ['required '],
     'to_date' => ['required'],
   ]);
-  $from_date =  str_replace('-', '', $attributes2['from_date']);
-  $to_date =  str_replace('-', '', $attributes2['to_date']);
-$bedsapi = $_ENV['BEDS24API'];
-$bedsProkey = $_ENV['BEDS24PROPKEY2'];
+    $from_date =  str_replace('-', '', $attributes2['from_date']);
+    $to_date =  str_replace('-', '', $attributes2['to_date']);
+    $bedsapi = $_ENV['BEDS24API'];
+    $bedsProkey = $_ENV['BEDS24PROPKEY'];
 //dd(gettype($bedsapi));
-$response = Http::post('https://api.beds24.com/json/getBookings', [
+    $response = Http::post('https://api.beds24.com/json/getBookings', [
     
     "authentication" => [
         "apiKey" => $bedsapi,
@@ -65,10 +65,11 @@ $response = Http::post('https://api.beds24.com/json/getBookings', [
      *
      * @return \Illuminate\Http\Response
      */
-    public function beds24invoiceupdates(Request $request)
+    public function beds24webhookupdated(Request $request)
     {
-      //  dd('webhook');
-        dd($request);
+        $json = file_get_contents('php://input');
+        Storage::disk('local')->put('file.txt', $json);
+        Storage::disk('local')->put('request.txt', Request::header('x-wc-webhook-source'));
     }
     public function create()
     {
