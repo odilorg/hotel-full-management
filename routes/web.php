@@ -65,7 +65,7 @@ Route::get('boo', [AutocompleteSearchController::class, 'query'])->name('autocom
 Route::get('boo2', [AutocompleteSearchController::class, 'fill_company'])->name('fill_company');
 Route::post('/reservations/beds24', [ReservationController::class, 'beds24'])->name('reservations.beds24');
 Route::post('/beds24bookings/getbookings', [Beds24bookingController::class, 'getbookings'])->name('beds24bookings.getbookings');
-Route::post('/beds24bookings/beds24invoiceupdates', [Beds24bookingController::class, 'beds24invoiceupdates'])->name('beds24bookings.beds24invoiceupdates');
+Route::post('/beds24bookings/beds24webhookupdated', [Beds24bookingController::class, 'beds24webhookupdated'])->name('beds24bookings.beds24webhookupdated');
 Route::post('/reservations/report', [ReservationController::class, 'report'])->name('reservations.report');
 Route::post('/expenses/report', [ExpenseController::class, 'report'])->name('expenses.report');
 Route::post('/reservations/pdf', [ReservationController::class, 'createPDF'])->name('reservations.pdf');
