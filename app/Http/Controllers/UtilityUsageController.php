@@ -27,7 +27,8 @@ class UtilityUsageController extends Controller
         //     ->join('utilities', 'utility_usages.utility_id', '=', 'utilities.id')
         //     ->select('utility_usages.*',  'utilities.utility_name', 'meters.meter_number')
         //     ->get();
-         $utility_usages = UtilityUsage::paginate(15);
+         $utility_usages = UtilityUsage::orderBy('usage_date', 'DESC')
+         ->paginate(15);
          $utilities = Utility::all();
          
         //dd($utility_usages->meter->utility->get);
