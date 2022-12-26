@@ -87,7 +87,7 @@ class Beds24bookingController extends Controller
             Beds24booking::updateOrCreate(
                 ['bookid' => $bookid],
                 ['guestName' => $fullname,
-                'company_name' => $position_status2,
+                'company_name' => $part_cut,
                 'referer' => $referer,
                
                 
