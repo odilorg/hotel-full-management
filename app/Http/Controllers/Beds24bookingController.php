@@ -78,8 +78,8 @@ class Beds24bookingController extends Controller
         $status = preg_replace('/\s+/', '', $part_cut);
         $ready_status = trim($part_cut,";&");
         //get payment description
-        $desc = strrpos($payment, "conf_status")-60;
-        $desc = substr($payment, $desc, 6);
+        $desc = strrpos($payment, "conf_status")-70;
+        $desc = substr($payment, $desc, 16);
 
         $status = $request->status;
         $bookid = $request->bookid;
