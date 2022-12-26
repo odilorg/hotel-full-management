@@ -95,8 +95,8 @@ class Beds24bookingController extends Controller
             // $attributes['guestName'] = $fullname;
             Beds24booking::updateOrCreate(
                 ['bookid' => $bookid],
-                ['guestName' => $payment_description,
-                'company_name' => $desc,
+                ['guestName' => $end,
+                'company_name' => $start,
                 'referer' => $referer,
                
                 
