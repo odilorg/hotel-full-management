@@ -73,7 +73,7 @@ class Beds24bookingController extends Controller
         $payment = htmlentities($request->header('payment'));
         $position_status = strrpos($payment, "conf_status")+16;
         $part_cut = str_replace(' ', '', $position_status);
-        $position_status = str_replace('&', '', $part_cut);
+        $position_status2 = str_replace('&', '', $part_cut);
 
         $ready_status = trim($part_cut,";&");
         $status = $request->status;
@@ -87,7 +87,7 @@ class Beds24bookingController extends Controller
             Beds24booking::updateOrCreate(
                 ['bookid' => $bookid],
                 ['guestName' => $fullname,
-                'company_name' => $position_status,
+                'company_name' => $position_status2,
                 'referer' => $referer,
                
                 
