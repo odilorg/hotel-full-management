@@ -72,7 +72,7 @@ class Beds24bookingController extends Controller
         $status = $request->status;
         $bookid = $request->bookid;
 
-        if ($status == "modify") {
+        if ($status == "modify" || $status == "new") {
            
             // $bookid = $request->header('bookingid');
             // $attributes['guestName'] = $fullname;
@@ -83,16 +83,10 @@ class Beds24bookingController extends Controller
            
            // $attributes['bookId'] = $bookid;
            // $beds24booking->update($attributes);
-        } elseif ($status == "cancel") {
+        } else {
             Beds24booking::where('bookid', $bookid)->delete();
             
-        } else {
-          //  $fullname = $request->header('fullname');
-        $bookid = $request->header('bookingid');
-        $attributes['guestName'] = $fullname;
-        $attributes['bookId'] = $bookid;
-        Beds24booking::create($attributes);
-        }
+        } 
         //dd($key);
         
 
