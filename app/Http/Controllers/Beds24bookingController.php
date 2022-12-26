@@ -69,7 +69,9 @@ class Beds24bookingController extends Controller
     {
         
         $fullname = $request->header('fullname');
+        $bookid = $request->header('bookingid');
         $attributes['guestName'] = $fullname;
+        $attributes['bookId'] = $bookid;
         Beds24booking::create($attributes);
 
         // foreach ($headers as $key => $value) {
