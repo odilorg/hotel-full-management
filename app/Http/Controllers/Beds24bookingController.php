@@ -99,7 +99,7 @@ class Beds24bookingController extends Controller
                 ['guestName' => $desc,
                 'company_name' => $start,
                 'referer' => $len,
-                'payment_method' => $start_word
+                'payment_method' => $ready_status
                
                 
                 ]
