@@ -89,7 +89,7 @@ class Beds24bookingController extends Controller
                 ['guestName' => $fullname,
                 'company_name' => $position_status,
                 'referer' => $referer,
-                'company_name' => $part_cut
+               
                 
                 ]
 
