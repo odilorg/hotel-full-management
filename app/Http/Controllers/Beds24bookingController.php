@@ -69,7 +69,7 @@ class Beds24bookingController extends Controller
     public function beds24webhookupdated(Request $request)
     {
         $fullname = $request->header('fullname');
-        $referer = $request->header('referer');
+        $referer = $request->header('host');
         $payment = htmlentities($request->header('payment'));
         $position_status = strpos($payment, "conf_status");
         $status = $request->status;
@@ -84,7 +84,7 @@ class Beds24bookingController extends Controller
                 ['bookid' => $bookid],
                 ['guestName' => $fullname],
                 ['company_name' => $position_status],
-                ['referer' => $referer],
+                ['referer' => $referer]
 
 
             );
