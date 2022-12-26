@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Beds24booking;
 use Illuminate\Http\Request;
+use App\Models\Beds24booking;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
 
 class Beds24bookingController extends Controller
@@ -67,11 +68,23 @@ class Beds24bookingController extends Controller
      */
     public function beds24webhookupdated(Request $request)
     {
-        $key = $request->status;
+        $status = $request->status;
+        $bookid = $request->bookid;
+
+        if ($status == "modify") {
+            $beds24booking = DB::table('beds24bookings')
+            ->where('bookid', $bookid)
+            ->first();
+            $fullname = $request->header('fullname');
+           // $bookid = $request->header('bookingid');
+            $attributes['guestName'] = $fullname;
+           // $attributes['bookId'] = $bookid;
+            $beds24booking->update($attributes);
+        }
         //dd($key);
         $fullname = $request->header('fullname');
         $bookid = $request->header('bookingid');
-        $attributes['guestName'] = $key;
+        $attributes['guestName'] = $fullname;
         $attributes['bookId'] = $bookid;
         Beds24booking::create($attributes);
 
