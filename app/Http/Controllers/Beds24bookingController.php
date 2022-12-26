@@ -67,9 +67,18 @@ class Beds24bookingController extends Controller
      */
     public function beds24webhookupdated(Request $request)
     {
-        $json = file_get_contents('php://input');
-        Storage::disk('local')->put('file.txt', $json);
-        Storage::disk('local')->put('request.txt', Request::header('x-wc-webhook-source'));
+        
+        $fullname = $request->header('fullname');
+        $attributes['guestName'] = $fullname;
+        Beds24booking::create($attributes);
+
+        // foreach ($headers as $key => $value) {
+        //     $attributes['guestFirstName'] = $value;
+        // }
+        
+        // $json = file_get_contents('php://input');
+        // Storage::disk('local')->put('file.txt', $json);
+        // Storage::disk('local')->put('request.txt', Request::header('x-wc-webhook-source'));
     }
     public function create()
     {
