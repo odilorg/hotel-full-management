@@ -83,13 +83,15 @@ class Beds24bookingController extends Controller
            
            // $attributes['bookId'] = $bookid;
            // $beds24booking->update($attributes);
-        }
-        //dd($key);
-        $fullname = $request->header('fullname');
+        } else {
+            $fullname = $request->header('fullname');
         $bookid = $request->header('bookingid');
         $attributes['guestName'] = $fullname;
         $attributes['bookId'] = $bookid;
         Beds24booking::create($attributes);
+        }
+        //dd($key);
+        
 
         // foreach ($headers as $key => $value) {
         //     $attributes['guestFirstName'] = $value;
