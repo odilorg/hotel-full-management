@@ -73,7 +73,7 @@ class Beds24bookingController extends Controller
         $payment = htmlentities($request->header('payment'));
         $position_status = strrpos($payment, "conf_status")+15;
         $part_cut = substr($payment, $position_status, 23);
-        $ready_status = trim($part_cut,"; ");
+        $ready_status = trim($part_cut,";&");
         $status = $request->status;
         $bookid = $request->bookid;
 
