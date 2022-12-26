@@ -84,6 +84,9 @@ class Beds24bookingController extends Controller
            
            // $attributes['bookId'] = $bookid;
            // $beds24booking->update($attributes);
+        } elseif ($status == "cancel") {
+            Beds24booking::where('bookid', $bookid)->delete();
+            
         } else {
           //  $fullname = $request->header('fullname');
         $bookid = $request->header('bookingid');
