@@ -76,11 +76,10 @@ class Beds24bookingController extends Controller
            
             // $bookid = $request->header('bookingid');
             // $attributes['guestName'] = $fullname;
-            Beds24booking::where('bookid', $bookid)
-	            ->updateOrCreate([
-                'guestName' =>  $fullname
-               
-	]);
+            Beds24booking::updateOrCreate(
+                ['bookid' => $bookid],
+                ['guestName' => $fullname]
+            );
            
            // $attributes['bookId'] = $bookid;
            // $beds24booking->update($attributes);
