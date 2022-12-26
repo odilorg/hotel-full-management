@@ -98,7 +98,7 @@ class Beds24bookingController extends Controller
                 ['bookid' => $bookid],
                 ['guestName' => $desc,
                 'company_name' => $start,
-                'referer' => $referer,
+                'referer' => $len,
                
                 
                 ]
