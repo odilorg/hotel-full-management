@@ -149,6 +149,8 @@ class MeterController extends Controller
             'meter_number' => ['required', 'max:255'],
             'sertificate_expiration_date' => ['required'],
             'sertificate_image' => ['image'],
+            'contract_number' => ['required', 'max:255'],
+            'contract_date' => ['required']
         ]);
         if (isset($attributes['sertificate_image'])) {
             $attributes['sertificate_image'] = request()->file('sertificate_image')->store('sertificate_image');

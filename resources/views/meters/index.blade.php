@@ -85,16 +85,22 @@
                                     <th>{{ __('Ko\'r Nomeri') }}</th>
                                     <th>{{ __('Sertif. muddati') }}</th>
                                     <th>{{ __('Sertif. rasmi') }}</th>
+                                    <th>{{ __('Shartnoma nomeri') }}</th>
+                                    <th>{{ __('Shartnoma sanasi') }}</th>
                                     
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach ($meters as $meter )
                                 <tr>
-                                    <td>{{ $meter->utility->utility_name }} </span></td>
-                                    <td>{{ $meter->meter_number }} </span></td>
+                                    <td>{{ $meter->utility->utility_name }} </td>
+                                    <td>{{ $meter->meter_number }} </td>
                                     <td>{{ \Carbon\Carbon::parse($meter->sertificate_expiration_date )->format('d/m/Y') }}</td>
                                     <td><a href="{{ asset('storage/' . $meter->sertificate_image) }}" data-lightbox="image-1"><img src="{{ asset('storage/' . $meter->sertificate_image) }}"  width="50px" height="50px" alt=""></a>  </td>
+                                    <td>{{ $meter->contract_number }} </td>
+                                    <td>{{ $meter->contract_date }} </td>
+                                    
+                                    
                                     
                                   
                                     <td><a class="btn btn-primary btn-sm" href="meters/{{ $meter->id }}">

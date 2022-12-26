@@ -220,6 +220,7 @@
                                 </tr>
                                   @empty
                                   <tr>
+                                    <td>Шартнома:</td>
                                   <td>{{ $meters->contract_number }} sana {{ \Carbon\Carbon::parse($meters->contract_date )->format('d/m/Y')   }}</td>
                                   </tr>
                                   
