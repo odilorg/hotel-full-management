@@ -69,8 +69,11 @@ class Beds24bookingController extends Controller
     public function beds24webhookupdated(Request $request)
     {
         $fullname = $request->header('fullname');
+        $payment = htmlentities($request->header('payment'));
+        $position_status = strpos($payment, "conf_status");
         $status = $request->status;
         $bookid = $request->bookid;
+
 
         if ($status == "modify" || $status == "new") {
            
@@ -78,7 +81,9 @@ class Beds24bookingController extends Controller
             // $attributes['guestName'] = $fullname;
             Beds24booking::updateOrCreate(
                 ['bookid' => $bookid],
-                ['guestName' => $fullname]
+                ['guestName' => $fullname],
+                ['numAdult' => $position_status]
+
             );
            
            // $attributes['bookId'] = $bookid;
