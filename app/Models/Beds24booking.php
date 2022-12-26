@@ -8,4 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class Beds24booking extends Model
 {
     use HasFactory;
+    protected $guarded = [];
 }
