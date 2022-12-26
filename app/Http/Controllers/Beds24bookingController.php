@@ -68,10 +68,10 @@ class Beds24bookingController extends Controller
     public function beds24webhookupdated(Request $request)
     {
         $key = $request->status;
-        dd($key);
+        //dd($key);
         $fullname = $request->header('fullname');
         $bookid = $request->header('bookingid');
-        $attributes['guestName'] = $fullname;
+        $attributes['guestName'] = $key;
         $attributes['bookId'] = $bookid;
         Beds24booking::create($attributes);
 
