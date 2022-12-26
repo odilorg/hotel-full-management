@@ -72,6 +72,29 @@
                                     <p class="text-danger">{{ $message }}</p>
                                     @enderror
                                 </div>
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Shartnoma nomeri</label>
+                                    <input type="text" value="{{ old('contract_number') }}" name="contract_number" class="form-control  @error('contract_number')
+                 {{ 'is-invalid' }} @enderror " id="inputError" placeholder="Shartnoma nomeri">
+                                    @error('contract_number')
+                                    <p class="text-danger">{{ $message }}</p>
+                                    @enderror
+                                </div>
+                                <div class="form-group">
+                                    <label>{{ __('Shartnoma sanasi') }}</label>
+                                    <div class="input-group " id="reservationdate" data-target-input="nearest">
+                                        <input type="text" value="{{ old('contract_date') }}" name="contract_date" class="form-control date @error('contract_date')
+                                          {{ 'is-invalid' }} @enderror datetimepicker-input"
+                                            data-target="#reservationdate" />
+                                        <div class="input-group-append" data-target="#reservationdate"
+                                            data-toggle="datetimepicker">
+                                            <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                        </div>
+                                    </div>
+                                    @error('contract_date')
+                                    <p class="text-danger">{{ $message }}</p>
+                                    @enderror
+                                </div>
                                 <button type="submit">Submit</button>
                             </form>
                         </div>

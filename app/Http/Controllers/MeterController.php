@@ -46,62 +46,64 @@ class MeterController extends Controller
             'meter_number' => ['required', 'max:255'],
             'sertificate_expiration_date' => ['required'],
             'sertificate_image' => ['image'],
+            'contract_number' => ['required', 'max:255'],
+            'contract_date' => ['required']
         ]);
         if (isset($attributes['sertificate_image'])) {
             $attributes['sertificate_image'] = request()->file('sertificate_image')->store('sertificate_image');
         }
       // create cron job for telegram notification 1 month in advance of meter sertication expires
-        $telegram_api = $_ENV['TELEGRAMAPI'];
-        $cronjob_api = $_ENV['CRONJOBAPI'];
-        $sertif_date = $attributes['sertificate_expiration_date'];
+        // $telegram_api = $_ENV['TELEGRAMAPI'];
+        // $cronjob_api = $_ENV['CRONJOBAPI'];
+        // $sertif_date = $attributes['sertificate_expiration_date'];
         
-        $days_to_expire = Carbon::createFromFormat('Y-m-d', $sertif_date)
-                             ->format('d');
-        $month_1_expire = Carbon::createFromFormat('Y-m-d', $sertif_date)->subDay(30)
-                             ->format('n');
-        $year_sert = $days_to_expire = Carbon::createFromFormat('Y-m-d', $sertif_date)
-        ->format('Y');
-        $year_now = $days_to_expire = Carbon::createFromFormat('Y-m-d', now())
-        ->format('Y');
-        if (($year_sert - $year_now) > 1) {
-        }
+        // $days_to_expire = Carbon::createFromFormat('Y-m-d', $sertif_date)
+        //                      ->format('d');
+        // $month_1_expire = Carbon::createFromFormat('Y-m-d', $sertif_date)->subDay(30)
+        //                      ->format('n');
+        // $year_sert = $days_to_expire = Carbon::createFromFormat('Y-m-d', $sertif_date)
+        // ->format('Y');
+        // $year_now = $days_to_expire = Carbon::createFromFormat('Y-m-d', now())
+        // ->format('Y');
+        // if (($year_sert - $year_now) > 1) {
+        // }
 
 
         $utility_name = Utility::find($attributes['utility_id']);
        //dd($utility_name->utility_name);
         $utility_name = $utility_name->utility_name;
 
-        $message_text = $utility_name ." zavod raqami - " . $attributes['meter_number'] . " sertifikat muddati 1 oy qoldi";
-        // /dd($message_text);
+        // $message_text = $utility_name ." zavod raqami - " . $attributes['meter_number'] . " sertifikat muddati 1 oy qoldi";
+        // // /dd($message_text);
 
-        $create_cron_job = Http::withToken($cronjob_api)->accept('application/json')->put('https://api.cron-job.org/jobs', [
-            'job' => [
-                'url' => 'https://api.telegram.org/bot{$apiToken}/sendMessage?chat_id=-653810568&text='.$message_text,
-            'enabled' => true,
-            'title' => 'Test',
-            'type' => 0,
-            'schedule' => [
-                'timezone' => 'Asia/Tashkent',
-                'hours' => [
-                    '0' => 9,
-                ],
-                'mdays' => [
-                    '0' => $days_to_expire,
-                ],
-                'minutes' => [
-                    '0' => 0,
-                ],
-                'months' => [
-                    '0' => $month_1_expire,
-                ],
-                'wdays' => [
-                    '0' => -1,
-                ],
+        // $create_cron_job = Http::withToken($cronjob_api)->accept('application/json')->put('https://api.cron-job.org/jobs', [
+        //     'job' => [
+        //         'url' => 'https://api.telegram.org/bot{$apiToken}/sendMessage?chat_id=-653810568&text='.$message_text,
+        //     'enabled' => true,
+        //     'title' => 'Test',
+        //     'type' => 0,
+        //     'schedule' => [
+        //         'timezone' => 'Asia/Tashkent',
+        //         'hours' => [
+        //             '0' => 9,
+        //         ],
+        //         'mdays' => [
+        //             '0' => $days_to_expire,
+        //         ],
+        //         'minutes' => [
+        //             '0' => 0,
+        //         ],
+        //         'months' => [
+        //             '0' => $month_1_expire,
+        //         ],
+        //         'wdays' => [
+        //             '0' => -1,
+        //         ],
                 
-                ],
-            ],
+        //         ],
+        //     ],
           
-        ]);
+        // ]);
              
         Meter::create($attributes);
          session()->flash('success', 'New Meter Created');
