@@ -80,8 +80,8 @@ class Beds24bookingController extends Controller
         //get payment description
         $start = strrpos($payment, "conf_gap")+104;
         $start_word = substr($payment, $start, 20);
-        $end = strrpos($start_word, "&")+$start;
-        $desc = substr($payment, $start, $end);
+        $len = strrpos($start_word, "&");
+        $desc = substr($start_word, $start, $len);
         
         //$desc = str_replace('&', '', $desc);
         $payment_description = preg_replace('/\s+/', '', $desc);
@@ -96,7 +96,7 @@ class Beds24bookingController extends Controller
             // $attributes['guestName'] = $fullname;
             Beds24booking::updateOrCreate(
                 ['bookid' => $bookid],
-                ['guestName' => $end,
+                ['guestName' => $desc,
                 'company_name' => $start,
                 'referer' => $referer,
                
