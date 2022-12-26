@@ -72,19 +72,25 @@ class Beds24bookingController extends Controller
         $referer = $request->header('referer');
         $payment = htmlentities($request->header('payment'));
         $position_status = strrpos($payment, "conf_status")+16;
+        $position_status2 = strrpos($payment, "conf_gap")+104;
+
         //get payment status
         $part_cut = substr($payment, $position_status, 6);
         $part_cut = str_replace('&', '', $part_cut);
         $status = preg_replace('/\s+/', '', $part_cut);
         $ready_status = trim($part_cut,";&");
         //get payment description
-        $start = strrpos($payment, "conf_gap")+104;
-        $start_word = substr($payment, $start, 20);
-        $len = strrpos($start_word, "&");
-        $desc = substr($start_word, $start, $len);
+        $part_cut2 = substr($payment, $position_status2, 6);
+        $part_cut2 = str_replace('&', '', $part_cut2);
+        $status2 = preg_replace('/\s+/', '', $part_cut2);
+        $ready_status2 = trim($part_cut2,";&");
+        // $start = strrpos($payment, "conf_gap")+104;
+        // $start_word = substr($payment, $start, 20);
+        // $len = strrpos($start_word, "&");
+        // $desc = substr($start_word, $start, $len);
         
         //$desc = str_replace('&', '', $desc);
-        $payment_description = preg_replace('/\s+/', '', $desc);
+       // $payment_description = preg_replace('/\s+/', '', $desc);
 
         $status = $request->status;
         $bookid = $request->bookid;
@@ -96,10 +102,8 @@ class Beds24bookingController extends Controller
             // $attributes['guestName'] = $fullname;
             Beds24booking::updateOrCreate(
                 ['bookid' => $bookid],
-                ['guestName' => $desc,
-                'company_name' => $start,
-                'referer' => $len,
-                'payment_method' => $ready_status
+                ['guestName' => $fullname,
+                'payment_method' => $ready_status2
                
                 
                 ]
