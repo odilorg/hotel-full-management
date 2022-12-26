@@ -72,10 +72,15 @@ class Beds24bookingController extends Controller
         $referer = $request->header('referer');
         $payment = htmlentities($request->header('payment'));
         $position_status = strrpos($payment, "conf_status")+16;
+        //get payment status
         $part_cut = substr($payment, $position_status, 6);
         $part_cut = str_replace('&', '', $part_cut);
-        $string = preg_replace('/\s+/', '', $part_cut);
+        $status = preg_replace('/\s+/', '', $part_cut);
         $ready_status = trim($part_cut,";&");
+        //get payment description
+        $desc = strrpos($payment, "conf_status")-60;
+        $desc = substr($payment, $desc, 6);
+
         $status = $request->status;
         $bookid = $request->bookid;
 
@@ -87,7 +92,7 @@ class Beds24bookingController extends Controller
             Beds24booking::updateOrCreate(
                 ['bookid' => $bookid],
                 ['guestName' => $fullname,
-                'company_name' => $string,
+                'company_name' => $desc,
                 'referer' => $referer,
                
                 
