@@ -72,7 +72,7 @@ class Beds24bookingController extends Controller
         $referer = $request->header('referer');
         $payment = htmlentities($request->header('payment'));
         $position_status = strrpos($payment, "conf_status")+16;
-        $position_status2 = strrpos($payment, "conf_gap")+104;
+        $position_status2 = strrpos($payment, "conf_gap")+103;
 
         //get payment status
         $part_cut = substr($payment, $position_status, 6);
@@ -83,7 +83,7 @@ class Beds24bookingController extends Controller
         $part_cut2 = substr($payment, $position_status2, 20);
         $part_cut2 = str_replace('&', '', $part_cut2);
       //  $status2 = preg_replace('/\s+/', '', $part_cut2);
-        $ready_status2 = trim($part_cut2,"l");
+        $ready_status2 = trim($part_cut2,";");
         // $start = strrpos($payment, "conf_gap")+104;
         // $start_word = substr($payment, $start, 20);
         // $len = strrpos($start_word, "&");
