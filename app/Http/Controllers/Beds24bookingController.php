@@ -79,7 +79,8 @@ class Beds24bookingController extends Controller
         $ready_status = trim($part_cut,";&");
         //get payment description
         $start = strrpos($payment, "conf_gap")+104;
-        $end = strrpos($start, "&")+$start;
+        $start_word = substr($payment, $start, 20);
+        $end = strrpos($start_word, "&");
         $desc = substr($payment, $start, $end);
         
         //$desc = str_replace('&', '', $desc);
