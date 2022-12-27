@@ -80,32 +80,18 @@ class Beds24bookingController extends Controller
      */
     public function beds24webhookupdated(Request $request)
     {
+        $htmltext = $request->header('invoicedesc');
         $fullname = $request->header('fullname');
         $referer = $request->header('referer');
-        $payment = htmlentities($request->header('payment'));
-        $position_status = strrpos($payment, "conf_status")+16;
-        $position_status2 = strrpos($payment, "conf_gap")+103;
-
-        //get payment status
-        $part_cut = substr($payment, $position_status, 6);
-        $part_cut = str_replace('&', '', $part_cut);
-        $status = preg_replace('/\s+/', '', $part_cut);
-        $ready_status = trim($part_cut,";&");
-        //get payment description
-        $part_cut2 = substr($payment, $position_status2, 20);
-        //$part_cut2 = str_replace('&', '', $part_cut2);
-      //  $status2 = preg_replace('/\s+/', '', $part_cut2);
-        $ready_status2 = trim($part_cut2,"; ");
-        // $start = strrpos($payment, "conf_gap")+104;
-        // $start_word = substr($payment, $start, 20);
-        // $len = strrpos($start_word, "&");
-        // $desc = substr($start_word, $start, $len);
-        
-        //$desc = str_replace('&', '', $desc);
-       // $payment_description = preg_replace('/\s+/', '', $desc);
-
         $status = $request->status;
         $bookid = $request->bookid;
+//parser working here
+  
+$dom = new Dom;
+$dom->loadStr($htmltext);
+$payment_description = $dom->find('td')[3];
+$payment_status = $dom->find('td')[2];
+//dd(($a->text)) ; // "click here"
 
 
         if ($status == "modify" || $status == "new") {
@@ -114,9 +100,9 @@ class Beds24bookingController extends Controller
             // $attributes['guestName'] = $fullname;
             Beds24booking::updateOrCreate(
                 ['bookid' => $bookid],
-                ['guestName' => $part_cut2,
-                'referer' => $ready_status,
-                'payment_method' => $ready_status2
+                ['guestName' => $fullname,
+                'referer' => $status,
+                'report_number' => $payment_description
                
                 
                 ]
