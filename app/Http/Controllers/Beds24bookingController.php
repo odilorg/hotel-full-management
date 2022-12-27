@@ -114,6 +114,8 @@ $payment_method = $dom->find('td')[6];
                 'guestName' => $fullname,
                 'numAdult' => $numadults,
                 'commission' => $bookingcommision,
+                'firstNight' => $checkinday,
+                'lastNight' => $checkoutday
                 
                 
                
