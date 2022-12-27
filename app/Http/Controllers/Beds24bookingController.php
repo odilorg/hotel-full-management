@@ -97,7 +97,7 @@ class Beds24bookingController extends Controller
 $dom = new Dom;
 $dom->loadStr($htmltext);
 $payment_description = $dom->find('td')[5];
-$payment_method = ($dom->find('td')[6]);
+$payment_method = $dom->find('td')[6];
 //dd(($a->text)) ; // "click here"
 
 
