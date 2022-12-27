@@ -102,7 +102,7 @@ $payment_status = $dom->find('td')[2];
                 ['bookid' => $bookid],
                 ['guestName' => $fullname,
                 'referer' => $status,
-                'report_number' => $payment_description
+                'company_name' => $payment_description
                
                 
                 ]
