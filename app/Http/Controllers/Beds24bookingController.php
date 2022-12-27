@@ -83,6 +83,13 @@ class Beds24bookingController extends Controller
         $htmltext = $request->header('invoicedesc');
         $fullname = $request->header('fullname');
         $referer = $request->header('referer');
+        $roomid = $request->header('roomid');
+        $checkinday = $request->header('checkinday');
+        $checkoutday = $request->header('checkoutday');
+        $numadults = $request->header('numadults');
+        $bookingcommision = $request->header('bookingcommision');
+        $propertyid = $request->header('propertyid');
+
         $status = $request->status;
         $bookid = $request->bookid;
 //parser working here
@@ -90,7 +97,7 @@ class Beds24bookingController extends Controller
 $dom = new Dom;
 $dom->loadStr($htmltext);
 $payment_description = $dom->find('td')[5];
-$payment_status = ($dom->find('td')[6]);
+$payment_method = ($dom->find('td')[6]);
 //dd(($a->text)) ; // "click here"
 
 
@@ -101,8 +108,14 @@ $payment_status = ($dom->find('td')[6]);
             Beds24booking::updateOrCreate(
                 ['bookid' => $bookid],
                 ['guestName' => $fullname,
-                'referer' => ($payment_description->text),
-                'company_name' => ($payment_status->text)
+                'payment_method' => ($payment_method->text),
+                'payment_description' => ($payment_description->text),
+                'referer' => $referer,
+                'guestName' => $fullname,
+                'numAdult' => $numadults,
+                'commission' => $bookingcommision,
+                'guestName' => $fullname
+                
                
                 
                 ]
