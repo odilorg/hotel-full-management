@@ -90,7 +90,7 @@ class Beds24bookingController extends Controller
 $dom = new Dom;
 $dom->loadStr($htmltext);
 $payment_description = $dom->find('td')[5];
-$payment_status = ($dom->find('td')[6]);
+$payment_status = count(($dom->find('td')));
 //dd(($a->text)) ; // "click here"
 
 
@@ -102,7 +102,7 @@ $payment_status = ($dom->find('td')[6]);
                 ['bookid' => $bookid],
                 ['guestName' => $fullname,
                 'referer' => ($payment_description->text),
-                'company_name' => ($payment_status->text)
+                'company_name' => ($payment_status)
                
                 
                 ]
