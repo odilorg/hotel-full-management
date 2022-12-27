@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Beds24booking;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
+use PHPHtmlParser\Dom;
 
 class Beds24bookingController extends Controller
 {
@@ -14,6 +15,17 @@ class Beds24bookingController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function parsehtml()
+    {
+        
+        
+        $dom = new Dom;
+        $dom->loadStr("</td><td style='padding: 0 10px 0 0' class='conf_status'> </td></tr><tr class='conf_gap'><td>  </td></tr><tr><td style='padding: 0 10px 0 0'>humo asaka ytt </td><td style='padding: 0 10px 0 0' class='conf_status'>karta </td></tr></table>");
+        $a = $dom->find('td')[3];
+        dd(($a->text)) ; // "click here"
+        return view('beds24bookings.index');
+    }
+
     public function index()
     {
        //dd("index24");
