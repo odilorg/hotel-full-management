@@ -90,6 +90,7 @@ class Beds24bookingController extends Controller
         $bookingcommision = $request->header('bookingcommision');
         $propertyid = $request->header('propertyid');
         $invoiceamount = $request->header('invoiceamount');
+        $paid_amount = $request->header('paidamount');
 
         $status = $request->status;
         $bookid = $request->bookid;
@@ -118,7 +119,8 @@ $payment_method = $dom->find('td')[6];
                 'firstNight' => $checkinday,
                 'lastNight' => $checkoutday,
                 'roomId' => $roomid,
-                'price' => $invoiceamount
+                'price' => $invoiceamount,
+                'paid_amount' => $paid_amount
                 
                 
                
