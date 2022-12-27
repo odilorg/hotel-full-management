@@ -101,8 +101,8 @@ $payment_status = ($dom->find('td')[6]);
             Beds24booking::updateOrCreate(
                 ['bookid' => $bookid],
                 ['guestName' => $fullname,
-                'referer' => rtrim($payment_description->text),
-                'company_name' => rtrim($payment_status->text)
+                'referer' => ($payment_description->text),
+                'company_name' => ($payment_status->text)
                
                 
                 ]
