@@ -81,8 +81,6 @@
                             
                         </div>
                         <div class="mt-1">
-                            
-                           
                             <select class="custom-select rounded-0" name="guide_status" id="hotel_select">
                                 <option value="">Choose Hotel</option>
                                 @foreach ($hotels as $hotel)
@@ -93,12 +91,7 @@
                                 } elseif($hotel->id == $hotel_id) {
                                     echo 'selected';
                                 }
-                                        
-                                        
                                  ?> 
-                                
-                                
-                                
                                  >{{ $hotel->hotel_name }}</option>
                                 @endforeach
                                 

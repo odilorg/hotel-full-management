@@ -116,8 +116,8 @@ Route::middleware(['auth', 'revalidate', 'can:not-cleaning' ])->group(function (
        
     
     ]);
-
-    
+    Route::get('/rooms/{id}/create', [ExpenseController::class, 'create']  )->name('rooms.create');
+    Route::get('/rooms/view/{hotel_id}', [RoomController::class, 'rooms_hotels'])->name('rooms_hotels'); 
     Route::get('/expenses/view/{hotel_id}', [ExpenseController::class, 'expense_hotels'])->name('expense_hotels');
     Route::get('/expenses/{id}/create', [ExpenseController::class, 'create2']  )->name('expenses.create2');
     Route::post('/reports/report', [ReportController::class, 'report_view'])->name('reports.report');

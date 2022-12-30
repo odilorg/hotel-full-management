@@ -44,12 +44,33 @@
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body table-responsive p-0">
-                        <div>
-                            <a class="btn btn-info btn-sm" href="{{ route('rooms.create') }}">
-                                <i class="fas fa-pencil-alt">
-                                </i>
-                                {{ __('Add Your Room') }}
-                            </a>
+                        <div class="card-body table-responsive p-0">
+                            <div>
+                                @if ((!empty($hotel_id)))
+                                <a class="btn btn-info btn-sm" href="{{ route('rooms.create', ['id' => $hotel_id]) }}">
+                                    <i class="fas fa-pencil-alt">
+                                    </i>
+                                    {{ __('Add Your Room') }}
+                                </a>
+                                @endif
+                                
+                            </div>
+                        <div class="mt-1">
+                            <select class="custom-select rounded-0" name="guide_status" id="hotel_select">
+                                <option value="">Choose Hotel</option>
+                                @foreach ($hotels as $hotel)
+                                <option value="{{ $hotel->id }}" 
+                                    <?php 
+                                 if (empty($hotel_id)) {
+                                    '';
+                                } elseif($hotel->id == $hotel_id) {
+                                    echo 'selected';
+                                }
+                                 ?> 
+                                 >{{ $hotel->hotel_name }}</option>
+                                @endforeach
+                                
+                            </select>
                         </div>
                         <table class="table table-hover text-nowrap">
                             <thead>
@@ -60,7 +81,7 @@
                                     <th>Room Id</th>
                                     <th>Room size</th>
                                     <th>Room floor</th>
-                                   
+                                    <th>Hotel name</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
@@ -73,7 +94,7 @@
                                     <td>{{ $item->room_id }}</td>
                                     <td>{{ $item->room_size }}</td>
                                     <td>{{ $item->room_floor }}</td>
-                                   
+                                    <td>{{ $item->hotel->hotel_name }}</td>
                                     <td><a class="btn btn-primary btn-sm" href="rooms/{{ $item->id }}">
                                             <i class="fas fa-folder">
                                             </i>
@@ -116,6 +137,23 @@
 </section>
 <!-- /.content -->
 </div>
+<script>
+    $(document).ready(function(){
+        $("#hotel_select").change (function () { 
+            var id = $('#hotel_select option:selected').val()
+          
+
+            var url = window.location.origin;
+           
+            url = url + "/rooms/" +"view/"+id;  // this number is dynamic actually
+           
+            window.location.href = url;
+ });
+        
+        
+        
+    });
+</script>
 
 
 

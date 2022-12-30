@@ -14,4 +14,11 @@ class Room extends Model
     {
         return $this->hasOne(Reservation::class);
     }
+
+    
+    public function hotel()
+    {
+        return $this->belongsTo(Hotel::class);
+    }
+    
 }
