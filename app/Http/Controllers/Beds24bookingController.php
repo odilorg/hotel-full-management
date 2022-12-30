@@ -45,7 +45,7 @@ class Beds24bookingController extends Controller
     $bedsapi = $_ENV['BEDS24API'];
     $bedsProkey = $_ENV['BEDS24PROPKEY'];
 //dd(gettype($bedsapi));
-    $response = Http::post('https://api.beds24.com/json/getBookings', [
+    $response = Http::get('https://api.beds24.com/json/getBookings', [
     
     "authentication" => [
         "apiKey" => $bedsapi,
