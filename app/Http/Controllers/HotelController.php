@@ -43,6 +43,7 @@ class HotelController extends Controller
             'hotel_room_quantity' => ['required', 'numeric', 'max:40'],
             'hotel_phone' => ['required', 'digits_between:9,12'],
             'hotel_email' => ['required', 'email'],
+            'property_id' => ['required','max:255'],
             
         ]);
               
@@ -91,6 +92,8 @@ class HotelController extends Controller
             'hotel_room_quantity' => ['required', 'numeric' ],
             'hotel_phone' => ['required', 'digits_between:9,12'],
             'hotel_email' => ['required', 'email'],
+            'property_id' => ['required','max:255'],
+            
             
         ]);
         $hotel->update($attributes);

@@ -77,6 +77,14 @@
                                     <p class="text-danger">{{ $message }}</p>
                                     @enderror
                                 </div>
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Property Id</label>
+                                    <input type="text" value="{{ old('property_id') }}" name="property_id" class="form-control @error('property_id')
+                  {{ 'is-invalid' }} @enderror" id="exampleInputEmail1" placeholder="Propert Id">
+                                    @error('property_id')
+                                    <p class="text-danger">{{ $message }}</p>
+                                    @enderror
+                                </div>
                                 <button type="submit">Submit</button>
                             </form>
                         </div>

@@ -60,6 +60,7 @@
                                     <th>Room Quantity</th>
                                     <th>Hotel Tel</th>
                                     <th>Hotel Email</th>
+                                    <th>Property ID</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
@@ -72,6 +73,7 @@
                                     <td>{{ $item->hotel_room_quantity }}</td>
                                     <td>{{ $item->hotel_phone }}</td>
                                     <td>{{ $item->hotel_email }}</td>
+                                    <td>{{ $item->property_id }}</td>
                                     <td><a class="btn btn-primary btn-sm" href="hotels/{{ $item->id }}">
                                             <i class="fas fa-folder">
                                             </i>
