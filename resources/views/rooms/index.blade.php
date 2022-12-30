@@ -12,7 +12,7 @@
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active">Hotels</li>
+                        <li class="breadcrumb-item active">Rooms</li>
                     </ol>
                 </div>
             </div>
@@ -45,44 +45,46 @@
                     <!-- /.card-header -->
                     <div class="card-body table-responsive p-0">
                         <div>
-                            <a class="btn btn-info btn-sm" href="{{ route('hotels.create') }}">
+                            <a class="btn btn-info btn-sm" href="{{ route('rooms.create') }}">
                                 <i class="fas fa-pencil-alt">
                                 </i>
-                                {{ __('Add Your Hotel') }}
+                                {{ __('Add Your Room') }}
                             </a>
                         </div>
                         <table class="table table-hover text-nowrap">
                             <thead>
                                 <tr>
-                                    <th>Hotel Name</th>
-                                    <th>Hotel Slug</th>
-                                    <th>Hotel Address</th>
-                                    <th>Room Quantity</th>
-                                    <th>Hotel Tel</th>
-                                    <th>Hotel Email</th>
+                                    <th>Room Name</th>
+                                    <th>Room Number</th>
+                                    <th>Unit Id</th>
+                                    <th>Room Id</th>
+                                    <th>Room size</th>
+                                    <th>Room floor</th>
+                                   
                                     <th>Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($hotels as $item )
+                                @foreach ($rooms as $item )
                                 <tr>
-                                    <td>{{ $item->hotel_name }} </span></td>
-                                    <td>{{ $item->hotel_slug }}</td>
-                                    <td>{{ $item->hotel_address }}</td>
-                                    <td>{{ $item->hotel_room_quantity }}</td>
-                                    <td>{{ $item->hotel_phone }}</td>
-                                    <td>{{ $item->hotel_email }}</td>
-                                    <td><a class="btn btn-primary btn-sm" href="hotels/{{ $item->id }}">
+                                    <td>{{ $item->room_name }} </span></td>
+                                    <td>{{ $item->room_number }}</td>
+                                    <td>{{ $item->unit_id }}</td>
+                                    <td>{{ $item->room_id }}</td>
+                                    <td>{{ $item->room_size }}</td>
+                                    <td>{{ $item->room_floor }}</td>
+                                   
+                                    <td><a class="btn btn-primary btn-sm" href="rooms/{{ $item->id }}">
                                             <i class="fas fa-folder">
                                             </i>
                                             View
                                         </a>
-                                        <a class="btn btn-info btn-sm" href="hotels/{{ $item->id }}/edit">
+                                        <a class="btn btn-info btn-sm" href="rooms/{{ $item->id }}/edit">
                                             <i class="fas fa-pencil-alt">
                                             </i>
                                             Edit
                                         </a>
-                                        <form action="/hotels/{{ $item->id }}" method="post"
+                                        <form action="/rooms/{{ $item->id }}" method="post"
                                             class="float-left">
                                             @csrf
                                             @method('delete')
@@ -99,7 +101,7 @@
                             </tbody>
                         </table>
                         <div class="pagination-block">
-                            {{ $hotels->links('admin.layouts.paginationlinks') }}
+                            {{ $rooms->links('admin.layouts.paginationlinks') }}
                           </div>
                     </div>
                     <!-- /.card-body -->

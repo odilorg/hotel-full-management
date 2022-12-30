@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Hotel;
 use Illuminate\Http\Request;
 
 class CleaningController extends Controller
@@ -32,15 +33,16 @@ class CleaningController extends Controller
         $name = auth()->user()->name;
         $telegram_api = $_ENV['TELEGRAMAPI'];
         $xona = $request->input('xona');
+        $propert_id = $request->input("property_id");
         // set room status to READY from posting to 
         // getiing room id and unit id
+        // $propert_id = Hotel::where('property_id', )
         
         
-        
-        $response = Http::post('http://example.com/users', [
-            'name' => 'Steve',
-            'role' => 'Network Administrator',
-        ]);
+        // $response = Http::post('http://example.com/users', [
+        //     'name' => 'Steve',
+        //     'role' => 'Network Administrator',
+        // ]);
        // dd($xona);
         //php code to send the message to Telegram Channel
         $now = date("d-m-Y H:m:s");

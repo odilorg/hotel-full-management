@@ -44,7 +44,7 @@
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body table-responsive p-0">
-                        
+                        <h3 >Jahongir hotel</h3>
                         <table class="table table-hover text-nowrap">
                             <thead>
                                 <tr>
@@ -253,6 +253,291 @@
                                             15 Xona Tayor
                                         </button>
                                         <input type="hidden" name="xona" value="15" >
+                                    </form>
+                                    </td>
+                                 </tr>
+
+
+                            </tbody>
+                        </table>
+                        
+                    </div>
+                    <div class="card-body table-responsive p-0">
+                        <h3 >Jahongir Premium</h3>
+                        <table class="table table-hover text-nowrap">
+                            <thead>
+                                <tr>
+                                    <th>Xona Raqami</th>
+                                    <th>Xona Xonalti</th>
+                                    
+                                </tr>
+                            </thead>
+                            <tbody>
+                                
+                                <tr>
+                                  <td>10</td>
+                                  <td>
+                                    <div>
+                                        <form action="/cleaning/ready" method="post"
+                                            class="float-left">
+                                            @csrf
+                                            <button type="submit" class="button">
+                                               
+                                                10 Xona Tayor
+                                            </button>
+                                            <input type="hidden" name="xona" value="10" >
+                                            <input type="hidden" name="property_id" value="172793" >
+                                        </form>
+                                       
+                                    </div>
+                                  </td>
+                                </tr>
+                                <tr>
+                                    <td>11</td>
+                                    <td> <div>
+                                        <form action="/cleaning/ready" method="post"
+                                        class="float-left">
+                                        @csrf
+                                        <button type="submit" class="button">
+                                           
+                                            11 Xona Tayor
+                                        </button>
+                                        <input type="hidden" name="xona" value="11" >
+                                        <input type="hidden" name="property_id" value="172793" >
+                                    </form>
+                                   
+                                    </div></td>
+                                 </tr>
+                                 <tr>
+                                    <td>12</td>
+                                    <td> <form action="/cleaning/ready" method="post"
+                                        class="float-left">
+                                        @csrf
+                                        <button type="submit" class="button">
+                                           
+                                            12 Xona Tayor
+                                        </button>
+                                        <input type="hidden" name="xona" value="12" >
+                                        <input type="hidden" name="property_id" value="172793" >
+                                    </form>
+                                   </td>
+                                 </tr>
+                                 <tr>
+                                    <td>14</td>
+                                    <td> <form action="/cleaning/ready" method="post"
+                                        class="float-left">
+                                        @csrf
+                                        <button type="submit" class="button">
+                                           
+                                            14 Xona Tayor
+                                        </button>
+                                        <input type="hidden" name="xona" value="14" >
+                                        <input type="hidden" name="property_id" value="172793" >
+                                    </form>
+                                   </td>
+                                 </tr>
+                                 <tr>
+                                    <td>15</td>
+                                    <td> <form action="/cleaning/ready" method="post"
+                                        class="float-left">
+                                        @csrf
+                                        <button type="submit" class="button">
+                                           
+                                            15 Xona Tayor
+                                        </button>
+                                        <input type="hidden" name="xona" value="15" >
+                                        <input type="hidden" name="property_id" value="172793" >
+                                    </form>
+                                   </td>
+                                 </tr>
+                                 <tr>
+                                    <td>16</td>
+                                    <td> <form action="/cleaning/ready" method="post"
+                                        class="float-left">
+                                        @csrf
+                                        <button type="submit" class="button">
+                                           
+                                            16 Xona Tayor
+                                        </button>
+                                        <input type="hidden" name="xona" value="16" >
+                                        <input type="hidden" name="property_id" value="172793" >
+                                    </form>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td>17</td>
+                                    <td> <form action="/cleaning/ready" method="post"
+                                        class="float-left">
+                                        @csrf
+                                        <button type="submit" class="button">
+                                           
+                                            17 Xona Tayor
+                                        </button>
+                                        <input type="hidden" name="xona" value="17" >
+                                        <input type="hidden" name="property_id" value="172793" >
+                                    </form>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td>18</td>
+                                    <td> <form action="/cleaning/ready" method="post"
+                                        class="float-left">
+                                        @csrf
+                                        <button type="submit" class="button">
+                                           
+                                            18 Xona Tayor
+                                        </button>
+                                        <input type="hidden" name="xona" value="18" >
+                                        <input type="hidden" name="property_id" value="172793" >
+                                    </form>
+                                   </td>
+                                 </tr>
+                                 <tr>
+                                    <td>19</td>
+                                    <td> <form action="/cleaning/ready" method="post"
+                                        class="float-left">
+                                        @csrf
+                                        <button type="submit" class="button">
+                                           
+                                            19 Xona Tayor
+                                        </button>
+                                        <input type="hidden" name="xona" value="19" >
+                                        <input type="hidden" name="property_id" value="172793" >
+                                    </form>
+                                   </td>
+                                 </tr>
+                                 <tr>
+                                    <td>20</td>
+                                    <td> <form action="/cleaning/ready" method="post"
+                                        class="float-left">
+                                        @csrf
+                                        <button type="submit" class="button">
+                                           
+                                            20 Xona Tayor
+                                        </button>
+                                        <input type="hidden" name="xona" value="20" >
+                                        <input type="hidden" name="property_id" value="172793" >
+                                    </form>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td>21</td>
+                                    <td> <form action="/cleaning/ready" method="post"
+                                        class="float-left">
+                                        @csrf
+                                        <button type="submit" class="button">
+                                           
+                                            21 Xona Tayor
+                                        </button>
+                                        <input type="hidden" name="xona" value="21" >
+                                        <input type="hidden" name="property_id" value="172793" >
+                                    </form>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td>22</td>
+                                    <td> <form action="/cleaning/ready" method="post"
+                                        class="float-left">
+                                        @csrf
+                                        <button type="submit" class="button">
+                                           
+                                            22 Xona Tayor
+                                        </button>
+                                        <input type="hidden" name="xona" value="22" >
+                                        <input type="hidden" name="property_id" value="172793" >
+                                    </form>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td>23</td>
+                                    <td> <form action="/cleaning/ready" method="post"
+                                        class="float-left">
+                                        @csrf
+                                        <button type="submit" class="button">
+                                           
+                                            23 Xona Tayor
+                                        </button>
+                                        <input type="hidden" name="xona" value="23" >
+                                        <input type="hidden" name="property_id" value="172793" >
+                                    </form>
+                                   </td>
+                                 </tr>
+                                 <tr>
+                                    <td>24</td>
+                                    <td> <form action="/cleaning/ready" method="post"
+                                        class="float-left">
+                                        @csrf
+                                        <button type="submit" class="button">
+                                           
+                                           24 Xona Tayor
+                                        </button>
+                                        <input type="hidden" name="xona" value="24" >
+                                        <input type="hidden" name="property_id" value="172793" >
+                                    </form>
+                                   </td>
+                                 </tr>
+                                 <tr>
+                                    <td>25</td>
+                                    <td> <form action="/cleaning/ready" method="post"
+                                        class="float-left">
+                                        @csrf
+                                        <button type="submit" class="button">
+                                           
+                                            25 Xona Tayor
+                                        </button>
+                                        <input type="hidden" name="xona" value="25" >
+                                        <input type="hidden" name="property_id" value="172793" >
+                                    </form>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td>26</td>
+                                    <td> <form action="/cleaning/ready" method="post"
+                                        class="float-left">
+                                        @csrf
+                                        <button type="submit" class="button">
+                                           
+                                            26 Xona Tayor
+                                        </button>
+                                        <input type="hidden" name="xona" value="26" >
+                                        <input type="hidden" name="property_id" value="172793" >
+                                    </form>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td>27</td>
+                                    <td> <form action="/cleaning/ready" method="post"
+                                        class="float-left">
+                                        @csrf
+                                        <button type="submit" class="button">
+                                           
+                                            27 Xona Tayor
+                                        </button>
+                                        <input type="hidden" name="xona" value="27" >
+                                        <input type="hidden" name="property_id" value="172793" >
+                                    </form>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td>28</td>
+                                    <td> <form action="/cleaning/ready" method="post"
+                                        class="float-left">
+                                        @csrf
+                                        <button type="submit" class="button">
+                                           
+                                            28 Xona Tayor
+                                        </button>
+                                        <input type="hidden" name="xona" value="28" >
+                                        <input type="hidden" name="property_id" value="172793" >
+                                    </form>
+                                    </td>
+                                 </tr>
+                                 <tr>   
+                                           
+                                            29 Xona Tayor
+                                        </button>
+                                        <input type="hidden" name="xona" value="29" >
+                                        <input type="hidden" name="property_id" value="172793" >
                                     </form>
                                     </td>
                                  </tr>
