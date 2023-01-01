@@ -84,6 +84,7 @@ class Beds24bookingController extends Controller
         $htmltext = $request->header('invoicedesc');
         $fullname = $request->header('fullname');
         $referer = $request->header('referer');
+        $room_id = $request->header('roomid');
         $room_number = $request->header('roomnumber');
         $checkinday = $request->header('checkinday');
         $checkoutday = $request->header('checkoutday');
@@ -96,7 +97,9 @@ class Beds24bookingController extends Controller
         $status = $request->status;
         $bookid = $request->bookid;
 
-        $room_id = Room::where('room_number', $room_number)->first();
+        $room_id = Room::where('room_id', $room_id)
+        ->where('room_number', $room_number )
+        ->first();
         
 //parser working here
   
