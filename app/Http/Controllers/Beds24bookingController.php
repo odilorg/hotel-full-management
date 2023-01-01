@@ -126,7 +126,7 @@ if (is_null($payment_method)) {
     $payment_method->text = '';
 }
 
-
+$payment_balance = $invoiceamount - $paid_amount;
 //dd(($a->text)) ; // "click here"
 
 
@@ -147,7 +147,8 @@ if (is_null($payment_method)) {
                 'lastNight' => $checkoutday,
                 'room_id' => $room_id->id,
                 'price' => $invoiceamount,
-                'paid_amount' => $paid_amount
+                'paid_amount' => $paid_amount,
+                'payment_balace' => $payment_balance
                 
                 
                
