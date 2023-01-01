@@ -70,7 +70,7 @@ $response = Http::post('https://api.beds24.com/json/setBooking;', [
 ],
 "bookId" => $booking_id,
 "infoItems" => [
-    "code" => "READY"
+    "code" => "ROOMREADY"
     
 ]
 
