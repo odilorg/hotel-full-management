@@ -62,10 +62,6 @@ EOD;
     "includeInvoice" => true,
     "status" => "1",
     
-    
-  
-    
-    
 ]);
 
     $bookings = $response->object();
