@@ -43,6 +43,7 @@ class CleaningController extends Controller
         $name = auth()->user()->name;
         $telegram_api = $_ENV['TELEGRAMAPI'];
         $room_id = $request->input('room_id');
+
       //  dd($room_id);
         $propert_id = $request->input("property_id");
         // set room status to READY from posting to 
@@ -53,6 +54,7 @@ class CleaningController extends Controller
          $booking_id = Beds24booking::where('lastNight', date("Y-m-d"))
          ->where('room_id', $room_id)
          ->first();
+         $xona = $booking_id->room->room_number;
 
         // dd($booking_id->bookId);
 //set beds24 booking room status
