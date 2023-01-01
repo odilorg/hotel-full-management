@@ -113,14 +113,14 @@ $dom = new Dom;
 $dom->loadStr($htmltext);
 $payment_description = $dom->find('td')[5];
 $payment_method = $dom->find('td')[6];
-// if (!isset($payment_description->text)) {
-//     $payment_description = new stdClass();
-//     $payment_description->text = '';
-// }
-// if (!isset($payment_method->text)) {
-//     $payment_method = new stdClass();
-//     $payment_method->text = '';
-// }
+if (empty($htmltext)) {
+    $payment_description = new stdClass();
+    $payment_description->text = '';
+}
+if (empty($htmltext)) {
+    $payment_method = new stdClass();
+    $payment_method->text = '';
+}
 
 
 //dd(($a->text)) ; // "click here"
