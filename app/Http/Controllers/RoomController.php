@@ -25,10 +25,8 @@ class RoomController extends Controller
     public function create($id)
     {
        
-        // $reports = DB::table('reservations')->select('report_number')->whereNotNull('report_number')->distinct()->get();
-        // $expenses = ExpenseCategory::get();
-        // $payments = PaymentType::get();
-        return view('room.create');
+        
+        return view('rooms.create', compact('id'));
     }
 
     public function store(Request $request)
@@ -37,8 +35,8 @@ class RoomController extends Controller
         $attributes =  request()->validate([
 
             'room_name' => ['required', 'max:255'],
-            'room_id' => ['required ', 'max:5', 'numeric'],
-            'room_number' => ['required ', 'max:5', 'numeric'],
+            'room_id' => ['required ', 'numeric'],
+            'room_number' => ['required ', 'max:20', 'numeric'],
             'unit_id' => ['required ', 'max:5', 'numeric'],
             'room_size' => ['required ', 'numeric'],
             'room_floor' => ['required ', 'max:5', 'numeric'],
@@ -53,6 +51,32 @@ class RoomController extends Controller
         return redirect()->route('rooms_hotels', ['hotel_id' => $attributes['hotel_id']]);
 
         //return redirect('/expenses/dashboard');
+    }
+    public function edit(Room $room)
+    {
+         //dd($expenses);
+        return view('rooms.edit', compact('room'));
+    }
+
+    public function update(Request $request, Room $room)
+    {
+        
+        $attributes =  request()->validate([
+
+            'room_name' => ['required', 'max:255'],
+            'room_id' => ['required ', 'numeric'],
+            'room_number' => ['required ', 'max:20', 'numeric'],
+            'unit_id' => ['required ', 'max:5', 'numeric'],
+            'room_size' => ['required ', 'numeric'],
+            'room_floor' => ['required ', 'max:5', 'numeric'],
+            'hotel_id' => ['required', 'max:5', 'numeric'],
+        ]);
+      //  dd($attributes);
+        $room->update($attributes);
+        session()->flash('success', 'Room has been updated');
+        session()->flash('type', 'Room Update');
+        
+        return redirect('rooms');
     }
 
 
