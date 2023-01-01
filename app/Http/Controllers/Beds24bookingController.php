@@ -22,9 +22,13 @@ class Beds24bookingController extends Controller
         
         
         $dom = new Dom;
-        $dom->loadStr("</td><td style='padding: 0 10px 0 0' class='conf_status'> </td></tr><tr class='conf_gap'><td>  </td></tr><tr><td style='padding: 0 10px 0 0'>humo asaka ytt </td><td style='padding: 0 10px 0 0' class='conf_status'>karta </td></tr></table>");
-        $a = $dom->find('td')[3];
-        dd(($a->text)) ; // "click here"
+        $str = <<<EOD
+        <table cellspacing="5" style="font-family:inherit;font-size:inherit;font-style:inherit;font-weight:inherit;font-size:inherit;text-align:left;border-spacing:0;" class="confirmationtable"><tr><td style='font-weight:bold;padding: 0 10px 0 0' class='conf_subheader'>Description </td><td> </td></tr><tr><td style='padding: 0 10px 0 0'>Double or Twin Thursday, 12 January, 2023 - Sunday, 15 January, 2023 </td><td style='padding: 0 10px 0 0' class='conf_status'> </td></tr></table>
+EOD;
+        $dom->loadStr($str);
+        $payment_description = $dom->find('td')[1];
+        $payment_method = $dom->find('td')[6];
+        dd(($payment_description)) ; // "click here"
         return view('beds24bookings.index');
     }
 
@@ -113,11 +117,11 @@ $dom = new Dom;
 $dom->loadStr($htmltext);
 $payment_description = $dom->find('td')[5];
 $payment_method = $dom->find('td')[6];
-if (empty($htmltext)) {
+if (is_null($payment_description)) {
     $payment_description = new stdClass();
     $payment_description->text = '';
 }
-if (empty($htmltext)) {
+if (is_null($payment_method)) {
     $payment_method = new stdClass();
     $payment_method->text = '';
 }
