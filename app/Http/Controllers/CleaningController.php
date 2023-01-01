@@ -62,7 +62,9 @@ class CleaningController extends Controller
 $bedsapi = $_ENV['BEDS24API'];
 $bedsProkey = $_ENV['BEDS24PROPKEY'];
 //dd(gettype($bedsapi));
-$response = Http::post('https://api.beds24.com/json/setBooking;', [
+
+
+$response = Http::dd()->post('https://api.beds24.com/json/setBooking;', [
 
 "authentication" => [
     "apiKey" => $bedsapi,
