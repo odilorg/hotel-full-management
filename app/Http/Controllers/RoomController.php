@@ -60,7 +60,8 @@ class RoomController extends Controller
 
     public function update(Request $request, Room $room)
     {
-        
+        $hotel_id = $room->hotel->id;
+    //    / dd($request);
         $attributes =  request()->validate([
 
             'room_name' => ['required', 'max:255'],
@@ -69,14 +70,14 @@ class RoomController extends Controller
             'unit_id' => ['required ', 'max:5', 'numeric'],
             'room_size' => ['required ', 'numeric'],
             'room_floor' => ['required ', 'max:5', 'numeric'],
-            'hotel_id' => ['required', 'max:5', 'numeric'],
+            
         ]);
       //  dd($attributes);
         $room->update($attributes);
         session()->flash('success', 'Room has been updated');
         session()->flash('type', 'Room Update');
-        
-        return redirect('rooms');
+        return redirect()->route('rooms_hotels', ['hotel_id' => $hotel_id]);
+        //return redirect('rooms');
     }
 
 
