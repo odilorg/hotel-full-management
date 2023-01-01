@@ -95,7 +95,6 @@ EOD;
         $checkoutday = $request->header('checkoutday');
         $numadults = $request->header('numadults');
         $bookingcommision = $request->header('bookingcommision');
-        $propertyid = $request->header('propertyid');
         $invoiceamount = $request->header('invoiceamount');
         $paid_amount = $request->header('paidamount');
         $invoice_balance = $request->header('invoicebalance');
@@ -127,7 +126,7 @@ if (is_null($payment_method)) {
     $payment_method->text = '';
 }
 
-$payment_balance = floatval($invoiceamount) - floatval($paid_amount);
+//$payment_balance = floatval($invoiceamount) - floatval($paid_amount);
 //dd(($a->text)) ; // "click here"
 
 
@@ -149,7 +148,7 @@ $payment_balance = floatval($invoiceamount) - floatval($paid_amount);
                 'room_id' => $room_id->id,
                 'price' => $invoiceamount,
                 'paid_amount' => $paid_amount,
-                'payment_balace' => $invoice_balance
+                'payment_balace' => $invoice_balance,
                 
                 
                
