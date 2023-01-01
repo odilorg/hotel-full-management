@@ -126,7 +126,7 @@ if (is_null($payment_method)) {
     $payment_method->text = '';
 }
 
-$payment_balance = $invoiceamount - $paid_amount;
+$payment_balance = floatval($invoiceamount) - floatval($paid_amount);
 //dd(($a->text)) ; // "click here"
 
 
