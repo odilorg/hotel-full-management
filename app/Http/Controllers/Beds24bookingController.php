@@ -148,7 +148,7 @@ if (is_null($payment_method)) {
                 'room_id' => $room_id->id,
                 'price' => $invoiceamount,
                 'paid_amount' => $paid_amount,
-                'payment_balace' => $invoice_balance,
+                'payment_balance' => $invoice_balance,
                 
                 
                
