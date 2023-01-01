@@ -54,7 +54,7 @@ class CleaningController extends Controller
          ->where('room_id', $room_id)
          ->first();
 
-         dd($booking_id->bookId);
+        // dd($booking_id->bookId);
 //set beds24 booking room status
 
 $bedsapi = $_ENV['BEDS24API'];
