@@ -10,14 +10,14 @@ class RoomController extends Controller
 {
     public function index()
     {
-        $rooms = Room::orderBy('room_number')->paginate(15);
+        $rooms = Room::orderBy('room_number')->paginate(19);
        $hotels = Hotel::all();
         return view('rooms.index', compact('rooms', 'hotels'));
     }
 
     public function rooms_hotels($hotel_id)
     {
-     $rooms = Room::where('hotel_id', $hotel_id)->orderBy('room_number')->paginate(15);
+     $rooms = Room::where('hotel_id', $hotel_id)->orderBy('room_number')->paginate(19);
      $hotels = Hotel::all();
         return view('rooms.index', compact('rooms', 'hotels', 'hotel_id'));
     }
@@ -36,7 +36,7 @@ class RoomController extends Controller
 
             'room_name' => ['required', 'max:255'],
             'room_id' => ['required ', 'numeric'],
-            'room_number' => ['required ', 'max:20', 'numeric'],
+            'room_number' => ['required ', 'max:29', 'numeric'],
             'unit_id' => ['required ', 'max:5', 'numeric'],
             'room_size' => ['required ', 'numeric'],
             'room_floor' => ['required ', 'max:5', 'numeric'],
@@ -66,7 +66,7 @@ class RoomController extends Controller
 
             'room_name' => ['required', 'max:255'],
             'room_id' => ['required ', 'numeric'],
-            'room_number' => ['required ', 'max:20', 'numeric'],
+            'room_number' => ['required ', 'max:29', 'numeric'],
             'unit_id' => ['required ', 'max:5', 'numeric'],
             'room_size' => ['required ', 'numeric'],
             'room_floor' => ['required ', 'max:5', 'numeric'],
@@ -78,6 +78,17 @@ class RoomController extends Controller
         session()->flash('type', 'Room Update');
         return redirect()->route('rooms_hotels', ['hotel_id' => $hotel_id]);
         //return redirect('rooms');
+    }
+
+    public function destroy(Room $room)
+    {
+      // $hotel_id = $expense->hotels->id;
+      $hotel_id =$room->hotel->id;
+        $room->delete();
+        session()->flash('error', 'Room has been deleted');
+        session()->flash('type', 'Room Delete');
+        return redirect()->route('rooms_hotels', ['hotel_id' => $hotel_id]);
+     //   return redirect('expenses');
     }
 
 

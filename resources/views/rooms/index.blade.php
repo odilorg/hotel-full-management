@@ -52,6 +52,53 @@
                                     </i>
                                     {{ __('Add Your Room') }}
                                 </a>
+                                <script>
+                                     document.addEventListener("keydown", function(event) {
+  event.preventDefault();
+  switch (event.which) {
+    case 112:
+    var id = $('#hotel_select option:selected').val()
+   
+    var url = window.location.origin;
+           
+           url = url + "/rooms/" +id + "/create/";  // this number is dynamic actually
+        
+           window.location.href = url;  
+      break;
+    case 113:
+      alert("You just pressed F2!");
+      break;
+    case 114:
+      alert("You just pressed F3!");
+      break;
+    case 115:
+      alert("You just pressed F4!");
+      break;
+   
+    case 117:
+      alert("You just pressed F6!");
+      break;
+    case 118:
+      alert("You just pressed F7!");
+      break;
+    case 119:
+      alert("You just pressed F8!");
+      break;
+    case 120:
+      alert("You just pressed F9!");
+      break;
+    case 121:
+      alert("You just pressed F10!");
+      break;
+    case 122:
+      alert("You just pressed F11!");
+      break;
+    case 123:
+      alert("You just pressed F12!");
+      break;
+  }
+})
+                                </script>
                                 @endif
                                 
                             </div>
@@ -154,53 +201,7 @@
         
     });
 
-    document.addEventListener("keydown", function(event) {
-  event.preventDefault();
-  switch (event.which) {
-    case 112:
-    var id = $('#hotel_select option:selected').val()
    
-    var url = window.location.origin;
-           
-           url = url + "/rooms/" +id + "/create/";  // this number is dynamic actually
-        
-           window.location.href = url;  
-      break;
-    case 113:
-      alert("You just pressed F2!");
-      break;
-    case 114:
-      alert("You just pressed F3!");
-      break;
-    case 115:
-      alert("You just pressed F4!");
-      break;
-    case 116:
-      alert("You just pressed F5!");
-      break;
-    case 117:
-      alert("You just pressed F6!");
-      break;
-    case 118:
-      alert("You just pressed F7!");
-      break;
-    case 119:
-      alert("You just pressed F8!");
-      break;
-    case 120:
-      alert("You just pressed F9!");
-      break;
-    case 121:
-      alert("You just pressed F10!");
-      break;
-    case 122:
-      alert("You just pressed F11!");
-      break;
-    case 123:
-      alert("You just pressed F12!");
-      break;
-  }
-})
 
 
 
