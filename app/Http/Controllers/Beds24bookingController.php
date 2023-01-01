@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use stdClass;
 use App\Models\Room;
 use PHPHtmlParser\Dom;
 use Illuminate\Http\Request;
@@ -102,7 +103,12 @@ class Beds24bookingController extends Controller
         ->first();
         
 //parser working here
-  
+  // Creating an object
+$payment_method = new stdClass();
+$payment_description = new stdClass();
+// Property added to the object
+$payment_method->text = '';
+$payment_description->text = '';
 $dom = new Dom;
 $dom->loadStr($htmltext);
 $payment_description = $dom->find('td')[5];
