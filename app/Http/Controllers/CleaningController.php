@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Beds24booking;
+use App\Models\Room;
 use App\Models\Hotel;
 use Illuminate\Http\Request;
 
@@ -36,7 +38,8 @@ class CleaningController extends Controller
         $propert_id = $request->input("property_id");
         // set room status to READY from posting to 
         // getiing room id and unit id
-        // $propert_id = Hotel::where('property_id', )
+         $propert_id = Hotel::where('property_id', $propert_id );
+         $booking_id = Beds24booking::where('');
         
         
         // $response = Http::post('http://example.com/users', [

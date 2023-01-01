@@ -20,6 +20,10 @@ class Room extends Model
     {
         return $this->belongsTo(Hotel::class);
     }
+    public function beds24bookings()
+    {
+        return $this->hasMany(Beds24booking::class);
+    }
     protected $guarded = [];
     
 }

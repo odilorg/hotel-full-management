@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Room;
+use PHPHtmlParser\Dom;
 use Illuminate\Http\Request;
 use App\Models\Beds24booking;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
-use PHPHtmlParser\Dom;
 
 class Beds24bookingController extends Controller
 {
@@ -83,7 +84,7 @@ class Beds24bookingController extends Controller
         $htmltext = $request->header('invoicedesc');
         $fullname = $request->header('fullname');
         $referer = $request->header('referer');
-        $roomid = $request->header('roomid');
+        $room_number = $request->header('roomnumber');
         $checkinday = $request->header('checkinday');
         $checkoutday = $request->header('checkoutday');
         $numadults = $request->header('numadults');
@@ -94,6 +95,9 @@ class Beds24bookingController extends Controller
 
         $status = $request->status;
         $bookid = $request->bookid;
+
+        $room_id = Room::where('room_number', $room_number)->first();
+        
 //parser working here
   
 $dom = new Dom;
@@ -118,7 +122,7 @@ $payment_method = $dom->find('td')[6];
                 'commission' => $bookingcommision,
                 'firstNight' => $checkinday,
                 'lastNight' => $checkoutday,
-                'roomId' => $roomid,
+                'room_id' => $room_id->id,
                 'price' => $invoiceamount,
                 'paid_amount' => $paid_amount
                 

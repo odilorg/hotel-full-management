@@ -20,7 +20,7 @@ class CreateBeds24bookingsTable extends Migration
             $table->string('guestName')->nullable();
             $table->string('bookId')->unique();
             $table->string('unitId')->nullable();
-            $table->string('roomId')->nullable();
+            $table->foreignId('room_id')->nullable();
             $table->date('checkinday')->nullable();
             $table->date('checkoutday')->nullable();
             $table->integer('numAdult')->nullable();
