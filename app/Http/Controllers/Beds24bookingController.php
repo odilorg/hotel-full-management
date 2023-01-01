@@ -98,6 +98,7 @@ EOD;
         $propertyid = $request->header('propertyid');
         $invoiceamount = $request->header('invoiceamount');
         $paid_amount = $request->header('paidamount');
+        $invoice_balance = $request->header('invoicebalance');
 
         $status = $request->status;
         $bookid = $request->bookid;
@@ -148,7 +149,7 @@ $payment_balance = floatval($invoiceamount) - floatval($paid_amount);
                 'room_id' => $room_id->id,
                 'price' => $invoiceamount,
                 'paid_amount' => $paid_amount,
-                'payment_balace' => $payment_balance
+                'payment_balace' => $invoice_balance
                 
                 
                
