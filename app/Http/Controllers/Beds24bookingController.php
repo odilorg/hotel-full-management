@@ -104,8 +104,8 @@ class Beds24bookingController extends Controller
         
 //parser working here
 //   // Creating an object
-// $payment_method = new stdClass();
-// $payment_description = new stdClass();
+$payment_method = new stdClass();
+$payment_description = new stdClass();
 // // Property added to the object
 // $payment_method->text = '';
 // $payment_description->text = '';
