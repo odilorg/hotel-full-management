@@ -65,7 +65,7 @@ if ($room->hotel_id == 1) {
 //set beds24 booking room status
 
 $bedsapi = $_ENV['BEDS24API'];
-$bedsProkey = $_ENV['BEDS24PROPKEY2'];
+
 //dd(gettype($bedsapi));
 //dd($booking_id->bookId);
 
