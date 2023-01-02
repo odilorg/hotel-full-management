@@ -51,12 +51,15 @@ class CleaningController extends Controller
         //date_default_timezone_set("Asia/Tashkent");
          //$propert_id = Room::where('room_number', $room_id)->first();
 $room = Room::find($room_id);
-//dd($room->room_name);
-        //  $booking_id = Beds24booking::where('lastNight', date("Y-m-d"))
-        //  ->where('room_id', $room_id)
-        //  ->first();
-       //  dd($booking_id);
-        $xona = $room->room_number;
+$xona = $room->room_number;
+// if 
+if ($room->hotel_id == 1) {
+    $bedsProkey = $_ENV['BEDS24PROPKEYJAHONGIR'];
+}else {
+    $bedsProkey = $_ENV['BEDS24PROPKEYPREMIUM'];
+}
+
+
 
         // dd($booking_id->bookId);
 //set beds24 booking room status
