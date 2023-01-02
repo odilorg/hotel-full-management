@@ -41,7 +41,8 @@ class CleaningController extends Controller
     public function cleaning_ready(Request $request)
     {
         $name = auth()->user()->name;
-        $telegram_api = $_ENV['TELEGRAMAPI'];
+
+        
         $room_id = $request->input('room_id');
 
     //   /  dd($room_id);
@@ -55,8 +56,13 @@ $xona = $room->room_number;
 // if 
 if ($room->hotel_id == 1) {
     $bedsProkey = $_ENV['BEDS24PROPKEYJAHONGIR'];
+    $telegram_api = $_ENV['TELEGRAMAPIJAHONGIR'];
+    $chat_id = $_ENV['CHAT_ID_JAHONGIR'];
+
 }else {
     $bedsProkey = $_ENV['BEDS24PROPKEYPREMIUM'];
+    $telegram_api = $_ENV['TELEGRAMAPIPREMIUM'];
+    $chat_id = $_ENV['CHAT_ID_PREMIUM'];
 }
 
 
@@ -116,7 +122,7 @@ $response = Http::post('https://api.beds24.com/json/setProperty', [
         $new_time = date("d-m-Y H:i:s", strtotime('+5 hours', strtotime($now)));
         $apiToken = $telegram_api;
         $data = [
-            'chat_id' => '-653810568',
+            'chat_id' => $chat_id,
             'text' =>  $xona ." Xona Tayor ". $new_time . " by " .$name,
         ];
         $response = file_get_contents("https://api.telegram.org/bot$apiToken/sendMessage?" . http_build_query($data));

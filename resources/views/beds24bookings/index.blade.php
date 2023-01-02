@@ -44,38 +44,11 @@
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body table-responsive p-0">
-                        <div>
-                            <a class="btn btn-info btn-sm" href="{{ route('beds24bookings.create') }}">
-                                <i class="fas fa-pencil-alt">
-                                </i>
-                                Add Hotel Reservation
-                            </a>
-                        </div>
+                        
                         <div class="mt-1">
-                            <button type="button" class="btn btn-info" data-toggle="modal"
-                                data-target="#exampleModal">
-                                <i class="fas fa-hotel">
-                                </i>
-                                Add Beds24Reservation
-                            </button>
-                            <button type="button" class="btn btn-primary" data-toggle="modal"
-                                data-target="#exampleModal-report">
-                                <i class="fas fa-scroll">
-                                </i>
-                                Reports
-                            </button>
-                            <button type="button" class="btn btn-primary" data-toggle="modal"
-                                data-target="#exampleModal-range">
-                                <i class="fas fa-scroll">
-                                </i>
-                                Reports Date Range
-                            </button>
-                            <button type="button" class="btn btn-primary" data-toggle="modal"
-                                data-target="#exampleModal-unpaid">
-                                <i class="fas fa-scroll">
-                                </i>
-                                Unpaid 
-                            </button>
+                            
+                           
+                            
                         </div>
                         <table class="table table-hover text-wrap" id="employee_table">
                             <thead>
@@ -89,53 +62,67 @@
                                     <th style="width:25px">N/P</th>
                                     <th>Price</th>
                                     <th style="width:125px">Price Uzs</th>
+                                    <th style="width:125px">Paid</th>
+                                    <th style="width:125px">Balance</th>
+                                    <th>Payment Method</th>
+                                    <th>Payment Description</th>
                                     <th style="width:35px">Comission</th>
                                     <th>Referer</th>
-                                    <th>Payment Method</th>
-                                    <th>Report Date</th>
-                                    <th>Company if Any</th>
-                                    <th>Ok Ytt</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
                                
                                 <tr>
-                                    <td></td>
-                                  
+                                    @foreach ($beds24bookings as $beds24booking)
+                                    <td>{{ $beds24booking->bookId  }}</td>
+                                    <td>{{ $beds24booking->guestName  }}</td>
+                                    <td>{{ $beds24booking->room->room_name  }} - {{ $beds24booking->room->room_number }}</td>
+                                    <td>{{ $beds24booking->firstNight  }}</td>
+                                    <td>{{ $beds24booking->lastNight  }}</td>
+                                    <td>{{ $beds24booking->numAdult  }}</td>
+                                    <td>{{ __('Beds24 Hotel Jahongir') }}</td>
+                                    <td>{{ $beds24booking->price  }}</td>
+                                    <td>{{ __('Beds24 Hotel Jahongir')  }}</td>
+                                    <td>{{ $beds24booking->paid_amount }}</td>
+                                    <td>{{ $beds24booking->payment_balance  }}</td>
+                                    <td>{{ $beds24booking->payment_method  }}</td>
+                                    <td>{{ $beds24booking->payment_description  }}</td>
+                                    <td>{{ $beds24booking->commission  }}</td>
+                                    <td>{{ $beds24booking->referer}}</td>
+                                    
+
+                                </td>
+                                <td><a class="btn btn-primary btn-sm"
+                                    href="beds24bookings/1/show">
+                                        <i class="fas fa-folder">
+                                        </i>
+                                        View
+                                    </a>
+                                    <a class="btn btn-info btn-sm" href="beds24bookings/1/edit">
+                                        <i class="fas fa-pencil-alt">
+                                        </i>
+                                        Edit
+                                    </a>
+                                    <form action="/beds24bookings/1" method="post"
+                                        class="float-left">
+                                        @csrf
+                                        @method('delete')
+                                        <button type="submit" class="btn btn-danger btn-sm">
+                                            <i class="fas fa-trash">
+                                            </i>
+                                            Delete
+                                        </button>
+                                    </form>
+                                </td>
+                                    @endforeach
                                    
-
-
-                                    </td>
-
-                                    <td><a class="btn btn-primary btn-sm"
-                                        href="beds24bookings/1/show">
-                                            <i class="fas fa-folder">
-                                            </i>
-                                            View
-                                        </a>
-                                        <a class="btn btn-info btn-sm" href="beds24bookings/1/edit">
-                                            <i class="fas fa-pencil-alt">
-                                            </i>
-                                            Edit
-                                        </a>
-                                        <form action="/beds24bookings/1" method="post"
-                                            class="float-left">
-                                            @csrf
-                                            @method('delete')
-                                            <button type="submit" class="btn btn-danger btn-sm">
-                                                <i class="fas fa-trash">
-                                                </i>
-                                                Delete
-                                            </button>
-                                        </form>
-                                    </td>
                                 </tr>
                                 
                             </tbody>
                         </table>
                         <div class="pagination-block">
-                           
+                            {{ $beds24bookings->links('admin.layouts.paginationlinks') }}
                         </div>
                     </div>
                     <!-- /.card-body -->
@@ -150,162 +137,7 @@
 </section>
 <!-- /.content -->
 </div>
-<div class="modal fade" id="exampleModal-report" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Close the Day</h5>
-                <button type="button" class="close" data-dismiss="modal-report" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <form action="{{ route('reservations.closeday') }}" method="POST">
-                @csrf
-                <div class="modal-body">
-                    <div class="input-group " id="reservationdate" data-target-input="nearest">
-                        <input type="text" name="report_number" class="form-control date @error('report_number')
-        {{ 'is-invalid' }} @enderror datetimepicker-input" data-target="#reservationdate" />
-                        <div class="input-group-append" data-target="#reservationdate"
-                            data-toggle="datetimepicker">
-                            <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Submit</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-<div class="modal fade" id="exampleModal-unpaid" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Close the Day</h5>
-                <button type="button" class="close" data-dismiss="modal-report" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <form action="{{ route('reservations.unpaid') }}" method="POST">
-                @csrf
-                <div class="modal-body">
-                    <div class="input-group " id="reservationdate" data-target-input="nearest">
-                        <input type="text" name="unpaid" class="form-control date @error('unpaid')
-        {{ 'is-invalid' }} @enderror datetimepicker-input" data-target="#reservationdate" />
-                        <div class="input-group-append" data-target="#reservationdate"
-                            data-toggle="datetimepicker">
-                            <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Submit</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Add Beds24</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <form action="{{ route('beds24bookings.getbookings') }}" method="POST">
-                @csrf
-                <div class="modal-body">
-                    <div class="form-group">
-                        <label>From</label>
-                        <div class="input-group " id="reservationdate" data-target-input="nearest">
-                            <input type="text" value="{{ old('from_date') }}" name="from_date" class="form-control date  @error('from_date')
-                {{ 'is-invalid' }} @enderror datetimepicker-input" data-target="#reservationdate" />
-                            <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
-                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                            </div>
-                        </div>
-                        @error('from_date')
-                        <p class="text-danger">{{ $message }}</p>
-                        @enderror
-                    </div>
-                    <div class="form-group">
-                        <label>To Date:</label>
-                        <div class="input-group " id="reservationdate" data-target-input="nearest">
-                            <input type="text" value="{{ old('to_date') }}" name="to_date" class="form-control date @error('to_date')
-                {{ 'is-invalid' }} @enderror datetimepicker-input" data-target="#reservationdate" />
-                            <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
-                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                            </div>
-                        </div>
-                        @error('to_date')
-                        <p class="text-danger">{{ $message }}</p>
-                        @enderror
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Submit</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-<div class="modal fade" id="exampleModal-range" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Report</h5>
-                <button type="button" class="close" data-dismiss="modal-report" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <form action="{{ route('reservations.report-range') }}" method="POST">
-                @csrf
-                <div class="modal-body">
-                    <div class="form-group">
-                        <label>Arriva From</label>
-                        <div class="input-group " id="reservationdate" data-target-input="nearest">
-                            <input type="text" value="{{ old('from_date') }}" name="from_date" class="form-control date  @error('from_date')
-                {{ 'is-invalid' }} @enderror datetimepicker-input" data-target="#reservationdate" />
-                            <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
-                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                            </div>
-                        </div>
-                        @error('from_date')
-                        <p class="text-danger">{{ $message }}</p>
-                        @enderror
-                    </div>
-                    <div class="form-group">
-                        <label>Arrival To:</label>
-                        <div class="input-group " id="reservationdate" data-target-input="nearest">
-                            <input type="text" value="{{ old('to_date') }}" name="to_date" class="form-control date @error('to_date')
-                {{ 'is-invalid' }} @enderror datetimepicker-input" data-target="#reservationdate" />
-                            <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
-                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                            </div>
-                        </div>
-                        @error('to_date')
-                        <p class="text-danger">{{ $message }}</p>
-                        @enderror
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Submit</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
+
 
 
 
