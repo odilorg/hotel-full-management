@@ -72,9 +72,9 @@
                                 </tr>
                             </thead>
                             <tbody>
-                               
+                                @foreach ($beds24bookings as $beds24booking)
                                 <tr>
-                                    @foreach ($beds24bookings as $beds24booking)
+                                    
                                     <td>{{ $beds24booking->bookId  }}</td>
                                     <td>{{ $beds24booking->guestName  }}</td>
                                     <td>{{ $beds24booking->room->room_name  }} - {{ $beds24booking->room->room_number }}</td>

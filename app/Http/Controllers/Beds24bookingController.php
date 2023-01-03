@@ -34,8 +34,8 @@ EOD;
 
     public function index()
     {
-       $beds24bookings = Beds24booking::find(100);
-       dd($beds24bookings->room->room_name); 
+       $beds24bookings = Beds24booking::orderBy('firstNight', "asc")->paginate(15);
+      // dd($beds24bookings); 
        //dd("index24");
         return view('beds24bookings.index', compact('beds24bookings'));
     }
