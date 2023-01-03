@@ -34,8 +34,27 @@ EOD;
 
     public function index()
     {
-       $beds24bookings = Beds24booking::orderBy('firstNight', "asc")->paginate(15);
-      // dd($beds24bookings); 
+   // $utility_usages = DB::table('utility_usages')
+        //     ->join('meters', 'utility_usages.meter_id', '=', 'meters.id')
+        //     ->join('utilities', 'utility_usages.utility_id', '=', 'utilities.id')
+        //     ->select('utility_usages.*',  'utilities.utility_name', 'meters.meter_number')
+        //     ->get();
+        // ->join('contacts', function ($join) {
+        //     $join->on('users.id', '=', 'contacts.user_id')
+        //          ->where('contacts.user_id', '>', 5);
+        // })
+        
+        
+       $beds24bookings = DB::table('rooms')
+            ->join('beds24bookings', 'rooms.id', '=', 'beds24bookings.room_id')
+            ->join('hotels', 'rooms.hotel_id', '=', 'hotels.id')
+            ->select('rooms.*',  'beds24bookings.*', 'hotels.hotel_name')
+            ->orderBy('beds24bookings.firstNight', 'asc')           
+            ->paginate(15);
+
+       //$beds24bookings = Beds24booking::with('room.hotel')->orderBy('firstNight', "asc")->paginate(15);
+    //    $hotel_names = Room::where('hotel_id', )
+    // /  dd($beds24bookings); 
        //dd("index24");
         return view('beds24bookings.index', compact('beds24bookings'));
     }
