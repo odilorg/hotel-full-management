@@ -20,6 +20,10 @@ class Beds24bookingController extends Controller
     public function parsehtml()
     {
         
+        $room_id = Room::where('room_id', "377302")
+        ->where('room_number', "16" )
+        ->first();
+        dd($room_id->id);
         
         $dom = new Dom;
         $str = <<<EOD
@@ -34,8 +38,8 @@ EOD;
 
     public function index()
     {
-       $beds24bookings = Beds24booking::find(100);
-       dd($beds24bookings->room->room_name); 
+       $beds24bookings = Beds24booking::paginate(14);
+    //   dd($beds24bookings->room->room_name); 
        //dd("index24");
         return view('beds24bookings.index', compact('beds24bookings'));
     }
