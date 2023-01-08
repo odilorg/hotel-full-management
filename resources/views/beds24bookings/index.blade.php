@@ -68,16 +68,17 @@
                                     <th>Payment Description</th>
                                     <th style="width:35px">Comission</th>
                                     <th>Referer</th>
+                                    <th>Hotel</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
-                               
+                                @foreach ($beds24bookings as $beds24booking)
                                 <tr>
-                                    @foreach ($beds24bookings as $beds24booking)
+                                    
                                     <td>{{ $beds24booking->bookId  }}</td>
                                     <td>{{ $beds24booking->guestName  }}</td>
-                                    <td>{{ $beds24booking->room->room_name  }} - {{ $beds24booking->room->room_number }}</td>
+                                    <td>{{ $beds24booking->room_name  }} - {{ $beds24booking->room_number }}</td>
                                     <td>{{ $beds24booking->firstNight  }}</td>
                                     <td>{{ $beds24booking->lastNight  }}</td>
                                     <td>{{ $beds24booking->numAdult  }}</td>
@@ -90,6 +91,7 @@
                                     <td>{{ $beds24booking->payment_description  }}</td>
                                     <td>{{ $beds24booking->commission  }}</td>
                                     <td>{{ $beds24booking->referer}}</td>
+                                    <td>{{ $beds24booking->hotel_name}}</td>
                                     
 
                                 </td>

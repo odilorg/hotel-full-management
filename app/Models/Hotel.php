@@ -2,8 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Room;
+use App\Models\Beds24booking;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Hotel extends Model
 {
@@ -13,5 +15,9 @@ class Hotel extends Model
     public function rooms()
     {
         return $this->hasMany(Room::class);
+    }
+    public function beds24bookings()
+    {
+        return $this->hasManyThrough(Beds24booking::class, Room::class);
     }
 }
