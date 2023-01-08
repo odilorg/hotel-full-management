@@ -59,13 +59,13 @@
                                     <th>CI Date</th>
                                     <th>CO Date</th>
                                     <th style="width:25px">Adults</th>
-                                    <th style="width:25px">N/P</th>
+                                    
                                     <th>Price</th>
-                                    <th style="width:125px">Price Uzs</th>
-                                    <th style="width:125px">Paid</th>
-                                    <th style="width:125px">Balance</th>
-                                    <th>Payment Method</th>
-                                    <th>Payment Description</th>
+                                  
+                                    <th style="width:25px">Paid</th>
+                                    <th style="width:25px">Balance</th>
+                                    <th style="width:25px">Payment Method</th>
+                                    <th style="width:25px">Payment Description</th>
                                     <th style="width:35px">Comission</th>
                                     <th>Referer</th>
                                     <th>Hotel</th>
@@ -82,9 +82,9 @@
                                     <td>{{ $beds24booking->firstNight  }}</td>
                                     <td>{{ $beds24booking->lastNight  }}</td>
                                     <td>{{ $beds24booking->numAdult  }}</td>
-                                    <td>{{ __('Beds24 Hotel Jahongir') }}</td>
+                                  
                                     <td>{{ $beds24booking->price  }}</td>
-                                    <td>{{ __('Beds24 Hotel Jahongir')  }}</td>
+                                   
                                     <td>{{ $beds24booking->paid_amount }}</td>
                                     <td>{{ $beds24booking->payment_balance  }}</td>
                                     <td>{{ $beds24booking->payment_method  }}</td>
