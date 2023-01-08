@@ -53,13 +53,13 @@ EOD;
             ->join('beds24bookings', 'rooms.id', '=', 'beds24bookings.room_id')
             ->join('hotels', 'rooms.hotel_id', '=', 'hotels.id')
             ->select('rooms.*',  'beds24bookings.*', 'hotels.hotel_name')
-            ->orderBy('beds24bookings.firstNight', 'asc')           
-            ->paginate(15);
+            ->orderBy('firstNight', 'desc')           
+            ->paginate(25);
 
        //$beds24bookings = Beds24booking::with('room.hotel')->orderBy('firstNight', "asc")->paginate(15);
     //    $hotel_names = Room::where('hotel_id', )
-    // /  dd($beds24bookings); 
-       $beds24bookings = Beds24booking::paginate(14);
+ //dd($beds24bookings); 
+       //$beds24bookings = Beds24booking::paginate(14);
     //   dd($beds24bookings->room->room_name); 
        //dd("index24");
         return view('beds24bookings.index', compact('beds24bookings'));
