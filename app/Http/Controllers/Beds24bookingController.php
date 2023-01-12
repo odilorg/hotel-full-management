@@ -53,7 +53,7 @@ EOD;
             ->join('beds24bookings', 'rooms.id', '=', 'beds24bookings.room_id')
             ->join('hotels', 'rooms.hotel_id', '=', 'hotels.id')
             ->select('rooms.*',  'beds24bookings.*', 'hotels.hotel_name')
-            ->orderBy('firstNight', 'desc')           
+            ->orderBy('beds24bookings.firstNight', 'desc')           
             ->paginate(25);
 
        //$beds24bookings = Beds24booking::with('room.hotel')->orderBy('firstNight', "asc")->paginate(15);

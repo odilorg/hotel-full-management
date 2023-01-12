@@ -50,6 +50,7 @@
                            
                             
                         </div>
+                        
                         <table class="table table-hover text-wrap" id="employee_table">
                             <thead>
                                 <tr>
@@ -69,7 +70,7 @@
                                     <th style="width:35px">Comission</th>
                                     <th>Referer</th>
                                     <th>Hotel</th>
-                                    <th>Actions</th>
+                                   
                                 </tr>
                             </thead>
                             <tbody>
@@ -95,28 +96,7 @@
                                     
 
                                 </td>
-                                <td><a class="btn btn-primary btn-sm"
-                                    href="beds24bookings/1/show">
-                                        <i class="fas fa-folder">
-                                        </i>
-                                        View
-                                    </a>
-                                    <a class="btn btn-info btn-sm" href="beds24bookings/1/edit">
-                                        <i class="fas fa-pencil-alt">
-                                        </i>
-                                        Edit
-                                    </a>
-                                    <form action="/beds24bookings/1" method="post"
-                                        class="float-left">
-                                        @csrf
-                                        @method('delete')
-                                        <button type="submit" class="btn btn-danger btn-sm">
-                                            <i class="fas fa-trash">
-                                            </i>
-                                            Delete
-                                        </button>
-                                    </form>
-                                </td>
+                                
                                     @endforeach
                                    
                                 </tr>
