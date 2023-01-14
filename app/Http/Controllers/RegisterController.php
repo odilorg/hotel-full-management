@@ -26,8 +26,8 @@ class RegisterController extends Controller
         'password' => $request->password,
       
         ], $remember)) {
-     //DD(Auth::user()->id);
-            if (Auth::user()->id == 3) {
+    //  /DD(Auth::user()->id);
+            if (Auth::user()->role == 3) {
                 session()->flash('success', 'You logged in ');
                 session()->flash('type', 'User Login');
          
