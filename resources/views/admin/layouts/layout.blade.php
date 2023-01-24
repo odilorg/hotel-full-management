@@ -354,6 +354,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         </a>
                     </li> 
                     <li class="nav-item">
+                        <a href="{{ route('shifts.index') }}"
+                            class="nav-link {{ (request()->is('shifts*')) ? 'active' : '' }}">
+                            <i class="nav-icon fas fa-users"></i>
+                            <p>
+                                Shifts
+                            </p>
+                        </a>
+                    </li> 
+                    <li class="nav-item">
                         <a href="{{ route('rooms.index') }}"
                             class="nav-link {{ (request()->is('rooms*')) ? 'active' : '' }}">
                             <i class="nav-icon fas fa-hotel"></i>

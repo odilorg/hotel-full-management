@@ -664,6 +664,7 @@ class ComposerStaticInit352f526f7d07897a4f935a013ab5fbf1
         'App\\Models\\Room' => __DIR__ . '/../..' . '/app/Models/Room.php',
         'App\\Models\\RoomRepair' => __DIR__ . '/../..' . '/app/Models/RoomRepair.php',
         'App\\Models\\Roomprice' => __DIR__ . '/../..' . '/app/Models/Roomprice.php',
+        'App\\Models\\Shift' => __DIR__ . '/../..' . '/app/Models/Shift.php',
         'App\\Models\\Staff' => __DIR__ . '/../..' . '/app/Models/Staff.php',
         'App\\Models\\Ticket' => __DIR__ . '/../..' . '/app/Models/Ticket.php',
         'App\\Models\\Tourgroup' => __DIR__ . '/../..' . '/app/Models/Tourgroup.php',

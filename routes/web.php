@@ -10,6 +10,7 @@ use App\Http\Controllers\CargoController;
 use App\Http\Controllers\GuideController;
 use App\Http\Controllers\HotelController;
 use App\Http\Controllers\MeterController;
+use App\Http\Controllers\ShiftController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\TicketController;
@@ -113,6 +114,7 @@ Route::middleware(['auth', 'revalidate', 'can:not-cleaning' ])->group(function (
         'hotels' => HotelController::class,
         'rooms' => RoomController::class,
         'beds24bookings' => Beds24bookingController::class,
+        'shifts' => ShiftController::class,
        
     
     ]);

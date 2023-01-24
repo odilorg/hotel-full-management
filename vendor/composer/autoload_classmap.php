@@ -71,6 +71,7 @@ return array(
     'App\\Models\\Room' => $baseDir . '/app/Models/Room.php',
     'App\\Models\\RoomRepair' => $baseDir . '/app/Models/RoomRepair.php',
     'App\\Models\\Roomprice' => $baseDir . '/app/Models/Roomprice.php',
+    'App\\Models\\Shift' => $baseDir . '/app/Models/Shift.php',
     'App\\Models\\Staff' => $baseDir . '/app/Models/Staff.php',
     'App\\Models\\Ticket' => $baseDir . '/app/Models/Ticket.php',
     'App\\Models\\Tourgroup' => $baseDir . '/app/Models/Tourgroup.php',
