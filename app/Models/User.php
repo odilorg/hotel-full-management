@@ -2,12 +2,13 @@
 
 namespace App\Models;
 
+use App\Models\Shift;
+use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
-use Illuminate\Database\Eloquent\Model;
 
 class User extends Authenticatable
 {
@@ -43,6 +44,12 @@ class User extends Authenticatable
     {
         return $this->hasMany(Tourgroup::class);
     }
+    public function shifts()
+    {
+        return $this->hasMany(Shift::class);
+    }
+
+
     public function reports()
     {
         return $this->hasMany(Report::class);

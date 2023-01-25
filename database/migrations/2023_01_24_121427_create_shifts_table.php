@@ -16,6 +16,14 @@ class CreateShiftsTable extends Migration
         Schema::create('shifts', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->foreignId('user_id');
+            $table->foreignId('hotel_id');
+            $table->foreignId('shiftlog_id');
+            $table->foreignId('expense_id');            
+            $table->decimal('saldo');
+            $table->decimal('rate_usd');
+
+
         });
     }
 

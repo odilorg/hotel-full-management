@@ -12,7 +12,7 @@
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active">Company</li>
+                        <li class="breadcrumb-item active">Shift</li>
                     </ol>
                 </div>
             </div>
@@ -45,53 +45,39 @@
                     <!-- /.card-header -->
                     <div class="card-body table-responsive p-0">
                         <div>
-                            <a class="btn btn-info btn-sm" href="{{ route('companies.create') }}">
+                            <a class="btn btn-info btn-sm" href="{{ route('shifts.create') }}">
                                 <i class="fas fa-pencil-alt">
                                 </i>
-                                {{ __('Add New Company') }}
+                                {{ __('Add New Shifts') }}
                             </a>
                         </div>
                         <table class="table table-hover text-nowrap">
                             <thead>
                                 <tr>
-                                    <th>Company Name</th>
-                                    <th>Offical Company Name</th>
-                                    <th>Address Street</th>
-                                    <th>Address City</th>
-                                    <th>Address Zip</th>
-                                    <th>Phone</th>
-                                    <th>Email</th>
-                                    <th>INN</th>
-                                    <th>Account Number</th>
-                                    <th>Bank Name</th>
-                                    <th>MFO bank</th>
+                                    <th>Shift Date</th>
+                                    <th>Hotel</th>
+                                    <th>Admin Name</th>
+                                    <th>Shift Edit</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($companies as $company )
+                                @foreach ($shifts as $shift )
                                 <tr>
-                                    <td>{{ $company->company_name }} </span></td>
-                                    <td>{{ $company->offical_company_name }}</td>
-                                    <td>{{ $company->company_address_street }}</td>
-                                    <td>{{ $company->company_address_city }}</td>
-                                    <td>{{ $company->company_address_zip }}</td>
-                                    <td>{{ $company->company_phone }}</td>
-                                    <td>{{ $company->company_email }}</td>
-                                    <td>{{ $company->company_inn }}</td>
-                                    <td>{{ $company->company_acc_number }}</td>
-                                    <td>{{ $company->company_bank_name }}</td>
-                                    <td>{{ $company->company_bank_mfo }}</td>
-                                    <td><a class="btn btn-primary btn-sm" href="companies/{{ $company->id }}">
+                                    <td>{{ $shift->user->name }} </span></td>
+                                    <td>{{ $shift->offical_shift_name }}</td>
+                                    <td>{{ $shift->shift_address_street }}</td>
+                                    
+                                    <td><a class="btn btn-primary btn-sm" href="shifts/{{ $shift->id }}">
                                             <i class="fas fa-folder">
                                             </i>
                                             View
                                         </a>
-                                        <a class="btn btn-info btn-sm" href="companies/{{ $company->id }}/edit">
+                                        <a class="btn btn-info btn-sm" href="shifts/{{ $shift->id }}/edit">
                                             <i class="fas fa-pencil-alt">
                                             </i>
                                             Edit
                                         </a>
-                                        <form action="/companies/{{ $company->id }}" method="post"
+                                        <form action="/shifts/{{ $shift->id }}" method="post"
                                             class="float-left">
                                             @csrf
                                             @method('delete')
@@ -108,7 +94,7 @@
                             </tbody>
                         </table>
                         <div class="pagination-block">
-                            {{ $companies->links('admin.layouts.paginationlinks') }}
+                            {{ $shifts->links('admin.layouts.paginationlinks') }}
                           </div>
                     </div>
                     <!-- /.card-body -->
