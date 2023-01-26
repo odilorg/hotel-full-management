@@ -80,7 +80,7 @@ Route::post('/expenses/report-range', [ExpenseController::class, 'report_range']
 Route::get('/cleaning', [CleaningController::class, 'cleaning'])->name('cleaning.cleaning')->middleware(['auth', 'revalidate']);
 Route::post('/cleaning/ready', [CleaningController::class, 'cleaning_ready'])->middleware(['auth', 'revalidate']);
 Route::post('/cleaning/notready', [CleaningController::class, 'cleaning_notready'])->middleware(['auth', 'revalidate']);
-Route::get('/shifts/start', [ShiftController::class, 'start'])->name('shifts.start');
+Route::post('/shifts/start', [ShiftController::class, 'start'])->name('shifts.start');
 
 $utilities = Utility::all();
 

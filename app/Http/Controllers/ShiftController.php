@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Hotel;
 use App\Models\Shift;
 use Illuminate\Http\Request;
@@ -13,8 +14,9 @@ class ShiftController extends Controller
     {
         $hotels = Hotel::all();        
                      
-        $shifts = Shift::paginate();
-   //dd("shifts");
+     $shifts = Shift::paginate();
+
+//dd($shifts);
         return view('shifts.index', compact('shifts', 'hotels'));
     }
 
@@ -31,7 +33,7 @@ class ShiftController extends Controller
 
     public function start(Request $request)
     {
-        dd($request);
+       // dd($request);
         $attributes =  request()->validate([
             'hotel_id' => ['numeric'],
           
@@ -39,15 +41,15 @@ class ShiftController extends Controller
 
         ]);
 
-        //dd($attributes);
+       //dd($attributes);
         $attributes['user_id'] = auth()->user()->id;     
-        dd($attributes);
-        dd($request->input('hotel_id'));
+        // dd($attributes);
+        // dd($request->input('hotel_id'));
         // $attributes['user_id'] = request('')
         Shift::create($attributes);
          session()->flash('success', 'New Shift Created');
          session()->flash('type', 'New Shift');
-dd('shift created');
-        return redirect('shifts.index');
+//dd('shift created');
+        return redirect('shifts');
     }
 }

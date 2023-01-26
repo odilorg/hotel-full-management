@@ -44,13 +44,11 @@
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body table-responsive p-0">
-                        <div>
-                            <a class="btn btn-info btn-sm" href="{{ route('shifts.start') }}">
-                                <i class="fas fa-pencil-alt">
-                                </i>
-                                {{ __('Start New Shift') }}
-                            </a>
-                        </div>
+                       
+                        <form action="/shifts/start" method="post"
+                            class="float-left">
+                            @csrf
+                           
                         <div class="mt-1">
                             <select class="custom-select rounded-0" name="hotel_id" id="hotel_select">
                                 <option value="">Choose Hotel</option>
@@ -67,11 +65,17 @@
                                 @endforeach
                                 
                             </select>
+                            <button type="submit" class="btn btn-danger btn-sm">
+                                <i class="fas fa-trash">
+                                </i>
+                                Delete
+                            </button>
                         </div>
+                    </form>
                         <table class="table table-hover text-nowrap">
                             <thead>
                                 <tr>
-                                    <th>Shift Date</th>
+                                    <th>Shift Start </th>
                                     <th>Hotel</th>
                                     <th>Admin Name</th>
                                     <th>Shift Edit</th>
@@ -80,9 +84,11 @@
                             <tbody>
                                 @foreach ($shifts as $shift )
                                 <tr>
-                                    <td>{{ $shift->user->name }} </span></td>
-                                    <td>{{ $shift->offical_shift_name }}</td>
-                                    <td>{{ $shift->shift_address_street }}</td>
+                                    <td>{{  \Carbon\Carbon::parse($shift->created_at )->add(5, 'hour')->format('d/m/Y H:i:s')   }} </td>
+                                    <td>{{ $shift->hotel->hotel_name }}</td>
+                                    <td>{{ $shift->user->name }} </td>
+                                    
+                                    
                                     
                                     <td><a class="btn btn-primary btn-sm" href="shifts/{{ $shift->id }}">
                                             <i class="fas fa-folder">
