@@ -70,8 +70,17 @@
                                 </i>
                                 Delete
                             </button>
-                        </div>
+                        </form>
+                        
+                        <button type="submit" class="btn btn-danger btn-sm">
+                            <i class="fas fa-trash">
+                            </i>
+                            Add Kassa
+                        </button>
                     </form>
+                        </div>
+                        
+                   
                         <table class="table table-hover text-nowrap">
                             <thead>
                                 <tr>
