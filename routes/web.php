@@ -80,6 +80,7 @@ Route::post('/expenses/report-range', [ExpenseController::class, 'report_range']
 Route::get('/cleaning', [CleaningController::class, 'cleaning'])->name('cleaning.cleaning')->middleware(['auth', 'revalidate']);
 Route::post('/cleaning/ready', [CleaningController::class, 'cleaning_ready'])->middleware(['auth', 'revalidate']);
 Route::post('/cleaning/notready', [CleaningController::class, 'cleaning_notready'])->middleware(['auth', 'revalidate']);
+Route::get('/shifts/start', [ShiftController::class, 'start'])->name('shifts.start');
 
 $utilities = Utility::all();
 
@@ -118,6 +119,7 @@ Route::middleware(['auth', 'revalidate', 'can:not-cleaning' ])->group(function (
        
     
     ]);
+   
     Route::get('/rooms/{id}/create', [RoomController::class, 'create']  )->name('rooms.create');
     Route::get('/rooms/view/{hotel_id}', [RoomController::class, 'rooms_hotels'])->name('rooms_hotels'); 
     Route::get('/expenses/view/{hotel_id}', [ExpenseController::class, 'expense_hotels'])->name('expense_hotels');

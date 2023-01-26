@@ -51,23 +51,6 @@
                                 {{ __('Start New Shift') }}
                             </a>
                         </div>
-                        <div class="mt-1">
-                            <select class="custom-select rounded-0" name="hotel_id" id="hotel_select">
-                                <option value="">Choose Hotel</option>
-                                @foreach ($hotels as $hotel)
-                                <option value="{{ $hotel->id }}" 
-                                    <?php 
-                                 if (empty($hotel_id)) {
-                                    '';
-                                } elseif($hotel->id == $hotel_id) {
-                                    echo 'selected';
-                                }
-                                 ?> 
-                                 >{{ $hotel->hotel_name }}</option>
-                                @endforeach
-                                
-                            </select>
-                        </div>
                         <table class="table table-hover text-nowrap">
                             <thead>
                                 <tr>

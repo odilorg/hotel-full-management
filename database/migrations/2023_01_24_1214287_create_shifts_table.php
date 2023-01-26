@@ -20,9 +20,7 @@ class CreateShiftsTable extends Migration
             $table->foreignId('hotel_id');
             $table->foreignId('shiftlog_id');
             $table->foreignId('expense_id');            
-            $table->decimal('saldo');
-            $table->decimal('rate_usd');
-
+           
 
         });
     }
