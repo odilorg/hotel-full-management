@@ -87,7 +87,15 @@
                                     <a class="btn btn-primary btn-sm" href="reservations/edit">
                                         <i class="fas fa-wallet">
                                         </i>
-                                        Add Kassa
+                                        Add Payment
+                                    </a>
+                                    
+                                    <!-- /.info-box -->
+                                </div>
+                                <div class="m-1">
+                                    <a class="btn btn-primary btn-sm" href="reservations/edit">
+                                        <i class="fa-solid fa-coins"></i>
+                                        Add Expense
                                     </a>
                                     
                                     <!-- /.info-box -->
