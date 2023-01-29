@@ -44,90 +44,76 @@
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body table-responsive p-0">
-                       
-                        <form action="/shifts/start" method="post"
-                            class="float-left">
-                            @csrf
-                           
-                        <div class="mt-1">
-                            <select class="custom-select rounded-0" name="hotel_id" id="hotel_select">
-                                <option value="">Choose Hotel</option>
-                                @foreach ($hotels as $hotel)
-                                <option value="{{ $hotel->id }}" 
-                                    <?php 
-                                 if (empty($hotel_id)) {
-                                    '';
-                                } elseif($hotel->id == $hotel_id) {
-                                    echo 'selected';
-                                }
-                                 ?> 
-                                 >{{ $hotel->hotel_name }}</option>
-                                @endforeach
-                                
-                            </select>
-                            <button type="submit" class="btn btn-danger btn-sm">
-                                <i class="fas fa-trash">
-                                </i>
-                                Delete
-                            </button>
-                        </form>
-                        
-                        <button type="submit" class="btn btn-danger btn-sm">
-                            <i class="fas fa-trash">
-                            </i>
-                            Add Kassa
-                        </button>
-                    </form>
-                        </div>
-                        
-                   
-                        <table class="table table-hover text-nowrap">
-                            <thead>
-                                <tr>
-                                    <th>Shift Start </th>
-                                    <th>Hotel</th>
-                                    <th>Admin Name</th>
-                                    <th>Shift Edit</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach ($shifts as $shift )
-                                <tr>
-                                    <td>{{  \Carbon\Carbon::parse($shift->created_at )->add(5, 'hour')->format('d/m/Y H:i:s')   }} </td>
-                                    <td>{{ $shift->hotel->hotel_name }}</td>
-                                    <td>{{ $shift->user->name }} </td>
-                                    
-                                    
-                                    
-                                    <td><a class="btn btn-primary btn-sm" href="shifts/{{ $shift->id }}">
-                                            <i class="fas fa-folder">
-                                            </i>
-                                            View
-                                        </a>
-                                        <a class="btn btn-info btn-sm" href="shifts/{{ $shift->id }}/edit">
-                                            <i class="fas fa-pencil-alt">
-                                            </i>
-                                            Edit
-                                        </a>
-                                        <form action="/shifts/{{ $shift->id }}" method="post"
-                                            class="float-left">
-                                            @csrf
-                                            @method('delete')
-                                            <button type="submit" class="btn btn-danger btn-sm">
-                                                <i class="fas fa-trash">
-                                                </i>
-                                                Delete
-                                            </button>
-                                        </form>
-                                    </td>
-                                </tr>
-                                @endforeach
 
-                            </tbody>
-                        </table>
-                        <div class="pagination-block">
-                            {{ $shifts->links('admin.layouts.paginationlinks') }}
-                          </div>
+                        <form action="/shifts/start" method="post" class="float-left">
+                            @csrf
+                            <h5 class="mb-2">Shift Info</h5>
+                            @if (!$shift)
+                            <div class="row">
+                                
+                                <select class="custom-select rounded-0 m-3" name="hotel_id" id="hotel_select">
+                                    <option value="">Choose Hotel</option>
+                                    @foreach ($hotels as $hotel)
+                                    <option value="{{ ($hotel->id) }}" 
+                                        <?php 
+                                    if (empty($hotel_id)) {
+                                        '';
+                                    } elseif(($hotel->id == $hotel_id)) {
+                                        echo 'selected';
+                                    }
+                                    ?> 
+                                    >{{ ($hotel->hotel_name) }}</option>
+                                    @endforeach
+                                    
+                                </select>
+                                @error('hotel_id')
+                                <h5 class="text-danger m-3">{{ $message }}</>
+                                @enderror
+                             
+                        </div>
+                            @endif
+                           
+                            <div class="row m-1">
+                                <div class="m-1">
+                                    <button type="submit" class="btn btn-success btn-sm">
+                                        <i class="fas fa-play">
+                                        </i>
+                                        Start Shift
+                                    </button>
+                                    <!-- /.info-box -->
+                                </div>
+                                <!-- /.col -->
+                                <div class="m-1">
+                                    <button type="submit" class="btn btn-primary btn-sm">
+                                        <i class="fas fa-wallet">
+                                        </i>
+                                        Add Kassa
+                                    </button>
+                                    <!-- /.info-box -->
+                                </div>
+                            </div>    
+                                <div class="row m-1">
+                                    <div class="col m-1">
+                                       @if ($shift)
+                                       <p><code>Started at {{ $shift->created_at->add(5, 'hour')->format('d/m/Y H:i:s') }} by {{ Auth::user()->name; }}</code></p>
+                                       <div class="progress">
+                                           <div class="progress-bar bg-primary progress-bar-striped" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
+                                           <span class="sr-only">40% Complete (success)</span>
+                                           </div>
+                                       </div>
+                                       @endif
+                                        
+                                    </div> 
+                                </div>    
+                                <!-- /.col -->
+                               
+                                <!-- /.col -->
+                            </div>
+
+
+
+
+
                     </div>
                     <!-- /.card-body -->
                 </div>

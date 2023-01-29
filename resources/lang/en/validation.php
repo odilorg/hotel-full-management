@@ -142,6 +142,10 @@ return [
             'required' => 'Please Enter the Restarant Name',
             'max' => 'Your email address is too long!'
         ],
+        'hotel_id' => [
+            'required' => 'Please Choose the Hotel'
+            
+        ],
         'restaurant_city' => [
             'required' => 'Please Enter the Restarant Location',
             'max' => 'Your email address is too long!'
