@@ -84,11 +84,28 @@
                                 </div>
                                 <!-- /.col -->
                                 <div class="m-1">
-                                    <button type="submit" class="btn btn-primary btn-sm">
+                                    <a class="btn btn-primary btn-sm" href="reservations/edit">
                                         <i class="fas fa-wallet">
                                         </i>
                                         Add Kassa
-                                    </button>
+                                    </a>
+                                    
+                                    <!-- /.info-box -->
+                                </div>
+                                <div class="m-1">
+                                    <a class="btn btn-primary btn-sm" href="reservations/edit">
+                                        <i class="fa-solid fa-list-ul"></i>
+                                        Add Logs
+                                    </a>
+                                    
+                                    <!-- /.info-box -->
+                                </div>
+                                <div class="m-1">
+                                    <a class="btn btn-danger btn-sm" href="reservations/edit">
+                                        <i class="fa-solid fa-circle-stop"></i>
+                                        Close Shift
+                                    </a>
+                                    
                                     <!-- /.info-box -->
                                 </div>
                             </div>    
