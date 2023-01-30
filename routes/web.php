@@ -28,6 +28,7 @@ use App\Http\Controllers\TransportController;
 use App\Http\Controllers\RestaurantController;
 use App\Http\Controllers\RoomRepairController;
 use App\Http\Controllers\ReservationController;
+use App\Http\Controllers\ShiftPaymentController;
 use App\Http\Controllers\UtilityUsageController;
 use App\Http\Controllers\Beds24bookingController;
 use App\Http\Controllers\HotelreservationController;
@@ -116,6 +117,7 @@ Route::middleware(['auth', 'revalidate', 'can:not-cleaning' ])->group(function (
         'rooms' => RoomController::class,
         'beds24bookings' => Beds24bookingController::class,
         'shifts' => ShiftController::class,
+        'shift_payments' => ShiftPaymentController::class,
        
     
     ]);

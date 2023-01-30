@@ -16,6 +16,15 @@ class CreateShiftPaymentsTable extends Migration
         Schema::create('shift_payments', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->string('payment_description')->nullable();
+            $table->decimal('payment_amount_uzs');
+            $table->foreignId('user_id');
+            $table->foreignId('room_id')->nullable();
+            $table->foreignId('hotel_id');
+            $table->foreignId('payment_type_id');
+            
+            
+
         });
     }
 

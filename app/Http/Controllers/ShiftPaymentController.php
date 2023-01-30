@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\PaymentType;
 use App\Models\ShiftPayment;
 use Illuminate\Http\Request;
 
@@ -14,7 +15,8 @@ class ShiftPaymentController extends Controller
      */
     public function index()
     {
-        //
+        $payments = PaymentType::get();
+        return view('shift_payments.index', compact('payments'));
     }
 
     /**
@@ -24,7 +26,8 @@ class ShiftPaymentController extends Controller
      */
     public function create()
     {
-        //
+       
+        return view('shift_payments.create', compact('payments'));
     }
 
     /**

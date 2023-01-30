@@ -84,11 +84,12 @@
                                 </div>
                                 <!-- /.col -->
                                 <div class="m-1">
-                                    <a class="btn btn-primary btn-sm" href="reservations/edit">
+                                    <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#exampleModal">
                                         <i class="fas fa-wallet">
                                         </i>
-                                        Add Payment
-                                    </a>
+                                        Add Payments
+                                      </button>
+                                    
                                     
                                     <!-- /.info-box -->
                                 </div>
@@ -152,8 +153,76 @@
 </section>
 <!-- /.content -->
 </div>
-
-
+@if ($shift)
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Add Payments</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <form action="{{ route('shift_payments.store') }}" method="POST">
+                @csrf
+                
+                <div class="form-group">
+                    <label for="exampleInputEmail1">{{ __('Payment Description') }}</label>
+                    <input type="text" value="{{ old('payment_description') }}" name="payment_description" class="form-control  @error('payment_description')
+ {{ 'is-invalid' }} @enderror " id="inputError" placeholder="Payment Description">
+                    @error('payment_description')
+                    <p class="text-danger">{{ $message }}</p>
+                    @enderror
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail1">{{ __('Payment Amount') }}</label>
+                    <input type="text" value="{{ old('payment_amount_uzs') }}" name="payment_amount_uzs" class="form-control  @error('payment_amount_uzs')
+ {{ 'is-invalid' }} @enderror " id="inputError" placeholder="Payment Amount">
+                    @error('payment_amount_uzs')
+                    <p class="text-danger">{{ $message }}</p>
+                    @enderror
+                </div>
+                <div class="form-group">
+                    <label for="exampleSelectRounded0">{{ __('Room N') }}</label>
+                    <select class="custom-select rounded-0" name="hotel_id"
+                        id="exampleSelectRounded0">
+                        <option value="">Select Payment</option>
+                        @foreach ($rooms as $room )
+                        <option value="{{ $room->id }}">{{ $room->room_number }}
+                        </option>
+                        @endforeach
+                    </select>
+                    @error('room_id')
+                    <p class="text-danger">{{ $message }}</p>
+                    @enderror
+                </div>
+                <div class="form-group">
+                    <label for="exampleSelectRounded0">{{ __('Payment type') }}</label>
+                    <select class="custom-select rounded-0" name="payment_type_id"
+                        id="exampleSelectRounded0">
+                        <option value="">Select Payment</option>
+                        @foreach ($payments as $payment )
+                        <option value="{{ $payment->id }}">{{ $payment->payment_type_name }}
+                        </option>
+                        @endforeach
+                    </select>
+                    @error('payment_type_id')
+                    <p class="text-danger">{{ $message }}</p>
+                    @enderror
+                </div>
+                
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                  </div>
+                
+            </form>
+        </div>
+        
+      </div>
+    </div>
+ @endif   
 
 
 

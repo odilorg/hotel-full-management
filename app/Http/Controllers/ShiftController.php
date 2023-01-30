@@ -5,20 +5,29 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Hotel;
 use App\Models\Shift;
+use App\Models\PaymentType;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Room;
 use Illuminate\Support\Facades\Auth;
 
 class ShiftController extends Controller
 {
     public function index()
     {
+        $payments ="";
+        $rooms ="";
         $hotels = Hotel::all();  
          $id = Auth::id();   
          $shift = Shift::where('user_id', $id)->first();
-         //dd($shift);   
-   
-         return view('shifts.index', compact('shift', 'hotels'));
+         //$hotel_id = $shift->hotel_id;
+         if ($shift) {
+            $payments = PaymentType::get();
+            $rooms = Room::where('hotel_id', $shift->hotel_id)->orderBy('room_number', 'asc')->get();
+         }
+        
+    //    /dd($rooms);
+         return view('shifts.index', compact('rooms', 'payments', 'shift', 'hotels'));
    
    
 //          if ($shift) {
