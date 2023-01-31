@@ -44,35 +44,27 @@
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body table-responsive p-0">
-
                         <form action="/shifts/start" method="post" class="float-left">
                             @csrf
-                            <h5 class="mb-2">Shift Info</h5>
+
                             @if (!$shift)
                             <div class="row">
-                                
                                 <select class="custom-select rounded-0 m-3" name="hotel_id" id="hotel_select">
                                     <option value="">Choose Hotel</option>
                                     @foreach ($hotels as $hotel)
-                                    <option value="{{ ($hotel->id) }}" 
-                                        <?php 
-                                    if (empty($hotel_id)) {
-                                        '';
-                                    } elseif(($hotel->id == $hotel_id)) {
+                                    <option value="{{ ($hotel->id) }}" <?php if (empty($hotel_id)) { '' ; }
+                                        elseif(($hotel->id == $hotel_id)) {
                                         echo 'selected';
-                                    }
-                                    ?> 
-                                    >{{ ($hotel->hotel_name) }}</option>
+                                        }
+                                        ?>
+                                        >{{ ($hotel->hotel_name) }}</option>
                                     @endforeach
-                                    
                                 </select>
                                 @error('hotel_id')
                                 <h5 class="text-danger m-3">{{ $message }}</>
-                                @enderror
-                             
-                        </div>
+                                    @enderror
+                            </div>
                             @endif
-                           
                             <div class="row m-1">
                                 <div class="m-1">
                                     <button type="submit" class="btn btn-success btn-sm">
@@ -84,21 +76,19 @@
                                 </div>
                                 <!-- /.col -->
                                 <div class="m-1">
-                                    <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#exampleModal">
+                                    <a class="btn btn-primary btn-sm" href="{{ route('shift_payments.create') }}">
                                         <i class="fas fa-wallet">
                                         </i>
                                         Add Payments
-                                      </button>
-                                    
-                                    
+                                    </a>
+
                                     <!-- /.info-box -->
                                 </div>
                                 <div class="m-1">
-                                    <a class="btn btn-primary btn-sm" href="reservations/edit">
+                                    <a class="btn btn-primary btn-sm" href="{{ route('shift_payments.create') }}">
                                         <i class="fa-solid fa-coins"></i>
                                         Add Expense
                                     </a>
-                                    
                                     <!-- /.info-box -->
                                 </div>
                                 <div class="m-1">
@@ -106,7 +96,6 @@
                                         <i class="fa-solid fa-list-ul"></i>
                                         Add Logs
                                     </a>
-                                    
                                     <!-- /.info-box -->
                                 </div>
                                 <div class="m-1">
@@ -114,115 +103,142 @@
                                         <i class="fa-solid fa-circle-stop"></i>
                                         Close Shift
                                     </a>
-                                    
                                     <!-- /.info-box -->
                                 </div>
-                            </div>    
-                                <div class="row m-1">
-                                    <div class="col m-1">
-                                       @if ($shift)
-                                       <p><code>Started at {{ $shift->created_at->add(5, 'hour')->format('d/m/Y H:i:s') }} by {{ Auth::user()->name; }}</code></p>
-                                       <div class="progress">
-                                           <div class="progress-bar bg-primary progress-bar-striped" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
-                                           <span class="sr-only">40% Complete (success)</span>
-                                           </div>
-                                       </div>
-                                       @endif
-                                        
-                                    </div> 
-                                </div>    
-                                <!-- /.col -->
-                               
-                                <!-- /.col -->
                             </div>
+                            <div class="row m-1">
+                                <div class="col m-1">
+                                    @if ($shift)
+                                    <p><code>Started at {{ $shift->created_at->add(5, 'hour')->format('d/m/Y H:i:s') }} by {{ Auth::user()->name; }}</code>
+                                    </p>
+                                    <div class="progress">
+                                        <div class="progress-bar bg-primary progress-bar-striped" role="progressbar"
+                                            aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
+                                            <span class="sr-only">40% Complete (success)</span>
+                                        </div>
+                                    </div>
+                                    @endif
+                                </div>
+                            </div>
+                    </div>
+                    </form>
+                </div>
+            <div class="invoice p-3 mb-3">  
+                <div class="card">
+                    <div class="card-header">
 
+                        <h3 class="card-title">Payments Start Saldo 103 000</h3>
 
+                        <div class="card-tools">
 
+                        </div>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body table-responsive p-0">
+                        <table class="table table-hover text-nowrap">
+                            <thead>
+                                <tr>
+                                    <th>Description</th>
+                                    <th>Xona N</th>
+                                    <th>Amount</th>
+                                    <th>Payment Type</th>
 
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Tolov</td>
+                                    <td>11 xona</td>
+                                    <td>500 000</td>
+                                    <td>Naqd</td>
 
+                                </tr>
+
+                            </tbody>
+                        </table>
                     </div>
                     <!-- /.card-body -->
                 </div>
-                <!-- /.card -->
-            </div>
-        </div>
-        <!-- /.row -->
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Expenses </h3>
 
-        <!-- /.row -->
+
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body table-responsive p-0">
+                        <table class="table table-hover text-nowrap">
+                            <thead>
+                                <tr>
+                                    <th>Description</th>
+                                    <th>Expense Categoty</th>
+                                    <th>Amount</th>
+                                    <th>Payment Type</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Non, Sut</td>
+                                    <td>Breakfast</td>
+                                    <td>500 000</td>
+                                    <td>Naqd</td>
+
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- /.card-body -->
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Shift Logs</h3>
+
+
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body table-responsive p-0">
+                        <table class="table table-hover text-nowrap">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Description</th>
+                                    <th>Date Time</th>
+                                    <th>Action</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>Taxi 15 xona soat 14:00</td>
+                                    <td>31-01-2023 14:00</td>
+                                    <td>Done</td>
+
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+                    <h5 class="mb-2">End Saldo 650 000</h5>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card-body -->
+                </div>
+            </div>    
+            <!-- /.card -->
+        </div>
+</div>
+<!-- /.row -->
+
+<!-- /.row -->
 </div><!-- /.container-fluid -->
 </section>
 <!-- /.content -->
 </div>
-@if ($shift)
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Add Payments</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-            <form action="{{ route('shift_payments.store') }}" method="POST">
-                @csrf
-                
-                <div class="form-group">
-                    <label for="exampleInputEmail1">{{ __('Payment Description') }}</label>
-                    <input type="text" value="{{ old('payment_description') }}" name="payment_description" class="form-control  @error('payment_description')
- {{ 'is-invalid' }} @enderror " id="inputError" placeholder="Payment Description">
-                    @error('payment_description')
-                    <p class="text-danger">{{ $message }}</p>
-                    @enderror
-                </div>
-                <div class="form-group">
-                    <label for="exampleInputEmail1">{{ __('Payment Amount') }}</label>
-                    <input type="text" value="{{ old('payment_amount_uzs') }}" name="payment_amount_uzs" class="form-control  @error('payment_amount_uzs')
- {{ 'is-invalid' }} @enderror " id="inputError" placeholder="Payment Amount">
-                    @error('payment_amount_uzs')
-                    <p class="text-danger">{{ $message }}</p>
-                    @enderror
-                </div>
-                <div class="form-group">
-                    <label for="exampleSelectRounded0">{{ __('Room N') }}</label>
-                    <select class="custom-select rounded-0" name="hotel_id"
-                        id="exampleSelectRounded0">
-                        <option value="">Select Payment</option>
-                        @foreach ($rooms as $room )
-                        <option value="{{ $room->id }}">{{ $room->room_number }}
-                        </option>
-                        @endforeach
-                    </select>
-                    @error('room_id')
-                    <p class="text-danger">{{ $message }}</p>
-                    @enderror
-                </div>
-                <div class="form-group">
-                    <label for="exampleSelectRounded0">{{ __('Payment type') }}</label>
-                    <select class="custom-select rounded-0" name="payment_type_id"
-                        id="exampleSelectRounded0">
-                        <option value="">Select Payment</option>
-                        @foreach ($payments as $payment )
-                        <option value="{{ $payment->id }}">{{ $payment->payment_type_name }}
-                        </option>
-                        @endforeach
-                    </select>
-                    @error('payment_type_id')
-                    <p class="text-danger">{{ $message }}</p>
-                    @enderror
-                </div>
-                
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Save changes</button>
-                  </div>
-                
-            </form>
-        </div>
-        
-      </div>
-    </div>
- @endif   
+
 
 
 
