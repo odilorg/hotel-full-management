@@ -54,7 +54,7 @@ class ShiftPaymentController extends Controller
    
         ]);
         $shift = Shift::where('user_id', auth()->user()->id)->first();
-      
+        
         $attributes['user_id'] = $shift->user_id;
         $attributes['hotel_id'] = $shift->hotel_id;
         $attributes['shift_id'] = $shift->id;

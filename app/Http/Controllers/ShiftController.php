@@ -48,17 +48,20 @@ class ShiftController extends Controller
   }
   public function index()
     {
-        $payments ="";
+      $shift_payments  ="";
+      $shift_expenses="";
+      $payments ="";
         $rooms ="";
         $hotels = Hotel::all();  
          $id = Auth::id();   
          $shift = Shift::where('user_id', $id)->first();
-         $shift_payments = ShiftPayment::where('shift_id', $shift->id)->with( ['room', 'payment_type'])->get();
-         $shift_expenses = Expense::where('shift_id', $shift->id)->with( ['payment_type', 'expense_category'])->get();
+       
        //  dd($shift_payments);
          if ($shift) {
             $payments = PaymentType::get();
             $rooms = Room::where('hotel_id', $shift->hotel_id)->orderBy('room_number', 'asc')->get();
+            $shift_payments = ShiftPayment::where('shift_id', $shift->id)->with( ['room', 'payment_type'])->get();
+            $shift_expenses = Expense::where('shift_id', $shift->id)->with( ['payment_type', 'expense_category'])->get();
          }
         
     //    /dd($rooms);
@@ -105,6 +108,7 @@ class ShiftController extends Controller
        //  dd($request->input('hotel_id'));
         $attributes =  request()->validate([
             'hotel_id' => ['required', 'numeric'],
+            'saldo_start' => ['required', 'numeric'],
            
             
 

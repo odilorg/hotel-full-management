@@ -7,7 +7,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Companies</h1>
+                    <h1>Shifts</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -48,6 +48,14 @@
                             @csrf
 
                             @if (!$shift)
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Qoldiq</label>
+                                <input type="text" value="{{ old('saldo_start') }}" name="saldo_start" class="form-control  @error('saldo_start')
+                                 {{ 'is-invalid' }} @enderror " id="inputError" placeholder="Boshlangich qoldiq">
+                                @error('saldo_start')
+                                <p class="text-danger">{{ $message }}</p>
+                                @enderror
+                            </div>
                             <div class="row">
                                 <select class="custom-select rounded-0 m-3" name="hotel_id" id="hotel_select">
                                     <option value="">Choose Hotel</option>
@@ -109,7 +117,7 @@
                             <div class="row m-1">
                                 <div class="col m-1">
                                     @if ($shift)
-                                    <p><code>Started at {{ $shift->created_at->add(5, 'hour')->format('d/m/Y H:i:s') }} by {{ Auth::user()->name; }}</code>
+                                    <p><code>Started at {{ $shift->created_at->add(5, 'hour')->format('d/m/Y H:i:s') }} by {{ Auth::user()->name; }} in {{ $shift->hotel->hotel_name }}</code>
                                     </p>
                                     <div class="progress">
                                         <div class="progress-bar bg-primary progress-bar-striped" role="progressbar"
@@ -124,13 +132,15 @@
                     </form>
                 </div>
             <div class="invoice p-3 mb-3">  
+                @if ($shift)
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">Payments Start Saldo 103 000</h3>
+                        <h3 class="card-title">Payments Start Saldo {{ number_format($shift->saldo_start,2,',',' ')   }}</h3>
                         <div class="card-tools">
                         </div>
                     </div>
                     <!-- /.card-header -->
+                   
                     <div class="card-body table-responsive p-0">
                         <table class="table table-hover text-nowrap">
                             <thead>
@@ -146,7 +156,7 @@
                                 <tr>
                                     <td>{{ $payments->payment_description }}</td>
                                     <td>{{ $payments->room->room_number }}</td>
-                                    <td>{{ $payments->payment_amount_uzs }}</td>
+                                    <td>{{  number_format($payments->payment_amount_uzs,2,',',' ')  }}</td>
                                     <td>{{ $payments->payment_type->payment_type_name }}</td>
                                 </tr>
                                 @endforeach
@@ -176,7 +186,7 @@
                                 <tr>
                                     <td>{{ $expenses->expense_name }}</td>
                                     <td>{{ $expenses->expense_category->category_name }}</td>
-                                    <td>{{ $expenses->expense_amount_uzs }}</td>
+                                    <td>{{  number_format($expenses->expense_amount_uzs,2,',',' ') }}</td>
                                     <td>{{ $expenses->payment_type->payment_type_name }}</td>
                                 </tr>
                                 @endforeach
@@ -212,7 +222,9 @@
                     </div>
                     <h5 class="mb-2">End Saldo 650 000</h5>
                     <!-- /.card-body -->
-                </div>
+                </div>   
+                @endif
+               
                 <!-- /.card-body -->
                 </div>
             </div>    
