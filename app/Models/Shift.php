@@ -2,8 +2,10 @@
 
 namespace App\Models;
 
+use App\Models\Room;
 use App\Models\User;
 use App\Models\Hotel;
+use App\Models\PaymentType;
 use App\Models\ShiftPayment;
 use Illuminate\Database\Eloquent\Model;
 use App\Http\Controllers\ShiftController;
@@ -29,5 +31,6 @@ class Shift extends Model
         return $this->hasMany(ShiftPayment::class);
     }
 
+    
 
 }

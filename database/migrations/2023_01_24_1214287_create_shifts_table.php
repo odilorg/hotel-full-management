@@ -19,7 +19,8 @@ class CreateShiftsTable extends Migration
             $table->foreignId('user_id');
             $table->foreignId('hotel_id');
             $table->foreignId('shiftlog_id');
-            $table->foreignId('expense_id');            
+            $table->foreignId('expense_id');      
+                  
            
 
         });

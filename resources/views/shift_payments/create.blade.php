@@ -78,13 +78,8 @@
                             </form>
                         </div>
                     </div>
-
-
                 </div>
                 <!-- /.col-md-6 -->
-
-
-
             </div>
             <!-- /.col-md-6 -->
         </div>

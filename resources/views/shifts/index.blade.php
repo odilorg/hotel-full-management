@@ -126,11 +126,8 @@
             <div class="invoice p-3 mb-3">  
                 <div class="card">
                     <div class="card-header">
-
                         <h3 class="card-title">Payments Start Saldo 103 000</h3>
-
                         <div class="card-tools">
-
                         </div>
                     </div>
                     <!-- /.card-header -->
@@ -142,18 +139,18 @@
                                     <th>Xona N</th>
                                     <th>Amount</th>
                                     <th>Payment Type</th>
-
                                 </tr>
                             </thead>
                             <tbody>
+                                @foreach ($shift_payments as $payments)
                                 <tr>
-                                    <td>Tolov</td>
-                                    <td>11 xona</td>
-                                    <td>500 000</td>
-                                    <td>Naqd</td>
-
+                                    <td>{{ $payments->payment_description }}</td>
+                                    <td>{{ $payments->room->room_number }}</td>
+                                    <td>{{ $payments->payment_amount_uzs }}</td>
+                                    <td>{{ $payments->payment_type->payment_type_name }}</td>
                                 </tr>
-
+                                @endforeach
+                                
                             </tbody>
                         </table>
                     </div>
@@ -162,8 +159,6 @@
                 <div class="card">
                     <div class="card-header">
                         <h3 class="card-title">Expenses </h3>
-
-
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body table-responsive p-0">
@@ -174,7 +169,6 @@
                                     <th>Expense Categoty</th>
                                     <th>Amount</th>
                                     <th>Payment Type</th>
-
                                 </tr>
                             </thead>
                             <tbody>
@@ -183,20 +177,15 @@
                                     <td>Breakfast</td>
                                     <td>500 000</td>
                                     <td>Naqd</td>
-
                                 </tr>
-
                             </tbody>
                         </table>
                     </div>
-
                     <!-- /.card-body -->
                 </div>
                 <div class="card">
                     <div class="card-header">
                         <h3 class="card-title">Shift Logs</h3>
-
-
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body table-responsive p-0">
@@ -207,7 +196,6 @@
                                     <th>Description</th>
                                     <th>Date Time</th>
                                     <th>Action</th>
-
                                 </tr>
                             </thead>
                             <tbody>
@@ -216,9 +204,7 @@
                                     <td>Taxi 15 xona soat 14:00</td>
                                     <td>31-01-2023 14:00</td>
                                     <td>Done</td>
-
                                 </tr>
-
                             </tbody>
                         </table>
                     </div>

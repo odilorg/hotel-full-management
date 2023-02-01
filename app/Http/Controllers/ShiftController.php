@@ -9,6 +9,7 @@ use App\Models\PaymentType;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Room;
+use App\Models\ShiftPayment;
 use Illuminate\Support\Facades\Auth;
 
 class ShiftController extends Controller
@@ -20,14 +21,15 @@ class ShiftController extends Controller
         $hotels = Hotel::all();  
          $id = Auth::id();   
          $shift = Shift::where('user_id', $id)->first();
-         //$hotel_id = $shift->hotel_id;
+         $shift_payments = ShiftPayment::where('shift_id', $shift->id)->with( ['room', 'payment_type'])->get();
+       //  dd($shift_payments);
          if ($shift) {
             $payments = PaymentType::get();
             $rooms = Room::where('hotel_id', $shift->hotel_id)->orderBy('room_number', 'asc')->get();
          }
         
     //    /dd($rooms);
-         return view('shifts.index', compact('rooms', 'payments', 'shift', 'hotels'));
+         return view('shifts.index', compact('shift_payments', 'rooms', 'payments', 'shift', 'hotels'));
    
    
 //          if ($shift) {

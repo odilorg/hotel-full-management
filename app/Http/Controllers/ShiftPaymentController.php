@@ -18,7 +18,8 @@ class ShiftPaymentController extends Controller
      */
     public function index()
     {
-        $payments = PaymentType::get();
+        $payments = ShiftPayment::with( ['room', 'payment_type'])->get();
+        dd($payments);
         return view('shift_payments.index', compact('payments'));
     }
 
@@ -56,6 +57,7 @@ class ShiftPaymentController extends Controller
       
         $attributes['user_id'] = $shift->user_id;
         $attributes['hotel_id'] = $shift->hotel_id;
+        $attributes['shift_id'] = $shift->id;
        // dd($attributes);
        ShiftPayment::create($attributes);
        session()->flash('success', 'Payment has been added');

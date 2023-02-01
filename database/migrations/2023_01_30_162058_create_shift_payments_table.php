@@ -22,6 +22,7 @@ class CreateShiftPaymentsTable extends Migration
             $table->foreignId('room_id')->nullable();
             $table->foreignId('hotel_id');
             $table->foreignId('payment_type_id');
+            $table->foreignId('shift_id');
             
             
 
