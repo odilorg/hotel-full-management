@@ -81,7 +81,7 @@ Route::post('/expenses/report-range', [ExpenseController::class, 'report_range']
 Route::get('/cleaning', [CleaningController::class, 'cleaning'])->name('cleaning.cleaning')->middleware(['auth', 'revalidate']);
 Route::post('/cleaning/ready', [CleaningController::class, 'cleaning_ready'])->middleware(['auth', 'revalidate']);
 Route::post('/cleaning/notready', [CleaningController::class, 'cleaning_notready'])->middleware(['auth', 'revalidate']);
-Route::post('/shifts/start', [ShiftController::class, 'start'])->name('shifts.start');
+
 
 $utilities = Utility::all();
 
@@ -92,6 +92,15 @@ foreach ($utilities as $utility) {
 
 
 Route::middleware(['auth', 'revalidate', 'can:not-cleaning' ])->group(function () {
+    Route::post('/shifts/start', [ShiftController::class, 'start'])->name('shifts.start');
+    Route::get('/shifts/shift_expenses_create', [ShiftController::class, 'shift_expenses_create'])->name('shifts.shift_expenses_create');
+    Route::post('/shifts/shift_expenses_store', [ShiftController::class, 'shift_expenses_store'])->name('shifts.shift_expenses_store');
+    Route::get('/rooms/{id}/create', [RoomController::class, 'create']  )->name('rooms.create');
+    Route::get('/rooms/view/{hotel_id}', [RoomController::class, 'rooms_hotels'])->name('rooms_hotels'); 
+    Route::get('/expenses/view/{hotel_id}', [ExpenseController::class, 'expense_hotels'])->name('expense_hotels');
+    Route::get('/expenses/{id}/create', [ExpenseController::class, 'create2']  )->name('expenses.create2');
+    Route::post('/reports/report', [ReportController::class, 'report_view'])->name('reports.report');
+    Route::get('/reports/{category_name}/{payment_type}/{from_date}/{to_date}/{hotel_id}', [ReportController::class, 'report_detailed'])->name('reports.detailed');
     Route::resources([
         'hotelreservations' => HotelreservationController::class,
         'transports' => TransportController::class,
@@ -121,13 +130,7 @@ Route::middleware(['auth', 'revalidate', 'can:not-cleaning' ])->group(function (
        
     
     ]);
-   
-    Route::get('/rooms/{id}/create', [RoomController::class, 'create']  )->name('rooms.create');
-    Route::get('/rooms/view/{hotel_id}', [RoomController::class, 'rooms_hotels'])->name('rooms_hotels'); 
-    Route::get('/expenses/view/{hotel_id}', [ExpenseController::class, 'expense_hotels'])->name('expense_hotels');
-    Route::get('/expenses/{id}/create', [ExpenseController::class, 'create2']  )->name('expenses.create2');
-    Route::post('/reports/report', [ReportController::class, 'report_view'])->name('reports.report');
-    Route::get('/reports/{category_name}/{payment_type}/{from_date}/{to_date}/{hotel_id}', [ReportController::class, 'report_detailed'])->name('reports.detailed');
+    
 });
 
 //Route::resource('users', UserController::class,)->middleware(['revalidate']);

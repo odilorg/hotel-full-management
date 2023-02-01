@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\ExpenseCategory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Expense extends Model
 {
@@ -19,10 +20,10 @@ class Expense extends Model
     }
     public function expense_category()
     {
-        return $this->hasOne(ExpenseCategory::class);
+        return $this->belongsTo(ExpenseCategory::class);
     }
     public function payment_type()
     {
-        return $this->hasOne(PaymentType ::class);
+        return $this->belongsTo(PaymentType::class);
     }
 }

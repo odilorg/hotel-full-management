@@ -85,7 +85,7 @@
                                     <!-- /.info-box -->
                                 </div>
                                 <div class="m-1">
-                                    <a class="btn btn-primary btn-sm" href="{{ route('shift_payments.create') }}">
+                                    <a class="btn btn-primary btn-sm" href="{{ route('shifts.shift_expenses_create') }}">
                                         <i class="fa-solid fa-coins"></i>
                                         Add Expense
                                     </a>
@@ -172,12 +172,14 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                @foreach ($shift_expenses as $expenses)
                                 <tr>
-                                    <td>Non, Sut</td>
-                                    <td>Breakfast</td>
-                                    <td>500 000</td>
-                                    <td>Naqd</td>
+                                    <td>{{ $expenses->expense_name }}</td>
+                                    <td>{{ $expenses->expense_category->category_name }}</td>
+                                    <td>{{ $expenses->expense_amount_uzs }}</td>
+                                    <td>{{ $expenses->payment_type->payment_type_name }}</td>
                                 </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
