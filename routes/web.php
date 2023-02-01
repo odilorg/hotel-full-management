@@ -22,6 +22,7 @@ use App\Http\Controllers\CleaningController;
 use App\Http\Controllers\ContractController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\ReminderController;
+use App\Http\Controllers\ShiftLogController;
 use App\Http\Controllers\InventoryController;
 use App\Http\Controllers\TourgroupController;
 use App\Http\Controllers\TransportController;
@@ -127,6 +128,7 @@ Route::middleware(['auth', 'revalidate', 'can:not-cleaning' ])->group(function (
         'beds24bookings' => Beds24bookingController::class,
         'shifts' => ShiftController::class,
         'shift_payments' => ShiftPaymentController::class,
+        'shift_logs' => ShiftLogController::class,
        
     
     ]);

@@ -100,7 +100,7 @@
                                     <!-- /.info-box -->
                                 </div>
                                 <div class="m-1">
-                                    <a class="btn btn-primary btn-sm" href="reservations/edit">
+                                    <a class="btn btn-primary btn-sm" href="{{ route('shift_logs.create') }}">
                                         <i class="fa-solid fa-list-ul"></i>
                                         Add Logs
                                     </a>
@@ -204,19 +204,21 @@
                         <table class="table table-hover text-nowrap">
                             <thead>
                                 <tr>
-                                    <th>#</th>
+                                    
                                     <th>Description</th>
                                     <th>Date Time</th>
-                                    <th>Action</th>
+                                    <th>Room N</th>
                                 </tr>
                             </thead>
                             <tbody>
+                                @foreach ($shift_logs as $logs)
                                 <tr>
-                                    <td>1</td>
-                                    <td>Taxi 15 xona soat 14:00</td>
-                                    <td>31-01-2023 14:00</td>
-                                    <td>Done</td>
+                                    <td>{{ $logs->shift_log_description }}</td>
+                                    <td>{{ $logs->created_at->format('d/m/Y H:i:s')  }}</td>
+                                    <td>{{ $logs->room->room_number }}</td>
+                                    
                                 </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>

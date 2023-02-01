@@ -11,6 +11,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Expense;
 use App\Models\ExpenseCategory;
 use App\Models\Room;
+use App\Models\ShiftLog;
 use App\Models\ShiftPayment;
 use Illuminate\Support\Facades\Auth;
 
@@ -49,6 +50,7 @@ class ShiftController extends Controller
   public function index()
     {
       $shift_payments  ="";
+      $shift_logs="";
       $shift_expenses="";
       $payments ="";
         $rooms ="";
@@ -61,11 +63,12 @@ class ShiftController extends Controller
             $payments = PaymentType::get();
             $rooms = Room::where('hotel_id', $shift->hotel_id)->orderBy('room_number', 'asc')->get();
             $shift_payments = ShiftPayment::where('shift_id', $shift->id)->with( ['room', 'payment_type'])->get();
-            $shift_expenses = Expense::where('shift_id', $shift->id)->with( ['payment_type', 'expense_category'])->get();
+            $shift_logs = ShiftLog::where('shift_id', $shift->id)->with( ['room'])->get();
+            $shift_expenses = Expense::where('shift_id', $shift->id)->with( [ 'payment_type', 'expense_category'])->get();
          }
         
     //    /dd($rooms);
-         return view('shifts.index', compact('shift_payments', 'rooms', 'payments', 'shift', 'hotels' , 'shift_expenses'));
+         return view('shifts.index', compact('shift_logs', 'shift_payments', 'rooms', 'payments', 'shift', 'hotels' , 'shift_expenses'));
    
    
 //          if ($shift) {
