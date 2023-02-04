@@ -8,6 +8,7 @@ use PHPHtmlParser\Dom;
 use Illuminate\Http\Request;
 use App\Models\Beds24booking;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
 
 class Beds24bookingController extends Controller
@@ -198,6 +199,33 @@ if (is_null($payment_method)) {
         // Storage::disk('local')->put('file.txt', $json);
         // Storage::disk('local')->put('request.txt', Request::header('x-wc-webhook-source'));
     }
+    public function beds24web_checkout(Request $request)
+    {
+       
+       $hotel_id = $request->input('propertyid');
+       $room_name = $request->input('room_name');
+       
+        if ($hotel_id == 41097) {
+           
+             $apiToken = $_ENV['TELEGRAMAPIJAHONGIR'];
+            $chat_id = $_ENV['CHAT_ID_JAHONGIR'];
+        
+        }else {
+           
+             $apiToken = $_ENV['TELEGRAMAPIPREMIUM'];
+            $chat_id = $_ENV['CHAT_ID_PREMIUM'];
+        }
+
+
+        $data = [
+            'chat_id' => $chat_id,
+            'text' =>  $room_name ." Xona Ketdi ". now() . " by " .Auth::user()->name,
+        ];
+        $response = file_get_contents("https://api.telegram.org/bot$apiToken/sendMessage?" . http_build_query($data));
+    }
+
+
+
     public function create()
     {
         //
