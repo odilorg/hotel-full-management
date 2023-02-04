@@ -206,7 +206,7 @@ if (is_null($payment_method)) {
        $htmltext = $request->all();
         $hotel_id = $request->header('propertyid');
        $room_name = $request->header('room_name');
-      Log::debug($htmltext);
+      Log::info('df', $htmltext);
         if ($hotel_id == 41097) {
            
              $apiToken = $_ENV['TELEGRAMAPIJAHONGIR'];
