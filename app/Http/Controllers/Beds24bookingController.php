@@ -220,7 +220,7 @@ if (is_null($payment_method)) {
 
         $data = [
             'chat_id' => $chat_id,
-            'text' =>  $room_name ." Xona Ketdi ". now() . " by " .auth()->user()->name,
+            'text' =>  $room_name ." Xona Ketdi ". now() . " by Odil" ,
         ];
         $response = file_get_contents("https://api.telegram.org/bot$apiToken/sendMessage?" . http_build_query($data));
     }
