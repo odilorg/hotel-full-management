@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 
@@ -43,6 +44,7 @@ class UserController extends Controller
              'password' => ['required', 'max:255'],
              'role' => ['required', 'max:255'],
              'profile_image' => ['nullable', 'image'],
+             'api_token' => Str::random(60),
             
         ]);
       //  dd($attributes);
@@ -99,10 +101,11 @@ class UserController extends Controller
              'password' => ['required', 'max:255'],
              'role' => ['required', 'max:255'],
              'profile_image' => ['image'],
-            
         ]);
-      // dd($attributes);
+      
+        $attributes['api_token'] = Str::random(60);
         $attributes['password'] = bcrypt($request->password);
+        //dd($attributes);
         if (isset($attributes['profile_image'])) {
             $attributes['profile_image'] = request()->file('profile_image')->store('profile_image');
         }
