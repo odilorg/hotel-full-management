@@ -8,6 +8,7 @@ use PHPHtmlParser\Dom;
 use Illuminate\Http\Request;
 use App\Models\Beds24booking;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
 
@@ -204,7 +205,7 @@ if (is_null($payment_method)) {
        
        $hotel_id = $request->input('propertyid');
        $room_name = $request->input('room_name');
-       
+       Log::debug($hotel_id);
         if ($hotel_id == 41097) {
            
              $apiToken = $_ENV['TELEGRAMAPIJAHONGIR'];
