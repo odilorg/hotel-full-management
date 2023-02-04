@@ -214,7 +214,7 @@ if (is_null($payment_method)) {
         
         }else {
            
-             $apiToken = $_ENV['TELEGRAMAPIPREMIUM'];
+            $apiToken = $_ENV['TELEGRAMAPIPREMIUM'];
             $chat_id = $_ENV['CHAT_ID_PREMIUM'];
         }
 
