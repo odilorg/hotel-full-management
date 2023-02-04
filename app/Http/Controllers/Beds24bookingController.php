@@ -203,9 +203,10 @@ if (is_null($payment_method)) {
     public function beds24web_checkout(Request $request)
     {
        
-       $hotel_id = $request->input('propertyid');
-       $room_name = $request->input('room_name');
-       //Log::debug($hotel_id);
+      //  $htmltext = $request->header('invoicedesc');
+        $hotel_id = $request->header('propertyid');
+       $room_name = $request->header('room_name');
+       Log::debug($hotel_id);
         if ($hotel_id == 41097) {
            
              $apiToken = $_ENV['TELEGRAMAPIJAHONGIR'];
