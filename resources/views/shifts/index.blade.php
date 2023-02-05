@@ -150,6 +150,7 @@
                                     <th>Xona N</th>
                                     <th>Amount</th>
                                     <th>Payment Type</th>
+                                    <th>Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -160,6 +161,27 @@
                                     <td>{{ $payments->room->room_number }}</td>
                                     <td>{{  number_format($payments->payment_amount_uzs,2,',',' ')  }}</td>
                                     <td>{{ $payments->payment_type->payment_type_name }}</td>
+                                    <td><a class="btn btn-primary btn-sm" href="shift_payments/{{ $payments->id }}">
+                                        <i class="fas fa-folder">
+                                        </i>
+                                        View
+                                    </a>
+                                    <a class="btn btn-info btn-sm" href="shift_payments/{{ $payments->id }}/edit">
+                                        <i class="fas fa-pencil-alt">
+                                        </i>
+                                        Edit
+                                    </a>
+                                    <form action="/shift_payments/{{ $payments->id }}" method="post"
+                                        class="float-left">
+                                        @csrf
+                                        @method('delete')
+                                        <button type="submit" class="btn btn-danger btn-sm">
+                                            <i class="fas fa-trash">
+                                            </i>
+                                            Delete
+                                        </button>
+                                    </form>
+                                </td>
                                 </tr>
                                 @endforeach
                                 
