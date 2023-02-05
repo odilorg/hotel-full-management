@@ -94,6 +94,7 @@ foreach ($utilities as $utility) {
 
 Route::middleware(['auth', 'revalidate', 'can:not-cleaning' ])->group(function () {
     Route::post('/shifts/start', [ShiftController::class, 'start'])->name('shifts.start');
+    Route::get('/shifts/close', [ShiftController::class, 'close'])->name('shifts.close');
     Route::get('/shifts/shift_expenses_create', [ShiftController::class, 'shift_expenses_create'])->name('shifts.shift_expenses_create');
     Route::post('/shifts/shift_expenses_store', [ShiftController::class, 'shift_expenses_store'])->name('shifts.shift_expenses_store');
     Route::get('/rooms/{id}/create', [RoomController::class, 'create']  )->name('rooms.create');

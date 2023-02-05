@@ -106,10 +106,19 @@
                                     </a>
                                     <!-- /.info-box -->
                                 </div>
+                               
                                 <div class="m-1">
-                                    <a class="btn btn-danger btn-sm" href="reservations/edit">
+                                    <a class="btn btn-danger btn-sm" href="shifts/close">
                                         <i class="fa-solid fa-circle-stop"></i>
                                         Close Shift
+                                    </a>
+                                    <!-- /.info-box -->
+                                </div>
+                                <div class="m-1">
+                                    
+                                    <a class="btn btn-danger btn-sm" onclick="window.print()">
+                                        <i class="fa-solid fa-circle-stop"></i>
+                                        Print Shift
                                     </a>
                                     <!-- /.info-box -->
                                 </div>

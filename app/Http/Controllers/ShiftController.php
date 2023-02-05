@@ -104,6 +104,16 @@ class ShiftController extends Controller
         
         dd('show shift');
     }
+    public function close(Request $request)
+    {
+      // 1. calculate the end saldo
+      $shift = Shift::where('user_id', Auth::id())->first();
+      $total_payments_naqd = ShiftPayment::where('shift_id', $shift->id)->where('payment_type_id', 1)->sum('payment_amount_uzs');
+      $total_expenses_naqd = Expense::where('shift_id', $shift->id)->where('payment_type_id', 1)->sum('expense_amount_uzs');
+      $end_saldo = $shift->saldo_start + $total_payments_naqd - $total_expenses_naqd;
+      dd($end_saldo);
+    }
+   
 
     public function start(Request $request)
     {
