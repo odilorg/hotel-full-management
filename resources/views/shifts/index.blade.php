@@ -204,6 +204,7 @@
                                     <th>Expense Categoty</th>
                                     <th>Amount</th>
                                     <th>Payment Type</th>
+                                    <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -214,6 +215,27 @@
                                     <td>{{ $expenses->expense_category->category_name }}</td>
                                     <td>{{  number_format($expenses->expense_amount_uzs,2,',',' ') }}</td>
                                     <td>{{ $expenses->payment_type->payment_type_name }}</td>
+                                    <td><a class="btn btn-primary btn-sm" href="expenses/{{ $expenses->id }}">
+                                        <i class="fas fa-folder">
+                                        </i>
+                                        View
+                                    </a>
+                                    <a class="btn btn-info btn-sm" href="expenses/{{ $expenses->id }}/edit">
+                                        <i class="fas fa-pencil-alt">
+                                        </i>
+                                        Edit
+                                    </a>
+                                    <form action="/expenses/{{ $expenses->id }}" method="post"
+                                        class="float-left">
+                                        @csrf
+                                        @method('delete')
+                                        <button type="submit" class="btn btn-danger btn-sm">
+                                            <i class="fas fa-trash">
+                                            </i>
+                                            Delete
+                                        </button>
+                                    </form>
+                                </td>
                                 </tr>
                                 @endforeach
                             </tbody>

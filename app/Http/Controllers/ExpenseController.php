@@ -127,7 +127,7 @@ class ExpenseController extends Controller
     {
       
         
-
+        
         $report_numbers = DB::table('reservations')->select('report_number')->whereNotNull('report_number')->distinct()->get();
         $expense_categories = ExpenseCategory::get();
         $payment_types = PaymentType::get();
@@ -155,13 +155,13 @@ class ExpenseController extends Controller
 
         $attributes =  request()->validate([
 
-            'report_number' => ['required '],
+           
             'expense_name' => ['required ', 'max:255'],
-            'expense_date' => ['required'],
+           
             'expense_category_id' => ['required'],
             'payment_type_id' => ['required'],
             'expense_amount_uzs' => ['required', 'numeric'],
-            'expense_number' => ['max:255'],
+           
             
          
         ]);
@@ -170,7 +170,7 @@ class ExpenseController extends Controller
         session()->flash('success', 'Expense has been updated');
         session()->flash('type', 'Expense Update');
         
-        return redirect('expenses');
+        return redirect('shifts');
     }
 
     /**

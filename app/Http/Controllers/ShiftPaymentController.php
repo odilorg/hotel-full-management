@@ -95,6 +95,7 @@ class ShiftPaymentController extends Controller
      */
     public function edit(ShiftPayment $shiftPayment)
     {
+      // dd($shiftPayment);
         $shift = Shift::where('user_id', Auth::id())->first();
         $payments = PaymentType::get();
         $rooms = Room::where('hotel_id', $shift->hotel_id)->orderBy('room_number', 'asc')->get();

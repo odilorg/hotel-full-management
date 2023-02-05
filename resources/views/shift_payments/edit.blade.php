@@ -52,8 +52,9 @@
                                         id="exampleSelectRounded0">
                                         <option value="">Select Room</option>
                                         @foreach ($rooms as $room )
-                                        <option value="{{ $room->id }}">{{ $room->room_number }}
-                                        </option>
+                                        <option
+                                        {{ old('room_id', $shiftPayment->room_id) == $room->id ? "selected" : "" }}
+                                        value="{{ $room->id }}">{{ $room->room_number }}</option>
                                         @endforeach
                                     </select>
                                     @error('room_id')
@@ -66,8 +67,9 @@
                                         id="exampleSelectRounded0">
                                         <option value="">Select Payment</option>
                                         @foreach ($payments as $payment )
-                                        <option value="{{ $payment->id }}">{{ $payment->payment_type_name }}
-                                        </option>
+                                        <option
+                                        {{ old('payment_type_id', $shiftPayment->payment_type_id) == $payment->id ? "selected" : "" }}
+                                        value="{{ $payment->id }}">{{ $payment->payment_type_name }}</option>
                                         @endforeach
                                     </select>
                                     @error('payment_type_id')

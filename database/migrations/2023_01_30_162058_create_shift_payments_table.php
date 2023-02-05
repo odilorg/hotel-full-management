@@ -25,6 +25,7 @@ class CreateShiftPaymentsTable extends Migration
             $table->foreignId('shift_id');
             
             
+            
 
         });
     }
