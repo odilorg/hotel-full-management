@@ -186,7 +186,7 @@ class ExpenseController extends Controller
         $expense->delete();
         session()->flash('error', 'Expense has been deleted');
         session()->flash('type', 'Expense Delete');
-        return redirect()->route('expense_hotels', ['hotel_id' => $hotel_id]);
+        return redirect('shifts');
      //   return redirect('expenses');
     }
 

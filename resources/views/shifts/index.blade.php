@@ -256,6 +256,7 @@
                                     <th>Description</th>
                                     <th>Date Time</th>
                                     <th>Room N</th>
+                                    <th>Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -265,6 +266,27 @@
                                     <td>{{ $logs->shift_log_description }}</td>
                                     <td>{{ $logs->created_at->format('d/m/Y H:i:s')  }}</td>
                                     <td>{{ $logs->room->room_number }}</td>
+                                    <td><a class="btn btn-primary btn-sm" href="shift_logs/{{ $logs->id }}">
+                                        <i class="fas fa-folder">
+                                        </i>
+                                        View
+                                    </a>
+                                    <a class="btn btn-info btn-sm" href="shift_logs/{{ $logs->id }}/edit">
+                                        <i class="fas fa-pencil-alt">
+                                        </i>
+                                        Edit
+                                    </a>
+                                    <form action="/shift_logs/{{ $logs->id }}" method="post"
+                                        class="float-left">
+                                        @csrf
+                                        @method('delete')
+                                        <button type="submit" class="btn btn-danger btn-sm">
+                                            <i class="fas fa-trash">
+                                            </i>
+                                            Delete
+                                        </button>
+                                    </form>
+                                </td>
                                     
                                 </tr>
                                 @endforeach

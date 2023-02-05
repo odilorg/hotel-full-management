@@ -111,7 +111,19 @@ class ShiftPaymentController extends Controller
      */
     public function update(Request $request, ShiftPayment $shiftPayment)
     {
-        //
+        $attributes =  request()->validate([
+
+            'payment_description' => ['max:255' ],
+            'payment_amount_uzs' => ['required', 'numeric'],
+            'room_id' => ['required ', 'numeric'],
+            'payment_type_id' => ['required', 'numeric'],
+   
+        ]);
+        $shiftPayment->update($attributes);
+       session()->flash('success', 'Payment has been updated');
+       session()->flash('type', 'Update Payment');
+       
+       return redirect()->route('shifts.index');
     }
 
     /**
@@ -122,6 +134,7 @@ class ShiftPaymentController extends Controller
      */
     public function destroy(ShiftPayment $shiftPayment)
     {
-        //
+        $shiftPayment->delete();
+        return redirect('shifts');
     }
 }

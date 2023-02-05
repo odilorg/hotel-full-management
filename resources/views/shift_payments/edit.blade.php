@@ -7,12 +7,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0">{{ __('Add new Payment') }}</h1>
+                    <h1 class="m-0">{{ __('Edit new Payment') }}</h1>
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active">{{ __('Add new Payment') }}</li>
+                        <li class="breadcrumb-item active">{{ __('Edit new Payment') }}</li>
                     </ol>
                 </div><!-- /.col -->
             </div><!-- /.row -->

@@ -89,7 +89,10 @@ class ShiftLogController extends Controller
      */
     public function edit(ShiftLog $shiftLog)
     {
-        //
+     $shift = Shift::where('user_id', Auth::id())->first();
+     $rooms = Room::where('hotel_id', $shift->hotel_id)->orderBy('room_number', 'asc')->get();    
+       
+        return view('shift_logs.edit', compact('shiftLog', 'rooms' ));
     }
 
     /**
@@ -101,7 +104,26 @@ class ShiftLogController extends Controller
      */
     public function update(Request $request, ShiftLog $shiftLog)
     {
-        //
+        $attributes =  request()->validate([
+
+            'shift_log_description' => ['max:255' ],
+            
+            'room_id' => ['required ', 'numeric'],
+           
+   
+        ]);
+       // $shift = Shift::where('user_id', auth()->user()->id)->first();
+        
+       
+      
+       // $attributes['shift_id'] = $shift->id;
+       // dd($attributes);
+       $shiftLog->update($attributes);
+       
+       session()->flash('success', 'Shift Log has been updated');
+       session()->flash('type', 'Update Shift Log');
+       
+       return redirect()->route('shifts.index');
     }
 
     /**
@@ -112,6 +134,7 @@ class ShiftLogController extends Controller
      */
     public function destroy(ShiftLog $shiftLog)
     {
-        //
+        $shiftLog->delete();
+        return redirect('shifts');
     }
 }
