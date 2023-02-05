@@ -30,10 +30,20 @@ class ShiftPaymentController extends Controller
      */
     public function create()
     {
+        //check if shift has started
+
+               
         $shift = Shift::where('user_id', Auth::id())->first();
-        $payments = PaymentType::get();
-        $rooms = Room::where('hotel_id', $shift->hotel_id)->orderBy('room_number', 'asc')->get();
-        return view('shift_payments.create', compact('payments', 'rooms', 'shift'));
+        if ($shift) {
+            $payments = PaymentType::get();
+            $rooms = Room::where('hotel_id', $shift->hotel_id)->orderBy('room_number', 'asc')->get();
+            return view('shift_payments.create', compact('payments', 'rooms', 'shift'));
+        }else {
+            session()->flash('error', 'Shift has not been started');
+            session()->flash('type', 'Please start shift');
+            return redirect('shifts');
+        }
+       
     }
 
     /**

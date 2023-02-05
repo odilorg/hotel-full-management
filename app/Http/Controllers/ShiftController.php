@@ -19,10 +19,18 @@ class ShiftController extends Controller
 {
     
   public function shift_expenses_create() {
-    $payments = PaymentType::get();
+   $shift = Shift::where('user_id', Auth::id())->first();
+    if ($shift) {
+      $payments = PaymentType::get();
     $expense_categories = ExpenseCategory::get();
-    //$shift = Shift::where('user_id', Auth::id())->first();
+    
     return view('shifts.shift_expenses_create', compact('payments', 'expense_categories') );
+    }else {
+      session()->flash('error', 'Shift has not been started');
+      session()->flash('type', 'Please start shift');
+      return redirect('shifts');
+    }
+    
     
   }
   public function shift_expenses_store() {

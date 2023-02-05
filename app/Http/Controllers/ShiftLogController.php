@@ -29,9 +29,16 @@ class ShiftLogController extends Controller
     public function create()
     {
         $shift = Shift::where('user_id', Auth::id())->first();
-        $rooms = Room::where('hotel_id', $shift->hotel_id)->orderBy('room_number', 'asc')->get();
-        return view('shift_logs.create', compact('rooms'));
-        dd('log create');
+        if ($shift) {
+            $rooms = Room::where('hotel_id', $shift->hotel_id)->orderBy('room_number', 'asc')->get();
+            return view('shift_logs.create', compact('rooms'));
+        }else {
+            session()->flash('error', 'Shift has not been started');
+      session()->flash('type', 'Please start shift');
+      return redirect('shifts');
+        }
+       
+        
     }
 
     /**

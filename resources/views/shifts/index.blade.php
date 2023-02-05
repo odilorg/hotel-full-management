@@ -145,6 +145,7 @@
                         <table class="table table-hover text-nowrap">
                             <thead>
                                 <tr>
+                                    <th>#</th>
                                     <th>Description</th>
                                     <th>Xona N</th>
                                     <th>Amount</th>
@@ -154,6 +155,7 @@
                             <tbody>
                                 @foreach ($shift_payments as $payments)
                                 <tr>
+                                    <td>{{ $payments->id }}</td>
                                     <td>{{ $payments->payment_description }}</td>
                                     <td>{{ $payments->room->room_number }}</td>
                                     <td>{{  number_format($payments->payment_amount_uzs,2,',',' ')  }}</td>
@@ -175,6 +177,7 @@
                         <table class="table table-hover text-nowrap">
                             <thead>
                                 <tr>
+                                    <th>#</th>
                                     <th>Description</th>
                                     <th>Expense Categoty</th>
                                     <th>Amount</th>
@@ -184,6 +187,7 @@
                             <tbody>
                                 @foreach ($shift_expenses as $expenses)
                                 <tr>
+                                    <td>{{ $expenses->id }}</td>
                                     <td>{{ $expenses->expense_name }}</td>
                                     <td>{{ $expenses->expense_category->category_name }}</td>
                                     <td>{{  number_format($expenses->expense_amount_uzs,2,',',' ') }}</td>
@@ -204,7 +208,7 @@
                         <table class="table table-hover text-nowrap">
                             <thead>
                                 <tr>
-                                    
+                                    <th>#</th>
                                     <th>Description</th>
                                     <th>Date Time</th>
                                     <th>Room N</th>
@@ -213,6 +217,7 @@
                             <tbody>
                                 @foreach ($shift_logs as $logs)
                                 <tr>
+                                    <td>{{ $logs->id }}</td>
                                     <td>{{ $logs->shift_log_description }}</td>
                                     <td>{{ $logs->created_at->format('d/m/Y H:i:s')  }}</td>
                                     <td>{{ $logs->room->room_number }}</td>
