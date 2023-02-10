@@ -302,7 +302,10 @@
                             </tbody>
                         </table>
                     </div>
-                    <h5 class="mb-2">End Saldo 650 000</h5>
+                    @if ($shift_end_saldo)
+                    <h5 class="mb-2">End Saldo   {{ number_format($shift_end_saldo,2,',',' ')  }}</h5>
+                    @endif
+                   
                     <!-- /.card-body -->
                 </div>   
                 @endif

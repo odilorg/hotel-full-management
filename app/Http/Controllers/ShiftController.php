@@ -65,9 +65,11 @@ class ShiftController extends Controller
         $hotels = Hotel::all();  
          $id = Auth::id();   
          $shift = Shift::where('user_id', $id)->first();
-       
+        
        //  dd($shift_payments);
          if ($shift) {
+          $shift_end_saldo = $shift->saldo_end;
+         // dd($shift);
             $payments = PaymentType::get();
             $rooms = Room::where('hotel_id', $shift->hotel_id)->orderBy('room_number', 'asc')->get();
             $shift_payments = ShiftPayment::where('shift_id', $shift->id)->with( ['room', 'payment_type'])->get();
@@ -76,7 +78,7 @@ class ShiftController extends Controller
          }
         
     //    /dd($rooms);
-         return view('shifts.index', compact('shift_logs', 'shift_payments', 'rooms', 'payments', 'shift', 'hotels' , 'shift_expenses'));
+         return view('shifts.index', compact('shift_end_saldo', 'shift_logs', 'shift_payments', 'rooms', 'payments', 'shift', 'hotels' , 'shift_expenses'));
    
    
 //          if ($shift) {
@@ -110,8 +112,11 @@ class ShiftController extends Controller
       $shift = Shift::where('user_id', Auth::id())->first();
       $total_payments_naqd = ShiftPayment::where('shift_id', $shift->id)->where('payment_type_id', 1)->sum('payment_amount_uzs');
       $total_expenses_naqd = Expense::where('shift_id', $shift->id)->where('payment_type_id', 1)->sum('expense_amount_uzs');
-      $end_saldo = $shift->saldo_start + $total_payments_naqd - $total_expenses_naqd;
-      dd($end_saldo);
+      $shift->saldo_end = $shift->saldo_start + $total_payments_naqd - $total_expenses_naqd;
+      $shift->status = 0;
+      $shift->save();
+      
+    //  dd($end_saldo);
     }
    
 
