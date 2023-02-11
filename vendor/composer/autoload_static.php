@@ -648,6 +648,7 @@ class ComposerStaticInit352f526f7d07897a4f935a013ab5fbf1
         'App\\Models\\Cargo' => __DIR__ . '/../..' . '/app/Models/Cargo.php',
         'App\\Models\\Company' => __DIR__ . '/../..' . '/app/Models/Company.php',
         'App\\Models\\Contract' => __DIR__ . '/../..' . '/app/Models/Contract.php',
+        'App\\Models\\Emehmon' => __DIR__ . '/../..' . '/app/Models/Emehmon.php',
         'App\\Models\\Expense' => __DIR__ . '/../..' . '/app/Models/Expense.php',
         'App\\Models\\ExpenseCategory' => __DIR__ . '/../..' . '/app/Models/ExpenseCategory.php',
         'App\\Models\\Firma' => __DIR__ . '/../..' . '/app/Models/Firma.php',

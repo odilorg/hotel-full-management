@@ -57,6 +57,7 @@ class ShiftController extends Controller
   }
   public function index()
     {
+      $shift_end_saldo="";
       $shift_payments  ="";
       $shift_logs="";
       $shift_expenses="";
