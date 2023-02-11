@@ -29,36 +29,8 @@
                         <div class="card-body">
                             <form action="{{ route('expenses.store') }}" method="POST">
                                 @csrf
-                                <div class="form-group">
-                                    <label>{{ __('Expense Report') }}</label>
-                                    <div class="input-group " id="reservationdate" data-target-input="nearest">
-                                        <input type="text" value="{{ old('report_number') }}" name="report_number" class="form-control date @error('report_number')
-                                          {{ 'is-invalid' }} @enderror datetimepicker-input"
-                                            data-target="#reservationdate" />
-                                        <div class="input-group-append" data-target="#reservationdate"
-                                            data-toggle="datetimepicker">
-                                            <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                                        </div>
-                                    </div>
-                                    @error('report_number')
-                                    <p class="text-danger">{{ $message }}</p>
-                                    @enderror
-                                </div>
-                                <div class="form-group">
-                                    <label>{{ __('Expense Date') }}</label>
-                                    <div class="input-group " id="reservationdate" data-target-input="nearest">
-                                        <input type="text" value="{{ old('expense_date') }}" name="expense_date" class="form-control date @error('expense_date')
-                                          {{ 'is-invalid' }} @enderror datetimepicker-input"
-                                            data-target="#reservationdate" />
-                                        <div class="input-group-append" data-target="#reservationdate"
-                                            data-toggle="datetimepicker">
-                                            <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                                        </div>
-                                    </div>
-                                    @error('expense_date')
-                                    <p class="text-danger">{{ $message }}</p>
-                                    @enderror
-                                </div>
+                                
+                                
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">{{ __('Expense Name') }}</label>
                                     <input type="text" value="{{ old('expense_name') }}" name="expense_name" class="form-control  @error('expense_name')
@@ -103,14 +75,7 @@
                                     <p class="text-danger">{{ $message }}</p>
                                     @enderror
                                 </div>
-                                <div class="form-group">
-                                    <label for="exampleInputEmail1">{{ __('Expense Number') }}</label>
-                                    <input type="text" value="{{ old('expense_number') }}" name="expense_number" class="form-control  @error('expense_number')
-                 {{ 'is-invalid' }} @enderror " id="inputError" placeholder="Expense Number">
-                                    @error('expense_number')
-                                    <p class="text-danger">{{ $message }}</p>
-                                    @enderror
-                                </div>
+                                
                                 <input type="hidden" id="custId" name="hotel_id" value="{{ $id }}">
                                 <button type="submit">Submit</button>
                             </form>

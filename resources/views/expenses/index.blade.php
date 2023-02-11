@@ -106,7 +106,7 @@
                                     <th>{{ __('Amount') }}</th>
                                     <th>{{ __('Expense Type') }}</th>
                                     <th>{{ __('Payment Type') }}</th>
-                                    <th>{{ __('Report') }}</th>
+                                    
                                     <th>{{ __('Expense N') }}</th>
                                     @if (empty($hotel_id))
                                     <th>{{ __('Hotel') }}</th>
@@ -122,7 +122,7 @@
                                     <td>{{ number_format($expense->expense_amount_uzs,2,',',' ')  }}</td>
                                     <td>{{ $expense->category_name }}</td>
                                     <td>{{ $expense->payment_type_name }}</td>
-                                    <td>{{ $expense->report_number }}</td>
+                                   
                                     <td>{{ $expense->expense_number }}</td>
                                     @if (empty($hotel_id))
                                     <td>{{ $expense->hotel_name }}</td>

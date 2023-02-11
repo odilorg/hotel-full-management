@@ -85,9 +85,9 @@ class ExpenseController extends Controller
         $attributes =  request()->validate([
 
             'hotel_id' => ['required'],
-            'report_number' => ['required '],
+            
             'expense_name' => ['required ', 'max:255'],
-            'expense_date' => ['required'],
+          
             'expense_category_id' => ['required'],
             'payment_type_id' => ['required'],
             'expense_amount_uzs' => ['required', 'numeric'],
