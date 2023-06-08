@@ -155,7 +155,7 @@ class ExpenseController extends Controller
 
         $attributes =  request()->validate([
 
-           
+            
             'expense_name' => ['required ', 'max:255'],
             'expense_date' => ['required'],
             'expense_category_id' => ['required'],
@@ -165,12 +165,13 @@ class ExpenseController extends Controller
             
          
         ]);
-      //  dd($attributes);
+       //dd($expense->hotel_id);
         $expense->update($attributes);
         session()->flash('success', 'Expense has been updated');
         session()->flash('type', 'Expense Update');
         
-        return redirect('shifts');
+        return redirect()->route('expense_hotels', ['hotel_id' => $expense->hotel_id]);
+        //return redirect('shifts');
     }
 
     /**
@@ -186,7 +187,8 @@ class ExpenseController extends Controller
         $expense->delete();
         session()->flash('error', 'Expense has been deleted');
         session()->flash('type', 'Expense Delete');
-        return redirect('shifts');
+        return redirect()->route('expense_hotels', ['hotel_id' => $expense->hotel_id]);
+        //return redirect('shifts');
      //   return redirect('expenses');
     }
 
