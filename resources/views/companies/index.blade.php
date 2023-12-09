@@ -56,15 +56,8 @@
                                 <tr>
                                     <th>Company Name</th>
                                     <th>Offical Company Name</th>
-                                    <th>Address Street</th>
-                                    <th>Address City</th>
-                                    <th>Address Zip</th>
-                                    <th>Phone</th>
-                                    <th>Email</th>
                                     <th>INN</th>
-                                    <th>Account Number</th>
-                                    <th>Bank Name</th>
-                                    <th>MFO bank</th>
+                                   
                                 </tr>
                             </thead>
                             <tbody>
@@ -72,15 +65,8 @@
                                 <tr>
                                     <td>{{ $company->company_name }} </span></td>
                                     <td>{{ $company->offical_company_name }}</td>
-                                    <td>{{ $company->company_address_street }}</td>
-                                    <td>{{ $company->company_address_city }}</td>
-                                    <td>{{ $company->company_address_zip }}</td>
-                                    <td>{{ $company->company_phone }}</td>
-                                    <td>{{ $company->company_email }}</td>
                                     <td>{{ $company->company_inn }}</td>
-                                    <td>{{ $company->company_acc_number }}</td>
-                                    <td>{{ $company->company_bank_name }}</td>
-                                    <td>{{ $company->company_bank_mfo }}</td>
+                                   
                                     <td><a class="btn btn-primary btn-sm" href="companies/{{ $company->id }}">
                                             <i class="fas fa-folder">
                                             </i>
